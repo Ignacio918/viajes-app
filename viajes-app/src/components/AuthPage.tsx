@@ -5,7 +5,7 @@ import RegisterForm from './RegisterForm';
 interface AuthPageProps {
   type: 'login' | 'register';
   onAuthSuccess: () => void;
-  onBack: () => void; // Prop para manejar el botón de volver atrás
+  onBack: () => void;
 }
 
 const AuthPage: React.FC<AuthPageProps> = ({ type, onAuthSuccess, onBack }) => {

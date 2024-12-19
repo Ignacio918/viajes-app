@@ -1,8 +1,14 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 const Dashboard: React.FC = () => {
   return (
     <div className="dashboard-container bg-gray-100 min-h-screen p-4">
-      <header className="bg-white shadow-md py-4 px-6 mb-6">
+      <header className="bg-white shadow-md py-4 px-6 mb-6 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <Link to="/" className="btn-primary">
+          Ir a la Página de Inicio
+        </Link>
       </header>
 
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -11,7 +17,7 @@ const Dashboard: React.FC = () => {
           <div className="text-gray-700">
             <p>Próximos viajes: 3</p>
             <p>Documentos cargados: 5</p>
-            <p>Estadísticas del viaje actual: </p>
+            <p>Estadísticas del viaje actual:</p>
           </div>
         </section>
 

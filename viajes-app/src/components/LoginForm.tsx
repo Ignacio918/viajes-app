@@ -1,4 +1,5 @@
-import { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 
 interface LoginFormProps {
@@ -8,40 +9,51 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
+
     if (error) {
-      console.error('Error al iniciar sesión:', error.message);
+      setError(error.message);
     } else {
       onLogin();
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-4">
         <label className="block text-gray-700">Email</label>
         <input
           type="email"
-          className="w-full p-3 border rounded-lg"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded mt-1"
           required
         />
       </div>
-      <div>
+      <div className="mb-4">
         <label className="block text-gray-700">Contraseña</label>
         <input
           type="password"
-          className="w-full p-3 border rounded-lg"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded mt-1"
           required
+          autoComplete="current-password"
         />
       </div>
-      <button type="submit" className="btn-primary w-full py-3">Iniciar Sesión</button>
+      {error && <div className="mb-4 text-red-500">{error}</div>}
+      <button type="submit" className="btn-primary w-full">Iniciar Sesión</button>
+      <p className="text-sm mt-2">
+        <Link to="/reset-password" className="text-blue-500 hover:underline">
+          ¿Olvidaste tu contraseña?
+        </Link>
+      </p>
     </form>
   );
 };
