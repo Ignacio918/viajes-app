@@ -1,11 +1,22 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}"
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        urbanist: ['Urbanist', 'sans-serif'],
+        openSans: ['Open Sans', 'sans-serif'],
+      },
+      colors: {
+        primary: '#44178C',
+        secondary: '#ECE8F4',
+        gray: {
+          600: '#828282',
+        },
+      },
+    },
   },
   plugins: [],
-};
+}

@@ -1,75 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 
-interface UserProfile {
-  email: string;
-  fullName: string;
-}
-
 const UserProfile: React.FC = () => {
-  const [profile, setProfile] = useState<UserProfile>({ email: '', fullName: '' });
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        setError(error.message);
-      } else if (data.user) {
-        setProfile({ 
-          email: data.user.email || '', 
-          fullName: data.user.user_metadata.full_name || '' 
-        });
+    const fetchUserData = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session && session.user) {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', session.user.id)
+          .single();
+        if (error) {
+          console.error(error);
+        } else {
+          setUser(data);
+        }
       }
+      setLoading(false);
     };
 
-    fetchProfile();
+    fetchUserData();
   }, []);
 
-  const handleProfileUpdate = async (e: React.FormEvent) => {
+  const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setMessage('');
+    setLoading(true);
 
-    const { error } = await supabase.auth.updateUser({
-      email: profile.email,
-      data: { full_name: profile.fullName },
-    });
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session && session.user) {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ /* campos a actualizar */ })
+        .eq('id', session.user.id);
 
-    if (error) {
-      setError(error.message);
-    } else {
-      setMessage('Perfil actualizado con éxito.');
+      if (error) {
+        console.error(error);
+      } else {
+        // Actualiza el estado de usuario
+      }
     }
+
+    setLoading(false);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <form onSubmit={handleProfileUpdate}>
-      <div className="mb-4">
-        <label className="block text-gray-700">Email</label>
-        <input
-          type="email"
-          value={profile.email}
-          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700">Nombre Completo</label>
-        <input
-          type="text"
-          value={profile.fullName}
-          onChange={(e) => setProfile({ ...profile, fullName: e.target.value })}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          required
-        />
-      </div>
-      {error && <div className="mb-4 text-red-500">{error}</div>}
-      {message && <div className="mb-4 text-green-500">{message}</div>}
-      <button type="submit" className="btn-primary w-full">Actualizar Perfil</button>
-    </form>
+    <div className="user-profile-container">
+      <form onSubmit={handleUpdateProfile} className="user-profile-form">
+        <h2 className="user-profile-title">Perfil de Usuario</h2>
+        <div className="form-group">
+          <label className="form-label">Nombre</label>
+          <input
+            type="text"
+            value={user?.name || ''}
+            onChange={(e) => setUser({ ...user, name: e.target.value })}
+            className="form-input"
+          />
+        </div>
+        {/* Otros campos de perfil */}
+        <button type="submit" className="btn-primary">Actualizar Perfil</button>
+      </form>
+    </div>
   );
 };
 
