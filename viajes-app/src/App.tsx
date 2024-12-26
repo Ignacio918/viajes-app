@@ -51,7 +51,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="bg-gray-50 text-gray-800 min-h-screen flex">
+      <div className={`min-h-screen flex ${showAuthPage ? 'bg-white' : 'bg-gray-50'}`}>
         {!showAuthPage && <Sidebar />} {/* Mostrar Sidebar solo si no estamos en AuthPage */}
         <div className="flex-grow main-content">
           {!showAuthPage && (

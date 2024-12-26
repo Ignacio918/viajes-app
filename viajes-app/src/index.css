@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos globales para ocultar la barra de desplazamiento */
+html, body {
+  overflow: auto; /* Permitir desplazamiento */
+  height: 100%; /* Asegurar que ocupe toda la altura */
+  margin: 0; /* Quitar margen por defecto */
+  padding: 0; /* Quitar padding por defecto */
+}
+
+/* Ocultar la barra de desplazamiento en navegadores basados en WebKit */
+::-webkit-scrollbar {
+  width: 0px; /* Ancho de la barra de desplazamiento */
+  background: transparent; /* Fondo de la barra de desplazamiento */
+}
+
+/* Ocultar la barra de desplazamiento en navegadores basados en WebKit (horizontal) */
+::-webkit-scrollbar-horizontal {
+  height: 0px; /* Altura de la barra de desplazamiento horizontal */
+  background: transparent; /* Fondo de la barra de desplazamiento horizontal */
+}
+
+/* Ocultar la barra de desplazamiento en Firefox */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+
 /* Colores personalizados */
 .primary-bg {
   @apply bg-[#9b87f5];

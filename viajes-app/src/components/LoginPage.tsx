@@ -7,7 +7,9 @@ import Logo from '../assets/logo_zentrip_login.svg';
 import Illustration from '../assets/ilustracion-login.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import PasswordIcon from '../assets/pw-icon.svg';
-import MailIcon from '../assets/mail_icon.svg';
+import MailIcon from '../assets/mail-icon.svg';
+import EyeIcon from '../assets/eye-slash.svg'; // Icono para ocultar contraseña
+import EyeOffIcon from '../assets/eye.svg'; // Icono para mostrar contraseña
 
 // Definir las props que el componente acepta
 interface LoginPageProps {
@@ -18,6 +20,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar contraseña
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -43,15 +46,15 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-white overflow-hidden mt-[-90px]">
       <div className="w-full h-full flex flex-col md:flex-row">
         {/* Ilustración a la izquierda */}
-        <div className="md:w-1/2 flex items-center justify-center bg-white">
-          <img src={Illustration} alt="Ilustración" className="object-contain w-full h-full max-w-md" />
+        <div className="md:w-1/2 flex items-center justify-center bg-white pointer-events-none"> {/* Asegurar que no sea clickeable */}
+          <img src={Illustration} alt="Ilustración" className="object-cover w-full h-full" />
         </div>
 
         {/* Contenido del formulario de login */}
-        <div className="md:w-1/2 flex flex-col justify-center items-center p-8">
+        <div className="md:w-1/2 flex flex-col justify-center items-center p-8 bg-white">
           {/* Logo en la parte superior */}
           <div className="mb-8">
             <img src={Logo} alt="Logo Zentrip" className="w-48 h-12 object-contain" />
@@ -81,15 +84,21 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
             </div>
             <div className="flex flex-col space-y-2">
               <label className="password-label">Password</label>
-              <div className="flex items-center border border-gray-300 rounded-md p-2">
+              <div className="flex items-center border border-gray-300 rounded-md p-2 relative">
                 <img src={PasswordIcon} alt="Password Icon" className="w-5 h-5" />
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="ml-2 w-full focus:outline-none"
                   placeholder="Password"
                   required
+                />
+                <img
+                  src={showPassword ? EyeOffIcon : EyeIcon}
+                  alt="Toggle Password Visibility"
+                  className="w-5 h-5 ml-2 cursor-pointer absolute right-2"
+                  onClick={() => setShowPassword(!showPassword)}
                 />
               </div>
             </div>
@@ -112,9 +121,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
               Ingresar con Google
             </button>
             <div className="flex items-center justify-center mt-4">
-              <div className="w-1/2 h-px bg-gray-300"></div>
+              <div className="flex-grow h-px bg-gray-300 max-w-[42px]"></div>
               <span className="no-tienes-cuenta text-sm text-gray-500 mx-2">¿No tienes cuenta?</span>
-              <div className="w-1/2 h-px bg-gray-300"></div>
+              <div className="flex-grow h-px bg-gray-300 max-w-[42px]"></div>
             </div>
             <button
               type="button"
