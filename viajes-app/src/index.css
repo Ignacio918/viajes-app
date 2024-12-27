@@ -1,167 +1,203 @@
+/* index.css */
+:root {
+  --color-primary: #44178C;
+  --color-primary-hover: #3b167d;
+  --color-text-primary: #161616;
+  --color-text-secondary: #828282;
+  --color-border: #ECE8F4;
+  --color-white: #FFFFFF;
+  --color-separator: #E6E9FA;
+  --color-light-purple: #f8f5ff;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos globales para ocultar la barra de desplazamiento */
-html, body {
-  overflow: auto; /* Permitir desplazamiento */
-  height: 100%; /* Asegurar que ocupe toda la altura */
-  margin: 0; /* Quitar margen por defecto */
-  padding: 0; /* Quitar padding por defecto */
+@layer base {
+  html {
+    font-family: 'Urbanist', system-ui, sans-serif;
+  }
+
+  body {
+    @apply m-0 p-0 overflow-x-hidden;
+    min-height: 100vh;
+  }
+
+  /* Ocultar scrollbar pero mantener funcionalidad */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /* Desactivar la selección de texto */
+  body, div, img, h1, h2, h3, h4, h5, h6, p, span {
+    user-select: none;
+    cursor: default;
+  }
+
+  /* Permitir selección en inputs */
+  input, textarea {
+    user-select: text;
+    cursor: text;
+  }
 }
 
-/* Ocultar la barra de desplazamiento en navegadores basados en WebKit */
-::-webkit-scrollbar {
-  width: 0px; /* Ancho de la barra de desplazamiento */
-  background: transparent; /* Fondo de la barra de desplazamiento */
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-2 border border-[#ECE8F4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#44178C] focus:border-transparent transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-[#44178C] text-[#ECE8F4] hover:bg-[#3b167d] transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-[#44178C] border border-[#44178C] hover:bg-gray-50 transition-colors;
+  }
+
+  .btn-dark {
+    @apply bg-[#161616] text-[#ECE8F4] hover:bg-black transition-colors;
+  }
 }
 
-/* Ocultar la barra de desplazamiento en navegadores basados en WebKit (horizontal) */
-::-webkit-scrollbar-horizontal {
-  height: 0px; /* Altura de la barra de desplazamiento horizontal */
-  background: transparent; /* Fondo de la barra de desplazamiento horizontal */
+/* Fuente Urbanist */
+@font-face {
+  font-family: 'Urbanist';
+  src: url('../assets/fonts/Urbanist-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* Ocultar la barra de desplazamiento en Firefox */
-body {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+@font-face {
+  font-family: 'Urbanist';
+  src: url('../assets/fonts/Urbanist-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* Colores personalizados */
-.primary-bg {
-  @apply bg-[#9b87f5];
+/* Media queries para diferentes tamaños de pantalla */
+@media screen and (min-width: 2560px) {
+  .login-container {
+    max-width: 2560px;
+    margin: 0 auto;
+  }
 }
 
-.primary-text {
-  @apply text-[#9b87f5];
+@media screen and (min-width: 1440px) and (max-width: 2559px) {
+  .login-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
 
-.btn-primary {
-  @apply bg-[#9b87f5] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#8b77e5] transition;
+@media screen and (max-width: 1439px) {
+  .login-container {
+    width: 100%;
+  }
 }
 
-.btn-secondary {
-  @apply bg-gray-100 text-gray-900 px-4 py-2 rounded-full hover:bg-gray-200 transition;
+/* Nuevo breakpoint para tablet/mobile */
+@media screen and (max-width: 1024px) {
+  .w-\[704px\].h-\[781px\] {
+    display: none;
+  }
+
+  .pl-\[114px\] {
+    padding-left: 0;
+  }
+
+  .w-full.max-w-\[1440px\] {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .w-\[421px\] {
+    max-width: 421px;
+    width: 100%;
+    min-height: 515px;
+    margin: 0 auto;
+  }
 }
 
-.section-spacing {
-  @apply py-12; /* Reducimos el espacio vertical */
+@media screen and (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .form-container {
+    width: 100%;
+    padding: 16px;
+  }
 }
 
-.text-heading {
-  @apply text-4xl md:text-5xl font-bold text-gray-900;
-}
-
-.text-subheading {
-  @apply text-lg text-gray-600;
-}
-
-.container-spacing {
-  @apply container mx-auto px-6;
-}
-
-.mockup-box {
-  @apply bg-gray-200 h-80 flex items-center justify-center rounded-lg text-gray-500;
-}
-
-.navbar-fixed {
-  @apply fixed top-0 left-0 w-full z-10 bg-white shadow-sm;
-}
-
-.hero-offset {
-  @apply mt-16; /* Ajustamos la separación con el navbar */
-}
-
-/* Centrar el formulario en la pantalla */
-.password-reset-container {
-  @apply flex justify-center items-center min-h-screen bg-gray-50;
-}
-
-/* Estilos del formulario */
-.password-reset-form {
-  @apply max-w-md w-full p-6 bg-white rounded shadow-md;
-}
-
-/* Título del formulario */
-.password-reset-title {
-  @apply text-2xl font-bold mb-4 text-center;
-}
-
-/* Grupo de formularios */
-.form-group {
-  @apply mb-4;
-}
-
-/* Etiqueta del formulario */
-.form-label {
-  @apply block text-gray-700 mb-1 font-medium;
-}
-
-/* Entrada del formulario */
-.form-input {
-  @apply w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:border-blue-500;
-}
-
-/* Mensaje de error */
-.form-error {
-  @apply text-red-500 mb-4;
-}
-
-/* Mensaje de éxito */
-.form-message {
-  @apply text-green-500 mb-4;
-}
-
-/* Estilo del sidebar */
-.sidebar {
-  @apply bg-gray-800 text-white h-full p-4 fixed top-0 left-0 w-64 z-20;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
-}
-
-/* Estilo de la lista y los ítems */
-.sidebar-menu {
-  @apply list-none p-0;
-}
-
-.sidebar-item {
-  @apply my-2 px-4 py-2 text-white hover:bg-gray-700 rounded;
-}
-
-/* Ajustar el navbar para que no se solape con el sidebar */
-.navbar-fixed {
-  @apply fixed top-0 left-64 w-[calc(100%-16rem)] z-10 bg-white shadow-sm;
-}
-
-/* Ajuste del contenido principal para evitar que quede tapado por el sidebar */
-.main-content {
-  @apply ml-64 p-4 mt-16;
-}
-
-/* Estilos tipográficos proporcionados */
+/* Estilos específicos para el login */
 .te-damos-la-bienvenida {
-  @apply text-4xl font-medium text-[#161616] font-urbanist break-words;
+  @apply text-[40px] font-medium text-[#161616] font-urbanist;
 }
 
 .email-label,
 .password-label,
 .no-tienes-cuenta {
-  @apply text-sm font-normal text-gray-600 font-openSans break-words;
+  @apply text-[14px] font-normal text-[#828282] font-urbanist;
 }
 
 .olvidaste-tu-contrasena {
-  @apply text-sm font-normal text-primary font-openSans break-words;
+  @apply text-[14px] font-normal text-[#44178C] font-urbanist hover:underline;
 }
 
 .ingresar-button,
 .registrarte-button {
-  @apply text-base font-normal text-secondary font-urbanist break-words;
+  @apply text-[16px] font-normal font-urbanist;
 }
 
 .ingresar-google-button {
-  @apply text-base font-normal text-primary font-urbanist break-words;
+  @apply text-[16px] font-normal text-[#44178C] font-urbanist;
 }
 
 .accede-cuenta {
-  @apply text-lg font-medium text-[#161616] font-urbanist break-words;
+  @apply text-[16px] font-medium text-[#161616] font-urbanist;
+}
+
+/* Ajustes para resolución 2560x1440 */
+@media screen and (min-width: 2560px) {
+  .illustration-wrapper {
+    @apply flex items-center justify-center;
+    max-height: 100vh;
+  }
+
+  .illustration-image {
+    @apply object-contain;
+    max-height: 90vh;
+  }
+
+  .form-wrapper {
+    @apply flex items-center justify-center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* Ajustes para elementos interactivos */
+.input-wrapper:focus-within {
+  @apply ring-2 ring-[#44178C] ring-opacity-50;
+}
+
+.button-hover-effect {
+  @apply transform transition-transform duration-200 hover:scale-[1.02];
 }

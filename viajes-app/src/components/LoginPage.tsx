@@ -2,16 +2,14 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 
-// Importar ilustraciones e íconos
 import Logo from '../assets/logo_zentrip_login.svg';
 import Illustration from '../assets/ilustracion-login.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import PasswordIcon from '../assets/pw-icon.svg';
 import MailIcon from '../assets/mail-icon.svg';
-import EyeIcon from '../assets/eye-slash.svg'; // Icono para ocultar contraseña
-import EyeOffIcon from '../assets/eye.svg'; // Icono para mostrar contraseña
+import EyeIcon from '../assets/eye-slash.svg';
+import EyeOffIcon from '../assets/eye.svg';
 
-// Definir las props que el componente acepta
 interface LoginPageProps {
   onAuthSuccess: () => void;
 }
@@ -20,7 +18,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar contraseña
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -29,7 +27,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
     setLoading(true);
     setError('');
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ 
+      email, 
+      password 
+    });
 
     setLoading(false);
 
@@ -40,98 +41,141 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
         console.log('User data:', data.user);
         console.log('Session data:', data.session);
       }
-      onAuthSuccess(); // Llamar a la función pasada como prop
+      onAuthSuccess();
       navigate('/dashboard');
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white overflow-hidden mt-[-90px]">
-      <div className="w-full h-full flex flex-col md:flex-row">
-        {/* Ilustración a la izquierda */}
-        <div className="md:w-1/2 flex items-center justify-center bg-white pointer-events-none"> {/* Asegurar que no sea clickeable */}
-          <img src={Illustration} alt="Ilustración" className="object-cover w-full h-full" />
+    <div className="min-h-screen flex items-center justify-center bg-[var(--color-white)]">
+      <div className="w-full max-w-[1440px] flex items-center">
+        {/* Lado izquierdo - Ilustración */}
+        <div className="w-[704px] h-[781px] relative ml-[68px]">
+          <img 
+            src={Illustration} 
+            alt="Ilustración"
+            className="w-full h-full object-contain"
+          />
         </div>
 
-        {/* Contenido del formulario de login */}
-        <div className="md:w-1/2 flex flex-col justify-center items-center p-8 bg-white">
-          {/* Logo en la parte superior */}
-          <div className="mb-8">
-            <img src={Logo} alt="Logo Zentrip" className="w-48 h-12 object-contain" />
-          </div>
+        {/* Lado derecho - Formulario */}
+        <div className="flex-1 flex flex-col items-center justify-center pl-[114px]">
+          <div className="w-[421px] flex flex-col items-center">
+            {/* Logo */}
+            <div className="w-[194px] h-[72px] relative mb-[14px]">
+              <img 
+                src={Logo} 
+                alt="Logo Zentrip"
+                className="w-full h-full object-contain"
+              />
+            </div>
 
-          {/* Texto de bienvenida */}
-          <div className="mb-8 text-center">
-            <h1 className="te-damos-la-bienvenida">Te damos la bienvenida</h1>
-            <p className="accede-cuenta">Accede a tu cuenta y empieza a planificar tu viaje</p>
-          </div>
+            {/* Título y Subtítulo */}
+            <div className="self-stretch text-[var(--color-text-primary)] font-urbanist text-[40px] font-medium mb-[14px]">
+              Te damos la bienvenida
+            </div>
+            <div className="self-stretch text-center text-[var(--color-text-primary)] text-[16px] font-urbanist mb-[14px]">
+              Accede a tu cuenta y empieza a planificar tu viaje
+            </div>
 
-          {/* Formulario de Login */}
-          <form onSubmit={handleLogin} className="w-full max-w-md space-y-4">
-            <div className="flex flex-col space-y-2">
-              <label className="email-label">Email</label>
-              <div className="flex items-center border border-gray-300 rounded-md p-2">
-                <img src={MailIcon} alt="Email Icon" className="w-5 h-5" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="ml-2 w-full focus:outline-none"
-                  placeholder="Email"
-                  required
-                />
+            {/* Formulario */}
+            <form onSubmit={handleLogin} className="flex flex-col items-center gap-[14px] self-stretch w-full">
+              <div className="flex flex-col items-end gap-[14px] self-stretch">
+                {/* Email Input */}
+                <div className="flex flex-col items-start self-stretch">
+                  <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                    <div className="flex items-center gap-[8px]">
+                      <div className="w-6 h-6 flex justify-center items-center">
+                        <img src={MailIcon} alt="Email" />
+                      </div>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                        className="w-full font-urbanist text-[14px] text-[var(--color-text-secondary)] bg-transparent focus:outline-none"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Password Input */}
+                <div className="flex flex-col items-start self-stretch">
+                  <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                    <div className="flex items-center gap-[8px] flex-1">
+                      <div className="w-6 h-6 flex justify-center items-center">
+                        <img src={PasswordIcon} alt="Password" />
+                      </div>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Contraseña"
+                        className="w-full font-urbanist text-[14px] text-[var(--color-text-secondary)] bg-transparent focus:outline-none"
+                        required
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="flex justify-center items-center w-7 h-6"
+                    >
+                      <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Olvidaste tu contraseña */}
+                <button
+                  type="button"
+                  className="text-[var(--color-primary)] text-[14px] font-urbanist hover:underline transition-all duration-200"
+                >
+                  Olvidaste tu contraseña?
+                </button>
               </div>
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label className="password-label">Password</label>
-              <div className="flex items-center border border-gray-300 rounded-md p-2 relative">
-                <img src={PasswordIcon} alt="Password Icon" className="w-5 h-5" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="ml-2 w-full focus:outline-none"
-                  placeholder="Password"
-                  required
-                />
-                <img
-                  src={showPassword ? EyeOffIcon : EyeIcon}
-                  alt="Toggle Password Visibility"
-                  className="w-5 h-5 ml-2 cursor-pointer absolute right-2"
-                  onClick={() => setShowPassword(!showPassword)}
-                />
+
+              {/* Botones */}
+              <div className="flex flex-col gap-[14px] w-full">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-primary)] text-[var(--color-white)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-[var(--color-primary-hover)] disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {loading ? "Cargando..." : "Ingresar"}
+                </button>
+
+                <button 
+                  type="button" 
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-[var(--color-light-purple)]"
+                >
+                  <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
+                  <span>Ingresar con Google</span>
+                </button>
+
+                {/* Separador */}
+                <div className="flex justify-center items-center gap-[4px] w-[215px] mx-auto">
+                  <div className="flex-1 h-[1px] bg-[var(--color-separator)]" />
+                  <span className="text-[var(--color-text-secondary)] text-[14px] font-urbanist px-[4px]">
+                    ¿No tienes cuenta?
+                  </span>
+                  <div className="flex-1 h-[1px] bg-[var(--color-separator)]" />
+                </div>
+
+                {/* Botón Registrarte */}
+                <button
+                  type="button"
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-text-primary)] text-[var(--color-white)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-black"
+                >
+                  Registrarte
+                </button>
               </div>
-            </div>
-            <div className="flex justify-end">
-              <a href="#" className="olvidaste-tu-contrasena">Olvidaste tu contraseña?</a>
-            </div>
-            {loading && <p className="text-gray-500">Cargando...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            <button
-              type="submit"
-              className="ingresar-button w-full py-2 px-4 bg-primary text-white rounded-full hover:bg-[#3b167d]"
-            >
-              Ingresar
-            </button>
-            <button
-              type="button"
-              className="ingresar-google-button w-full py-2 px-4 bg-white text-primary border border-primary rounded-full hover:bg-gray-100 flex items-center justify-center"
-            >
-              <img src={GoogleIcon} alt="Google Icon" className="w-4 h-4 mr-2" />
-              Ingresar con Google
-            </button>
-            <div className="flex items-center justify-center mt-4">
-              <div className="flex-grow h-px bg-gray-300 max-w-[42px]"></div>
-              <span className="no-tienes-cuenta text-sm text-gray-500 mx-2">¿No tienes cuenta?</span>
-              <div className="flex-grow h-px bg-gray-300 max-w-[42px]"></div>
-            </div>
-            <button
-              type="button"
-              className="registrarte-button w-full py-2 px-4 bg-[#161616] text-white rounded-full hover:bg-black mt-4"
-            >
-              Registrarte
-            </button>
-          </form>
+            </form>
+
+            {error && (
+              <p className="mt-4 text-red-500 text-center text-sm font-urbanist">{error}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
