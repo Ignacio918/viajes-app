@@ -116,90 +116,96 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
               onSubmit={handleRegister}
               className="flex flex-col items-center gap-[14px] self-stretch w-full"
             >
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Nombre completo"
-                  required
-                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
-                />
-                <img
-                  src={UserIcon}
-                  alt="User"
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4"
-                />
+              <div className="flex flex-col items-start self-stretch">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                  <div className="flex items-center gap-[8px]">
+                    <div className="w-6 h-6 flex justify-center items-center">
+                      <img src={UserIcon} alt="User" />
+                    </div>
+                    <input
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="Nombre completo"
+                      className="w-full font-urbanist text-[14px] text-[var(--color-text-secondary)] bg-transparent focus:outline-none"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="relative w-full">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  required
-                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
-                />
-                <img
-                  src={MailIcon}
-                  alt="Mail"
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4"
-                />
+              <div className="flex flex-col items-start self-stretch">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                  <div className="flex items-center gap-[8px]">
+                    <div className="w-6 h-6 flex justify-center items-center">
+                      <img src={MailIcon} alt="Email" />
+                    </div>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email"
+                      className="w-full font-urbanist text-[14px] text-[var(--color-text-secondary)] bg-transparent focus:outline-none"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="relative w-full">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Contraseña"
-                  required
-                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
-                />
-                <img
-                  src={PasswordIcon}
-                  alt="Password"
-                  className="absolute right-10 top-1/2 transform -translate-y-1/2 w-4 h-4"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none"
-                >
-                  <img
-                    src={showPassword ? EyeOffIcon : EyeIcon}
-                    alt="Toggle password visibility"
-                    className="w-4 h-4"
-                  />
-                </button>
+              <div className="flex flex-col items-start self-stretch">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                  <div className="flex items-center gap-[8px] flex-1">
+                    <div className="w-6 h-6 flex justify-center items-center">
+                      <img src={PasswordIcon} alt="Password" />
+                    </div>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Contraseña"
+                      className="w-full font-urbanist text-[14px] text-[var(--color-text-secondary)] bg-transparent focus:outline-none"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="flex justify-center items-center w-7 h-6"
+                  >
+                    <img
+                      src={showPassword ? EyeOffIcon : EyeIcon}
+                      alt="Toggle password"
+                    />
+                  </button>
+                </div>
               </div>
 
-              <div className="relative w-full">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirmar contraseña"
-                  required
-                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
-                />
-                <img
-                  src={PasswordIcon}
-                  alt="Password"
-                  className="absolute right-10 top-1/2 transform -translate-y-1/2 w-4 h-4"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none"
-                >
-                  <img
-                    src={showConfirmPassword ? EyeOffIcon : EyeIcon}
-                    alt="Toggle password visibility"
-                    className="w-4 h-4"
-                  />
-                </button>
+              <div className="flex flex-col items-start self-stretch">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                  <div className="flex items-center gap-[8px] flex-1">
+                    <div className="w-6 h-6 flex justify-center items-center">
+                      <img src={PasswordIcon} alt="Password" />
+                    </div>
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Confirmar contraseña"
+                      className="w-full font-urbanist text-[14px] text-[var(--color-text-secondary)] bg-transparent focus:outline-none"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="flex justify-center items-center w-7 h-6"
+                  >
+                    <img
+                      src={showConfirmPassword ? EyeOffIcon : EyeIcon}
+                      alt="Toggle password"
+                    />
+                  </button>
+                </div>
               </div>
 
               {/* Botones */}

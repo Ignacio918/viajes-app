@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 
 import Logo from '../assets/logo_zentrip_login.svg';
@@ -12,10 +12,12 @@ import EyeOffIcon from '../assets/eye.svg';
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
+  handleRegisterClick: () => void;
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
+const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClick }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -43,6 +45,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
       }
       onAuthSuccess();
       navigate('/dashboard');
+    }
+  };
+
+  const handleRegisterButtonClick = () => {
+    if (location.pathname === '/login') {
+      navigate('/registerform');
+    } else {
+      handleRegisterClick();
     }
   };
 
@@ -165,6 +175,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess }) => {
                 {/* Botón Registrarte */}
                 <button
                   type="button"
+                  onClick={handleRegisterButtonClick}
                   className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-text-primary)] text-[var(--color-white)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-black"
                 >
                   Registrarte

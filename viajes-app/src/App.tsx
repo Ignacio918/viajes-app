@@ -144,17 +144,37 @@ const App: React.FC = () => {
                   </div>
                 ) : (
                   showAuthPage === 'login' ? (
-                    <LoginPage onAuthSuccess={handleAuthSuccess} />
+                    <LoginPage 
+                      onAuthSuccess={handleAuthSuccess}
+                      handleRegisterClick={handleRegisterClick}
+                    />
                   ) : (
-                    // Este es el cambio necesario - cambiamos onRegister por onAuthSuccess
                     <RegisterForm onAuthSuccess={handleAuthSuccess} />
                   )
                 )}
               </>
             } />
-            <Route path="/login" element={<LoginPage onAuthSuccess={handleAuthSuccess} />} />
-            <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-            <Route path="/profile" element={isLoggedIn ? <UserProfile /> : <Navigate to="/login" />} />
+            <Route 
+              path="/login" 
+              element={
+                <LoginPage 
+                  onAuthSuccess={handleAuthSuccess}
+                  handleRegisterClick={handleRegisterClick}
+                />
+              } 
+            />
+            <Route 
+              path="/registerform" 
+              element={<RegisterForm onAuthSuccess={handleAuthSuccess} />} 
+            />
+            <Route 
+              path="/dashboard" 
+              element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} 
+            />
+            <Route 
+              path="/profile" 
+              element={isLoggedIn ? <UserProfile /> : <Navigate to="/login" />} 
+            />
             <Route path="/reset-password" element={<PasswordResetForm />} />
             <Route path="/set-new-password" element={<SetNewPassword />} />
           </Routes>
