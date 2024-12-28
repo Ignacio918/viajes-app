@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard';
 import PasswordResetForm from './components/PasswordResetForm';
 import SetNewPassword from './components/SetNewPassword';
 import LoginPage from './components/LoginPage';
-import RegisterForm from './components/RegisterForm'; // Asegúrate de que este componente exista
+import RegisterForm from './components/RegisterForm';
 import UserProfile from './components/UserProfile';
 import Sidebar from './components/Sidebar';
 
@@ -52,7 +52,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className={`min-h-screen flex ${showAuthPage ? 'bg-white' : 'bg-gray-50'}`}>
-        {!showAuthPage && <Sidebar />} {/* Mostrar Sidebar solo si no estamos en AuthPage */}
+        {!showAuthPage && <Sidebar />}
         <div className="flex-grow main-content">
           {!showAuthPage && (
             <nav className="navbar-fixed">
@@ -146,7 +146,8 @@ const App: React.FC = () => {
                   showAuthPage === 'login' ? (
                     <LoginPage onAuthSuccess={handleAuthSuccess} />
                   ) : (
-                    <RegisterForm onRegister={handleAuthSuccess} />
+                    // Este es el cambio necesario - cambiamos onRegister por onAuthSuccess
+                    <RegisterForm onAuthSuccess={handleAuthSuccess} />
                   )
                 )}
               </>
