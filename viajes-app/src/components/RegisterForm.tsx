@@ -29,12 +29,12 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError('Las contraseñas no coinciden');
+      setError("Las contraseñas no coinciden");
       return;
     }
 
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
       const { error: signUpError } = await supabase.auth.signUp({
@@ -43,8 +43,8 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
         options: {
           data: {
             full_name: fullName,
-          }
-        }
+          },
+        },
       });
 
       if (signUpError) {
@@ -53,18 +53,19 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
 
       // Primero actualizamos el estado de éxito
       setSuccess(true);
-      
+
       // Llamamos a onAuthSuccess para actualizar el estado de autenticación
       onAuthSuccess();
-      
+
       // Aseguramos que la navegación ocurra después de que el estado se haya actualizado
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Navegamos directamente al onboarding
-      window.location.href = '/dashboard/onboarding';
-      
+      window.location.href = "/dashboard/onboarding";
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Error durante el registro');
+      setError(
+        error instanceof Error ? error.message : "Error durante el registro"
+      );
       setSuccess(false);
     } finally {
       setLoading(false);
@@ -111,48 +112,60 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
             )}
 
             {/* Formulario */}
-            <form onSubmit={handleRegister} className="flex flex-col items-center gap-[14px] self-stretch w-full">
-              {/* Campo Nombre completo */}
-              <div className="flex items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-[4px] border border-[#ECE8F4] bg-white">
-                <img src={UserIcon} alt="User" className="w-4 h-4" />
+            <form
+              onSubmit={handleRegister}
+              className="flex flex-col items-center gap-[14px] self-stretch w-full"
+            >
+              <div className="relative w-full">
                 <input
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Nombre completo"
                   required
-                  className="flex-1 border-none outline-none text-[14px] font-urbanist placeholder:text-[#828282]"
+                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
+                />
+                <img
+                  src={UserIcon}
+                  alt="User"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4"
                 />
               </div>
 
-              {/* Campo Email */}
-              <div className="flex items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-[4px] border border-[#ECE8F4] bg-white">
-                <img src={MailIcon} alt="Mail" className="w-4 h-4" />
+              <div className="relative w-full">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   required
-                  className="flex-1 border-none outline-none text-[14px] font-urbanist placeholder:text-[#828282]"
+                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
+                />
+                <img
+                  src={MailIcon}
+                  alt="Mail"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4"
                 />
               </div>
 
-              {/* Campo Contraseña */}
-              <div className="flex items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-[4px] border border-[#ECE8F4] bg-white">
-                <img src={PasswordIcon} alt="Password" className="w-4 h-4" />
+              <div className="relative w-full">
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Contraseña"
                   required
-                  className="flex-1 border-none outline-none text-[14px] font-urbanist placeholder:text-[#828282]"
+                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
+                />
+                <img
+                  src={PasswordIcon}
+                  alt="Password"
+                  className="absolute right-10 top-1/2 transform -translate-y-1/2 w-4 h-4"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="focus:outline-none"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none"
                 >
                   <img
                     src={showPassword ? EyeOffIcon : EyeIcon}
@@ -162,21 +175,24 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 </button>
               </div>
 
-              {/* Campo Confirmar Contraseña */}
-              <div className="flex items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-[4px] border border-[#ECE8F4] bg-white">
-                <img src={PasswordIcon} alt="Password" className="w-4 h-4" />
+              <div className="relative w-full">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirmar contraseña"
                   required
-                  className="flex-1 border-none outline-none text-[14px] font-urbanist placeholder:text-[#828282]"
+                  className="w-full h-[40px] px-4 rounded-[4px] border border-[#ECE8F4] bg-white text-[14px] font-urbanist placeholder:text-[#828282]"
+                />
+                <img
+                  src={PasswordIcon}
+                  alt="Password"
+                  className="absolute right-10 top-1/2 transform -translate-y-1/2 w-4 h-4"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="focus:outline-none"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none"
                 >
                   <img
                     src={showConfirmPassword ? EyeOffIcon : EyeIcon}
