@@ -263,7 +263,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="button"
                   onClick={handleGoogleRegister}
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[#44178C] text-[#44178C] text-[16px] font-urbanist transform transition-all duration-200"
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[#44178C] text-[#44178C] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02]"
                 >
                   <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
                   <span>Registrarte con Google</span>
@@ -282,7 +282,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[#44178C] text-white text-[16px] font-urbanist transform transition-all duration-200"
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[#44178C] text-white text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02]"
                 >
                   Ingresar
                 </button>
