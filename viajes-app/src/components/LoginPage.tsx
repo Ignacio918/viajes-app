@@ -181,7 +181,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-dark button-hover-effect"
+                  className="btn-primary button-hover-effect flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full text-[var(--color-white)] text-[16px] font-urbanist transition-all duration-200"
                 >
                   {loading ? "Cargando..." : "Ingresar"}
                 </button>
@@ -189,7 +189,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 <button 
                   type="button"
                   onClick={handleGoogleLogin}
-                  className="btn-secondary button-hover-effect"
+                  className="btn-secondary button-hover-effect flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full text-[var(--color-primary)] text-[16px] font-urbanist transition-all duration-200"
                 >
                   <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
                   <span>Ingresar con Google</span>
@@ -208,7 +208,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 <button
                   type="button"
                   onClick={handleRegisterButtonClick}
-                  className="btn-primary button-hover-effect"
+                  className="btn-primary button-hover-effect flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full text-[var(--color-white)] text-[16px] font-urbanist transition-all duration-200"
                 >
                   Registrarte
                 </button>

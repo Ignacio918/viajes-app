@@ -1,11 +1,11 @@
 :root {
-  --color-primary: #44178C;
+  --color-primary: #44178c;
   --color-primary-hover: #3b167d;
   --color-text-primary: #161616;
   --color-text-secondary: #828282;
-  --color-border: #ECE8F4;
-  --color-white: #FFFFFF;
-  --color-separator: #E6E9FA;
+  --color-border: #ece8f4;
+  --color-white: #ffffff;
+  --color-separator: #e6e9fa;
   --color-light-purple: #f8f5ff;
 }
 
@@ -15,7 +15,7 @@
 
 @layer base {
   html {
-    font-family: 'Urbanist', system-ui, sans-serif;
+    font-family: "Urbanist", system-ui, sans-serif;
   }
 
   body {
@@ -43,13 +43,24 @@
   }
 
   /* Desactivar la selección de texto */
-  body, div, img, h1, h2, h3, h4, h5, h6, p, span {
+  body,
+  div,
+  img,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span {
     user-select: none;
     cursor: default;
   }
 
   /* Permitir selección en inputs */
-  input, textarea {
+  input,
+  textarea {
     user-select: text;
     cursor: text;
   }
@@ -61,30 +72,34 @@
   }
 
   .btn-primary {
-    @apply bg-[#44178C] text-[#ECE8F4] hover:bg-[#3b167d] transition-colors;
+    @apply bg-[#44178C] text-white py-2 px-4 rounded-full font-urbanist text-[16px] font-medium transition-colors duration-200;
+  }
+
+  .btn-primary:hover {
+    @apply bg-[#3b167d];
   }
 
   .btn-secondary {
-    @apply bg-white text-[#44178C] border border-[#44178C] hover:bg-gray-50 transition-colors;
+    @apply bg-white text-[#44178C] border border-[#44178C] py-2 px-4 rounded-full font-urbanist text-[16px] font-medium transition-colors duration-200 hover:bg-gray-50;
   }
 
   .btn-dark {
-    @apply bg-[#161616] text-[#ECE8F4] hover:bg-black transition-colors;
+    @apply bg-[#161616] text-white py-2 px-4 rounded-full font-urbanist text-[16px] font-medium transition-colors duration-200 hover:bg-black;
   }
 }
 
 /* Fuente Urbanist */
 @font-face {
-  font-family: 'Urbanist';
-  src: url('../assets/fonts/Urbanist-Regular.woff2') format('woff2');
+  font-family: "Urbanist";
+  src: url("../assets/fonts/Urbanist-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Urbanist';
-  src: url('../assets/fonts/Urbanist-Medium.woff2') format('woff2');
+  font-family: "Urbanist";
+  src: url("../assets/fonts/Urbanist-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -95,106 +110,110 @@
   .login-container {
     max-width: 2560px;
     margin: auto; /* Centrado automático */
-    padding-left: calc(100% - var(--max-width)); /* Ajusta según sea necesario */
-    padding-right: calc(100% - var(--max-width)); /* Ajusta según sea necesario */
-   }
+    padding-left: calc(
+      100% - var(--max-width)
+    ); /* Ajusta según sea necesario */
+    padding-right: calc(
+      100% - var(--max-width)
+    ); /* Ajusta según sea necesario */
+  }
 }
 
-@media screen and (min-width:1440px) and (max-width:2559px) {
-   .login-container {
-      max-width :1440px; 
-      margin :auto; 
-   }
+@media screen and (min-width: 1440px) and (max-width: 2559px) {
+  .login-container {
+    max-width: 1440px;
+    margin: auto;
+  }
 }
 
-@media screen and (max-width :1439px) {
-   .login-container {
-      width :100%; 
-   }
+@media screen and (max-width: 1439px) {
+  .login-container {
+    width: 100%;
+  }
 }
 
 /* Nuevo breakpoint para tablet/mobile */
-@media screen and (max-width :1024px) { 
-   .w-\[704px\].h-\[781px\] { 
-      display :none; 
-   }
-   .pl-\[114px\] { 
-      padding-left :0; 
-   }
-   .w-full.max-w-\[1440px\] { 
-      padding-left :16px; 
-      padding-right :16px; 
-   }
-   .w-\[421px\] { 
-      max-width :421px; 
-      width :100%; 
-      min-height :515px; 
-      margin :0 auto; 
-   }
+@media screen and (max-width: 1024px) {
+  .w-\[704px\].h-\[781px\] {
+    display: none;
+  }
+  .pl-\[114px\] {
+    padding-left: 0;
+  }
+  .w-full.max-w-\[1440px\] {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .w-\[421px\] {
+    max-width: 421px;
+    width: 100%;
+    min-height: 515px;
+    margin: 0 auto;
+  }
 }
 
-@media screen and (max-width :768px) { 
-   .login-container { 
-      flex-direction :column; 
-   }
-   .form-container { 
-      width :100%; 
-      padding :16px; 
-   }
+@media screen and (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+  .form-container {
+    width: 100%;
+    padding: 16px;
+  }
 }
 
 /* Estilos específicos para el login */
-.te-damos-la-bienvenida { 
-   @apply text-[40px] font-medium text-[#161616] font-urbanist; 
+.te-damos-la-bienvenida {
+  @apply text-[40px] font-medium text-[#161616] font-urbanist;
 }
 
 .email-label,
 .password-label,
-.no-tienes-cuenta { 
-   @apply text-[14px] font-normal text-[#828282] font-urbanist; 
+.no-tienes-cuenta {
+  @apply text-[14px] font-normal text-[#828282] font-urbanist;
 }
 
-.olvidaste-tu-contrasena { 
-   @apply text-[14px] font-normal text-[#44178C] font-urbanist hover:underline; 
+.olvidaste-tu-contrasena {
+  @apply text-[14px] font-normal text-[#44178C] font-urbanist hover:underline;
 }
 
 .ingresar-button,
-.registrarte-button { 
-   @apply text-[16px] font-normal font-urbanist; 
+.registrarte-button {
+  @apply text-[16px] font-normal font-urbanist;
 }
 
-.ingresar-google-button { 
-   @apply text-[16px] font-normal text-[#44178C] font-urbanist; 
+.ingresar-google-button {
+  @apply text-[16px] font-normal text-[#44178C] font-urbanist;
 }
 
-.accede-cuenta { 
-   @apply text-[16px] font-medium text-[#161616] font-urbanist; 
+.accede-cuenta {
+  @apply text-[16px] font-medium text-[#161616] font-urbanist;
 }
 
 /* Ajustes para resolución */
-@media screen and (min-width :2560px) {  
-   .illustration-wrapper {  
-      @apply flex items-center justify-center;  
-      max-height :100vh;  
-   }  
-   
-   .illustration-image {  
-      @apply object-contain;  
-      max-height :90vh;  
-   }  
-   
-   .form-wrapper {  
-      @apply flex items-center justify-center;  
-      max-width :600px;  
-      margin :0 auto;  
-   }  
+@media screen and (min-width: 2560px) {
+  .illustration-wrapper {
+    @apply flex items-center justify-center;
+    max-height: 100vh;
+  }
+
+  .illustration-image {
+    @apply object-contain;
+    max-height: 90vh;
+  }
+
+  .form-wrapper {
+    @apply flex items-center justify-center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 /* Ajustes para elementos interactivos */
-.input-wrapper:focus-within {  
-   @apply ring-2 ring-[#44178C] ring-opacity-50;  
+.input-wrapper:focus-within {
+  @apply ring-2 ring-[#44178C] ring-opacity-50;
 }
 
-.button-hover-effect {  
-   @apply transform transition-transform duration-200 hover:scale-[1.02];  
+.button-hover-effect {
+  @apply transform transition-transform duration-200 hover:scale-[1.02];
 }
