@@ -72,15 +72,15 @@
   }
 
   .btn-primary {
-    @apply bg-[#44178C] text-[#ECE8F4] hover:bg-[#3b167d] transition-colors;
+    @apply bg-[#44178C] text-[#ECE8F4] text-[16px] font-urbanist font-normal py-[10px] rounded-full flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
   }
 
   .btn-secondary {
-    @apply bg-white text-[#44178C] border border-[#44178C] hover:bg-gray-50 transition-colors;
+    @apply bg-white text-[#44178C] text-[16px] font-urbanist font-normal py-[10px] rounded-full border border-[#44178C] flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
   }
 
   .btn-dark {
-    @apply bg-[#161616] text-[#ECE8F4] hover:bg-black transition-colors;
+    @apply bg-[#161616] text-[#ECE8F4] text-[16px] font-urbanist font-normal py-[10px] rounded-full flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
   }
 }
 
@@ -208,8 +208,4 @@
 /* Ajustes para elementos interactivos */
 .input-wrapper:focus-within {
   @apply ring-2 ring-[#44178C] ring-opacity-50;
-}
-
-.button-hover-effect {
-  @apply transform transition-transform duration-200 hover:scale-[1.02];
 }

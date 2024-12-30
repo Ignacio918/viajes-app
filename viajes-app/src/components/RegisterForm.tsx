@@ -245,7 +245,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="submit"
                   disabled={loading || success}
-                  className="btn-primary button-hover-effect"
+                  className="btn-primary"
                 >
                   {loading
                     ? "Registrando..."
@@ -257,7 +257,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="button"
                   onClick={handleGoogleRegister}
-                  className="btn-secondary button-hover-effect"
+                  className="btn-secondary"
                 >
                   <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
                   <span>Registrarte con Google</span>
@@ -276,7 +276,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
-                  className="btn-primary button-hover-effect"
+                  className="btn-dark"
                 >
                   Ingresar
                 </button>
