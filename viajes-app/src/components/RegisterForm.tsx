@@ -71,6 +71,38 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
       setLoading(false);
     }
   };
+
+  const handleGoogleRegister = () => {
+    const width = 500;
+    const height = 600;
+    const left = (window.screen.width / 2) - (width / 2);
+    const top = (window.screen.height / 2) - (height / 2);
+    const popup = window.open(
+      `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
+      'GoogleSignIn',
+      `width=${width},height=${height},top=${top},left=${left}`
+    );
+
+    if (!popup) {
+      setError('No se pudo abrir el popup para la autenticación de Google.');
+      return;
+    }
+
+    const interval = setInterval(() => {
+      if (popup.closed) {
+        clearInterval(interval);
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (session) {
+            onAuthSuccess();
+            navigate('/dashboard');
+          } else {
+            setError('Error al registrar con Google');
+          }
+        });
+      }
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-white)]">
       <div className="w-full max-w-[1440px] flex items-center">
@@ -117,7 +149,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
               className="flex flex-col items-center gap-[14px] self-stretch w-full"
             >
               <div className="flex flex-col items-start self-stretch">
-                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)]">
                   <div className="flex items-center gap-[8px]">
                     <div className="w-6 h-6 flex justify-center items-center">
                       <img src={UserIcon} alt="User" />
@@ -135,7 +167,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
               </div>
 
               <div className="flex flex-col items-start self-stretch">
-                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)]">
                   <div className="flex items-center gap-[8px]">
                     <div className="w-6 h-6 flex justify-center items-center">
                       <img src={MailIcon} alt="Email" />
@@ -153,7 +185,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
               </div>
 
               <div className="flex flex-col items-start self-stretch">
-                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)]">
                   <div className="flex items-center gap-[8px] flex-1">
                     <div className="w-6 h-6 flex justify-center items-center">
                       <img src={PasswordIcon} alt="Password" />
@@ -181,7 +213,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
               </div>
 
               <div className="flex flex-col items-start self-stretch">
-                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)]">
                   <div className="flex items-center gap-[8px] flex-1">
                     <div className="w-6 h-6 flex justify-center items-center">
                       <img src={PasswordIcon} alt="Password" />
@@ -230,7 +262,8 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
 
                 <button
                   type="button"
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[#44178C] text-[#44178C] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-[#ECE8F4]"
+                  onClick={handleGoogleRegister}
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[#44178C] text-[#44178C] text-[16px] font-urbanist transform transition-all duration-200"
                 >
                   <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
                   <span>Registrarte con Google</span>
@@ -249,7 +282,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[#44178C] text-white text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-[#5B1EBB]"
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[#44178C] text-white text-[16px] font-urbanist transform transition-all duration-200"
                 >
                   Ingresar
                 </button>
