@@ -245,7 +245,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="submit"
                   disabled={loading || success}
-                  className="btn-primary"
+                  className="btn-dark"
                 >
                   {loading
                     ? "Registrando..."
@@ -276,7 +276,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
-                  className="btn-dark"
+                  className="btn-primary"
                 >
                   Ingresar
                 </button>
