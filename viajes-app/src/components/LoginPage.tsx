@@ -48,6 +48,22 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: 'https://zentrip.vercel.app/dashboard'
+        }
+      });
+      
+      if (error) throw error;
+      
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Error al iniciar sesión con Google');
+    }
+  };
+
   const handleRegisterButtonClick = () => {
     if (location.pathname === '/login') {
       navigate('/registerform');
@@ -93,7 +109,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
               <div className="flex flex-col items-end gap-[14px] self-stretch">
                 {/* Email Input */}
                 <div className="flex flex-col items-start self-stretch">
-                  <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                  <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)]">
                     <div className="flex items-center gap-[8px]">
                       <div className="w-6 h-6 flex justify-center items-center">
                         <img src={MailIcon} alt="Email" />
@@ -112,7 +128,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
                 {/* Password Input */}
                 <div className="flex flex-col items-start self-stretch">
-                  <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)] transition-colors duration-200">
+                  <div className="flex items-center w-full p-[8px] rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-white)] hover:border-[var(--color-primary)] focus-within:border-[var(--color-primary)]">
                     <div className="flex items-center gap-[8px] flex-1">
                       <div className="w-6 h-6 flex justify-center items-center">
                         <img src={PasswordIcon} alt="Password" />
@@ -150,14 +166,15 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-primary)] text-[var(--color-white)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-[var(--color-primary-hover)] disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-primary)] text-[var(--color-white)] text-[16px] font-urbanist hover:bg-opacity-90 transition-all duration-200"
                 >
                   {loading ? "Cargando..." : "Ingresar"}
                 </button>
 
                 <button 
-                  type="button" 
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-[var(--color-light-purple)]"
+                  type="button"
+                  onClick={handleGoogleLogin}
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] text-[16px] font-urbanist hover:bg-opacity-90 transition-all duration-200"
                 >
                   <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
                   <span>Ingresar con Google</span>
@@ -176,7 +193,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 <button
                   type="button"
                   onClick={handleRegisterButtonClick}
-                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-text-primary)] text-[var(--color-white)] text-[16px] font-urbanist transform transition-all duration-200 hover:scale-[1.02] hover:bg-black"
+                  className="flex justify-center items-center gap-[10px] self-stretch p-[10px] h-[40px] rounded-full bg-[var(--color-text-primary)] text-[var(--color-white)] text-[16px] font-urbanist hover:bg-opacity-90 transition-all duration-200"
                 >
                   Registrarte
                 </button>
