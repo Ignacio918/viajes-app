@@ -72,19 +72,15 @@
   }
 
   .btn-primary {
-    @apply bg-[#44178C] text-white py-2 px-4 rounded-full font-urbanist text-[16px] font-medium transition-colors duration-200;
-  }
-
-  .btn-primary:hover {
-    @apply bg-[#3b167d];
+    @apply bg-[#44178C] text-[#ECE8F4] hover:bg-[#3b167d] transition-colors;
   }
 
   .btn-secondary {
-    @apply bg-white text-[#44178C] border border-[#44178C] py-2 px-4 rounded-full font-urbanist text-[16px] font-medium transition-colors duration-200 hover:bg-gray-50;
+    @apply bg-white text-[#44178C] border border-[#44178C] hover:bg-gray-50 transition-colors;
   }
 
   .btn-dark {
-    @apply bg-[#161616] text-white py-2 px-4 rounded-full font-urbanist text-[16px] font-medium transition-colors duration-200 hover:bg-black;
+    @apply bg-[#161616] text-[#ECE8F4] hover:bg-black transition-colors;
   }
 }
 
