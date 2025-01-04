@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import '../styles/textfield.css';
+import '../styles/TextField.css';
 
 interface TextFieldProps {
   label: string;
@@ -29,7 +29,7 @@ const TextField: React.FC<TextFieldProps> = ({ label, type, value, placeholder, 
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           disabled={disabled}
-          required={required} // Añadir required aquí
+          required={required}
           className="text-field-input"
         />
         {icon && (
