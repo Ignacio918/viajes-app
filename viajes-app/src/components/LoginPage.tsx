@@ -1,8 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../styles/LoginPage.css'; // Importamos el archivo CSS específico para Login
-
+import '../styles/LoginPage.css';
 import Logo from '../assets/logo_medium.svg';
 import Illustration from '../assets/foto_login.png';
 import GoogleIcon from '../assets/devicon_google.svg';
