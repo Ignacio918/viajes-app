@@ -1,7 +1,7 @@
 import { useState, FormEvent, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import Logo from "../assets/logo_zentrip_login.svg";
+import Logo from "../assets/logo_medium.svg";
 import Illustration from "../assets/ilustracion-login.svg";
 import GoogleIcon from "../assets/devicon_google.svg";
 import PasswordIcon from "../assets/pw-icon.svg";
