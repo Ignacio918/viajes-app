@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
+
 import Logo from '../assets/logo_medium.svg';
 import FotoRegister from '../assets/foto_registerpage.png';
 import AvionIcon from '../assets/ilus_avion_login.svg';
@@ -10,6 +11,7 @@ import MonumentosIcon from '../assets/ilus_monumentos.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
+import TextField from '../components/TextField';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
@@ -105,68 +107,39 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
           <div className="register-description">Únete hoy y transforma tus ideas en aventuras reales.</div>
         </div>
         <form onSubmit={handleRegister} className="register-form">
-          <div className="register-input-group">
-            <div className="register-input-label">Nombre Completo</div>
-            <div className="register-input">
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Ingresa tu nombre completo"
-                required
-              />
-            </div>
-          </div>
-          <div className="register-input-group">
-            <div className="register-input-label">Email</div>
-            <div className="register-input">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Ingresa tu email"
-                required
-              />
-            </div>
-          </div>
-          <div className="register-input-group">
-            <div className="register-input-label">Contraseña</div>
-            <div className="register-input">
-              <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Ingresa una contraseña"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="toggle-password"
-              >
-                <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-              </button>
-            </div>
-          </div>
-          <div className="register-input-group">
-            <div className="register-input-label">Confirmar Contraseña</div>
-            <div className="register-input">
-              <input
-                type={showPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirma tu contraseña"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="toggle-password"
-              >
-                <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-              </button>
-            </div>
-          </div>
+          <TextField
+            label="Nombre Completo"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            placeholder="Ingresa tu nombre completo"
+            required
+          />
+          <TextField
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Ingresa tu email"
+            required
+          />
+          <TextField
+            label="Contraseña"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Ingresa una contraseña"
+            required
+            icon={<img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" onClick={() => setShowPassword(!showPassword)} />}
+          />
+          <TextField
+            label="Confirmar Contraseña"
+            type={showPassword ? "text" : "password"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirma tu contraseña"
+            required
+            icon={<img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" onClick={() => setShowPassword(!showPassword)} />}
+          />
           <button type="submit" disabled={loading} className="register-button">
             {loading ? "Cargando..." : "Registrate"}
           </button>

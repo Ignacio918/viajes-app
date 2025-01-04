@@ -6,15 +6,15 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-import Dashboard from "./components/Dashboard";
-import PasswordResetForm from "./components/PasswordResetForm";
-import SetNewPassword from "./components/SetNewPassword";
-import LoginPage from "./components/LoginPage";
-import RegisterForm from "./components/RegisterPage";
-import UserProfile from "./components/UserProfile";
-import Sidebar from "./components/Sidebar";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import TermsOfService from "./components/TermsOfService";
+import Dashboard from "./pages/Dashboard";
+import PasswordResetForm from "./pages/PasswordResetForm";
+import SetNewPassword from "./pages/SetNewPassword";
+import LoginPage from "./pages/LoginPage";
+import RegisterForm from "./pages/RegisterPage";
+import UserProfile from "./pages/UserProfile";
+import Sidebar from "./pages/Sidebar";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
