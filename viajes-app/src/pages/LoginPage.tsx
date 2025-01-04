@@ -2,16 +2,15 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
-
+import fotoLogin from '../assets/foto_login.png';
 import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
-import TextField from '../components/TextField';
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
-  handleRegisterClick?: () => void; // Asegúrate de definir esta propiedad si la necesitas
+  handleRegisterClick?: () => void;
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClick }) => {
@@ -75,43 +74,51 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
+      <img src={fotoLogin} alt="Login Image" className="login-image" />
       <div className="login-header">
-        <img src={Logo} alt="Logo Zentrip" className="login-logo" />
+        <div className="login-logo">
+          <img src={Logo} alt="Zentrip Logo" className="login-logo-image" /> {/* Utiliza la variable Logo aquí */}
+          <div className="login-logo-dot"></div>
+        </div>
+        <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
       </div>
       <div className="login-form-container">
-        <h2>Inicia sesión en tu cuenta</h2>
+        <div className="login-form-header">
+          <span className="login-title">Iniciar sesión</span>
+          <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
+        </div>
         <form onSubmit={handleLogin} className="login-form">
-          <TextField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Ingresa tu email"
-            required
-          />
-          <TextField
-            label="Contraseña"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Ingresa tu contraseña"
-            required
-            icon={<img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" onClick={() => setShowPassword(!showPassword)} />}
-          />
-          <button type="submit" disabled={loading} className="login-button">
-            {loading ? "Cargando..." : "Inicia sesión"}
-          </button>
+          <div className="login-input-group">
+            <label className="login-input-label">Email</label>
+            <div className="login-input">
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
+            </div>
+            <label className="login-input-label">Contraseña</label>
+            <div className="login-input">
+              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
+              <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
+                <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+              </button>
+            </div>
+          </div>
+          <span className="login-forgot-password">Olvidaste tu contraseña?</span>
+          <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
           <button type="button" onClick={handleGoogleLogin} className="login-google-button">
             <img src={GoogleIcon} alt="Google" className="google-icon" />
-            Inicia sesión con Google
+            Ingresar con Google
           </button>
-          <div className="login-register">
-            <span>¿No tienes una cuenta?</span>
-            <span className="register-link" onClick={handleRegisterClick}>Regístrate</span>
+          <div className="login-signup">
+            <span className="signup-text">¿Aún no te unes?</span>
+            <span className="signup-link" onClick={handleRegisterClick}>Regístrate ahora</span>
           </div>
         </form>
         {error && <p className="login-error">{error}</p>}
       </div>
+      <div className="login-decorative-rect-1"></div>
+      <div className="login-decorative-rect-2"></div>
+      <img src="ruta-a-icono" alt="Avion" className="login-icon" />
+      <img src="ruta-a-icono" alt="Mezquita" className="login-icon" />
+      <img src="ruta-a-icono" alt="Monumentos" className="login-icon" />
     </div>
   );
 };
