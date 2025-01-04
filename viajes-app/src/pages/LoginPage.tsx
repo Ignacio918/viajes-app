@@ -88,41 +88,43 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
           <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
         </div>
       </div>
-      <div className="login-form-container">
-        <div className="login-form-header">
-          <span className="login-title">Iniciar sesión</span>
-          <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
+      <div className="form-container">
+        <div className="login-form-container">
+          <div className="login-form-header">
+            <span className="login-title">Iniciar sesión</span>
+            <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
+          </div>
+          <form onSubmit={handleLogin} className="login-form">
+            <div className="login-input-group">
+              <div className="login-input-container">
+                <label className="login-input-label">Email</label>
+                <div className="login-input">
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
+                </div>
+              </div>
+              <div className="login-input-container">
+                <label className="login-input-label">Contraseña</label>
+                <div className="login-input">
+                  <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
+                  <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
+                    <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <span className="login-forgot-password">Olvidaste tu contraseña?</span>
+            <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
+            <button type="button" onClick={handleGoogleLogin} className="login-google-button">
+              <img src={GoogleIcon} alt="Google" className="google-icon" />
+              Ingresar con Google
+            </button>
+            <div className="login-signup">
+              <span className="signup-text">¿Aún no te unes?</span>
+              <span className="signup-link" onClick={handleRegisterClick}>Regístrate ahora</span>
+            </div>
+          </form>
+          {error && <p className="login-error">{error}</p>}
         </div>
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="login-input-group">
-            <div className="login-input-container">
-              <label className="login-input-label">Email</label>
-              <div className="login-input">
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
-              </div>
-            </div>
-            <div className="login-input-container">
-              <label className="login-input-label">Contraseña</label>
-              <div className="login-input">
-                <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
-                <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <span className="login-forgot-password">Olvidaste tu contraseña?</span>
-          <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
-          <button type="button" onClick={handleGoogleLogin} className="login-google-button">
-            <img src={GoogleIcon} alt="Google" className="google-icon" />
-            Ingresar con Google
-          </button>
-          <div className="login-signup">
-            <span className="signup-text">¿Aún no te unes?</span>
-            <span className="signup-link" onClick={handleRegisterClick}>Regístrate ahora</span>
-          </div>
-        </form>
-        {error && <p className="login-error">{error}</p>}
       </div>
       <div className="login-decorative-rect-1"></div>
       <div className="login-decorative-rect-2"></div>
