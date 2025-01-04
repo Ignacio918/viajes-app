@@ -1,42 +1,39 @@
-import React, { useState, InputHTMLAttributes } from 'react';
-import './TextField.css';
+import React, { useState, ReactNode } from 'react';
+import '../styles/textfield.css';
 
-interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextFieldProps {
   label: string;
+  type: string;
+  value: string;
+  placeholder: string;
   error?: string;
   success?: boolean;
-  icon?: React.ReactNode;
+  disabled?: boolean;
+  required?: boolean; // Añadir la propiedad required
+  icon?: ReactNode; // Añadir la propiedad icon
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ label, error, success, icon, type = 'text', ...props }) => {
+const TextField: React.FC<TextFieldProps> = ({ label, type, value, placeholder, error, success, disabled, required, icon, onChange }) => {
   const [focused, setFocused] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const inputType = type === 'password' && showPassword ? 'text' : type;
-
-  const handleIconClick = () => {
-    if (type === 'password') {
-      setShowPassword(!showPassword);
-    }
-  };
 
   return (
-    <div className={`text-field-container ${focused ? 'focused' : ''} ${error ? 'error' : ''} ${success ? 'success' : ''}`}>
+    <div className={`text-field-container ${focused ? 'focused' : ''} ${error ? 'error' : ''} ${success ? 'success' : ''} ${disabled ? 'disabled' : ''}`}>
       <label className="text-field-label">{label}</label>
       <div className="text-field-input-wrapper">
         <input
-          className="text-field-input"
-          type={inputType}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          {...props}
+          disabled={disabled}
+          required={required} // Añadir required aquí
+          className="text-field-input"
         />
         {icon && (
-          <button
-            type="button"
-            onClick={handleIconClick}
-            className="text-field-icon-button"
-          >
+          <button type="button" className="text-field-icon-button">
             {icon}
           </button>
         )}

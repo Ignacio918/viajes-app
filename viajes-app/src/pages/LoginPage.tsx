@@ -78,43 +78,34 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
-      <div className="login-background"></div>
-      <img
-        className="login-image"
-        src={fotoLogin}
-        alt="Login Image"
-      />
+      <img style={{ width: '50%', height: '100%', position: 'absolute', left: 0, bottom: 0 }} src={fotoLogin} alt="Login Image" className="login-image" />
       <div className="login-header">
         <div className="login-logo">
           <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
           <div className="login-logo-dot"></div>
         </div>
-        <div className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</div>
+        <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
       </div>
       <div className="login-form-container">
         <div className="login-form-header">
-          <div className="login-title">Iniciar sesión</div>
-          <div className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</div>
+          <span className="login-title">Iniciar sesión</span>
+          <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
         </div>
         <form onSubmit={handleLogin} className="login-form">
           <div className="login-input-group">
-            <div className="login-input-container">
-              <div className="login-input-label">Email</div>
-              <div className="login-input">
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
-              </div>
+            <label className="login-input-label">Email</label>
+            <div className="login-input">
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
             </div>
-            <div className="login-input-container">
-              <div className="login-input-label">Contraseña</div>
-              <div className="login-input">
-                <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
-                <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-                </button>
-              </div>
+            <label className="login-input-label">Contraseña</label>
+            <div className="login-input">
+              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
+              <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
+                <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+              </button>
             </div>
           </div>
-          <div className="login-forgot-password">Olvidaste tu contraseña?</div>
+          <span className="login-forgot-password">Olvidaste tu contraseña?</span>
           <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
           <button type="button" onClick={handleGoogleLogin} className="login-google-button">
             <img src={GoogleIcon} alt="Google" className="google-icon" />
@@ -122,7 +113,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
           </button>
           <div className="login-signup">
             <span className="signup-text">¿Aún no te unes?</span>
-            <span className="signup-link" onClick={handleRegisterClick}>Registrate ahora</span>
+            <span className="signup-link" onClick={handleRegisterClick}>Regístrate ahora</span>
           </div>
         </form>
         {error && <p className="login-error">{error}</p>}
