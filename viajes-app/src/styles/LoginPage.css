@@ -15,11 +15,11 @@ body {
 }
 
 .login-image {
-  @apply absolute w-[683px] h-[768px] left-0 top-0;
+  @apply absolute w-full h-[50%] sm:w-[50%] sm:h-full left-0 top-0 object-cover;
 }
 
 .login-header {
-  @apply absolute top-[72px] left-[120px] flex flex-col justify-start items-center gap-2.5 h-[117px];
+  @apply absolute top-[72px] left-[20px] right-[20px] sm:left-[120px] sm:right-[120px] flex flex-col justify-start items-center gap-2.5 h-[117px];
 }
 
 .login-logo {
@@ -39,7 +39,7 @@ body {
 }
 
 .login-form-container {
-  @apply absolute top-[168.5px] left-[862px] flex flex-col justify-start items-center gap-6 h-[432px];
+  @apply absolute top-[168.5px] left-[50%] transform -translate-x-1/2 sm:left-[862px] flex flex-col justify-start items-center gap-6 h-[432px];
 }
 
 .login-form-header {
