@@ -78,13 +78,15 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
-      <img src={fotoLogin} alt="Login Image" className="login-image" />
-      <div className="login-header">
-        <div className="login-logo">
-          <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
-          <div className="login-logo-dot"></div>
+      <div className="login-image-container">
+        <img src={fotoLogin} alt="Login Image" className="login-image" />
+        <div className="login-header">
+          <div className="login-logo">
+            <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
+            <div className="login-logo-dot"></div>
+          </div>
+          <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
         </div>
-        <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
       </div>
       <div className="login-form-container">
         <div className="login-form-header">

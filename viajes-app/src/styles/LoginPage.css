@@ -14,12 +14,16 @@ body {
   @apply w-[193px] h-[112px] absolute left-[665.45px] top-[656px] bg-[#E61C5D];
 }
 
+.login-image-container {
+  @apply relative w-full h-full sm:w-[50%] sm:h-full;
+}
+
 .login-image {
-  @apply absolute w-full h-[50%] sm:w-[50%] sm:h-full left-0 top-0 object-cover;
+  @apply w-full h-full object-cover;
 }
 
 .login-header {
-  @apply absolute top-[70px] left-1/2 transform -translate-x-[50%] flex flex-col justify-start items-center gap-2.5;
+  @apply absolute top-[70px] left-1/2 transform -translate-x-1/2 flex flex-col justify-start items-center gap-2.5;
 }
 
 .login-logo {
