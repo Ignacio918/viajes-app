@@ -10,7 +10,7 @@ import Dashboard from "./components/Dashboard";
 import PasswordResetForm from "./components/PasswordResetForm";
 import SetNewPassword from "./components/SetNewPassword";
 import LoginPage from "./components/LoginPage";
-import RegisterForm from "./components/RegisterForm";
+import RegisterForm from "./components/RegisterPage";
 import UserProfile from "./components/UserProfile";
 import Sidebar from "./components/Sidebar";
 import PrivacyPolicy from "./components/PrivacyPolicy";

@@ -151,11 +151,6 @@ body {
     font-weight: 400;
   }
   
-  .input-icon {
-    width: 24px;
-    height: 24px;
-  }
-  
   .toggle-password {
     background: none;
     border: none;
@@ -244,4 +239,28 @@ body {
     top: 656px;
     position: absolute;
     background: #E61C5D;
+  }
+  
+  .login-icon-avion {
+    width: 193px;
+    height: 112px;
+    left: 665.45px;
+    top: 656px;
+    position: absolute;
+  }
+  
+  .login-icon-mezquita {
+    width: 193px;
+    height: 112px;
+    left: 665.45px;
+    top: 656px;
+    position: absolute;
+  }
+  
+  .login-icon-monumentos {
+    width: 193px;
+    height: 112px;
+    left: 665.45px;
+    top: 656px;
+    position: absolute;
   }

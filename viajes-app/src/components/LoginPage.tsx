@@ -2,11 +2,15 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
+
 import Logo from '../assets/logo_medium.svg';
-import Illustration from '../assets/foto_login.png';
+import FotoLogin from '../assets/foto_login.png'; // Use FotoLogin for the image
 import GoogleIcon from '../assets/devicon_google.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
+import AvionIcon from '../assets/ilus_avion_login.svg';
+import MezquitaIcon from '../assets/ilus_mezquita.svg';
+import MonumentosIcon from '../assets/ilus_monumentos.svg';
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
@@ -87,7 +91,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
-      <img className="login-image" src={Illustration} alt="Ilustración" />
+      <img className="login-image" src={FotoLogin} alt="Foto de Login" />
       <div className="login-header">
         <div className="login-logo">
           <img src={Logo} alt="Logo Zentrip" className="login-logo-text" />
@@ -149,6 +153,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       </div>
       <div className="login-decorative-rect-1"></div>
       <div className="login-decorative-rect-2"></div>
+      <img className="login-icon-avion" src={AvionIcon} alt="Avion" />
+      <img className="login-icon-mezquita" src={MezquitaIcon} alt="Mezquita" />
+      <img className="login-icon-monumentos" src={MonumentosIcon} alt="Monumentos" />
     </div>
   );
 };
