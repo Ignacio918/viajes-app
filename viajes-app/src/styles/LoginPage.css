@@ -19,7 +19,7 @@ body {
 }
 
 .login-header {
-  @apply absolute top-[70px] left-1/2 transform -translate-x-1/2 flex flex-col justify-start items-center gap-2.5;
+  @apply absolute top-[70px] left-1/2 transform -translate-x-[50%] flex flex-col justify-start items-center gap-2.5;
 }
 
 .login-logo {
