@@ -1,258 +1,111 @@
 body {
-  margin: 0;
-  font-family: 'Urbanist', sans-serif;
+  @apply m-0 font-urbanist;
 }
 
 .register-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background: white;
-  border-radius: 24px;
-  overflow: hidden;
+  @apply w-full h-full relative bg-white rounded-3xl overflow-hidden;
 }
 
 .register-image {
-  width: 683px;
-  height: 768px;
-  left: 0;
-  top: 0;
-  position: absolute;
+  @apply w-[683px] h-[768px] absolute top-0 left-0;
 }
 
 .register-header {
-  height: 117px;
-  left: 121px;
-  top: 71px;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
+  @apply absolute top-[71px] left-[121px] flex flex-col justify-start items-center gap-2.5 h-[117px];
 }
 
 .register-logo {
-  width: 187px;
-  height: 72px;
-  position: relative;
+  @apply relative w-[187px] h-[72px];
 }
 
 .register-logo-text {
-  left: 0;
-  top: 0;
-  position: absolute;
-  color: #FEFEFE;
-  font-size: 60px;
-  font-weight: 500;
+  @apply absolute top-0 left-0 text-[#FEFEFE] text-[60px] font-medium;
 }
 
 .register-logo-dot {
-  width: 6.20px;
-  height: 6.20px;
-  left: 141px;
-  top: 16px;
-  position: absolute;
-  background: #E61C5D;
-  border-radius: 9999px;
+  @apply absolute top-[16px] left-[141px] w-[6.20px] h-[6.20px] bg-[#E61C5D] rounded-full;
 }
 
 .register-subtitle {
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
+  @apply text-center text-white text-[18px] font-bold;
 }
 
 .register-form-container {
-  height: 571px;
-  left: 862px;
-  top: 99px;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 24px;
+  @apply absolute top-[168.5px] left-[862px] flex flex-col justify-start items-center gap-6 h-[432px];
 }
 
 .register-form-header {
-  align-self: stretch;
-  height: 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
+  @apply flex flex-col justify-start items-start gap-4 h-[64px] w-full;
 }
 
 .register-title {
-  align-self: stretch;
-  text-align: center;
-  color: #161616;
-  font-size: 28px;
-  font-weight: 700;
+  @apply text-center text-[#161616] text-[28px] font-bold w-full;
 }
 
 .register-description {
-  align-self: stretch;
-  text-align: center;
-  color: #161616;
-  font-size: 12px;
-  font-weight: 400;
+  @apply text-center text-[#161616] text-[12px] font-normal w-full;
 }
 
 .register-form {
-  height: 483px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 18px;
+  @apply flex flex-col justify-start items-center gap-4 h-[344px];
 }
 
 .register-input-group {
-  height: 71px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 16px;
+  @apply flex flex-col justify-start items-end gap-4 h-[158px];
 }
 
 .register-input-label {
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: inline-flex;
-  color: #292929;
-  font-size: 14px;
-  font-weight: 600;
+  @apply flex justify-start items-center gap-2 text-[#292929] text-[14px] font-bold;
 }
 
 .register-input {
-  width: 311px;
-  height: 44px;
-  padding: 10px 12px;
-  background: white;
-  border-radius: 5px;
-  border: 1px solid #CECCBF;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
+  @apply inline-flex justify-between items-center w-[311px] h-[44px] p-[10px] bg-white rounded-md border border-[#CECCBF];
 }
 
 .register-input input {
-  border: none;
-  outline: none;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.20);
-  font-size: 14px;
-  font-weight: 400;
+  @apply border-none outline-none w-full text-[14px] text-[rgba(0,0,0,0.20)] font-normal;
 }
 
 .toggle-password {
-  background: none;
-  border: none;
-  cursor: pointer;
+  @apply bg-none border-none cursor-pointer;
+}
+
+.register-forgot-password {
+  @apply self-stretch text-right text-[#E61C5D] text-[14px] font-normal;
 }
 
 .register-button {
-  width: 311px;
-  height: 40px;
-  padding: 10px;
-  background: #161616;
-  border-radius: 100px;
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
+  @apply inline-flex justify-center items-center w-[311px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer;
 }
 
 .register-google-button {
-  width: 311px;
-  height: 40px;
-  padding: 10px;
-  background: white;
-  border-radius: 100px;
-  border: 0.50px solid #A8A8A8;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
+  @apply inline-flex justify-center items-center gap-2.5 w-[311px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer;
 }
 
 .google-icon {
-  width: 16px;
-  height: 16px;
+  @apply w-[16px] h-[16px];
 }
 
-.register-login {
-  width: 215px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
+.register-signup {
+  @apply inline-flex justify-center items-center gap-1 w-[215px];
 }
 
-.login-text {
-  color: rgba(0, 0, 0, 0.20);
-  font-size: 14px;
-  font-weight: 400;
+.signup-text {
+  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-normal;
 }
 
-.login-link {
-  color: #E61C5D;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
+.signup-link {
+  @apply text-[#E61C5D] text-[14px] font-normal cursor-pointer;
 }
 
 .register-decorative-rect-1 {
-  width: 237.17px;
-  height: 136px;
-  left: 1409.23px;
-  top: 632px;
-  position: absolute;
-  transform: rotate(180deg);
-  transform-origin: 0 0;
-  background: #E61C5D;
+  @apply absolute top-[632px] left-[1409.23px] w-[237.17px] h-[136px] bg-[#E61C5D] transform rotate-180 origin-[0_0];
 }
 
 .register-decorative-rect-2 {
-  width: 193px;
-  height: 112px;
-  left: 665.45px;
-  top: 656px;
-  position: absolute;
-  background: #E61C5D;
+  @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px] bg-[#E61C5D];
 }
 
-.register-icon-avion {
-  width: 193px;
-  height: 112px;
-  left: 665.45px;
-  top: 656px;
-  position: absolute;
-}
-
-.register-icon-mezquita {
-  width: 193px;
-  height: 112px;
-  left: 665.45px;
-  top: 656px;
-  position: absolute;
-}
-
-.register-icon-monumentos {
-  width: 193px;
-  height: 112px;
-  left: 665.45px;
-  top: 656px;
-  position: absolute;
+.register-icon {
+  @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px];
 }
