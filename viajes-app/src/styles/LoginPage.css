@@ -18,6 +18,10 @@ body {
   @apply relative w-[187px] h-[72px];
 }
 
+.login-logo-image {
+  @apply w-full h-full object-contain;
+}
+
 .login-logo-text {
   @apply absolute top-0 left-0 text-[#FEFEFE] text-[60px] font-medium;
 }

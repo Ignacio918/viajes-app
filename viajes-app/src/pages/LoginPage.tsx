@@ -2,11 +2,15 @@ import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
+
 import fotoLogin from '../assets/foto_login.png';
 import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
+import AvionIcon from '../assets/avion.svg'; // Asegúrate de que la ruta sea correcta
+import MezquitaIcon from '../assets/mezquita.svg'; // Asegúrate de que la ruta sea correcta
+import MonumentosIcon from '../assets/monumentos.svg'; // Asegúrate de que la ruta sea correcta
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
@@ -77,7 +81,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       <img src={fotoLogin} alt="Login Image" className="login-image" />
       <div className="login-header">
         <div className="login-logo">
-          <img src={Logo} alt="Zentrip Logo" className="login-logo-image" /> {/* Utiliza la variable Logo aquí */}
+          <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
           <div className="login-logo-dot"></div>
         </div>
         <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
@@ -116,9 +120,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       </div>
       <div className="login-decorative-rect-1"></div>
       <div className="login-decorative-rect-2"></div>
-      <img src="ruta-a-icono" alt="Avion" className="login-icon" />
-      <img src="ruta-a-icono" alt="Mezquita" className="login-icon" />
-      <img src="ruta-a-icono" alt="Monumentos" className="login-icon" />
+      <img src={AvionIcon} alt="Avion" className="login-icon" />
+      <img src={MezquitaIcon} alt="Mezquita" className="login-icon" />
+      <img src={MonumentosIcon} alt="Monumentos" className="login-icon" />
     </div>
   );
 };
