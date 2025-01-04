@@ -11,7 +11,11 @@ import IlusMonumentos from '../assets/ilus_monumentos.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
 
-const RegisterPage: React.FC = () => {
+interface RegisterPageProps {
+  onAuthSuccess: () => void;
+}
+
+const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -54,7 +58,8 @@ const RegisterPage: React.FC = () => {
     if (error) {
       setError(error.message);
     } else {
-      navigate('/login');
+      onAuthSuccess();
+      navigate('/dashboard');
     }
   };
 
@@ -79,6 +84,7 @@ const RegisterPage: React.FC = () => {
         clearInterval(interval);
         supabase.auth.getSession().then(({ data: { session } }) => {
           if (session) {
+            onAuthSuccess();
             navigate('/dashboard');
           } else {
             setError('Error al iniciar sesión con Google');

@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import PasswordResetForm from "./pages/PasswordResetForm";
 import SetNewPassword from "./pages/SetNewPassword";
 import LoginPage from "./pages/LoginPage";
-import RegisterForm from "./pages/RegisterPage";
+import RegisterPage from "./pages/RegisterPage";
 import UserProfile from "./pages/UserProfile";
 import Sidebar from "./pages/Sidebar";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -240,7 +240,7 @@ const App: React.FC = () => {
                       handleRegisterClick={handleRegisterClick}
                     />
                   ) : (
-                    <RegisterForm onAuthSuccess={handleAuthSuccess} />
+                    <RegisterPage onAuthSuccess={handleAuthSuccess} />
                   )}
                 </>
               }
@@ -256,7 +256,7 @@ const App: React.FC = () => {
             />
             <Route
               path="/registerform"
-              element={<RegisterForm onAuthSuccess={handleAuthSuccess} />}
+              element={<RegisterPage onAuthSuccess={handleAuthSuccess} />}
             />
             <Route
               path="/dashboard"
