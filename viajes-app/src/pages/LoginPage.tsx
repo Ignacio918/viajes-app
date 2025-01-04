@@ -8,9 +8,9 @@ import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
-import AvionIcon from '../assets/avion.svg'; // Asegúrate de que la ruta sea correcta
-import MezquitaIcon from '../assets/mezquita.svg'; // Asegúrate de que la ruta sea correcta
-import MonumentosIcon from '../assets/monumentos.svg'; // Asegúrate de que la ruta sea correcta
+import IlusMonumentos from '../assets/ilus_monumentos.svg';
+import IlusMezquita from '../assets/ilus_mezquita.svg';
+import IlusAvionLogin from '../assets/ilus_avion_login.svg';
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
@@ -120,9 +120,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       </div>
       <div className="login-decorative-rect-1"></div>
       <div className="login-decorative-rect-2"></div>
-      <img src={AvionIcon} alt="Avion" className="login-icon" />
-      <img src={MezquitaIcon} alt="Mezquita" className="login-icon" />
-      <img src={MonumentosIcon} alt="Monumentos" className="login-icon" />
+      <img src={IlusAvionLogin} alt="Avion" className="login-icon" />
+      <img src={IlusMezquita} alt="Mezquita" className="login-icon" />
+      <img src={IlusMonumentos} alt="Monumentos" className="login-icon" />
     </div>
   );
 };
