@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    font-family: 'Urbanist', sans-serif;
+  }
+  
+  .login-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  
+  .login-image {
+    width: 683px;
+    height: 768px;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+  
+  .login-header {
+    height: 117px;
+    left: 121px;
+    top: 71px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .login-logo {
+    width: 187px;
+    height: 72px;
+    position: relative;
+  }
+  
+  .login-logo-text {
+    left: 0;
+    top: 0;
+    position: absolute;
+    color: #FEFEFE;
+    font-size: 60px;
+    font-weight: 500;
+  }
+  
+  .login-logo-dot {
+    width: 6.20px;
+    height: 6.20px;
+    left: 141px;
+    top: 16px;
+    position: absolute;
+    background: #E61C5D;
+    border-radius: 9999px;
+  }
+  
+  .login-subtitle {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .login-form-container {
+    height: 432px;
+    left: 862px;
+    top: 168.50px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .login-form-header {
+    align-self: stretch;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .login-title {
+    align-self: stretch;
+    text-align: center;
+    color: #161616;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .login-description {
+    align-self: stretch;
+    text-align: center;
+    color: #161616;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .login-form {
+    height: 344px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .login-input-group {
+    height: 158px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 16px;
+  }
+  
+  .login-input-label {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: inline-flex;
+    color: #292929;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .login-input {
+    width: 311px;
+    height: 44px;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #CECCBF;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .login-input input {
+    border: none;
+    outline: none;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.20);
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .input-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .toggle-password {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .login-forgot-password {
+    align-self: stretch;
+    text-align: right;
+    color: #E61C5D;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .login-button {
+    width: 311px;
+    height: 40px;
+    padding: 10px;
+    background: #161616;
+    border-radius: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .login-google-button {
+    width: 311px;
+    height: 40px;
+    padding: 10px;
+    background: white;
+    border-radius: 100px;
+    border: 0.50px solid #A8A8A8;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .google-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .login-signup {
+    width: 215px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .signup-text {
+    color: rgba(0, 0, 0, 0.20);
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .signup-link {
+    color: #E61C5D;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  
+  .login-decorative-rect-1 {
+    width: 237.17px;
+    height: 136px;
+    left: 1409.23px;
+    top: 632px;
+    position: absolute;
+    transform: rotate(180deg);
+    transform-origin: 0 0;
+    background: #E61C5D;
+  }
+  
+  .login-decorative-rect-2 {
+    width: 193px;
+    height: 112px;
+    left: 665.45px;
+    top: 656px;
+    position: absolute;
+    background: #E61C5D;
+  }
