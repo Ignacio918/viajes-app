@@ -78,7 +78,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
-      <img style={{ width: '50%', height: '100%', position: 'absolute', left: 0, bottom: 0 }} src={fotoLogin} alt="Login Image" className="login-image" />
+      <img src={fotoLogin} alt="Login Image" className="login-image" />
       <div className="login-header">
         <div className="login-logo">
           <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
@@ -93,16 +93,20 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
         </div>
         <form onSubmit={handleLogin} className="login-form">
           <div className="login-input-group">
-            <label className="login-input-label">Email</label>
-            <div className="login-input">
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
+            <div className="login-input-container">
+              <label className="login-input-label">Email</label>
+              <div className="login-input">
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
+              </div>
             </div>
-            <label className="login-input-label">Contraseña</label>
-            <div className="login-input">
-              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
-              <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-              </button>
+            <div className="login-input-container">
+              <label className="login-input-label">Contraseña</label>
+              <div className="login-input">
+                <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
+                <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
+                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                </button>
+              </div>
             </div>
           </div>
           <span className="login-forgot-password">Olvidaste tu contraseña?</span>

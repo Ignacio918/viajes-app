@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   @apply m-0 font-urbanist;
 }
@@ -15,7 +19,7 @@ body {
 }
 
 .login-header {
-  @apply absolute top-[71px] left-[121px] flex flex-col justify-start items-center gap-2.5 h-[117px];
+  @apply absolute top-[72px] left-[120px] flex flex-col justify-start items-center gap-2.5 h-[117px];
 }
 
 .login-logo {
@@ -24,10 +28,6 @@ body {
 
 .login-logo-image {
   @apply w-full h-full object-contain;
-}
-
-.login-logo-text {
-  @apply absolute top-0 left-0 text-[#FEFEFE] text-[60px] font-medium;
 }
 
 .login-logo-dot {
