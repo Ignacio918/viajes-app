@@ -111,7 +111,7 @@ body {
 }
 
 .signup-text {
-  @apply text-[#828282] text-[14px] font-normal;
+  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-normal;
 }
 
 .signup-link {
