@@ -7,7 +7,7 @@ body {
 }
 
 .login-container {
-  @apply w-full h-full relative bg-white rounded-3xl overflow-hidden;
+  @apply w-full h-full relative bg-[#FDFDFD] overflow-hidden;
 }
 
 .login-background {
@@ -42,8 +42,12 @@ body {
   @apply text-center text-white text-[18px] font-bold;
 }
 
+.form-container {
+  @apply flex justify-center items-center w-full h-full sm:w-[50%] sm:h-full absolute right-0 top-0;
+}
+
 .login-form-container {
-  @apply absolute top-[168.5px] left-[50%] transform -translate-x-1/2 sm:left-[862px] flex flex-col justify-start items-center gap-6 h-[432px];
+  @apply flex flex-col justify-start items-center gap-6 w-[311px];
 }
 
 .login-form-header {
@@ -59,15 +63,15 @@ body {
 }
 
 .login-form {
-  @apply flex flex-col justify-start items-center gap-4 h-[344px];
+  @apply flex flex-col justify-start items-center gap-4 h-[344px] w-full;
 }
 
 .login-input-group {
-  @apply flex flex-col justify-start items-end gap-4 h-[158px];
+  @apply flex flex-col justify-start items-end gap-4 h-[158px] w-full;
 }
 
 .login-input-container {
-  @apply w-[311px] h-[71px] flex flex-col justify-center items-start gap-2.5;
+  @apply w-full flex flex-col justify-center items-start gap-2.5;
 }
 
 .login-input-label {
@@ -91,11 +95,11 @@ body {
 }
 
 .login-button {
-  @apply inline-flex justify-center items-center w-[311px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer;
+  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer;
 }
 
 .login-google-button {
-  @apply inline-flex justify-center items-center gap-2.5 w-[311px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer;
+  @apply inline-flex justify-center items-center gap-2.5 w-full h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer;
 }
 
 .google-icon {
@@ -103,11 +107,11 @@ body {
 }
 
 .login-signup {
-  @apply inline-flex justify-center items-center gap-1 w-[215px];
+  @apply inline-flex justify-center items-center gap-1 w-full;
 }
 
 .signup-text {
-  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-normal;
+  @apply text-[#828282] text-[14px] font-normal;
 }
 
 .signup-link {
