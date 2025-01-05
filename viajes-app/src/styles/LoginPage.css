@@ -47,7 +47,7 @@ body {
 }
 
 .login-form-container {
-  @apply flex flex-col justify-start items-center gap-6 w-full max-w-[311px] sm:max-w-[500px];
+  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px];
 }
 
 .login-form-header {
@@ -90,12 +90,14 @@ body {
   @apply bg-none border-none cursor-pointer;
 }
 
+/* Ajuste del margen superior para "Olvidaste tu contraseña?" */
 .login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-[18px] !important;
+  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 !important;
 }
 
+/* Ajuste del margen superior para el botón "Ingresar" */
 .login-button {
-  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-[18px] !important;
+  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 !important;
 }
 
 .login-google-button {
@@ -110,6 +112,7 @@ body {
   @apply inline-flex justify-center items-center gap-1 w-full;
 }
 
+/* Ajuste del tamaño y color del texto para "¿Aún no te unes?" */
 .signup-text {
   @apply text-[#161616] text-[16px] font-normal !important;
 }
