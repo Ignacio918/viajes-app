@@ -111,8 +111,7 @@ body {
 }
 
 .signup-text {
-  color: #161616 !important;
-  font-size: 18px !important;
+  @apply text-[#3E3E3E] text-[16px] font-normal;
 }
 
 .signup-link {
