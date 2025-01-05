@@ -36,7 +36,7 @@ const TextField: React.FC<TextFieldProps> = ({
 
   return (
     <div className="textfield-container">
-      <label className={`textfield-label ${inputState}`}>
+      <label className={`textfield-label ${state}`}>
         {label}
       </label>
       <div className={`textfield-input-container ${inputState}`}>

@@ -11,7 +11,7 @@
   font-size: 14px;
   font-family: 'Urbanist', sans-serif;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.20); /* Color original del diseño */
+  color: #292929; /* Color original del diseño */
 }
 
 .textfield-input-container {
@@ -34,7 +34,7 @@
   font-size: 14px;
   font-family: 'Urbanist', sans-serif;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.20); /* Color inicial del texto */
+  color: #3E3E3E; /* Color del texto */
 }
 
 .textfield-input:focus {
@@ -78,6 +78,10 @@
 /* State: Error */
 .textfield-input-container.error {
   border-color: #FF6893;
+}
+
+.textfield-input.error {
+  color: #FF6893; /* Color del texto cuando hay error */
 }
 
 /* State: Success */
