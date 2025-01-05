@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/TextField.css'; // Corrigiendo la ruta de importación
+import React, { useState } from 'react';
+import '../styles/TextField.css';
 
 interface TextFieldProps {
   label: string;
@@ -22,18 +22,32 @@ const TextField: React.FC<TextFieldProps> = ({
   icon,
   required = false
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  const inputState = isFocused ? 'selected' : state;
+
   return (
     <div className="textfield-container">
-      <label className={`textfield-label ${state}`}>
+      <label className={`textfield-label ${inputState}`}>
         {label}
       </label>
-      <div className={`textfield-input-container ${state}`}>
+      <div className={`textfield-input-container ${inputState}`}>
         <input
           type={type}
           placeholder={placeholder}
-          className={`textfield-input ${state}`}
+          className={`textfield-input ${inputState}`}
           value={value}
           onChange={onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           disabled={state === 'disabled'}
           required={required}
         />
