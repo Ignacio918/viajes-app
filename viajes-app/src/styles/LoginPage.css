@@ -55,7 +55,7 @@ body {
 }
 
 .login-title {
-  @apply text-center text-[#161616] text-[32px] font-bold w-full;
+  @apply text-center text-[#161616] text-[28px] font-bold w-full;
 }
 
 .login-description {
@@ -111,11 +111,12 @@ body {
 }
 
 .signup-text {
-  @apply text-[#161616] text-[18px] font-normal;
+  color: #161616 !important;
+  font-size: 18px !important;
 }
 
 .signup-link {
-  @apply text-[#E61C5D] text-[18px] font-normal cursor-pointer;
+  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer;
 }
 
 .login-decorative-rect-1 {
