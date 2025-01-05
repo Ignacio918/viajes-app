@@ -1,5 +1,5 @@
 import React from 'react';
-import './TextField.css';
+import './textfield.css';
 
 interface TextFieldProps {
   label: string;
@@ -9,6 +9,7 @@ interface TextFieldProps {
   state: 'enabled' | 'selected' | 'disabled' | 'error' | 'success';
   type?: string;
   icon?: React.ReactNode;
+  required?: boolean; // Agregar la propiedad required
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -18,7 +19,8 @@ const TextField: React.FC<TextFieldProps> = ({
   onChange,
   state,
   type = 'text',
-  icon
+  icon,
+  required = false // Default value for required
 }) => {
   return (
     <div className="textfield-container">
@@ -33,6 +35,7 @@ const TextField: React.FC<TextFieldProps> = ({
           value={value}
           onChange={onChange}
           disabled={state === 'disabled'}
+          required={required} // Agregar la propiedad required al input
         />
         {icon && <div className="textfield-icon">{icon}</div>}
       </div>

@@ -123,6 +123,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               onChange={handleEmailChange}
               placeholder="Ingresa tu email"
               required={true}
+              state="enabled"
             />
             <TextField
               label="Contraseña"
@@ -131,6 +132,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               onChange={handlePasswordChange}
               placeholder="Ingresa tu contraseña"
               required={true}
+              state="enabled"
               icon={
                 showPassword ? (
                   <img src={EyeOffIcon} alt="Ocultar contraseña" onClick={() => setShowPassword(!showPassword)} />
@@ -146,6 +148,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               onChange={handleConfirmPasswordChange}
               placeholder="Confirma tu contraseña"
               required={true}
+              state="enabled"
               icon={
                 showConfirmPassword ? (
                   <img src={EyeOffIcon} alt="Ocultar contraseña" onClick={() => setShowConfirmPassword(!showConfirmPassword)} />
