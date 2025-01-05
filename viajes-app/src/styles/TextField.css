@@ -1,43 +1,73 @@
-.text-field-container {
-  @apply flex flex-col mb-4;
+/* Base Styles for Input */
+.textfield-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
 
-.text-field-label {
-  @apply mb-2 text-sm font-semibold text-gray-900;
+.textfield-label {
+  font-size: 14px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.20);
 }
 
-.text-field-input-wrapper {
-  @apply flex items-center relative;
+.textfield-input-container {
+  width: 318px;
+  height: 44px;
+  padding: 10px 12px;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #A8A8A8;
 }
 
-.text-field-input {
-  @apply w-full h-11 p-2.5 bg-white border border-gray-300 rounded outline-none transition duration-300 text-gray-600;
+.textfield-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.20);
 }
 
-.text-field-input:focus {
-  @apply border-purple-600;
+.textfield-icon {
+  margin-left: 10px;
 }
 
-.text-field-container.focused .text-field-input {
-  @apply border-purple-600;
+/* State: Enabled */
+.textfield-input-container.enabled {
+  border-color: #A8A8A8;
 }
 
-.text-field-container.error .text-field-input {
-  @apply border-red-500;
+/* State: Selected */
+.textfield-input-container.selected {
+  border-color: #161616;
 }
 
-.text-field-container.success .text-field-input {
-  @apply border-green-300;
+/* State: Disabled */
+.textfield-label.disabled,
+.textfield-input.disabled,
+.textfield-icon.disabled {
+  color: #A8A8A8;
 }
 
-.text-field-container.disabled .text-field-input {
-  @apply bg-gray-200 border-gray-400 text-gray-400 cursor-not-allowed;
+.textfield-input-container.disabled {
+  border-color: #A8A8A8;
+  pointer-events: none;
 }
 
-.text-field-error {
-  @apply text-red-500 text-xs mt-1;
+/* State: Error */
+.textfield-input-container.error {
+  border-color: #FF6893;
 }
 
-.text-field-icon-button {
-  @apply absolute right-3 bg-none border-none cursor-pointer;
+/* State: Success */
+.textfield-input-container.success {
+  border-color: #A8D5BA;
 }

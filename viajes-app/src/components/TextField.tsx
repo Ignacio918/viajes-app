@@ -1,44 +1,41 @@
-import React, { useState, ReactNode } from 'react';
-import '../styles/TextField.css';
+import React from 'react';
+import './TextField.css';
 
 interface TextFieldProps {
   label: string;
-  type: string;
-  value: string;
   placeholder: string;
-  error?: string;
-  success?: boolean;
-  disabled?: boolean;
-  required?: boolean; // Añadir la propiedad required
-  icon?: ReactNode; // Añadir la propiedad icon
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  state: 'enabled' | 'selected' | 'disabled' | 'error' | 'success';
+  type?: string;
+  icon?: React.ReactNode;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ label, type, value, placeholder, error, success, disabled, required, icon, onChange }) => {
-  const [focused, setFocused] = useState(false);
-
+const TextField: React.FC<TextFieldProps> = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+  state,
+  type = 'text',
+  icon
+}) => {
   return (
-    <div className={`text-field-container ${focused ? 'focused' : ''} ${error ? 'error' : ''} ${success ? 'success' : ''} ${disabled ? 'disabled' : ''}`}>
-      <label className="text-field-label">{label}</label>
-      <div className="text-field-input-wrapper">
+    <div className="textfield-container">
+      <label className={`textfield-label ${state}`}>
+        {label}
+      </label>
+      <div className={`textfield-input-container ${state}`}>
         <input
           type={type}
-          value={value}
           placeholder={placeholder}
+          className={`textfield-input ${state}`}
+          value={value}
           onChange={onChange}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          disabled={disabled}
-          required={required}
-          className="text-field-input"
+          disabled={state === 'disabled'}
         />
-        {icon && (
-          <button type="button" className="text-field-icon-button">
-            {icon}
-          </button>
-        )}
+        {icon && <div className="textfield-icon">{icon}</div>}
       </div>
-      {error && <span className="text-field-error">{error}</span>}
     </div>
   );
 };

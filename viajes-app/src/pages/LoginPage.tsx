@@ -11,6 +11,7 @@ import EyeOffIcon from '../assets/eye-slash.svg';
 import IlusMonumentos from '../assets/ilus_monumentos.svg';
 import IlusMezquita from '../assets/ilus_mezquita.svg';
 import IlusAvionLogin from '../assets/ilus_avion_login.svg';
+import TextField from '../components/TextField';
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
@@ -95,23 +96,31 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
             <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
           </div>
           <form onSubmit={handleLogin} className="login-form">
-            <div className="login-input-group">
-              <div className="login-input-container">
-                <label className="login-input-label">Email</label>
-                <div className="login-input">
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
-                </div>
-              </div>
-              <div className="login-input-container">
-                <label className="login-input-label">Contraseña</label>
-                <div className="login-input">
-                  <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" />
-                  <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                    <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <TextField
+              label="Email"
+              placeholder="Ingresa tu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              state={error ? 'error' : 'enabled'}
+              type="email"
+            />
+            <TextField
+              label="Contraseña"
+              placeholder="Ingresa tu contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              state={error ? 'error' : 'enabled'}
+              type={showPassword ? "text" : "password"}
+              icon={
+                <button
+                  type="button"
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                </button>
+              }
+            />
             <span className="login-forgot-password">Olvidaste tu contraseña?</span>
             <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
             <button type="button" onClick={handleGoogleLogin} className="login-google-button">
