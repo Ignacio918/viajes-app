@@ -91,11 +91,11 @@ body {
 }
 
 .login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-[18px];
+  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-[18px] !important;
 }
 
 .login-button {
-  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-[18px];
+  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-[18px] !important;
 }
 
 .login-google-button {
@@ -111,7 +111,7 @@ body {
 }
 
 .signup-text {
-  @apply text-[#3E3E3E] text-[16px] font-normal;
+  @apply text-[#161616] text-[16px] font-normal !important;
 }
 
 .signup-link {
