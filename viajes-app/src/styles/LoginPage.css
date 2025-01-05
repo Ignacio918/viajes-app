@@ -47,11 +47,11 @@ body {
 }
 
 .login-form-container {
-  @apply flex flex-col justify-start items-center gap-6 w-[311px];
+  @apply flex flex-col justify-start items-center gap-6 w-full max-w-[311px] sm:max-w-[500px];
 }
 
 .login-form-header {
-  @apply flex flex-col justify-start items-start gap-4 h-[64px] w-full;
+  @apply flex flex-col justify-start items-start gap-4 w-full;
 }
 
 .login-title {
@@ -63,11 +63,11 @@ body {
 }
 
 .login-form {
-  @apply flex flex-col justify-start items-center gap-4 h-[344px] w-full;
+  @apply flex flex-col justify-start items-center gap-4 w-full;
 }
 
 .login-input-group {
-  @apply flex flex-col justify-start items-end gap-4 h-[158px] w-full;
+  @apply flex flex-col justify-start items-end gap-4 w-full;
 }
 
 .login-input-container {
