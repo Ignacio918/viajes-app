@@ -59,7 +59,7 @@ body {
 }
 
 .login-description {
-  @apply text-center text-[#161616] text-[16px] font-normal w-full whitespace-nowrap overflow-hidden text-ellipsis;
+  @apply text-center text-[#161616] text-[16px] font-normal w-full;
 }
 
 .login-form {
