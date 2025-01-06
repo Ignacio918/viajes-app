@@ -79,7 +79,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
-      <div className="login-video-container">
+      <div className="login-image-container">
         <video 
           className="login-video"
           autoPlay 

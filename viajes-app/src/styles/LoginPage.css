@@ -7,19 +7,19 @@ body {
 }
 
 .login-container {
-  @apply w-screen h-screen relative bg-[#FDFDFD] overflow-hidden;
+  @apply w-screen h-screen bg-[#FDFDFD] overflow-hidden;
 }
 
 .login-image-container {
-  @apply relative w-full h-screen sm:w-[50%];
+  @apply w-[50%] h-screen fixed left-0 top-0;
 }
 
 .login-video {
-  @apply w-full h-full object-cover absolute top-0 left-0;
+  @apply w-full h-full object-cover;
 }
 
 .login-header {
-  @apply mb-8; /* Añadimos margen inferior */
+  @apply mb-8;
 }
 
 .login-logo {
@@ -39,7 +39,7 @@ body {
 }
 
 .form-container {
-  @apply flex justify-center items-center w-full h-screen sm:w-[50%] absolute right-0 top-0;
+  @apply flex justify-center items-center w-[50%] h-screen fixed right-0 top-0;
 }
 
 .login-form-container {
