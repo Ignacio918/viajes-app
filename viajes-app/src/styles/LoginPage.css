@@ -6,33 +6,6 @@ body {
   @apply m-0 font-urbanist;
 }
 
-/* Animaciones básicas */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Contenedores principales */
 .login-container {
   @apply w-screen h-screen bg-[#FDFDFD] overflow-hidden relative;
@@ -61,7 +34,7 @@ body {
 }
 
 .login-form-container {
-  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px] animate-fade-in;
+  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px] animate-fadeIn;
 }
 
 .form-loading {
@@ -116,12 +89,20 @@ body {
   @apply flex justify-between items-center w-full h-[44px] px-3 py-2.5 bg-white rounded-[5px] border border-[#CECCBF] transition-all duration-200;
 }
 
+.login-input:focus-within {
+  @apply border-[#E61C5D] shadow-sm;
+}
+
 .login-input:disabled {
   @apply bg-gray-100 cursor-not-allowed;
 }
 
 .login-input input {
   @apply border-none outline-none w-full text-[14px] text-[#161616] font-normal;
+}
+
+.login-input input:disabled {
+  @apply bg-transparent cursor-not-allowed;
 }
 
 /* Toggle password button */
@@ -239,14 +220,17 @@ img[src*="ilus_monumentos"] {
   @apply text-red-500 mt-2 text-center animate-fadeIn;
 }
 
-/* Animaciones personalizadas */
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .login-form-container {
     @apply px-4;
+  }
+  
+  .login-image-container {
+    @apply hidden;
+  }
+  
+  .form-container {
+    @apply w-full;
   }
 }
