@@ -77,34 +77,6 @@ body {
   @apply flex flex-col justify-start items-end gap-4 w-full;
 }
 
-.login-input-container {
-  @apply w-full flex flex-col justify-center items-start gap-2.5;
-}
-
-.login-input-label {
-  @apply text-[#161616] text-[14px] font-semibold;
-}
-
-.login-input {
-  @apply flex justify-between items-center w-full h-[44px] px-3 py-2.5 bg-white rounded-[5px] border border-[#CECCBF] transition-all duration-200;
-}
-
-.login-input:focus-within {
-  @apply border-[#E61C5D] shadow-sm;
-}
-
-.login-input:disabled {
-  @apply bg-gray-100 cursor-not-allowed;
-}
-
-.login-input input {
-  @apply border-none outline-none w-full text-[14px] text-[#161616] font-normal;
-}
-
-.login-input input:disabled {
-  @apply bg-transparent cursor-not-allowed;
-}
-
 /* Toggle password button */
 .toggle-password {
   @apply bg-none border-none cursor-pointer transition-opacity duration-200;
@@ -126,7 +98,7 @@ body {
 
 /* Botones */
 .login-button {
-  @apply inline-flex justify-center items-center w-full max-w-[500px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300 !important;
+  @apply inline-flex justify-center items-center w-full max-w-[500px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300;
 }
 
 .login-button:hover:not(:disabled) {
