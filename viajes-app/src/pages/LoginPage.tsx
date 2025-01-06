@@ -52,10 +52,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
+    setError('');
+    
     const width = 500;
     const height = 600;
     const left = (window.screen.width / 2) - (width / 2);
     const top = (window.screen.height / 2) - (height / 2);
+    
     const popup = window.open(
       `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
       'GoogleSignIn',
@@ -68,20 +71,39 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       return;
     }
 
-    const interval = setInterval(() => {
+    let sessionChecked = false;
+    const interval = setInterval(async () => {
       if (popup.closed) {
         clearInterval(interval);
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (session) {
-            onAuthSuccess();
-            navigate('/dashboard');
-          } else {
-            setError('Error al iniciar sesión con Google');
+        
+        if (!sessionChecked) {
+          sessionChecked = true;
+          try {
+            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+            
+            if (sessionError) {
+              throw sessionError;
+            }
+
+            if (session?.user?.email) {
+              onAuthSuccess();
+              navigate('/dashboard');
+            } else {
+              setError('No se completó el inicio de sesión con Google');
+            }
+          } catch (error) {
+            setError('Error al verificar la sesión');
+            console.error('Error al verificar sesión:', error);
           }
-          setIsLoading(false);
-        });
+        }
+        setIsLoading(false);
       }
     }, 1000);
+
+    // Limpiamos el intervalo si el componente se desmonta
+    return () => {
+      clearInterval(interval);
+    };
   };
 
   return (
