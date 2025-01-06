@@ -18,8 +18,8 @@ body {
   @apply w-full h-full object-cover;
 }
 
-.login-header {
-  @apply mb-8;
+.login-branding {
+  @apply flex justify-center items-center mb-8;
 }
 
 .login-logo {
@@ -32,10 +32,6 @@ body {
 
 .login-logo-dot {
   @apply absolute top-[16px] left-[141px] w-[6.20px] h-[6.20px] bg-[#E61C5D] rounded-full;
-}
-
-.login-subtitle {
-  @apply text-[#161616] text-[18px] font-bold mt-2;
 }
 
 .form-container {
@@ -55,7 +51,7 @@ body {
 }
 
 .login-description {
-  @apply text-center text-[#161616] text-[12px] font-normal w-full;
+  @apply text-center text-[#161616] text-[16px] font-normal w-full;
 }
 
 .login-form {
@@ -71,7 +67,7 @@ body {
 }
 
 .login-input-label {
-  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-semibold;
+  @apply text-[#161616] text-[14px] font-semibold;
 }
 
 .login-input {
@@ -79,7 +75,7 @@ body {
 }
 
 .login-input input {
-  @apply border-none outline-none w-full text-[14px] text-[rgba(0,0,0,0.20)] font-normal;
+  @apply border-none outline-none w-full text-[14px] text-[#161616] font-normal;
 }
 
 .toggle-password {
@@ -87,7 +83,7 @@ body {
 }
 
 .login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[14px] font-normal mt-2 cursor-pointer transition-colors duration-300 hover:text-[#ff3377] !important;
+  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 cursor-pointer transition-colors duration-300 hover:text-[#ff3377] !important;
   text-decoration: none;
 }
 
@@ -120,11 +116,11 @@ body {
 }
 
 .signup-text {
-  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-normal !important;
+  @apply text-[#161616] text-[16px] font-normal !important;
 }
 
 .signup-link {
-  @apply text-[#E61C5D] text-[14px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
+  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
 }
 
 .signup-link:hover {

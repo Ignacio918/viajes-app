@@ -98,7 +98,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
               <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
               <div className="login-logo-dot"></div>
             </div>
-            <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
           </div>
 
           <div className="login-form-header">
