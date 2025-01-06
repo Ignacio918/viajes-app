@@ -1,177 +1,273 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, FormEvent } from 'react';
+import { useNavigate} from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import TextField from '../components/TextField';
 import '../styles/RegisterPage.css';
+
+import videoLogin from '../assets/video_login.mp4';
 import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
-import IlusAvionLogin from '../assets/ilus_avion_login.svg';
-import IlusMezquita from '../assets/ilus_mezquita.svg';
-import IlusMonumentos from '../assets/ilus_monumentos.svg';
 import EyeIcon from '../assets/eye.svg';
 import EyeOffIcon from '../assets/eye-slash.svg';
+import IlusMonumentos from '../assets/ilus_monumentos.svg';
+import IlusMezquita from '../assets/ilus_mezquita.svg';
+import IlusAvionLogin from '../assets/ilus_avion_login.svg';
+import TextField from '../components/TextField';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
+  handleLoginClick?: () => void;
 }
 
-const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
+const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginClick }) => {
+  const navigate = useNavigate();
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const navigate = useNavigate();
-
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(e.target.value);
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     setError('');
 
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden');
+      setIsLoading(false);
       return;
     }
 
-    setLoading(true);
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName
+          }
+        }
+      });
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-
-    setLoading(false);
-
-    if (error) {
-      setError(error.message);
-    } else {
-      onAuthSuccess();
-      navigate('/dashboard');
+      if (error) {
+        setError(error.message);
+      } else {
+        onAuthSuccess();
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      setError('Ocurrió un error al intentar registrarse');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = () => {
+    setIsLoading(true);
+    setError('');
+    
     const width = 500;
     const height = 600;
     const left = (window.screen.width / 2) - (width / 2);
     const top = (window.screen.height / 2) - (height / 2);
+    
+    let authListener: any = null;
+    let popupClosed = false;
+
+    authListener = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+            onAuthSuccess();
+            navigate('/dashboard');
+            if (authListener) authListener.unsubscribe();
+        }
+    });
+    
     const popup = window.open(
-      `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
-      'GoogleSignIn',
-      `width=${width},height=${height},top=${top},left=${left}`
+        `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
+        'GoogleSignIn',
+        `width=${width},height=${height},top=${top},left=${left}`
     );
 
     if (!popup) {
-      setError('No se pudo abrir el popup para la autenticación de Google.');
-      return;
+        setError('No se pudo abrir el popup para la autenticación de Google.');
+        setIsLoading(false);
+        if (authListener) authListener.unsubscribe();
+        return;
     }
 
-    const interval = setInterval(() => {
-      if (popup.closed) {
-        clearInterval(interval);
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (session) {
-            onAuthSuccess();
-            navigate('/dashboard');
-          } else {
-            setError('Error al iniciar sesión con Google');
-          }
-        });
-      }
+    const interval = setInterval(async () => {
+        if (popup.closed && !popupClosed) {
+            popupClosed = true;
+            clearInterval(interval);
+            
+            try {
+                const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+                
+                if (sessionError) throw sessionError;
+
+                if (!session?.user?.id) {
+                    setError('No se completó el registro con Google');
+                    if (authListener) authListener.unsubscribe();
+                }
+            } catch (error) {
+                console.error('Error al verificar sesión:', error);
+                setError('Error al verificar la sesión');
+                if (authListener) authListener.unsubscribe();
+            }
+            
+            setIsLoading(false);
+        }
     }, 1000);
+
+    return () => {
+        clearInterval(interval);
+        if (authListener) authListener.unsubscribe();
+    };
   };
 
   return (
-    <div className="register-container">
-      <div className="register-background"></div>
-      <img
-        className="register-image"
-        src={IlusAvionLogin}
-        alt="Avion"
-      />
-      <div className="register-header">
-        <div className="register-logo">
-          <img src={Logo} alt="Zentrip Logo" className="register-logo-image" />
-          <div className="register-logo-dot"></div>
-        </div>
-        <div className="register-subtitle">Únete a nosotros y comienza a planificar tus viajes sin esfuerzo</div>
+    <div className="login-container">
+      <div className="login-image-container">
+        <video 
+          className="login-video"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src={videoLogin} type="video/mp4" />
+        </video>
       </div>
-      <div className="register-form-container">
-        <div className="register-form-header">
-          <div className="register-title">Registro</div>
-          <div className="register-description">Crea una cuenta para comenzar a organizar tus planes de viaje.</div>
-        </div>
-        <form onSubmit={handleSubmit} className="register-form">
-          <div className="register-input-group">
+
+      <div className="form-container">
+        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
+          <div className="login-branding">
+            <div className="login-logo">
+              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
+              <div className="login-logo-dot"></div>
+            </div>
+          </div>
+
+          <div className="login-form-header">
+            <span className="login-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="login-form">
+            <TextField
+              label="Nombre completo"
+              placeholder="Ingresa tu nombre completo"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              state={error ? 'error' : 'enabled'}
+              type="text"
+              disabled={isLoading}
+            />
+
             <TextField
               label="Email"
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
               placeholder="Ingresa tu email"
-              required={true}
-              state="enabled"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              state={error ? 'error' : 'enabled'}
+              type="email"
+              disabled={isLoading}
             />
+            
             <TextField
               label="Contraseña"
-              type={showPassword ? "text" : "password"}
+              placeholder="Ingresa una contraseña"
               value={password}
-              onChange={handlePasswordChange}
-              placeholder="Ingresa tu contraseña"
-              required={true}
-              state="enabled"
+              onChange={(e) => setPassword(e.target.value)}
+              state={error ? 'error' : 'enabled'}
+              type={showPassword ? "text" : "password"}
+              disabled={isLoading}
               icon={
-                showPassword ? (
-                  <img src={EyeOffIcon} alt="Ocultar contraseña" onClick={() => setShowPassword(!showPassword)} />
-                ) : (
-                  <img src={EyeIcon} alt="Mostrar contraseña" onClick={() => setShowPassword(!showPassword)} />
-                )
+                <button
+                  type="button"
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
+                >
+                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                </button>
               }
             />
+
             <TextField
-              label="Confirmar Contraseña"
-              type={showConfirmPassword ? "text" : "password"}
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
+              label="Confirmar contraseña"
               placeholder="Confirma tu contraseña"
-              required={true}
-              state="enabled"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              state={error ? 'error' : 'enabled'}
+              type={showConfirmPassword ? "text" : "password"}
+              disabled={isLoading}
               icon={
-                showConfirmPassword ? (
-                  <img src={EyeOffIcon} alt="Ocultar contraseña" onClick={() => setShowConfirmPassword(!showConfirmPassword)} />
-                ) : (
-                  <img src={EyeIcon} alt="Mostrar contraseña" onClick={() => setShowConfirmPassword(!showConfirmPassword)} />
-                )
+                <button
+                  type="button"
+                  className="toggle-password"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  disabled={isLoading}
+                >
+                  <img src={showConfirmPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                </button>
               }
             />
-          </div>
-          {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
-          <button type="submit" className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
-            {loading ? 'Cargando...' : 'Registrarse'}
-          </button>
-          <button type="button" onClick={handleGoogleLogin} className="mt-4 bg-white text-black py-2 px-4 rounded border border-gray-300 flex items-center justify-center gap-2">
-            <img src={GoogleIcon} alt="Google" className="w-5 h-5" />
-            Registrarse con Google
-          </button>
-        </form>
+
+            <button 
+              type="submit" 
+              className={`login-button ${isLoading ? 'button-loading' : ''}`}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="spinner"></span>
+                  Registrando...
+                </>
+              ) : (
+                'Regístrate'
+              )}
+            </button>
+
+            <button 
+              type="button" 
+              onClick={handleGoogleLogin} 
+              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="spinner"></span>
+                  Conectando...
+                </>
+              ) : (
+                <>
+                  <img src={GoogleIcon} alt="Google" className="google-icon" />
+                  Regístrate con Google
+                </>
+              )}
+            </button>
+
+            <div className="login-signup">
+              <span className="signup-text">¿Ya tienes una cuenta?</span>
+              <span 
+                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
+                onClick={!isLoading ? handleLoginClick : undefined}
+              >
+                Inicia sesión
+              </span>
+            </div>
+          </form>
+
+          {error && <p className="login-error">{error}</p>}
+        </div>
       </div>
-      <div className="register-decorative-rect-1"></div>
-      <div className="register-decorative-rect-2"></div>
-      <img src={IlusMezquita} alt="Mezquita" className="register-icon" />
-      <img src={IlusMonumentos} alt="Monumentos" className="register-icon" />
+
+      {/* Ilustraciones */}
+      <img src={IlusAvionLogin} alt="Avión" className="illustration" />
+      <img src={IlusMezquita} alt="Mezquita" className="illustration" />
+      <img src={IlusMonumentos} alt="Monumentos" className="illustration" />
     </div>
   );
 };
