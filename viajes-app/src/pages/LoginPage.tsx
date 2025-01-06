@@ -89,12 +89,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
           <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
         </div>
       </div>
+
       <div className="form-container">
         <div className="login-form-container">
           <div className="login-form-header">
             <span className="login-title">Iniciar sesión</span>
             <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
           </div>
+          
           <form onSubmit={handleLogin} className="login-form">
             <TextField
               label="Email"
@@ -104,6 +106,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
               state={error ? 'error' : 'enabled'}
               type="email"
             />
+            
             <TextField
               label="Contraseña"
               placeholder="Ingresa tu contraseña"
@@ -121,16 +124,20 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 </button>
               }
             />
+
             <Link to="/forgot-password" className="login-forgot-password">
               Olvidaste tu contraseña?
             </Link>
+
             <button type="submit" className="login-button">
               {loading ? "Cargando..." : "Ingresar"}
             </button>
+
             <button type="button" onClick={handleGoogleLogin} className="login-google-button">
               <img src={GoogleIcon} alt="Google" className="google-icon" />
               Ingresar con Google
             </button>
+
             <div className="login-signup">
               <span className="signup-text">¿Aún no te unes?</span>
               <span className="signup-link" onClick={handleRegisterClick}>
@@ -138,14 +145,15 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
               </span>
             </div>
           </form>
+
           {error && <p className="login-error">{error}</p>}
         </div>
       </div>
-      <img src={IlusAvionLogin} alt="Avión" className="login-illustration-plane" />
-      <img src={IlusMezquita} alt="Mezquita" className="login-illustration-mosque" />
-      <img src={IlusMonumentos} alt="Monumentos" className="login-illustration-monuments" />
-      <div className="login-decorative-rect-1"></div>
-      <div className="login-decorative-rect-2"></div>
+
+      {/* Ilustraciones */}
+      <img src={IlusAvionLogin} alt="Avión" />
+      <img src={IlusMezquita} alt="Mezquita" />
+      <img src={IlusMonumentos} alt="Monumentos" />
     </div>
   );
 };

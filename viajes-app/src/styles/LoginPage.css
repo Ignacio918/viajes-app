@@ -7,15 +7,11 @@ body {
 }
 
 .login-container {
-  @apply w-full h-full relative bg-[#FDFDFD] overflow-hidden;
-}
-
-.login-background {
-  @apply w-[193px] h-[112px] absolute left-[665.45px] top-[656px] bg-[#E61C5D];
+  @apply w-screen h-screen relative bg-[#FDFDFD] overflow-hidden;
 }
 
 .login-image-container {
-  @apply relative w-full h-full sm:w-[50%] sm:h-full;
+  @apply relative w-full h-screen sm:w-[50%];
 }
 
 .login-image {
@@ -43,7 +39,7 @@ body {
 }
 
 .form-container {
-  @apply flex justify-center items-center w-full h-full sm:w-[50%] sm:h-full absolute right-0 top-0;
+  @apply flex justify-center items-center w-full h-screen sm:w-[50%] absolute right-0 top-0;
 }
 
 .login-form-container {
@@ -133,14 +129,6 @@ body {
 
 .signup-link:hover {
   text-decoration: underline;
-}
-
-.login-decorative-rect-1 {
-  @apply absolute w-[237.17px] h-[136px] left-[1409.23px] top-[632px] bg-[#E61C5D] transform rotate-180 origin-[0_0];
-}
-
-.login-decorative-rect-2 {
-  @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px] bg-[#E61C5D];
 }
 
 /* Estilos específicos para las ilustraciones */
