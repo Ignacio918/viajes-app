@@ -59,50 +59,59 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
     const left = (window.screen.width / 2) - (width / 2);
     const top = (window.screen.height / 2) - (height / 2);
     
+    let authListener: any = null;
+    let popupClosed = false;
+
+    // Configuramos el listener de autenticación antes de abrir el popup
+    authListener = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+            onAuthSuccess();
+            navigate('/dashboard');
+            if (authListener) authListener.unsubscribe();
+        }
+    });
+    
     const popup = window.open(
-      `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
-      'GoogleSignIn',
-      `width=${width},height=${height},top=${top},left=${left}`
+        `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
+        'GoogleSignIn',
+        `width=${width},height=${height},top=${top},left=${left}`
     );
 
     if (!popup) {
-      setError('No se pudo abrir el popup para la autenticación de Google.');
-      setIsLoading(false);
-      return;
+        setError('No se pudo abrir el popup para la autenticación de Google.');
+        setIsLoading(false);
+        if (authListener) authListener.unsubscribe();
+        return;
     }
 
-    let sessionChecked = false;
     const interval = setInterval(async () => {
-      if (popup.closed) {
-        clearInterval(interval);
-        
-        if (!sessionChecked) {
-          sessionChecked = true;
-          try {
-            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        if (popup.closed && !popupClosed) {
+            popupClosed = true;
+            clearInterval(interval);
             
-            if (sessionError) {
-              throw sessionError;
-            }
+            try {
+                const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+                
+                if (sessionError) throw sessionError;
 
-            if (session?.user?.email) {
-              onAuthSuccess();
-              navigate('/dashboard');
-            } else {
-              setError('No se completó el inicio de sesión con Google');
+                if (!session?.user?.id) {
+                    setError('No se completó el inicio de sesión con Google');
+                    if (authListener) authListener.unsubscribe();
+                }
+            } catch (error) {
+                console.error('Error al verificar sesión:', error);
+                setError('Error al verificar la sesión');
+                if (authListener) authListener.unsubscribe();
             }
-          } catch (error) {
-            setError('Error al verificar la sesión');
-            console.error('Error al verificar sesión:', error);
-          }
+            
+            setIsLoading(false);
         }
-        setIsLoading(false);
-      }
     }, 1000);
 
-    // Limpiamos el intervalo si el componente se desmonta
+    // Limpieza al desmontar
     return () => {
-      clearInterval(interval);
+        clearInterval(interval);
+        if (authListener) authListener.unsubscribe();
     };
   };
 
