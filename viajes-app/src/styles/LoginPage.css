@@ -14,12 +14,12 @@ body {
   @apply relative w-full h-screen sm:w-[50%];
 }
 
-.login-image {
-  @apply w-full h-full object-cover;
+.login-video {
+  @apply w-full h-full object-cover absolute top-0 left-0;
 }
 
 .login-header {
-  @apply absolute top-[70px] left-1/2 transform -translate-x-1/2 flex flex-col justify-start items-center gap-2.5;
+  @apply mb-8; /* Añadimos margen inferior */
 }
 
 .login-logo {
@@ -35,7 +35,7 @@ body {
 }
 
 .login-subtitle {
-  @apply text-center text-white text-[18px] font-bold;
+  @apply text-[#161616] text-[18px] font-bold mt-2;
 }
 
 .form-container {
@@ -55,7 +55,7 @@ body {
 }
 
 .login-description {
-  @apply text-center text-[#161616] text-[16px] font-normal w-full;
+  @apply text-center text-[#161616] text-[12px] font-normal w-full;
 }
 
 .login-form {
@@ -149,15 +149,11 @@ img[src*="ilus_mezquita"] {
 }
 
 img[src*="ilus_monumentos"] {
-  @apply absolute object-none; /* Cambiamos object-contain por object-none */
-  width: 300px; /* Hacemos la imagen más grande */
-  height: 200px; /* Hacemos la imagen más grande */
-  right: -50px; /* La movemos un poco hacia la derecha para que se corte naturalmente */
-  bottom: -35px; /* La movemos un poco hacia abajo para que se corte naturalmente */
-}
-
-.login-container {
-  @apply w-screen h-screen relative bg-[#FDFDFD] overflow-hidden; /* Asegurándonos que overflow: hidden está aplicado */
+  @apply absolute object-none;
+  width: 300px;
+  height: 200px;
+  right: -30px;
+  bottom: -30px;
 }
 
 .login-error {

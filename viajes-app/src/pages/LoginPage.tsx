@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
 
-import fotoLogin from '../assets/foto_login.jpg';
+import videoLogin from '../assets/video_login.mp4';
 import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
 import EyeIcon from '../assets/eye.svg';
@@ -79,19 +79,28 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
   return (
     <div className="login-container">
-      <div className="login-image-container">
-        <img src={fotoLogin} alt="Login Image" className="login-image" />
-        <div className="login-header">
-          <div className="login-logo">
-            <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
-            <div className="login-logo-dot"></div>
-          </div>
-          <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
-        </div>
+      <div className="login-video-container">
+        <video 
+          className="login-video"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src={videoLogin} type="video/mp4" />
+        </video>
       </div>
 
       <div className="form-container">
         <div className="login-form-container">
+          <div className="login-branding">
+            <div className="login-logo">
+              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
+              <div className="login-logo-dot"></div>
+            </div>
+            <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
+          </div>
+
           <div className="login-form-header">
             <span className="login-title">Iniciar sesión</span>
             <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
