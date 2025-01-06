@@ -55,7 +55,7 @@ body {
 }
 
 .login-description {
-  @apply text-center text-[#161616] text-[12px] font-normal w-full;
+  @apply text-center text-[#161616] text-[16px] font-normal w-full;
 }
 
 .login-form {
