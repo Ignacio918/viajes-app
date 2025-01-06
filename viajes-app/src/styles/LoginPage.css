@@ -144,16 +144,20 @@ img[src*="ilus_mezquita"] {
   @apply absolute object-contain;
   width: 193px;
   height: 112px;
-  left: 50%; /* Esto lo posiciona donde termina la foto */
+  left: 50%;
   bottom: 0;
 }
 
 img[src*="ilus_monumentos"] {
-  @apply absolute object-contain;
-  width: 237.17px;
-  height: 136px;
-  right: 0;
-  bottom: 0;
+  @apply absolute object-none; /* Cambiamos object-contain por object-none */
+  width: 300px; /* Hacemos la imagen más grande */
+  height: 200px; /* Hacemos la imagen más grande */
+  right: -30px; /* La movemos un poco hacia la derecha para que se corte naturalmente */
+  bottom: -30px; /* La movemos un poco hacia abajo para que se corte naturalmente */
+}
+
+.login-container {
+  @apply w-screen h-screen relative bg-[#FDFDFD] overflow-hidden; /* Asegurándonos que overflow: hidden está aplicado */
 }
 
 .login-error {
