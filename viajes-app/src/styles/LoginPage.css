@@ -152,7 +152,7 @@ img[src*="ilus_monumentos"] {
   @apply absolute object-none; /* Cambiamos object-contain por object-none */
   width: 300px; /* Hacemos la imagen más grande */
   height: 200px; /* Hacemos la imagen más grande */
-  right: -30px; /* La movemos un poco hacia la derecha para que se corte naturalmente */
+  right: -50px; /* La movemos un poco hacia la derecha para que se corte naturalmente */
   bottom: -35px; /* La movemos un poco hacia abajo para que se corte naturalmente */
 }
 
