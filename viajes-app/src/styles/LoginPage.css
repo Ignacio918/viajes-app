@@ -55,11 +55,11 @@ body {
 }
 
 .login-title {
-  @apply text-center text-[#161616] text-[28px] font-bold w-full;
+  @apply text-center text-[#161616] text-[40px] font-medium w-full;
 }
 
 .login-description {
-  @apply text-center text-[#161616] text-[16px] font-normal w-full;
+  @apply text-center text-[#161616] text-[12px] font-normal w-full;
 }
 
 .login-form {
@@ -75,15 +75,15 @@ body {
 }
 
 .login-input-label {
-  @apply text-[#292929] text-[16px] font-bold;
+  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-semibold;
 }
 
 .login-input {
-  @apply flex justify-between items-center w-full h-[44px] p-[10px] bg-white rounded-md border border-[#CECCBF];
+  @apply flex justify-between items-center w-[311px] h-[44px] px-3 py-2.5 bg-white rounded-[5px] border border-[#CECCBF];
 }
 
 .login-input input {
-  @apply border-none outline-none w-full text-[16px] text-[rgba(0,0,0,0.20)] font-normal;
+  @apply border-none outline-none w-full text-[14px] text-[rgba(0,0,0,0.20)] font-normal;
 }
 
 .toggle-password {
@@ -91,7 +91,7 @@ body {
 }
 
 .login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 cursor-pointer transition-colors duration-300 hover:text-[#ff3377] !important;
+  @apply self-stretch text-right text-[#E61C5D] text-[14px] font-normal mt-2 cursor-pointer transition-colors duration-300 hover:text-[#ff3377] !important;
   text-decoration: none;
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 .login-button {
-  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300 !important;
+  @apply inline-flex justify-center items-center w-[311px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300 !important;
 }
 
 .login-button:hover {
@@ -108,7 +108,7 @@ body {
 }
 
 .login-google-button {
-  @apply inline-flex justify-center items-center gap-2.5 w-full h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer transition-all duration-300;
+  @apply inline-flex justify-center items-center gap-2.5 w-[311px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer transition-all duration-300;
 }
 
 .login-google-button:hover {
@@ -124,11 +124,11 @@ body {
 }
 
 .signup-text {
-  @apply text-[#161616] text-[16px] font-normal !important;
+  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-normal !important;
 }
 
 .signup-link {
-  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
+  @apply text-[#E61C5D] text-[14px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
 }
 
 .signup-link:hover {
@@ -143,8 +143,29 @@ body {
   @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px] bg-[#E61C5D];
 }
 
-.login-icon {
-  @apply absolute w-[193px] h-[112px] object-contain;
+/* Estilos específicos para las ilustraciones */
+img[src*="ilus_avion_login"] {
+  @apply absolute object-contain;
+  width: 224px;
+  height: 47.92px;
+  right: 52px;
+  top: 51.03px;
+}
+
+img[src*="ilus_mezquita"] {
+  @apply absolute object-contain;
+  width: 193px;
+  height: 112px;
+  left: 665.45px;
+  bottom: 0;
+}
+
+img[src*="ilus_monumentos"] {
+  @apply absolute object-contain;
+  width: 237.17px;
+  height: 136px;
+  right: 0;
+  bottom: 0;
 }
 
 .login-error {

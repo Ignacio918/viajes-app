@@ -86,7 +86,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
             <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
             <div className="login-logo-dot"></div>
           </div>
-          <span className="login-subtitle">Convierte tus ideas de viaje en experiencias inolvidables</span>
+          <span className="login-subtitle">Donde cada viaje comienza con una experiencia fluida y sencilla</span>
         </div>
       </div>
       <div className="form-container">
@@ -133,17 +133,19 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
             </button>
             <div className="login-signup">
               <span className="signup-text">¿Aún no te unes?</span>
-              <span className="signup-link" onClick={handleRegisterClick}>Regístrate ahora</span>
+              <span className="signup-link" onClick={handleRegisterClick}>
+                Regístrate ahora
+              </span>
             </div>
           </form>
           {error && <p className="login-error">{error}</p>}
         </div>
       </div>
+      <img src={IlusAvionLogin} alt="Avión" className="login-illustration-plane" />
+      <img src={IlusMezquita} alt="Mezquita" className="login-illustration-mosque" />
+      <img src={IlusMonumentos} alt="Monumentos" className="login-illustration-monuments" />
       <div className="login-decorative-rect-1"></div>
       <div className="login-decorative-rect-2"></div>
-      <img src={IlusAvionLogin} alt="Avion" className="login-icon" />
-      <img src={IlusMezquita} alt="Mezquita" className="login-icon" />
-      <img src={IlusMonumentos} alt="Monumentos" className="login-icon" />
     </div>
   );
 };
