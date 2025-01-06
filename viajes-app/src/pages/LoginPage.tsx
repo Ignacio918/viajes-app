@@ -2,7 +2,6 @@ import React, { useState, FormEvent, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
-import FormSkeleton from '../components/FormSkeleton';
 
 import videoLogin from '../assets/video_login.mp4';
 import Logo from '../assets/logo_medium.svg';
@@ -128,7 +127,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 style={{ width: `${loadingProgress}%` }}
               ></div>
             </div>
-            <FormSkeleton />
           </div>
         </div>
         {/* Ilustraciones */}
