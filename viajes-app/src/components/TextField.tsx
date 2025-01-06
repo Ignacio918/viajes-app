@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import '../styles/TextField.css';
+import React, { ChangeEvent } from 'react';
 
-interface TextFieldProps {
+export interface TextFieldProps {
   label: string;
   placeholder: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  state: 'enabled' | 'selected' | 'disabled' | 'error' | 'success';
-  type?: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  state: 'enabled' | 'error';
+  type: string;
   icon?: React.ReactNode;
-  required?: boolean;
+  disabled?: boolean; // Agregamos esta propiedad como opcional
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -18,40 +17,23 @@ const TextField: React.FC<TextFieldProps> = ({
   value,
   onChange,
   state,
-  type = 'text',
+  type,
   icon,
-  required = false
+  disabled = false // Valor por defecto false
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
-  const inputState = isFocused ? 'selected' : state;
-
   return (
-    <div className="textfield-container">
-      <label className={`textfield-label ${state}`}>
-        {label}
-      </label>
-      <div className={`textfield-input-container ${inputState}`}>
+    <div className="login-input-container">
+      <label className="login-input-label">{label}</label>
+      <div className={`login-input ${state === 'error' ? 'border-red-500' : ''}`}>
         <input
           type={type}
           placeholder={placeholder}
-          className={`textfield-input ${inputState}`}
           value={value}
           onChange={onChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          disabled={state === 'disabled'}
-          required={required}
+          disabled={disabled}
+          className={disabled ? 'cursor-not-allowed opacity-60' : ''}
         />
-        {icon && <div className="textfield-icon">{icon}</div>}
+        {icon}
       </div>
     </div>
   );

@@ -6,8 +6,36 @@ body {
   @apply m-0 font-urbanist;
 }
 
+/* Animaciones básicas */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contenedores principales */
 .login-container {
-  @apply w-screen h-screen bg-[#FDFDFD] overflow-hidden;
+  @apply w-screen h-screen bg-[#FDFDFD] overflow-hidden relative;
 }
 
 .login-image-container {
@@ -18,12 +46,35 @@ body {
   @apply w-full h-full object-cover;
 }
 
+/* Barra de progreso */
+.loading-progress-bar {
+  @apply fixed top-0 left-0 w-full h-1 bg-gray-200;
+}
+
+.loading-progress-fill {
+  @apply h-full bg-[#E61C5D] transition-all duration-300 ease-out;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  @apply flex justify-center items-center w-[50%] h-screen fixed right-0 top-0;
+}
+
+.login-form-container {
+  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px] animate-fade-in;
+}
+
+.form-loading {
+  @apply opacity-75 pointer-events-none transition-opacity duration-300;
+}
+
+/* Logo y branding */
 .login-branding {
-  @apply flex justify-center items-center mb-6;
+  @apply flex justify-center items-center mb-2;
 }
 
 .login-logo {
-  @apply relative w-[187px] h-[72px];
+  @apply relative w-[187px] h-[72px] transition-transform duration-300 hover:scale-105;
 }
 
 .login-logo-image {
@@ -34,14 +85,7 @@ body {
   @apply absolute top-[16px] left-[141px] w-[6.20px] h-[6.20px] bg-[#E61C5D] rounded-full;
 }
 
-.form-container {
-  @apply flex justify-center items-center w-[50%] h-screen fixed right-0 top-0;
-}
-
-.login-form-container {
-  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px];
-}
-
+/* Encabezado del formulario */
 .login-form-header {
   @apply flex flex-col justify-start items-start w-full;
 }
@@ -50,10 +94,12 @@ body {
   @apply text-center text-[#161616] text-[18px] font-normal w-full;
 }
 
+/* Formulario */
 .login-form {
   @apply flex flex-col justify-start items-center gap-4 w-full;
 }
 
+/* Componentes del formulario */
 .login-input-group {
   @apply flex flex-col justify-start items-end gap-4 w-full;
 }
@@ -67,19 +113,29 @@ body {
 }
 
 .login-input {
-  @apply flex justify-between items-center w-[311px] h-[44px] px-3 py-2.5 bg-white rounded-[5px] border border-[#CECCBF];
+  @apply flex justify-between items-center w-full h-[44px] px-3 py-2.5 bg-white rounded-[5px] border border-[#CECCBF] transition-all duration-200;
+}
+
+.login-input:disabled {
+  @apply bg-gray-100 cursor-not-allowed;
 }
 
 .login-input input {
   @apply border-none outline-none w-full text-[14px] text-[#161616] font-normal;
 }
 
+/* Toggle password button */
 .toggle-password {
-  @apply bg-none border-none cursor-pointer;
+  @apply bg-none border-none cursor-pointer transition-opacity duration-200;
 }
 
+.toggle-password:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Enlaces */
 .login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 cursor-pointer transition-colors duration-300 hover:text-[#ff3377] !important;
+  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 cursor-pointer transition-all duration-300 hover:text-[#ff3377] !important;
   text-decoration: none;
 }
 
@@ -87,26 +143,55 @@ body {
   text-decoration: underline;
 }
 
+/* Botones */
 .login-button {
-  @apply inline-flex justify-center items-center w-[311px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300 !important;
+  @apply inline-flex justify-center items-center w-full max-w-[500px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300 !important;
 }
 
-.login-button:hover {
+.login-button:hover:not(:disabled) {
   @apply bg-[#2d2d2d] transform scale-[1.02] !important;
 }
 
 .login-google-button {
-  @apply inline-flex justify-center items-center gap-2.5 w-[311px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer transition-all duration-300;
+  @apply inline-flex justify-center items-center gap-2.5 w-full max-w-[500px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer transition-all duration-300;
 }
 
-.login-google-button:hover {
+.login-google-button:hover:not(:disabled) {
   @apply bg-gray-50 border-[#8a8a8a] transform scale-[1.02];
 }
 
-.google-icon {
-  @apply w-[16px] h-[16px];
+/* Estados de loading */
+.button-loading {
+  @apply opacity-75 cursor-wait !important;
+  transform: scale(1) !important;
 }
 
+.spinner {
+  @apply inline-block w-4 h-4 border-2 border-white rounded-full border-t-transparent animate-spin mr-2;
+}
+
+.login-google-button .spinner {
+  @apply border-[#161616] border-t-transparent;
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply bg-gray-200 animate-pulse rounded;
+}
+
+.skeleton-text {
+  @apply h-4 w-3/4 mb-2;
+}
+
+.skeleton-input {
+  @apply h-[44px] w-full mb-4 rounded-[5px];
+}
+
+.skeleton-button {
+  @apply h-[40px] w-full rounded-full mb-4;
+}
+
+/* Signup section */
 .login-signup {
   @apply inline-flex justify-center items-center gap-1 w-full;
 }
@@ -119,13 +204,16 @@ body {
   @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
 }
 
-.signup-link:hover {
+.signup-link:hover:not(.pointer-events-none) {
   text-decoration: underline;
 }
 
-/* Estilos específicos para las ilustraciones */
+/* Ilustraciones */
+.illustration {
+  @apply absolute object-contain transition-opacity duration-300;
+}
+
 img[src*="ilus_avion_login"] {
-  @apply absolute object-contain;
   width: 224px;
   height: 47.92px;
   right: 0;
@@ -133,7 +221,6 @@ img[src*="ilus_avion_login"] {
 }
 
 img[src*="ilus_mezquita"] {
-  @apply absolute object-contain;
   width: 193px;
   height: 112px;
   left: 50%;
@@ -141,13 +228,25 @@ img[src*="ilus_mezquita"] {
 }
 
 img[src*="ilus_monumentos"] {
-  @apply absolute object-none;
   width: 300px;
   height: 200px;
   right: -30px;
   bottom: -30px;
 }
 
+/* Error message */
 .login-error {
-  @apply text-red-500 mt-2;
+  @apply text-red-500 mt-2 text-center animate-fadeIn;
+}
+
+/* Animaciones personalizadas */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .login-form-container {
+    @apply px-4;
+  }
 }

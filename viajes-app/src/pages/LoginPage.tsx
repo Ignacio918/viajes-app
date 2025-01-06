@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
@@ -23,30 +23,56 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    // Simulamos carga inicial de la página con progreso
+    const duration = 1000; // 1 segundo
+    const interval = 10; // Actualizar cada 10ms
+    let progress = 0;
+    
+    const timer = setInterval(() => {
+      progress += (interval / duration) * 100;
+      setLoadingProgress(Math.min(progress, 100));
+      
+      if (progress >= 100) {
+        clearInterval(timer);
+        setIsPageLoading(false);
+      }
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setIsLoading(true);
     setError('');
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    setLoading(false);
-
-    if (error) {
-      setError(error.message);
-    } else {
-      onAuthSuccess();
-      navigate('/dashboard');
+      if (error) {
+        setError(error.message);
+      } else {
+        onAuthSuccess();
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      setError('Ocurrió un error al intentar iniciar sesión');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = () => {
+    setIsLoading(true);
     const width = 500;
     const height = 600;
     const left = (window.screen.width / 2) - (width / 2);
@@ -59,6 +85,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
 
     if (!popup) {
       setError('No se pudo abrir el popup para la autenticación de Google.');
+      setIsLoading(false);
       return;
     }
 
@@ -72,10 +99,55 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
           } else {
             setError('Error al iniciar sesión con Google');
           }
+          setIsLoading(false);
         });
       }
     }, 1000);
   };
+
+  // Componente Skeleton
+  const FormSkeleton = () => (
+    <div className="w-full animate-fade-in">
+      <div className="skeleton skeleton-text mb-4"></div>
+      <div className="skeleton skeleton-input"></div>
+      <div className="skeleton skeleton-input"></div>
+      <div className="skeleton skeleton-button"></div>
+      <div className="skeleton skeleton-button"></div>
+    </div>
+  );
+
+  if (isPageLoading) {
+    return (
+      <div className="login-container">
+        <div className="login-image-container">
+          <video 
+            className="login-video"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src={videoLogin} type="video/mp4" />
+          </video>
+        </div>
+        <div className="form-container">
+          <div className="login-form-container">
+            <div className="loading-progress-bar">
+              <div 
+                className="loading-progress-fill"
+                style={{ width: `${loadingProgress}%` }}
+              ></div>
+            </div>
+            <FormSkeleton />
+          </div>
+        </div>
+        {/* Ilustraciones */}
+        <img src={IlusAvionLogin} alt="Avión" className="illustration" />
+        <img src={IlusMezquita} alt="Mezquita" className="illustration" />
+        <img src={IlusMonumentos} alt="Monumentos" className="illustration" />
+      </div>
+    );
+  }
 
   return (
     <div className="login-container">
@@ -92,7 +164,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       </div>
 
       <div className="form-container">
-        <div className="login-form-container">
+        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
           <div className="login-branding">
             <div className="login-logo">
               <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
@@ -112,6 +184,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
               onChange={(e) => setEmail(e.target.value)}
               state={error ? 'error' : 'enabled'}
               type="email"
+              disabled={isLoading}
             />
             
             <TextField
@@ -121,33 +194,66 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
               onChange={(e) => setPassword(e.target.value)}
               state={error ? 'error' : 'enabled'}
               type={showPassword ? "text" : "password"}
+              disabled={isLoading}
               icon={
                 <button
                   type="button"
                   className="toggle-password"
                   onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
                 >
                   <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
                 </button>
               }
             />
 
-            <Link to="/forgot-password" className="login-forgot-password">
+            <Link 
+              to="/forgot-password" 
+              className={`login-forgot-password ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
+            >
               Olvidaste tu contraseña?
             </Link>
 
-            <button type="submit" className="login-button">
-              {loading ? "Cargando..." : "Ingresar"}
+            <button 
+              type="submit" 
+              className={`login-button ${isLoading ? 'button-loading' : ''}`}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="spinner"></span>
+                  Ingresando...
+                </>
+              ) : (
+                'Ingresar'
+              )}
             </button>
 
-            <button type="button" onClick={handleGoogleLogin} className="login-google-button">
-              <img src={GoogleIcon} alt="Google" className="google-icon" />
-              Ingresar con Google
+            <button 
+              type="button" 
+              onClick={handleGoogleLogin} 
+              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="spinner"></span>
+                  Conectando...
+                </>
+              ) : (
+                <>
+                  <img src={GoogleIcon} alt="Google" className="google-icon" />
+                  Ingresar con Google
+                </>
+              )}
             </button>
 
             <div className="login-signup">
               <span className="signup-text">¿Aún no te unes?</span>
-              <span className="signup-link" onClick={handleRegisterClick}>
+              <span 
+                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
+                onClick={!isLoading ? handleRegisterClick : undefined}
+              >
                 Regístrate ahora
               </span>
             </div>
@@ -158,9 +264,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       </div>
 
       {/* Ilustraciones */}
-      <img src={IlusAvionLogin} alt="Avión" />
-      <img src={IlusMezquita} alt="Mezquita" />
-      <img src={IlusMonumentos} alt="Monumentos" />
+      <img src={IlusAvionLogin} alt="Avión" className="illustration" />
+      <img src={IlusMezquita} alt="Mezquita" className="illustration" />
+      <img src={IlusMonumentos} alt="Monumentos" className="illustration" />
     </div>
   );
 };
