@@ -52,13 +52,26 @@ module.exports = {
         },
         'spin': {
           'to': { transform: 'rotate(360deg)' },
+        },
+        'shimmer': {
+          '0%': {
+            backgroundPosition: '-200% 0',
+          },
+          '100%': {
+            backgroundPosition: '200% 0',
+          },
         }
       },
       animation: {
         'slide-in': 'slide-in 0.3s ease-out',
         'fadeIn': 'fadeIn 0.3s ease-out forwards',
         'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin': 'spin 1s linear infinite'
+        'spin': 'spin 1s linear infinite',
+        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+      },
+      backgroundImage: {
+        'skeleton-gradient': 'linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 50%, #f3f4f6 100%)',
       }
     },
   },
@@ -73,6 +86,8 @@ module.exports = {
     'bg-dark',
     'animate-fadeIn',
     'animate-pulse',
-    'animate-spin'
+    'animate-spin',
+    'animate-shimmer',
+    'bg-skeleton-gradient'
   ],
 }
