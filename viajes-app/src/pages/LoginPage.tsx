@@ -121,7 +121,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 </button>
               }
             />
-            <span className="login-forgot-password">Olvidaste tu contraseña?</span>
+            <a href="/forgot-password" className="login-forgot-password">Olvidaste tu contraseña?</a>
             <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
             <button type="button" onClick={handleGoogleLogin} className="login-google-button">
               <img src={GoogleIcon} alt="Google" className="google-icon" />
