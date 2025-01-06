@@ -101,7 +101,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
           </div>
 
           <div className="login-form-header">
-            <span className="login-title">Iniciar sesión</span>
             <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
           </div>
           

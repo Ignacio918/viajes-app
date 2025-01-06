@@ -19,7 +19,7 @@ body {
 }
 
 .login-branding {
-  @apply flex justify-center items-center mb-2;
+  @apply flex justify-center items-center mb-6;
 }
 
 .login-logo {
@@ -43,15 +43,11 @@ body {
 }
 
 .login-form-header {
-  @apply flex flex-col justify-start items-start gap-4 w-full;
-}
-
-.login-title {
-  @apply text-center text-[#161616] text-[40px] font-medium w-full;
+  @apply flex flex-col justify-start items-start w-full;
 }
 
 .login-description {
-  @apply text-center text-[#161616] text-[16px] font-normal w-full;
+  @apply text-center text-[#161616] text-[18px] font-normal w-full;
 }
 
 .login-form {
