@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
@@ -24,28 +24,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isPageLoading, setIsPageLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    // Simulamos carga inicial de la página con progreso
-    const duration = 1000; // 1 segundo
-    const interval = 10; // Actualizar cada 10ms
-    let progress = 0;
-    
-    const timer = setInterval(() => {
-      progress += (interval / duration) * 100;
-      setLoadingProgress(Math.min(progress, 100));
-      
-      if (progress >= 100) {
-        clearInterval(timer);
-        setIsPageLoading(false);
-      }
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -104,38 +83,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
       }
     }, 1000);
   };
-
-  if (isPageLoading) {
-    return (
-      <div className="login-container">
-        <div className="login-image-container">
-          <video 
-            className="login-video"
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-          >
-            <source src={videoLogin} type="video/mp4" />
-          </video>
-        </div>
-        <div className="form-container">
-          <div className="login-form-container">
-            <div className="loading-progress-bar">
-              <div 
-                className="loading-progress-fill"
-                style={{ width: `${loadingProgress}%` }}
-              ></div>
-            </div>
-          </div>
-        </div>
-        {/* Ilustraciones */}
-        <img src={IlusAvionLogin} alt="Avión" className="illustration" />
-        <img src={IlusMezquita} alt="Mezquita" className="illustration" />
-        <img src={IlusMonumentos} alt="Monumentos" className="illustration" />
-      </div>
-    );
-  }
 
   return (
     <div className="login-container">
