@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/LoginPage.css';
 
@@ -121,8 +121,12 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
                 </button>
               }
             />
-            <a href="/forgot-password" className="login-forgot-password">Olvidaste tu contraseña?</a>
-            <button type="submit" className="login-button">{loading ? "Cargando..." : "Ingresar"}</button>
+            <Link to="/forgot-password" className="login-forgot-password">
+              Olvidaste tu contraseña?
+            </Link>
+            <button type="submit" className="login-button">
+              {loading ? "Cargando..." : "Ingresar"}
+            </button>
             <button type="button" onClick={handleGoogleLogin} className="login-google-button">
               <img src={GoogleIcon} alt="Google" className="google-icon" />
               Ingresar con Google

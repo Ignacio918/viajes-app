@@ -90,18 +90,29 @@ body {
   @apply bg-none border-none cursor-pointer;
 }
 
-/* Ajuste del margen superior para "Olvidaste tu contraseña?" */
 .login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 !important;
+  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 cursor-pointer transition-colors duration-300 hover:text-[#ff3377] !important;
+  text-decoration: none;
 }
 
-/* Ajuste del margen superior para el botón "Ingresar" */
+.login-forgot-password:hover {
+  text-decoration: underline;
+}
+
 .login-button {
-  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 !important;
+  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300 !important;
+}
+
+.login-button:hover {
+  @apply bg-[#2d2d2d] transform scale-[1.02] !important;
 }
 
 .login-google-button {
-  @apply inline-flex justify-center items-center gap-2.5 w-full h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer;
+  @apply inline-flex justify-center items-center gap-2.5 w-full h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer transition-all duration-300;
+}
+
+.login-google-button:hover {
+  @apply bg-gray-50 border-[#8a8a8a] transform scale-[1.02];
 }
 
 .google-icon {
@@ -112,13 +123,16 @@ body {
   @apply inline-flex justify-center items-center gap-1 w-full;
 }
 
-/* Ajuste del tamaño y color del texto para "¿Aún no te unes?" */
 .signup-text {
   @apply text-[#161616] text-[16px] font-normal !important;
 }
 
 .signup-link {
-  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer;
+  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
+}
+
+.signup-link:hover {
+  text-decoration: underline;
 }
 
 .login-decorative-rect-1 {
