@@ -153,7 +153,7 @@ img[src*="ilus_monumentos"] {
   width: 300px; /* Hacemos la imagen más grande */
   height: 200px; /* Hacemos la imagen más grande */
   right: -30px; /* La movemos un poco hacia la derecha para que se corte naturalmente */
-  bottom: -30px; /* La movemos un poco hacia abajo para que se corte naturalmente */
+  bottom: 0; /* La movemos un poco hacia abajo para que se corte naturalmente */
 }
 
 .login-container {
