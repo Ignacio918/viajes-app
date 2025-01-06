@@ -19,7 +19,7 @@ body {
 }
 
 .login-branding {
-  @apply flex justify-center items-center mb-6;
+  @apply flex justify-center items-center mb-2;
 }
 
 .login-logo {
