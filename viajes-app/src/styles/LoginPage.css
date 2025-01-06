@@ -136,7 +136,7 @@ img[src*="ilus_avion_login"] {
   @apply absolute object-contain;
   width: 224px;
   height: 47.92px;
-  right: 52px;
+  right: 0;
   top: 51.03px;
 }
 
@@ -144,7 +144,7 @@ img[src*="ilus_mezquita"] {
   @apply absolute object-contain;
   width: 193px;
   height: 112px;
-  left: 665.45px;
+  left: 50%; /* Esto lo posiciona donde termina la foto */
   bottom: 0;
 }
 
