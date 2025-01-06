@@ -1,198 +1,138 @@
-/* Estilos base para la página de inicio de sesión */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply m-0 font-urbanist;
+}
+
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+  @apply w-full h-full relative bg-[#FDFDFD] overflow-hidden;
+}
+
+.login-background {
+  @apply w-[193px] h-[112px] absolute left-[665.45px] top-[656px] bg-[#E61C5D];
 }
 
 .login-image-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  @apply relative w-full h-full sm:w-[50%] sm:h-full;
 }
 
 .login-image {
-  width: 100%;
-  max-width: 400px;
+  @apply w-full h-full object-cover;
 }
 
 .login-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+  @apply absolute top-[70px] left-1/2 transform -translate-x-1/2 flex flex-col justify-start items-center gap-2.5;
 }
 
 .login-logo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  @apply relative w-[187px] h-[72px];
 }
 
 .login-logo-image {
-  width: 100px;
+  @apply w-full h-full object-contain;
 }
 
 .login-logo-dot {
-  width: 10px;
-  height: 10px;
-  background-color: #ff6347;
-  border-radius: 50%;
-  margin-left: 5px;
+  @apply absolute top-[16px] left-[141px] w-[6.20px] h-[6.20px] bg-[#E61C5D] rounded-full;
 }
 
 .login-subtitle {
-  font-size: 16px;
-  color: #333;
+  @apply text-center text-white text-[18px] font-bold;
 }
 
 .form-container {
-  width: 100%;
-  max-width: 500px;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  @apply flex justify-center items-center w-full h-full sm:w-[50%] sm:h-full absolute right-0 top-0;
 }
 
 .login-form-container {
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px];
 }
 
 .login-form-header {
-  margin-bottom: 20px;
+  @apply flex flex-col justify-start items-start gap-4 w-full;
 }
 
 .login-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  @apply text-center text-[#161616] text-[28px] font-bold w-full;
 }
 
 .login-description {
-  font-size: 16px;
-  color: #666;
+  @apply text-center text-[#161616] text-[16px] font-normal w-full;
 }
 
 .login-form {
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col justify-start items-center gap-4 w-full;
 }
 
+.login-input-group {
+  @apply flex flex-col justify-start items-end gap-4 w-full;
+}
+
+.login-input-container {
+  @apply w-full flex flex-col justify-center items-start gap-2.5;
+}
+
+.login-input-label {
+  @apply text-[#292929] text-[16px] font-bold;
+}
+
+.login-input {
+  @apply flex justify-between items-center w-full h-[44px] p-[10px] bg-white rounded-md border border-[#CECCBF];
+}
+
+.login-input input {
+  @apply border-none outline-none w-full text-[16px] text-[rgba(0,0,0,0.20)] font-normal;
+}
+
+.toggle-password {
+  @apply bg-none border-none cursor-pointer;
+}
+
+/* Ajuste del margen superior para "Olvidaste tu contraseña?" */
 .login-forgot-password {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #007bff;
-  cursor: pointer;
-  text-decoration: underline;
+  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 !important;
 }
 
-.login-forgot-password:hover {
-  color: #0056b3;
-}
-
-.login-button, .login-google-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-button:hover, .login-google-button:hover {
-  background-color: #0056b3;
+/* Ajuste del margen superior para el botón "Ingresar" */
+.login-button {
+  @apply inline-flex justify-center items-center w-full h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 !important;
 }
 
 .login-google-button {
-  background-color: white;
-  color: black;
-  border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  @apply inline-flex justify-center items-center gap-2.5 w-full h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer;
 }
 
 .google-icon {
-  width: 20px;
-  height: 20px;
+  @apply w-[16px] h-[16px];
 }
 
 .login-signup {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
+  @apply inline-flex justify-center items-center gap-1 w-full;
 }
 
+/* Ajuste del tamaño y color del texto para "¿Aún no te unes?" */
 .signup-text {
-  font-size: 14px;
-  color: #666;
+  @apply text-[#161616] text-[16px] font-normal !important;
 }
 
 .signup-link {
-  font-size: 14px;
-  color: #007bff;
-  cursor: pointer;
-  margin-left: 5px;
-  text-decoration: underline;
-}
-
-.signup-link:hover {
-  color: #0056b3;
-}
-
-.login-error {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.login-decorative-rect-1,
-.login-decorative-rect-2 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-color: #f5f5f5;
+  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer;
 }
 
 .login-decorative-rect-1 {
-  top: 10%;
-  left: 10%;
+  @apply absolute w-[237.17px] h-[136px] left-[1409.23px] top-[632px] bg-[#E61C5D] transform rotate-180 origin-[0_0];
 }
 
 .login-decorative-rect-2 {
-  bottom: 10%;
-  right: 10%;
+  @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px] bg-[#E61C5D];
 }
 
 .login-icon {
-  position: absolute;
-  width: 80px;
-  height: 80px;
+  @apply absolute w-[193px] h-[112px] object-contain;
 }
 
-.login-icon:first-of-type {
-  top: 20%;
-  left: 20%;
-}
-
-.login-icon:nth-of-type(2) {
-  top: 60%;
-  right: 20%;
-}
-
-.login-icon:last-of-type {
-  bottom: 20%;
-  left: 60%;
+.login-error {
+  @apply text-red-500 mt-2;
 }
