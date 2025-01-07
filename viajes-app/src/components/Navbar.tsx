@@ -26,8 +26,9 @@ const Navbar: FC = () => {
       {/* Navigation Links */}
       <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
         <Link to="/" className="nav-link">Inicio</Link>
-        <Link to="/como-funciona" className="nav-link">Como funciona</Link>
+        <Link to="/como-funciona" className="nav-link">Cómo funciona</Link>
         <Link to="/beneficios" className="nav-link">Beneficios</Link>
+        <Link to="/contacto" className="nav-link">Contacto</Link>
       </div>
 
       {/* Auth Links */}
