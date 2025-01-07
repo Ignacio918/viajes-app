@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
 
@@ -15,10 +15,9 @@ import TextField from '../components/TextField';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
-  handleLoginClick?: () => void;
 }
 
-const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginClick }) => {
+const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -127,11 +126,16 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
     };
   };
 
+  const handleLoginClick = () => {
+    navigate('/login');
+    console.log('Navegando a login');
+  };
+
   return (
-    <div className="login-container">
-      <div className="login-image-container">
+    <div className="register-container">
+      <div className="register-image-container">
         <video 
-          className="login-video"
+          className="register-video"
           autoPlay 
           loop 
           muted 
@@ -142,19 +146,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
       </div>
 
       <div className="form-container">
-        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
-          <div className="login-branding">
-            <div className="login-logo">
-              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
-              <div className="login-logo-dot"></div>
+        <div className={`register-form-container ${isLoading ? 'form-loading' : ''}`}>
+          <div className="register-branding">
+            <div className="register-logo">
+              <img src={Logo} alt="Zentrip Logo" className="register-logo-image" />
+              <div className="register-logo-dot"></div>
             </div>
           </div>
 
-          <div className="login-form-header">
-            <span className="login-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
+          <div className="register-form-header">
+            <span className="register-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
           </div>
           
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit} className="register-form">
             <TextField
               label="Nombre completo"
               placeholder="Ingresa tu nombre completo"
@@ -217,7 +221,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
 
             <button 
               type="submit" 
-              className={`login-button ${isLoading ? 'button-loading' : ''}`}
+              className={`register-button ${isLoading ? 'button-loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -233,7 +237,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
             <button 
               type="button" 
               onClick={handleGoogleLogin} 
-              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
+              className={`register-google-button ${isLoading ? 'button-loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -249,18 +253,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
               )}
             </button>
 
-            <div className="login-signup">
+            <div className="register-signup">
               <span className="signup-text">¿Ya tienes una cuenta?</span>
               <span 
-                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
-                onClick={!isLoading ? handleLoginClick : undefined}
+                className="signup-link"
+                onClick={handleLoginClick}
+                style={{ cursor: 'pointer' }}
               >
-                Inicia sesión
+                Inicia Sesión
               </span>
             </div>
           </form>
 
-          {error && <p className="login-error">{error}</p>}
+          {error && <p className="register-error">{error}</p>}
         </div>
       </div>
 
