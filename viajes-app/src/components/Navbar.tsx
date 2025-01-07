@@ -19,9 +19,9 @@ const Navbar: FC = () => {
         <Link to="/beneficios" className="nav-link">Beneficios</Link>
       </div>
 
-      {/* Auth Buttons */}
+      {/* Auth Links */}
       <div className="auth-buttons">
-        <Link to="/login" className="login-button">
+        <Link to="/login" className="nav-link">
           Iniciar Sesión
         </Link>
         <Link to="/register" className="register-button">
