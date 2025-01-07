@@ -32,7 +32,7 @@ const Navbar: FC = () => {
       </div>
 
       {/* Hamburger Menu Icon */}
-      <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
+      <div className="hamburger-menu" onClick={toggleMenu}>
         &#9776; {/* This is the hamburger icon */}
       </div>
     </nav>

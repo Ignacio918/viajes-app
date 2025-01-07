@@ -13,11 +13,11 @@
 }
 
 .logo {
-  @apply text-2xl font-extrabold text-dark; /* Ajusta el color según tu preferencia */
+  @apply text-2xl font-extrabold text-dark;
 }
 
 .logo-dot {
-  @apply w-1.5 h-1.5 absolute bg-pink-600 rounded-full; /* Ajusta el color según tu preferencia */
+  @apply w-1.5 h-1.5 absolute bg-pink-600 rounded-full;
   top: 0.375rem; /* 6px */
   left: 3.5625rem; /* 57px */
 }
@@ -27,17 +27,32 @@
 }
 
 .nav-link {
-  @apply flex justify-center items-center text-lg font-normal text-black/20 px-4 py-4 rounded-full;
+  @apply flex justify-center items-center text-lg font-normal text-black/50 px-4 py-4 rounded-full transition-colors;
+}
+
+.nav-link:hover {
+  @apply text-pink-600;
 }
 
 .auth-buttons {
-  @apply flex items-center;
+  @apply flex items-center gap-2;
 }
 
 .auth-button {
-  @apply flex justify-center items-center text-lg font-normal text-black/20 px-4 py-4 rounded-full;
+  @apply flex justify-center items-center text-lg font-normal text-black/50 px-4 py-4 rounded-full;
 }
 
 .register-button {
-  @apply bg-dark text-white font-light;
+  @apply bg-dark text-white font-light max-w-xs; /* Limitar el ancho máximo del botón */
+  width: 120px;
+}
+
+.hamburger-menu {
+  @apply md:hidden cursor-pointer text-2xl;
+}
+
+@media (max-width: 768px) {
+  .nav-links, .auth-buttons {
+    @apply flex-col items-center space-y-4;
+  }
 }
