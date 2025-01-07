@@ -58,8 +58,8 @@
   gap: 10px;
 }
 
-.auth-buttons .login-link {
-  color: rgba(0, 0, 0, 0.20); /* Color inicial */
+.auth-buttons .nav-link {
+  color: var(--Foundation-Text-Normal, #3E3E3E); /* Color específico */
   font-size: 18px;
   font-family: 'Urbanist', sans-serif;
   font-weight: 400;
@@ -67,7 +67,7 @@
   word-wrap: break-word;
 }
 
-.auth-buttons .login-link:hover {
+.auth-buttons .nav-link:hover {
   color: #E61C5D; /* Color al hacer hover */
 }
 
