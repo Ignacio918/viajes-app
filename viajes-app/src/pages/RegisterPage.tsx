@@ -207,7 +207,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
                 className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
                 onClick={!isLoading ? handleLoginClick : undefined}
               >
-                Inicia sesión
+                Iniciar Sesión
               </span>
             </div>
           </form>
