@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-primary: #44178c;
   --color-primary-hover: #3b167d;
@@ -8,10 +12,6 @@
   --color-separator: #e6e9fa;
   --color-light-purple: #f8f5ff;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   html {
