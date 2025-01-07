@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-primary: #44178c;
-  --color-primary-hover: #3b167d;
-  --color-text-primary: #161616;
-  --color-text-secondary: #828282;
-  --color-border: #ece8f4;
-  --color-white: #ffffff;
-  --color-separator: #e6e9fa;
-  --color-light-purple: #f8f5ff;
-}
-
 @layer base {
   html {
     font-family: "Urbanist", system-ui, sans-serif;
