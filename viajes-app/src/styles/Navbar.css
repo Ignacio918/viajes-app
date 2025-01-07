@@ -3,40 +3,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos personalizados */
+/* Estilos personalizados para el componente Navbar */
 .navbar {
-  @apply flex justify-between items-center bg-white shadow-md p-4;
+  @apply w-full h-full px-24 py-8 bg-white shadow-md flex justify-between items-center;
+}
+
+.logo-container {
+  @apply relative;
 }
 
 .logo {
-  @apply text-2xl font-bold text-gray-900;
+  @apply text-2xl font-extrabold text-dark; /* Ajusta el color según tu preferencia */
 }
 
-.hamburger-menu {
-  @apply block text-2xl cursor-pointer md:hidden;
+.logo-dot {
+  @apply w-1.5 h-1.5 absolute bg-pink-600 rounded-full; /* Ajusta el color según tu preferencia */
+  top: 0.375rem; /* 6px */
+  left: 3.5625rem; /* 57px */
 }
 
 .nav-links {
-  @apply hidden md:flex space-x-4;
+  @apply flex justify-center items-center gap-3;
 }
 
 .nav-link {
-  @apply text-gray-700 hover:text-gray-900;
+  @apply flex justify-center items-center text-lg font-normal text-black/20 px-4 py-4 rounded-full;
 }
 
 .auth-buttons {
-  @apply flex space-x-4;
+  @apply flex items-center;
+}
+
+.auth-button {
+  @apply flex justify-center items-center text-lg font-normal text-black/20 px-4 py-4 rounded-full;
 }
 
 .register-button {
-  @apply bg-primary text-white px-4 py-2 rounded-lg;
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    @apply flex flex-col items-center space-y-4;
-  }
-  .auth-buttons {
-    @apply flex flex-col items-center space-y-4;
-  }
+  @apply bg-dark text-white font-light;
 }
