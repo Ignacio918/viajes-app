@@ -128,7 +128,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
   const handleLoginClick = () => {
     navigate('/login');
-    console.log('Navegando a login');
   };
 
   return (
@@ -256,11 +255,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             <div className="register-signup">
               <span className="signup-text">¿Ya tienes una cuenta?</span>
               <span 
-                className="signup-link"
-                onClick={handleLoginClick}
-                style={{ cursor: 'pointer' }}
+                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
+                onClick={!isLoading ? handleLoginClick : undefined}
               >
-                Inicia Sesión
+                Inicia sesión
               </span>
             </div>
           </form>
