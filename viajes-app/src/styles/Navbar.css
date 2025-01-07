@@ -39,8 +39,8 @@
   gap: 12px;
 }
 
-.nav-link {
-  color: rgba(0, 0, 0, 0.20);
+.nav-links .nav-link {
+  color: var(--Foundation-Text-Normal, #3E3E3E); /* Color específico */
   font-family: 'Urbanist', sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -48,8 +48,8 @@
   text-decoration: none;
 }
 
-.nav-link:hover {
-  color: #E61C5D;
+.nav-links .nav-link:hover {
+  color: #E61C5D; /* Color al hacer hover */
 }
 
 .auth-buttons {
@@ -58,7 +58,20 @@
   gap: 10px;
 }
 
-.register-button {
+.auth-buttons .login-link {
+  color: rgba(0, 0, 0, 0.20); /* Color inicial */
+  font-size: 18px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+.auth-buttons .login-link:hover {
+  color: #E61C5D; /* Color al hacer hover */
+}
+
+.auth-buttons .register-button {
   color: white;
   background: #161616;
   padding: 12px 24px;  /* Ajuste del espaciado */
@@ -72,6 +85,6 @@
   transition: background-color 0.3s;
 }
 
-.register-button:hover {
+.auth-buttons .register-button:hover {
   background-color: #3E3E3E;  /* Mismo efecto hover que en LoginPage */
 }
