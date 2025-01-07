@@ -16,10 +16,9 @@ import TextField from '../components/TextField';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
-  handleLoginClick?: () => void;
 }
 
-const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginClick }) => {
+const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -204,8 +203,9 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginC
             <div className="login-signup">
               <span className="signup-text">¿Ya tienes una cuenta?</span>
               <span 
-                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
-                onClick={!isLoading ? handleLoginClick : undefined}
+                className="signup-link"
+                onClick={() => navigate('/login')}
+                style={{ cursor: 'pointer' }}
               >
                 Iniciar Sesión
               </span>
