@@ -9,7 +9,7 @@
 
 .textfield-label {
   font-size: 14px;
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 600;
   color: #292929; /* Color original del diseño */
 }
@@ -24,7 +24,7 @@
   justify-content: space-between;
   align-items: center; /* Alinear contenido verticalmente al centro */
   overflow: hidden;
-  border: 1px solid #A8A8A8;
+  border: 1px solid #a8a8a8;
 }
 
 .textfield-input {
@@ -32,13 +32,13 @@
   border: none;
   outline: none;
   font-size: 14px;
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 400;
-  color: #3E3E3E; /* Color del texto */
+  color: #3e3e3e; /* Color del texto */
 }
 
 .textfield-input:focus {
-  color: #3E3E3E; /* Color del texto cuando se está escribiendo */
+  color: #3e3e3e; /* Color del texto cuando se está escribiendo */
 }
 
 .textfield-icon {
@@ -54,7 +54,7 @@
 
 /* State: Enabled */
 .textfield-input-container.enabled {
-  border-color: #A8A8A8;
+  border-color: #a8a8a8;
 }
 
 .textfield-input-container.enabled:hover {
@@ -67,31 +67,54 @@
 }
 
 .textfield-input.selected {
-  color: #3E3E3E; /* Color del texto cuando se está escribiendo */
+  color: #3e3e3e; /* Color del texto cuando se está escribiendo */
 }
 
 /* State: Disabled */
 .textfield-label.disabled,
 .textfield-input.disabled,
 .textfield-icon.disabled {
-  color: #A8A8A8;
+  color: #a8a8a8;
 }
 
 .textfield-input-container.disabled {
-  border-color: #A8A8A8;
+  border-color: #a8a8a8;
   pointer-events: none;
 }
 
 /* State: Error */
 .textfield-input-container.error {
-  border-color: #FF6893;
+  border-color: #ff6893;
 }
 
 .textfield-input.error {
-  color: #FF6893; /* Color del texto cuando hay error */
+  color: #ff6893; /* Color del texto cuando hay error */
 }
 
 /* State: Success */
 .textfield-input-container.success {
-  border-color: #A8D5BA;
+  border-color: #a8d5ba;
+}
+
+.textfield-helper-text {
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.text-error {
+  color: #dc2626; /* color rojo para errores */
+}
+
+.text-success {
+  color: #16a34a; /* color verde para éxito */
+}
+
+.textfield-input-container.success {
+  border-color: #16a34a;
+}
+
+.textfield-input-container.success:focus-within {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 1px #16a34a;
 }

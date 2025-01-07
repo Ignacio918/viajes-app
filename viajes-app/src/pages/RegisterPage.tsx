@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
@@ -18,6 +18,18 @@ interface RegisterPageProps {
   onAuthSuccess: () => void;
 }
 
+interface FormValidation {
+  isValid: boolean;
+  message: string;
+}
+
+interface FormState {
+  fullName: FormValidation;
+  email: FormValidation;
+  password: FormValidation;
+  confirmPassword: FormValidation;
+}
+
 const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
@@ -28,14 +40,97 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [formValidation, setFormValidation] = useState<FormState>({
+    fullName: { isValid: false, message: '' },
+    email: { isValid: false, message: '' },
+    password: { isValid: false, message: '' },
+    confirmPassword: { isValid: false, message: '' }
+  });
+
+  // Validación de nombre completo
+  const validateFullName = (name: string): FormValidation => {
+    if (!name.trim()) {
+      return { isValid: false, message: 'El nombre es requerido' };
+    }
+    if (name.length < 3) {
+      return { isValid: false, message: 'El nombre debe tener al menos 3 caracteres' };
+    }
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name)) {
+      return { isValid: false, message: 'El nombre solo puede contener letras' };
+    }
+    return { isValid: true, message: 'Nombre válido' };
+  };
+
+  // Validación de email
+  const validateEmail = (email: string): FormValidation => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      return { isValid: false, message: 'El email es requerido' };
+    }
+    if (!emailRegex.test(email)) {
+      return { isValid: false, message: 'Email inválido' };
+    }
+    return { isValid: true, message: 'Email válido' };
+  };
+
+  // Validación de contraseña
+  const validatePassword = (pass: string): FormValidation => {
+    if (!pass) {
+      return { isValid: false, message: 'La contraseña es requerida' };
+    }
+    if (pass.length < 8) {
+      return { isValid: false, message: 'Mínimo 8 caracteres' };
+    }
+    if (!/[A-Z]/.test(pass)) {
+      return { isValid: false, message: 'Debe incluir al menos una mayúscula' };
+    }
+    if (!/[0-9]/.test(pass)) {
+      return { isValid: false, message: 'Debe incluir al menos un número' };
+    }
+    if (!/[!@#$%^&*]/.test(pass)) {
+      return { isValid: false, message: 'Debe incluir al menos un carácter especial (!@#$%^&*)' };
+    }
+    return { isValid: true, message: 'Contraseña válida' };
+  };
+
+  // Validación de confirmación de contraseña
+  const validateConfirmPassword = (confirm: string): FormValidation => {
+    if (!confirm) {
+      return { isValid: false, message: 'Debe confirmar la contraseña' };
+    }
+    if (confirm !== password) {
+      return { isValid: false, message: 'Las contraseñas no coinciden' };
+    }
+    return { isValid: true, message: 'Las contraseñas coinciden' };
+  };
+
+  // Efecto para validar en tiempo real
+  useEffect(() => {
+    setFormValidation({
+      fullName: validateFullName(fullName),
+      email: validateEmail(email),
+      password: validatePassword(password),
+      confirmPassword: validateConfirmPassword(confirmPassword)
+    });
+  }, [fullName, email, password, confirmPassword]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
-    if (password !== confirmPassword) {
-      setError('Las contraseñas no coinciden');
+    // Validar todo el formulario antes de enviar
+    const allValidations = {
+      fullName: validateFullName(fullName),
+      email: validateEmail(email),
+      password: validatePassword(password),
+      confirmPassword: validateConfirmPassword(confirmPassword)
+    };
+
+    setFormValidation(allValidations);
+
+    if (!Object.values(allValidations).every(v => v.isValid)) {
+      setError('Por favor, corrige los errores en el formulario');
       setIsLoading(false);
       return;
     }
@@ -111,9 +206,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               placeholder="Ingresa tu nombre completo"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              state={error ? 'error' : 'enabled'}
+              state={formValidation.fullName.isValid ? 'success' : fullName ? 'error' : 'enabled'}
               type="text"
               disabled={isLoading}
+              helperText={fullName ? formValidation.fullName.message : ''}
             />
 
             <TextField
@@ -121,9 +217,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               placeholder="Ingresa tu email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              state={error ? 'error' : 'enabled'}
+              state={formValidation.email.isValid ? 'success' : email ? 'error' : 'enabled'}
               type="email"
               disabled={isLoading}
+              helperText={email ? formValidation.email.message : ''}
             />
             
             <TextField
@@ -131,9 +228,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               placeholder="Ingresa una contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              state={error ? 'error' : 'enabled'}
+              state={formValidation.password.isValid ? 'success' : password ? 'error' : 'enabled'}
               type={showPassword ? "text" : "password"}
               disabled={isLoading}
+              helperText={password ? formValidation.password.message : ''}
               icon={
                 <button
                   type="button"
@@ -151,9 +249,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               placeholder="Confirma tu contraseña"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              state={error ? 'error' : 'enabled'}
+              state={formValidation.confirmPassword.isValid ? 'success' : confirmPassword ? 'error' : 'enabled'}
               type={showConfirmPassword ? "text" : "password"}
               disabled={isLoading}
+              helperText={confirmPassword ? formValidation.confirmPassword.message : ''}
               icon={
                 <button
                   type="button"

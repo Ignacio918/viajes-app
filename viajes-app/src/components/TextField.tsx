@@ -1,16 +1,17 @@
 import React, { ChangeEvent } from 'react';
-import '../styles/TextField.css'; // Agregamos esta línea
+import '../styles/TextField.css';
 
 export interface TextFieldProps {
   label: string;
   placeholder: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  state: 'enabled' | 'error';
+  state: 'enabled' | 'error' | 'success';
   type: string;
   icon?: React.ReactNode;
   disabled?: boolean;
   required?: boolean;
+  helperText?: string;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -22,7 +23,8 @@ const TextField: React.FC<TextFieldProps> = ({
   type,
   icon,
   disabled = false,
-  required = false
+  required = false,
+  helperText
 }) => {
   return (
     <div className="textfield-container">
@@ -42,6 +44,11 @@ const TextField: React.FC<TextFieldProps> = ({
         />
         {icon && <div className="textfield-icon">{icon}</div>}
       </div>
+      {helperText && (
+        <span className={`textfield-helper-text ${state === 'error' ? 'text-error' : state === 'success' ? 'text-success' : ''}`}>
+          {helperText}
+        </span>
+      )}
     </div>
   );
 };
