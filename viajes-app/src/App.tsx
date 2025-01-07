@@ -12,9 +12,9 @@ import SetNewPassword from "./pages/SetNewPassword";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserProfile from "./pages/UserProfile";
-import Sidebar from "./pages/Sidebar";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -64,54 +64,9 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div
-        className={`min-h-screen flex ${
-          showAuthPage ? "bg-white" : "bg-gray-50"
-        }`}
-      >
-        {!showAuthPage && <Sidebar />}
+      <div className={`min-h-screen ${showAuthPage ? "bg-white" : "bg-gray-50"}`}>
         <div className="flex-grow main-content">
-          {!showAuthPage && (
-            <nav className="navbar-fixed">
-              <div className="container-spacing flex justify-between items-center">
-                <a href="/" className="text-2xl font-bold text-gray-900">
-                  Intellit
-                </a>
-                <div className="hidden md:flex space-x-6">
-                  <a
-                    href="#about"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    About
-                  </a>
-                  <a
-                    href="#technology"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Technology
-                  </a>
-                  <a
-                    href="#services"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Services
-                  </a>
-                  <a
-                    href="#support"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Support
-                  </a>
-                  <button className="btn-secondary" onClick={handleLoginClick}>
-                    Login
-                  </button>
-                  <button className="btn-primary" onClick={handleRegisterClick}>
-                    Sign Up
-                  </button>
-                </div>
-              </div>
-            </nav>
-          )}
+          {!showAuthPage && <Navbar />}
 
           <Routes>
             <Route
