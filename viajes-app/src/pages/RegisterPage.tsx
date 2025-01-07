@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
 
@@ -15,9 +15,10 @@ import TextField from '../components/TextField';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
+  handleLoginClick?: () => void;
 }
 
-const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
+const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginClick }) => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -126,15 +127,11 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     };
   };
 
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
-
   return (
-    <div className="register-container">
-      <div className="register-image-container">
+    <div className="login-container">
+      <div className="login-image-container">
         <video 
-          className="register-video"
+          className="login-video"
           autoPlay 
           loop 
           muted 
@@ -145,19 +142,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
       </div>
 
       <div className="form-container">
-        <div className={`register-form-container ${isLoading ? 'form-loading' : ''}`}>
-          <div className="register-branding">
-            <div className="register-logo">
-              <img src={Logo} alt="Zentrip Logo" className="register-logo-image" />
-              <div className="register-logo-dot"></div>
+        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
+          <div className="login-branding">
+            <div className="login-logo">
+              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
+              <div className="login-logo-dot"></div>
             </div>
           </div>
 
-          <div className="register-form-header">
-            <span className="register-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
+          <div className="login-form-header">
+            <span className="login-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
           </div>
           
-          <form onSubmit={handleSubmit} className="register-form">
+          <form onSubmit={handleSubmit} className="login-form">
             <TextField
               label="Nombre completo"
               placeholder="Ingresa tu nombre completo"
@@ -220,7 +217,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <button 
               type="submit" 
-              className={`register-button ${isLoading ? 'button-loading' : ''}`}
+              className={`login-button ${isLoading ? 'button-loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -236,7 +233,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             <button 
               type="button" 
               onClick={handleGoogleLogin} 
-              className={`register-google-button ${isLoading ? 'button-loading' : ''}`}
+              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -252,7 +249,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               )}
             </button>
 
-            <div className="register-signup">
+            <div className="login-signup">
               <span className="signup-text">¿Ya tienes una cuenta?</span>
               <span 
                 className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
@@ -263,7 +260,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             </div>
           </form>
 
-          {error && <p className="register-error">{error}</p>}
+          {error && <p className="login-error">{error}</p>}
         </div>
       </div>
 
