@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
 
+// Importamos los mismos assets que usamos en LoginPage
 import videoLogin from '../assets/video_login.mp4';
 import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/devicon_google.svg';
@@ -15,9 +16,10 @@ import TextField from '../components/TextField';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
+  handleLoginClick?: () => void;
 }
 
-const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
+const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess, handleLoginClick }) => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -63,78 +65,25 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    setIsLoading(true);
-    setError('');
-    
-    const width = 500;
-    const height = 600;
-    const left = (window.screen.width / 2) - (width / 2);
-    const top = (window.screen.height / 2) - (height / 2);
-    
-    let authListener: any = null;
-    let popupClosed = false;
-
-    authListener = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session) {
-            onAuthSuccess();
-            navigate('/dashboard');
-            if (authListener) authListener.unsubscribe();
-        }
-    });
-    
-    const popup = window.open(
-        `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
-        'GoogleSignIn',
-        `width=${width},height=${height},top=${top},left=${left}`
-    );
-
-    if (!popup) {
-        setError('No se pudo abrir el popup para la autenticación de Google.');
-        setIsLoading(false);
-        if (authListener) authListener.unsubscribe();
-        return;
+  const handleGoogleLogin = async () => {
+    try {
+      setIsLoading(true);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google'
+      });
+      if (error) throw error;
+    } catch (error) {
+      setError('Error al intentar registrarse con Google');
+    } finally {
+      setIsLoading(false);
     }
-
-    const interval = setInterval(async () => {
-        if (popup.closed && !popupClosed) {
-            popupClosed = true;
-            clearInterval(interval);
-            
-            try {
-                const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-                
-                if (sessionError) throw sessionError;
-
-                if (!session?.user?.id) {
-                    setError('No se completó el registro con Google');
-                    if (authListener) authListener.unsubscribe();
-                }
-            } catch (error) {
-                console.error('Error al verificar sesión:', error);
-                setError('Error al verificar la sesión');
-                if (authListener) authListener.unsubscribe();
-            }
-            
-            setIsLoading(false);
-        }
-    }, 1000);
-
-    return () => {
-        clearInterval(interval);
-        if (authListener) authListener.unsubscribe();
-    };
-  };
-
-  const handleLoginClick = () => {
-    navigate('/login');
   };
 
   return (
-    <div className="register-container">
-      <div className="register-image-container">
+    <div className="login-container">
+      <div className="login-image-container">
         <video 
-          className="register-video"
+          className="login-video"
           autoPlay 
           loop 
           muted 
@@ -145,19 +94,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
       </div>
 
       <div className="form-container">
-        <div className={`register-form-container ${isLoading ? 'form-loading' : ''}`}>
-          <div className="register-branding">
-            <div className="register-logo">
-              <img src={Logo} alt="Zentrip Logo" className="register-logo-image" />
-              <div className="register-logo-dot"></div>
+        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
+          <div className="login-branding">
+            <div className="login-logo">
+              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
+              <div className="login-logo-dot"></div>
             </div>
           </div>
 
-          <div className="register-form-header">
-            <span className="register-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
+          <div className="login-form-header">
+            <span className="login-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
           </div>
           
-          <form onSubmit={handleSubmit} className="register-form">
+          <form onSubmit={handleSubmit} className="login-form">
             <TextField
               label="Nombre completo"
               placeholder="Ingresa tu nombre completo"
@@ -220,7 +169,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <button 
               type="submit" 
-              className={`register-button ${isLoading ? 'button-loading' : ''}`}
+              className={`login-button ${isLoading ? 'button-loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -236,7 +185,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             <button 
               type="button" 
               onClick={handleGoogleLogin} 
-              className={`register-google-button ${isLoading ? 'button-loading' : ''}`}
+              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -252,7 +201,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               )}
             </button>
 
-            <div className="register-signup">
+            <div className="login-signup">
               <span className="signup-text">¿Ya tienes una cuenta?</span>
               <span 
                 className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
@@ -263,7 +212,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             </div>
           </form>
 
-          {error && <p className="register-error">{error}</p>}
+          {error && <p className="login-error">{error}</p>}
         </div>
       </div>
 
