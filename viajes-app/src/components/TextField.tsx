@@ -9,7 +9,7 @@ export interface TextFieldProps {
   type: string;
   icon?: React.ReactNode;
   disabled?: boolean;
-  required?: boolean; // Agregamos esta propiedad como opcional
+  required?: boolean;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -21,15 +21,15 @@ const TextField: React.FC<TextFieldProps> = ({
   type,
   icon,
   disabled = false,
-  required = false // Valor por defecto false
+  required = false
 }) => {
   return (
-    <div className="login-input-container">
-      <label className="login-input-label">
+    <div className="textfield-container">
+      <label className="textfield-label">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      <div className={`login-input ${state === 'error' ? 'border-red-500' : ''}`}>
+      <div className={`textfield-input-container ${state}`}>
         <input
           type={type}
           placeholder={placeholder}
@@ -37,9 +37,9 @@ const TextField: React.FC<TextFieldProps> = ({
           onChange={onChange}
           disabled={disabled}
           required={required}
-          className={`${disabled ? 'cursor-not-allowed opacity-60' : ''}`}
+          className={`textfield-input ${disabled ? 'disabled' : ''}`}
         />
-        {icon}
+        {icon && <div className="textfield-icon">{icon}</div>}
       </div>
     </div>
   );
