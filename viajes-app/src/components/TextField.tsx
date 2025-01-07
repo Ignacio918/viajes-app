@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import '../styles/TextField.css'; // Agregamos esta línea
 
 export interface TextFieldProps {
   label: string;
