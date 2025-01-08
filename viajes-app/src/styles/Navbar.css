@@ -27,7 +27,7 @@
 }
 
 .nav-link {
-  @apply text-lg font-normal text-black/20 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
+  @apply text-lg font-normal text-gray-800 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
 }
 
 .nav-link:hover {
@@ -39,7 +39,7 @@
 }
 
 .login-link {
-  @apply text-lg font-normal text-black/20 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
+  @apply text-lg font-normal text-gray-800 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
 }
 
 .login-link:hover {
