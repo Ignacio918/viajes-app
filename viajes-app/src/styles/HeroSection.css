@@ -13,7 +13,7 @@
 }
 
 .hero__title {
-  @apply text-6xl font-bold font-urbanist;
+  @apply text-[64px] font-bold font-urbanist;
 }
 
 .hero__title-dark {
@@ -41,43 +41,55 @@
 }
 
 .hero__image-section {
-  @apply relative w-[792px] h-[725px];
+  @apply relative w-[792.02px] h-[725px];
 }
 
 .hero__shape-1 {
-  @apply absolute right-0 top-[21px] w-[147px] h-[275px] p-2.5;
+  @apply absolute right-0 top-[31.23px] w-[147.09px] h-[274.68px] p-2.5;
 }
 
 .hero__shape-1-inner {
-  @apply w-full h-full bg-pink-600;
+  @apply w-[127.09px] h-[254.68px] bg-pink-600;
 }
 
 .hero__shape-2 {
-  @apply absolute left-0 top-[67px] w-[250px] h-[265px] p-2.5;
+  @apply absolute left-0 top-[77.33px] w-[250.38px] h-[264.78px] p-2.5;
 }
 
 .hero__shape-2-inner {
-  @apply w-full h-full bg-pink-600;
+  @apply w-[230.38px] h-[244.78px] bg-pink-600;
 }
 
 .hero__shape-3 {
-  @apply absolute left-[56px] top-0 w-[660px] h-[268px] bg-[#FFE8EF];
+  @apply absolute left-[46.21px] top-0 w-[680.23px] h-[267.68px] bg-[#FFE8EF];
+}
+
+.hero__location-icon {
+  @apply absolute left-[635px] top-[78px] w-6 h-6;
+}
+
+.hero__icon {
+  @apply w-full h-full;
 }
 
 .hero__image {
   @apply w-[272px] h-[310px] rounded-[32px] object-cover;
 }
 
+.hero__image--tall {
+  @apply h-[377px];
+}
+
 .hero__image-1 {
-  @apply absolute left-[136px] top-[57px];
+  @apply absolute left-[136.02px] top-[67.49px];
 }
 
 .hero__image-2 {
-  @apply absolute left-[136px] top-[397px];
+  @apply absolute left-[136.02px] top-[407.49px];
 }
 
 .hero__image-3 {
-  @apply absolute left-[440px] top-[131px] h-[377px];
+  @apply absolute left-[440px] top-[141.49px];
 }
 
 .hero__float {
@@ -86,7 +98,7 @@
 }
 
 .hero__float-1 {
-  @apply absolute left-[104px] top-[338px];
+  @apply absolute left-[104.02px] top-[338px];
 }
 
 .hero__float-2 {
@@ -107,7 +119,7 @@
 }
 
 .hero__badge-icon-inner {
-  @apply w-[17px] h-5 bg-pink-600 absolute left-[3.5px] top-[2px];
+  @apply w-[17px] h-5 absolute left-[3.5px] top-[2px];
 }
 
 .hero__badge-text {

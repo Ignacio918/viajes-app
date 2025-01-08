@@ -1,9 +1,13 @@
 import React from 'react';
 import './HeroSection.css';
-import ilustracion1 from '../assets/ilustracion_mapa_aviones1.svg';
-import ilustracion2 from '../assets/ilustracion_mapa_aviones2.svg';
+// Imágenes de lugares
+import bigBen from '../assets/imagen_bigben.png';
+import coliseo from '../assets/imagen_coliseo.png';
+import torreEiffel from '../assets/imagen_torreeiffel.png';
+// Iconos
 import sendIcon from '../assets/send.svg';
 import addUserIcon from '../assets/add-user-2.svg';
+import locationIcon from '../assets/icon_location.svg';
 
 const HeroSection: React.FC = () => {
   return (
@@ -41,26 +45,35 @@ const HeroSection: React.FC = () => {
           </div>
           <div className="hero__shape-3"></div>
 
+          {/* Location Icon near the map */}
+          <div className="hero__location-icon">
+            <img 
+              src={locationIcon} 
+              alt="Location icon"
+              className="hero__icon"
+            />
+          </div>
+
           {/* Images */}
           <div className="hero__image-1">
             <img 
-              src={ilustracion1}
-              alt="Mapa y aviones ilustración 1"
+              src={bigBen}
+              alt="Big Ben"
               className="hero__image"
             />
           </div>
           <div className="hero__image-2">
             <img 
-              src={ilustracion2}
-              alt="Mapa y aviones ilustración 2"
+              src={coliseo}
+              alt="Coliseo"
               className="hero__image"
             />
           </div>
           <div className="hero__image-3">
             <img 
-              src={ilustracion1}
-              alt="Mapa y aviones ilustración 3"
-              className="hero__image"
+              src={torreEiffel}
+              alt="Torre Eiffel"
+              className="hero__image hero__image--tall"
             />
           </div>
 
@@ -83,7 +96,11 @@ const HeroSection: React.FC = () => {
           {/* Bottom Badge */}
           <div className="hero__badge">
             <div className="hero__badge-icon">
-              <div className="hero__badge-icon-inner"></div>
+              <img 
+                src={locationIcon}
+                alt="Location icon"
+                className="hero__badge-icon-inner"
+              />
             </div>
             <span className="hero__badge-text">
               Explora. Organiza. Disfruta.
