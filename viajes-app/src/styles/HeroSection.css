@@ -105,7 +105,31 @@
 .hero__image-section {
   @apply relative w-full max-w-[792px] h-[525px] lg:h-[725px] ml-4 lg:ml-0;
   transform-origin: center;
-  scale: 0.9;
+}
+
+/* Scaling uniforme para todo el contenedor de ilustraciones */
+@media (min-width: 1640px) {
+  .hero__image-section {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1639px) {
+  .hero__image-section {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 1400px) {
+  .hero__image-section {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero__image-section {
+    transform: scale(0.7);
+  }
 }
 
 /* Ilustraciones y formas */
@@ -120,7 +144,6 @@
   transform: scale(1.3);
 }
 
-/* Ajuste específico para el avión 1 */
 .hero__shape-2 {
   @apply absolute left-0 top-[77.33px] w-[250.38px] h-[264.78px];
   z-index: 10;
@@ -146,11 +169,10 @@
 }
 
 .hero__avion-2 {
-  @apply absolute left-[221.06px] top-[1.45px] transform-gpu;
+  @apply absolute left-[221.06px] top-[1.45px];
   width: 391.05px;
   height: 203.28px;
   z-index: 20;
-  transform-origin: center;
 }
 
 .hero__avion-2-image {
@@ -186,24 +208,8 @@
 }
 
 .hero__image-3 {
-  @apply absolute left-[440px] top-[141.49px] transform-gpu;
+  @apply absolute left-[440px] top-[141.49px];
   z-index: 15;
-  transform-origin: center;
-}
-
-/* Scaling para imágenes problemáticas */
-@media (max-width: 1400px) {
-  .hero__avion-2,
-  .hero__image-3 {
-    transform: scale(0.85);
-  }
-}
-
-@media (max-width: 1200px) {
-  .hero__avion-2,
-  .hero__image-3 {
-    transform: scale(0.75);
-  }
 }
 
 /* Elementos flotantes */
@@ -260,16 +266,6 @@
 
   .hero__description {
     @apply text-xl;
-  }
-
-  .hero__image-section {
-    scale: 1;
-  }
-}
-
-@media (min-width: 1920px) {
-  .hero__image-section {
-    scale: 1.1;
   }
 }
 
