@@ -73,15 +73,7 @@ const HeroSection: React.FC = () => {
                 className="hero__avion-2-image"
               />
             </div>
-            <div className="hero__avion-2-detail">
-              <img 
-                src={avion2}
-                alt="Detalle avión 2"
-                className="hero__avion-2-detail-image"
-              />
-            </div>
           </div>
-
           {/* Location Icon near the map */}
           <div className="hero__location-icon">
             <img 
