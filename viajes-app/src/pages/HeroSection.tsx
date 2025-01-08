@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/HeroSection.css';
-import ilustracion1 from '../assets/ilustracion_mapa_aviones1.png';
-import ilustracion2 from '../assets/ilustracion_mapa_aviones2.png';
+import ilustracion1 from '../assets/ilustracion_mapa_aviones1.svg';
+import ilustracion2 from '../assets/ilustracion_mapa_aviones2.svg';
 
 const HeroSection: React.FC = () => {
   return (
