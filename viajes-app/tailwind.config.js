@@ -18,7 +18,7 @@ module.exports = {
         },
       },
       boxShadow: {
-        custom: "0px 12px 40px 0px rgba(0, 0, 0, 0.04)", // Sombra personalizada
+        custom: "0px 12px 40px rgba(0, 0, 0, 0.04)", // Sombra personalizada
       },
       maxWidth: {
         "8xl": "2560px",
