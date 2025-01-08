@@ -64,13 +64,22 @@ const HeroSection: React.FC = () => {
             />
           </div>
 
-          {/* Avión 2 por encima del diseño */}
-          <div className="hero__floating-plane">
-            <img 
-              src={avion2}
-              alt="Ilustración avión 2"
-              className="hero__floating-plane-image"
-            />
+          {/* Avión 2 con sus dos partes */}
+          <div className="hero__avion-2">
+            <div className="hero__avion-2-main">
+              <img 
+                src={avion2}
+                alt="Ilustración avión 2 principal"
+                className="hero__avion-2-image"
+              />
+            </div>
+            <div className="hero__avion-2-detail">
+              <img 
+                src={avion2}
+                alt="Detalle avión 2"
+                className="hero__avion-2-detail-image"
+              />
+            </div>
           </div>
 
           {/* Location Icon near the map */}
@@ -82,7 +91,7 @@ const HeroSection: React.FC = () => {
             />
           </div>
 
-          {/* Images */}
+          {/* Destination Images */}
           <div className="hero__image-1">
             <img 
               src={bigBen}
