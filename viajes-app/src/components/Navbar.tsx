@@ -2,6 +2,7 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
+import logoSmall from '../assets/logo_small.svg'; // Asegúrate de que la ruta sea correcta
 
 const Navbar: FC = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -14,8 +15,7 @@ const Navbar: FC = () => {
     <nav className="navbar">
       {/* Logo */}
       <div className="logo-container">
-        <span className="logo">zentrip</span>
-        <div className="logo-dot" />
+        <img src={logoSmall} alt="zentrip logo" className="logo" />
       </div>
 
       {/* Navigation Links */}
