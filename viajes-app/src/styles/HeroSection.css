@@ -67,7 +67,7 @@
 
 .hero__shape-1-inner {
   @apply w-full h-full object-contain;
-  transform: scale(1.2);
+  transform: scale(1.2); /* Avión 3 más grande */
 }
 
 .hero__shape-2 {
@@ -78,7 +78,7 @@
 
 .hero__shape-2-inner {
   @apply w-full h-full object-contain;
-  transform: scale(1.1);
+  transform: scale(1.2); /* Avión 1 más grande */
 }
 
 .hero__shape-3 {
@@ -102,7 +102,7 @@
 
 .hero__avion-2-image {
   @apply w-full h-full object-contain;
-  transform: scale(1.2);
+  /* Sin scale para el avión 2 */
 }
 
 .hero__location-icon {
@@ -176,7 +176,7 @@
   @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
 }
 
-/* Media queries para pantallas más grandes */
+/* Media Queries para pantallas más grandes */
 @media (min-width: 1600px) {
   .hero__content {
     @apply px-32;
@@ -195,7 +195,7 @@
   }
 }
 
-/* Animaciones y transiciones */
+/* Animaciones */
 .hero__image,
 .hero__float,
 .hero__badge,
@@ -206,6 +206,7 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* Mejoras de interactividad */
 .hero__float:hover {
   transform: translateY(-5px);
 }
