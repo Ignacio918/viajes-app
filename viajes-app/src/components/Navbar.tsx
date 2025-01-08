@@ -12,7 +12,7 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="w-full h-full px-24 py-8 bg-white flex justify-between items-center shadow-[0px_12px_40px_0px_rgba(0,0,0,0.04)]">
       {/* Logo */}
       <div className="logo-container">
         <img src={logoSmall} alt="zentrip logo" className="logo" />
