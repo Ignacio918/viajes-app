@@ -14,7 +14,7 @@ const Navbar: FC = () => {
     <nav className="navbar">
       {/* Logo */}
       <div className="logo-container">
-        <div className="logo">zentrip</div>
+        <span className="logo">zentrip</span>
         <div className="logo-dot" />
       </div>
 
@@ -27,8 +27,8 @@ const Navbar: FC = () => {
 
       {/* Auth Links */}
       <div className={`auth-buttons ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
-        <Link to="/login" className="auth-button">Iniciar Sesión</Link>
-        <Link to="/register" className="auth-button register-button">Registrarse</Link>
+        <Link to="/login" className="login-link">Iniciar Sesión</Link>
+        <Link to="/register" className="register-button">Registrarse</Link>
       </div>
 
       {/* Hamburger Menu Icon */}

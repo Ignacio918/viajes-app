@@ -27,7 +27,7 @@
 }
 
 .nav-link {
-  @apply flex justify-center items-center text-lg font-normal text-black/20 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
+  @apply text-lg font-normal text-black/20 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
 }
 
 .nav-link:hover {
@@ -38,17 +38,18 @@
   @apply flex items-center gap-2;
 }
 
-.auth-button {
-  @apply flex justify-center items-center text-lg font-normal text-black/20 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
+.login-link {
+  @apply text-lg font-normal text-black/20 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
 }
 
-.auth-button:hover {
+.login-link:hover {
   @apply text-pink-600;
 }
 
 .register-button {
   @apply bg-dark text-white font-light max-w-xs; /* Limitar el ancho máximo del botón */
   width: 120px;
+  text-align: center;
 }
 
 .hamburger-menu {
