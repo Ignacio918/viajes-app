@@ -1,7 +1,9 @@
 import React from 'react';
-import '../styles/HeroSection.css';
+import './HeroSection.css';
 import ilustracion1 from '../assets/ilustracion_mapa_aviones1.svg';
 import ilustracion2 from '../assets/ilustracion_mapa_aviones2.svg';
+import sendIcon from '../assets/send.svg';
+import addUserIcon from '../assets/add-user-2.svg';
 
 const HeroSection: React.FC = () => {
   return (
@@ -54,7 +56,6 @@ const HeroSection: React.FC = () => {
               className="hero__image"
             />
           </div>
-          {/* Tercera imagen usando ilustracion1, podemos cambiar a ilustracion2 si es necesario */}
           <div className="hero__image-3">
             <img 
               src={ilustracion1}
@@ -65,10 +66,18 @@ const HeroSection: React.FC = () => {
 
           {/* Floating Elements */}
           <div className="hero__float hero__float-1">
-            <div className="hero__float-inner"></div>
+            <img 
+              src={sendIcon}
+              alt="Send icon"
+              className="hero__float-icon"
+            />
           </div>
           <div className="hero__float hero__float-2">
-            <div className="hero__float-inner"></div>
+            <img 
+              src={addUserIcon}
+              alt="Add user icon"
+              className="hero__float-icon"
+            />
           </div>
 
           {/* Bottom Badge */}

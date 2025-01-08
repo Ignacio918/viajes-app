@@ -93,8 +93,8 @@
   @apply absolute left-[627px] top-[483px];
 }
 
-.hero__float-inner {
-  @apply w-8 h-8 bg-white;
+.hero__float-icon {
+  @apply w-8 h-8;
 }
 
 .hero__badge {
