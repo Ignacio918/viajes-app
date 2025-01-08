@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/heroSection.css';
+import '../styles/HeroSection.css';
 import ilustracion1 from '../assets/ilustracion_mapa_aviones1.png';
 import ilustracion2 from '../assets/ilustracion_mapa_aviones2.png';
 
