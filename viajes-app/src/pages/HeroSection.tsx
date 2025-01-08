@@ -1,3 +1,4 @@
+// HeroSection.tsx
 import React from 'react';
 import '../styles/HeroSection.css';
 // Imágenes de lugares
@@ -64,16 +65,15 @@ const HeroSection: React.FC = () => {
             />
           </div>
 
-          {/* Avión 2 con sus dos partes */}
+          {/* Avión 2 */}
           <div className="hero__avion-2">
-            <div className="hero__avion-2-main">
-              <img 
-                src={avion2}
-                alt="Ilustración avión 2 principal"
-                className="hero__avion-2-image"
-              />
-            </div>
+            <img 
+              src={avion2}
+              alt="Ilustración avión 2 principal"
+              className="hero__avion-2-image"
+            />
           </div>
+
           {/* Location Icon near the map */}
           <div className="hero__location-icon">
             <img 

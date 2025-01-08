@@ -58,41 +58,51 @@
   }
 }
 
+/* Ilustraciones y formas */
 .hero__shape-1 {
-  @apply absolute right-0 top-[31.23px] w-[147.09px] h-[274.68px] p-2.5;
+  @apply absolute right-0 top-[31.23px] w-[147.09px] h-[274.68px];
+  padding: 20px;
   z-index: 10;
 }
 
 .hero__shape-1-inner {
   @apply w-full h-full object-contain;
+  transform: scale(1.2);
 }
 
 .hero__shape-2 {
-  @apply absolute left-0 top-[77.33px] w-[250.38px] h-[264.78px] p-2.5;
+  @apply absolute left-0 top-[77.33px] w-[250.38px] h-[264.78px];
+  padding: 25px;
   z-index: 10;
 }
 
 .hero__shape-2-inner {
   @apply w-full h-full object-contain;
+  transform: scale(1.1);
 }
 
 .hero__shape-3 {
-  @apply absolute left-[46.21px] top-0 w-[680.23px] h-[267.68px];
+  @apply absolute left-[46.21px] top-0;
+  width: 680.23px;
+  height: 565.36px;
   z-index: 10;
 }
 
 .hero__shape-3-inner {
-  @apply w-full h-full object-contain;
+  @apply w-full object-contain;
+  height: 267.68px;
 }
 
-/* Avión 2 simplificado */
 .hero__avion-2 {
-  @apply absolute left-[221.06px] top-[1.45px] w-[391.05px] h-[176.77px];
+  @apply absolute left-[221.06px] top-[1.45px];
+  width: 391.05px;
+  height: 203.28px;
   z-index: 20;
 }
 
 .hero__avion-2-image {
   @apply w-full h-full object-contain;
+  transform: scale(1.2);
 }
 
 .hero__location-icon {
@@ -104,6 +114,7 @@
   @apply w-full h-full;
 }
 
+/* Imágenes de destinos */
 .hero__image {
   @apply w-[272px] h-[310px] rounded-[32px] object-cover transition-transform hover:scale-105;
 }
@@ -127,6 +138,7 @@
   z-index: 15;
 }
 
+/* Elementos flotantes */
 .hero__float {
   @apply w-16 h-16 bg-pink-600 rounded-full p-4 flex items-center justify-center transition-transform hover:scale-110;
   box-shadow: 0px 19px 19px rgba(0, 0, 0, 0.09);
@@ -145,6 +157,7 @@
   @apply w-8 h-8;
 }
 
+/* Badge */
 .hero__badge {
   @apply absolute left-[376px] top-[627px] px-8 py-4 bg-white rounded-full border border-pink-600 flex items-center gap-2 transition-transform hover:scale-105;
   box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
@@ -163,7 +176,7 @@
   @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
 }
 
-/* Media Queries para pantallas más grandes */
+/* Media queries para pantallas más grandes */
 @media (min-width: 1600px) {
   .hero__content {
     @apply px-32;
@@ -182,7 +195,7 @@
   }
 }
 
-/* Añadimos animaciones suaves */
+/* Animaciones y transiciones */
 .hero__image,
 .hero__float,
 .hero__badge,
@@ -193,7 +206,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* Mejoras de interactividad */
 .hero__float:hover {
   transform: translateY(-5px);
 }
