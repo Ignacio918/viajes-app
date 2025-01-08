@@ -79,7 +79,7 @@
 
 .hero__shape-2-inner {
   @apply w-full h-full object-contain;
-  transform: scale(1.5);
+  transform: scale(1.1);
   transform-origin: bottom right;
 }
 
