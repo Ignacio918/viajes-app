@@ -4,6 +4,11 @@ import '../styles/HeroSection.css';
 import bigBen from '../assets/imagen_bigben.png';
 import coliseo from '../assets/imagen_coliseo.png';
 import torreEiffel from '../assets/imagen_torreeiffel.png';
+// Ilustraciones
+import avion1 from '../assets/ilustracion_avion_1.svg';
+import avion2 from '../assets/ilustracion_avion_2.svg';
+import avion3 from '../assets/ilustracion_avion_3.svg';
+import mapa from '../assets/ilustracion_mapa.svg';
 // Iconos
 import sendIcon from '../assets/send.svg';
 import addUserIcon from '../assets/add-user-2.svg';
@@ -36,14 +41,37 @@ const HeroSection: React.FC = () => {
 
         {/* Right Section - Images */}
         <div className="hero__image-section">
-          {/* Background Shapes */}
+          {/* Background Shapes with Illustrations */}
           <div className="hero__shape-1">
-            <div className="hero__shape-1-inner"></div>
+            <img 
+              src={avion3}
+              alt="Ilustración avión 3"
+              className="hero__shape-1-inner"
+            />
           </div>
           <div className="hero__shape-2">
-            <div className="hero__shape-2-inner"></div>
+            <img 
+              src={avion1}
+              alt="Ilustración avión 1"
+              className="hero__shape-2-inner"
+            />
           </div>
-          <div className="hero__shape-3"></div>
+          <div className="hero__shape-3">
+            <img 
+              src={mapa}
+              alt="Ilustración mapa"
+              className="hero__shape-3-inner"
+            />
+          </div>
+
+          {/* Avión 2 por encima del diseño */}
+          <div className="hero__floating-plane">
+            <img 
+              src={avion2}
+              alt="Ilustración avión 2"
+              className="hero__floating-plane-image"
+            />
+          </div>
 
           {/* Location Icon near the map */}
           <div className="hero__location-icon">

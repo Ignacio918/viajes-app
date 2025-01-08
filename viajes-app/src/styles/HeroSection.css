@@ -49,7 +49,7 @@
 }
 
 .hero__shape-1-inner {
-  @apply w-[127.09px] h-[254.68px] bg-pink-600;
+  @apply w-full h-full object-contain;
 }
 
 .hero__shape-2 {
@@ -57,11 +57,24 @@
 }
 
 .hero__shape-2-inner {
-  @apply w-[230.38px] h-[244.78px] bg-pink-600;
+  @apply w-full h-full object-contain;
 }
 
 .hero__shape-3 {
-  @apply absolute left-[46.21px] top-0 w-[680.23px] h-[267.68px] bg-[#FFE8EF];
+  @apply absolute left-[46.21px] top-0 w-[680.23px] h-[267.68px];
+}
+
+.hero__shape-3-inner {
+  @apply w-full h-full object-contain;
+}
+
+.hero__floating-plane {
+  @apply absolute left-[496.98px] top-[172.65px] w-[38.17px] h-[32.07px];
+  z-index: 10;
+}
+
+.hero__floating-plane-image {
+  @apply w-full h-full object-contain;
 }
 
 .hero__location-icon {
@@ -124,4 +137,21 @@
 
 .hero__badge-text {
   @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
+}
+
+/* Estilos adicionales para decoraciones */
+.hero__decor-1 {
+  @apply absolute w-[391.05px] h-[176.77px] left-[221.06px] top-[1.45px] bg-pink-600;
+}
+
+.hero__decor-2 {
+  @apply absolute w-[39.18px] h-[33.27px] left-[611.75px] top-0 bg-pink-600;
+}
+
+.hero__decor-3 {
+  @apply absolute w-[35.11px] h-[31.66px] left-[111.27px] top-[33.40px] bg-pink-600;
+}
+
+.hero__decor-4 {
+  @apply absolute w-[4.46px] h-[3.72px] left-[37.68px] top-[48.57px] bg-white;
 }
