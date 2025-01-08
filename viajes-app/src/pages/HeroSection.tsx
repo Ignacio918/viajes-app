@@ -1,5 +1,5 @@
 import React from 'react';
-import './HeroSection.css';
+import '../styles/HeroSection.css';
 // Imágenes de lugares
 import bigBen from '../assets/imagen_bigben.png';
 import coliseo from '../assets/imagen_coliseo.png';
