@@ -4,17 +4,16 @@
   @apply w-full min-h-screen relative bg-[#FDFDFD];
 }
 
-/* Mobile first - Estilos base para móvil */
 .hero__content {
-  @apply flex flex-col items-center text-center px-6 pt-24 max-w-[1920px] mx-auto;
+  @apply flex justify-between items-center px-6 md:px-12 lg:px-24 pt-24 lg:pt-36 max-w-[1920px] mx-auto;
 }
 
 .hero__text-section {
-  @apply w-full flex flex-col gap-6 items-center max-w-full mb-8;
+  @apply w-full max-w-[502px] flex flex-col gap-6 lg:gap-8;
 }
 
 .hero__title {
-  @apply text-3xl font-bold font-urbanist leading-tight;
+  @apply text-4xl md:text-5xl lg:text-[64px] font-bold font-urbanist leading-tight;
 }
 
 .hero__title-dark {
@@ -26,159 +25,159 @@
 }
 
 .hero__description-container {
-  @apply flex flex-col gap-4 items-center;
+  @apply flex flex-col gap-4 lg:gap-6;
 }
 
 .hero__description {
-  @apply text-base text-gray-800 font-urbanist text-center;
+  @apply text-base lg:text-lg text-gray-800 font-urbanist;
 }
 
 .hero__button {
-  @apply inline-flex px-4 py-3 bg-dark text-white rounded-full items-center justify-center transition-all hover:bg-opacity-90 mx-auto;
+  @apply inline-flex px-4 py-3 lg:px-6 lg:py-4 bg-dark text-white rounded-full items-center justify-center transition-all hover:bg-opacity-90;
 }
 
 .hero__button-text {
-  @apply text-lg font-medium font-urbanist;
+  @apply text-lg lg:text-xl font-medium font-urbanist;
 }
 
-/* Ocultar elementos visuales en mobile */
-.hero__image-section,
-.hero__shape-1,
-.hero__shape-2,
-.hero__shape-3,
-.hero__avion-2,
-.hero__float,
-.hero__badge,
-.hero__location-icon {
-  @apply hidden;
+.hero__image-section {
+  @apply relative w-full max-w-[792px] h-[525px] lg:h-[725px] ml-4 lg:ml-0;
+  transform-origin: center;
+  scale: 0.9;
 }
 
-/* Media queries */
-/* Tablet */
-@media (min-width: 768px) {
-  .hero__content {
-    @apply px-12;
-  }
-
-  .hero__title {
-    @apply text-4xl;
-  }
-
-  .hero__description {
-    @apply text-lg;
-  }
-}
-
-/* Desktop - 1080px breakpoint */
-@media (min-width: 1080px) {
-  .hero__content {
-    @apply flex-row items-start text-left px-24 pt-36;
-  }
-
-  .hero__text-section {
-    @apply items-start max-w-[502px] mb-0;
-  }
-
-  .hero__description-container {
-    @apply items-start;
-  }
-
-  .hero__description {
-    @apply text-left;
-  }
-
-  .hero__button {
-    @apply mx-0 px-6 py-4;
-  }
-
-  .hero__button-text {
-    @apply text-xl;
-  }
-
-  .hero__title {
-    @apply text-[64px];
-  }
-
-  /* Mostrar elementos visuales */
+@screen xl {
   .hero__image-section {
-    @apply block relative w-full max-w-[792px] h-[725px] ml-4;
-    transform-origin: center;
-    scale: 0.9;
-  }
-
-  .hero__shape-1 {
-    @apply block absolute right-0 top-[31.23px] w-[147.09px] h-[274.68px];
-    padding: 20px;
-    z-index: 10;
-  }
-
-  .hero__shape-1-inner {
-    @apply w-full h-full object-contain;
-    transform: scale(1.2);
-  }
-
-  .hero__shape-2 {
-    @apply block absolute left-0 top-[77.33px] w-[250.38px] h-[264.78px];
-    z-index: 10;
-    transform: translateY(-20px);
-  }
-
-  .hero__shape-2-inner {
-    @apply w-full h-full object-contain;
-    transform: scale(1.5);
-    transform-origin: bottom right;
-  }
-
-  .hero__shape-3 {
-    @apply block absolute left-[46.21px] top-0;
-    width: 680.23px;
-    height: 565.36px;
-    z-index: 10;
-  }
-
-  .hero__shape-3-inner {
-    @apply w-full object-contain;
-    height: 267.68px;
-  }
-
-  .hero__avion-2 {
-    @apply block absolute left-[221.06px] top-[1.45px];
-    width: 391.05px;
-    height: 203.28px;
-    z-index: 20;
-  }
-
-  .hero__avion-2-image {
-    @apply w-full h-full object-contain;
-  }
-
-  .hero__location-icon {
-    @apply block absolute left-[635px] top-[78px] w-6 h-6;
-    z-index: 15;
-  }
-
-  .hero__float {
-    @apply w-16 h-16 bg-pink-600 rounded-full p-4 flex items-center justify-center transition-transform hover:scale-110;
-    box-shadow: 0px 19px 19px rgba(0, 0, 0, 0.09);
-    z-index: 25;
-  }
-
-  .hero__float-1 {
-    @apply absolute left-[104.02px] top-[338px];
-  }
-
-  .hero__float-2 {
-    @apply absolute left-[627px] top-[483px];
-  }
-
-  .hero__badge {
-    @apply flex absolute left-[376px] top-[627px] px-8 py-4 bg-white rounded-full border border-pink-600 items-center gap-2 transition-transform hover:scale-105;
-    box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
-    z-index: 25;
+    scale: 1;
   }
 }
 
-/* Pantallas extra grandes */
+@screen 2xl {
+  .hero__image-section {
+    scale: 1.1;
+  }
+}
+
+/* Ilustraciones y formas */
+.hero__shape-1 {
+  @apply absolute right-0 top-[31.23px] w-[147.09px] h-[274.68px];
+  padding: 20px;
+  z-index: 10;
+}
+
+.hero__shape-1-inner {
+  @apply w-full h-full object-contain;
+  transform: scale(1.3);
+}
+
+/* Ajuste específico para el avión 1 */
+.hero__shape-2 {
+  @apply absolute left-0 top-[77.33px] w-[250.38px] h-[264.78px];
+  z-index: 10;
+  transform: translateY(-20px);
+}
+
+.hero__shape-2-inner {
+  @apply w-full h-full object-contain;
+  transform: scale(1.1);
+  transform-origin: bottom right;
+}
+
+.hero__shape-3 {
+  @apply absolute left-[46.21px] top-0;
+  width: 680.23px;
+  height: 565.36px;
+  z-index: 10;
+}
+
+.hero__shape-3-inner {
+  @apply w-full object-contain;
+  height: 267.68px;
+}
+
+.hero__avion-2 {
+  @apply absolute left-[221.06px] top-[1.45px];
+  width: 391.05px;
+  height: 203.28px;
+  z-index: 20;
+}
+
+.hero__avion-2-image {
+  @apply w-full h-full object-contain;
+}
+
+.hero__location-icon {
+  @apply absolute left-[635px] top-[78px] w-6 h-6;
+  z-index: 15;
+}
+
+.hero__icon {
+  @apply w-full h-full;
+}
+
+/* Imágenes de destinos */
+.hero__image {
+  @apply w-[272px] h-[310px] rounded-[32px] object-cover transition-transform hover:scale-105;
+}
+
+.hero__image--tall {
+  @apply h-[377px];
+}
+
+.hero__image-1 {
+  @apply absolute left-[136.02px] top-[67.49px];
+  z-index: 15;
+}
+
+.hero__image-2 {
+  @apply absolute left-[136.02px] top-[407.49px];
+  z-index: 15;
+}
+
+.hero__image-3 {
+  @apply absolute left-[440px] top-[141.49px];
+  z-index: 15;
+}
+
+/* Elementos flotantes */
+.hero__float {
+  @apply w-16 h-16 bg-pink-600 rounded-full p-4 flex items-center justify-center transition-transform hover:scale-110;
+  box-shadow: 0px 19px 19px rgba(0, 0, 0, 0.09);
+  z-index: 25;
+}
+
+.hero__float-1 {
+  @apply absolute left-[104.02px] top-[338px];
+}
+
+.hero__float-2 {
+  @apply absolute left-[627px] top-[483px];
+}
+
+.hero__float-icon {
+  @apply w-8 h-8;
+}
+
+/* Badge */
+.hero__badge {
+  @apply absolute left-[376px] top-[627px] px-8 py-4 bg-white rounded-full border border-pink-600 flex items-center gap-2 transition-transform hover:scale-105;
+  box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
+  z-index: 25;
+}
+
+.hero__badge-icon {
+  @apply w-6 h-6 relative;
+}
+
+.hero__badge-icon-inner {
+  @apply w-[17px] h-5 absolute left-[3.5px] top-[2px];
+}
+
+.hero__badge-text {
+  @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
+}
+
+/* Media Queries para pantallas más grandes */
 @media (min-width: 1600px) {
   .hero__content {
     @apply px-32;
@@ -188,18 +187,16 @@
     @apply max-w-[600px];
   }
 
-  .hero__image-section {
-    scale: 1;
+  .hero__title {
+    @apply text-7xl;
+  }
+
+  .hero__description {
+    @apply text-xl;
   }
 }
 
-@media (min-width: 1920px) {
-  .hero__image-section {
-    scale: 1.1;
-  }
-}
-
-/* Transiciones y animaciones base */
+/* Animaciones */
 .hero__image,
 .hero__float,
 .hero__badge,
@@ -210,6 +207,7 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* Mejoras de interactividad */
 .hero__float:hover {
   transform: translateY(-5px);
 }
