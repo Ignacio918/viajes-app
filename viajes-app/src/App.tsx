@@ -15,6 +15,7 @@ import UserProfile from "./pages/UserProfile";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Navbar from "./components/Navbar";
+import HeroSection from "./pages/HeroSection"; // Nuevo import
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,6 +76,7 @@ const App: React.FC = () => {
                 <>
                   {showAuthPage === null ? (
                     <div className="flex-grow">
+                      <HeroSection /> {/* Reemplazamos el header anterior por el nuevo HeroSection */}
                       <header className="section-spacing bg-white hero-offset">
                         <div className="container-spacing grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                           <div className="text-center md:text-left">

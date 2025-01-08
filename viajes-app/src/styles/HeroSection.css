@@ -1,0 +1,11 @@
+/* Asegúrate de que la fuente Urbanist esté importada */
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;700;900&display=swap');
+
+/* Estilos adicionales específicos que no se pueden lograr fácilmente con Tailwind */
+.hero-section-shadow {
+  box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
+}
+
+.floating-button-shadow {
+  box-shadow: 0px 19px 19px rgba(0, 0, 0, 0.09);
+}
