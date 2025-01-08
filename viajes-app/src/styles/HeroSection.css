@@ -40,22 +40,72 @@
   @apply text-lg lg:text-xl font-medium font-urbanist;
 }
 
+/* Media query para pantallas menores a 1080px */
+@media (max-width: 1079px) {
+  .hero__content {
+    @apply flex-col text-center;
+  }
+
+  .hero__text-section {
+    @apply items-center mx-auto;
+  }
+
+  /* Navbar responsive */
+  .navbar {
+    @apply w-full;
+  }
+  
+  .navbar__menu {
+    @apply hidden;
+  }
+
+  .navbar__hamburger {
+    @apply block;
+  }
+
+  /* Ocultar elementos visuales */
+  .hero__image-section,
+  .hero__shape-1,
+  .hero__shape-2,
+  .hero__shape-3,
+  .hero__avion-2,
+  .hero__float,
+  .hero__badge,
+  .hero__location-icon,
+  .hero__image-1,
+  .hero__image-2,
+  .hero__image-3 {
+    @apply hidden;
+  }
+}
+
+/* Media query para pantallas desde 1080px */
+@media (min-width: 1080px) {
+  .hero__content {
+    @apply flex-row justify-between items-center gap-8;
+  }
+
+  .hero__text-section {
+    @apply w-[40%] shrink-0;
+  }
+
+  .hero__image-section {
+    @apply w-[60%] relative;
+  }
+
+  .navbar__hamburger {
+    @apply hidden;
+  }
+
+  .navbar__menu {
+    @apply flex;
+  }
+}
+
 .hero__image-section {
   @apply relative w-full max-w-[792px] h-[525px] lg:h-[725px] ml-4 lg:ml-0;
   transform-origin: center;
   scale: 0.9;
-}
-
-@screen xl {
-  .hero__image-section {
-    scale: 1;
-  }
-}
-
-@screen 2xl {
-  .hero__image-section {
-    scale: 1.1;
-  }
 }
 
 /* Ilustraciones y formas */
@@ -96,10 +146,11 @@
 }
 
 .hero__avion-2 {
-  @apply absolute left-[221.06px] top-[1.45px];
+  @apply absolute left-[221.06px] top-[1.45px] transform-gpu;
   width: 391.05px;
   height: 203.28px;
   z-index: 20;
+  transform-origin: center;
 }
 
 .hero__avion-2-image {
@@ -135,8 +186,24 @@
 }
 
 .hero__image-3 {
-  @apply absolute left-[440px] top-[141.49px];
+  @apply absolute left-[440px] top-[141.49px] transform-gpu;
   z-index: 15;
+  transform-origin: center;
+}
+
+/* Scaling para imágenes problemáticas */
+@media (max-width: 1400px) {
+  .hero__avion-2,
+  .hero__image-3 {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero__avion-2,
+  .hero__image-3 {
+    transform: scale(0.75);
+  }
 }
 
 /* Elementos flotantes */
@@ -193,6 +260,16 @@
 
   .hero__description {
     @apply text-xl;
+  }
+
+  .hero__image-section {
+    scale: 1;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero__image-section {
+    scale: 1.1;
   }
 }
 
