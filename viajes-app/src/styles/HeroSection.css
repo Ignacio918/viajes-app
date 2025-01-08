@@ -67,7 +67,7 @@
 
 .hero__shape-1-inner {
   @apply w-full h-full object-contain;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 /* Ajuste específico para el avión 1 */
