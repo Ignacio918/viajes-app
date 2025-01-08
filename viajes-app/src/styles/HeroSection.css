@@ -67,7 +67,7 @@
 
 .hero__shape-1-inner {
   @apply w-full h-full object-contain;
-  transform: scale(1.2); /* Avión 3 más grande */
+  transform: scale(1.2); /* Escala para el avión 3 */
 }
 
 .hero__shape-2 {
@@ -78,7 +78,9 @@
 
 .hero__shape-2-inner {
   @apply w-full h-full object-contain;
-  transform: scale(1.2); /* Avión 1 más grande */
+  transform: scale(1.3); /* AQUÍ PUEDES MODIFICAR LA ESCALA DEL AVIÓN 1 
+                           Aumenta el número para hacerlo más grande
+                           Por ejemplo: 1.4, 1.5, etc. */
 }
 
 .hero__shape-3 {
@@ -102,7 +104,6 @@
 
 .hero__avion-2-image {
   @apply w-full h-full object-contain;
-  /* Sin scale para el avión 2 */
 }
 
 .hero__location-icon {
