@@ -13,6 +13,9 @@ module.exports = {
         pink: {
           600: "#E61C5D",
         },
+        gray: {
+          800: "#3E3E3E",
+        },
       },
       maxWidth: {
         "8xl": "2560px",
