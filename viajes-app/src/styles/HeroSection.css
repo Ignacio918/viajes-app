@@ -1,11 +1,115 @@
-/* Asegúrate de que la fuente Urbanist esté importada */
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;700;900&display=swap');
 
-/* Estilos adicionales específicos que no se pueden lograr fácilmente con Tailwind */
-.hero-section-shadow {
+.hero {
+  @apply w-full h-full relative bg-[#FDFDFD];
+}
+
+.hero__content {
+  @apply flex justify-between items-center px-24 pt-36;
+}
+
+.hero__text-section {
+  @apply w-[502px] flex flex-col gap-8;
+}
+
+.hero__title {
+  @apply text-6xl font-bold font-urbanist;
+}
+
+.hero__title-dark {
+  @apply text-dark;
+}
+
+.hero__title-accent {
+  @apply text-pink-600;
+}
+
+.hero__description-container {
+  @apply flex flex-col gap-6;
+}
+
+.hero__description {
+  @apply text-lg text-gray-800 font-urbanist;
+}
+
+.hero__button {
+  @apply inline-flex px-4 py-4 bg-dark text-white rounded-full items-center justify-center;
+}
+
+.hero__button-text {
+  @apply text-xl font-medium font-urbanist;
+}
+
+.hero__image-section {
+  @apply relative w-[792px] h-[725px];
+}
+
+.hero__shape-1 {
+  @apply absolute right-0 top-[21px] w-[147px] h-[275px] p-2.5;
+}
+
+.hero__shape-1-inner {
+  @apply w-full h-full bg-pink-600;
+}
+
+.hero__shape-2 {
+  @apply absolute left-0 top-[67px] w-[250px] h-[265px] p-2.5;
+}
+
+.hero__shape-2-inner {
+  @apply w-full h-full bg-pink-600;
+}
+
+.hero__shape-3 {
+  @apply absolute left-[56px] top-0 w-[660px] h-[268px] bg-[#FFE8EF];
+}
+
+.hero__image {
+  @apply w-[272px] h-[310px] rounded-[32px] object-cover;
+}
+
+.hero__image-1 {
+  @apply absolute left-[136px] top-[57px];
+}
+
+.hero__image-2 {
+  @apply absolute left-[136px] top-[397px];
+}
+
+.hero__image-3 {
+  @apply absolute left-[440px] top-[131px] h-[377px];
+}
+
+.hero__float {
+  @apply w-16 h-16 bg-pink-600 rounded-full p-4 flex items-center justify-center;
+  box-shadow: 0px 19px 19px rgba(0, 0, 0, 0.09);
+}
+
+.hero__float-1 {
+  @apply absolute left-[104px] top-[338px];
+}
+
+.hero__float-2 {
+  @apply absolute left-[627px] top-[483px];
+}
+
+.hero__float-inner {
+  @apply w-8 h-8 bg-white;
+}
+
+.hero__badge {
+  @apply absolute left-[376px] top-[627px] px-8 py-4 bg-white rounded-full border border-pink-600 flex items-center gap-2;
   box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
 }
 
-.floating-button-shadow {
-  box-shadow: 0px 19px 19px rgba(0, 0, 0, 0.09);
+.hero__badge-icon {
+  @apply w-6 h-6 relative;
+}
+
+.hero__badge-icon-inner {
+  @apply w-[17px] h-5 bg-pink-600 absolute left-[3.5px] top-[2px];
+}
+
+.hero__badge-text {
+  @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
 }
