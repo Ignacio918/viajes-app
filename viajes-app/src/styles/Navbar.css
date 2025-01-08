@@ -5,8 +5,7 @@
 
 /* Estilos personalizados para el componente Navbar */
 .navbar {
-  @apply w-full h-full px-24 py-8 bg-white shadow-lg flex justify-between items-center;
-  box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.04); /* Drop shadow inferior */
+  @apply w-full h-full px-24 py-8 bg-white flex justify-between items-center shadow-custom;
 }
 
 .logo-container {

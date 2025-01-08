@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx,html,css}", // Asegúrate de incluir todos los archivos relevantes
+    "./src/**/*.{js,jsx,ts,tsx,html,css}",
   ],
   theme: {
     extend: {
@@ -16,6 +16,9 @@ module.exports = {
         gray: {
           800: "#3E3E3E",
         },
+      },
+      boxShadow: {
+        custom: "0px 12px 40px 0px rgba(0, 0, 0, 0.04)", // Sombra personalizada
       },
       maxWidth: {
         "8xl": "2560px",
