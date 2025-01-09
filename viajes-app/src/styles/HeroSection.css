@@ -13,7 +13,7 @@
 }
 
 .hero__title {
-  @apply text-4xl md:text-5xl lg:text-[64px] font-bold font-urbanist leading-tight;
+  @apply text-4xl md:text-5xl font-bold font-urbanist leading-tight;
 }
 
 .hero__title-dark {
@@ -108,14 +108,26 @@
   margin-left: 0;
 }
 
-/* Scaling uniforme para todo el contenedor de ilustraciones */
+/* Breakpoints para scaling y tipografía */
 @media (min-width: 1600px) {
-  .hero__image-section {
-    transform: scale(1);
+  .hero__content {
+    @apply px-32;
   }
 
-  .hero__content {
-    @apply px-24;
+  .hero__text-section {
+    @apply max-w-[600px];
+  }
+
+  .hero__title {
+    @apply text-[64px];
+  }
+
+  .hero__description {
+    @apply text-xl;
+  }
+
+  .hero__image-section {
+    transform: scale(1);
   }
 }
 
@@ -123,11 +135,23 @@
   .hero__image-section {
     transform: scale(0.95);
   }
+
+  .hero__title {
+    @apply text-6xl;
+  }
 }
 
 @media (max-width: 1400px) {
   .hero__image-section {
     transform: scale(0.85);
+  }
+
+  .hero__title {
+    @apply text-5xl;
+  }
+
+  .hero__description {
+    @apply text-base;
   }
 }
 
@@ -257,25 +281,6 @@
 
 .hero__badge-text {
   @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
-}
-
-/* Media Queries para pantallas más grandes */
-@media (min-width: 1600px) {
-  .hero__content {
-    @apply px-32;
-  }
-
-  .hero__text-section {
-    @apply max-w-[600px];
-  }
-
-  .hero__title {
-    @apply text-7xl;
-  }
-
-  .hero__description {
-    @apply text-xl;
-  }
 }
 
 /* Animaciones */
