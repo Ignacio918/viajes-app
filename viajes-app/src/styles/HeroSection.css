@@ -6,18 +6,21 @@
 
 .hero__content {
   @apply flex justify-between items-center mx-auto;
-  max-width: 1280px;
-  padding: 2rem 1rem;
+  max-width: 1440px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .hero__text-section {
   @apply flex flex-col gap-6;
-  max-width: 480px;
+  width: 520px;
 }
 
 .hero__title {
   @apply font-bold font-urbanist;
-  font-size: 3rem;
+  font-size: 3.5rem;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -34,7 +37,6 @@
   @apply text-gray-800 font-urbanist;
   font-size: 1.125rem;
   line-height: 1.5;
-  max-width: 42rem;
 }
 
 .hero__button-container {
@@ -54,8 +56,10 @@
 
 /* Contenedor principal con scaling uniforme */
 .hero__image-section {
-  @apply relative w-full max-w-[792px] h-[525px] lg:h-[725px];
-  margin-left: 0;
+  @apply relative;
+  width: 50%;
+  height: 725px;
+  margin-left: 40px;
   transform-origin: center right;
 }
 
@@ -186,15 +190,29 @@
   @apply opacity-95;
 }
 
+/* Transiciones y animaciones */
+.hero__float {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hero__badge {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hero__image {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 /* Media queries */
 @media (max-width: 1079px) {
   .hero__content {
     @apply flex-col text-center;
-    padding: 2rem 1.5rem;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .hero__text-section {
-    @apply items-center mx-auto;
+    width: 100%;
     max-width: 440px;
   }
 
@@ -218,41 +236,56 @@
   }
 }
 
-@media (min-width: 1080px) {
+@media (min-width: 1080px) and (max-width: 1279px) {
   .hero__content {
-    padding: 4rem 2rem;
+    padding-left: 60px;
+    padding-right: 60px;
   }
 
   .hero__text-section {
-    width: 45%;
+    width: 480px;
   }
 
   .hero__title {
     font-size: 3rem;
   }
+
+  .hero__image-section {
+    transform: scale(0.85);
+  }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1280px) and (max-width: 1439px) {
   .hero__content {
-    padding: 4rem;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   .hero__title {
     font-size: 3.5rem;
   }
+
+  .hero__image-section {
+    transform: scale(0.9);
+  }
 }
 
 @media (min-width: 1440px) {
   .hero__content {
-    padding: 4rem 2rem;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   .hero__title {
     font-size: 4rem;
   }
+
+  .hero__image-section {
+    transform: scale(1);
+  }
 }
 
-/* Breakpoints para scaling uniforme y tipografía */
+/* Breakpoints adicionales para scaling uniforme y tipografía */
 @media (min-width: 1600px) {
   .hero__content {
     @apply px-32;
@@ -303,10 +336,34 @@
   .hero__image-section {
     transform: scale(0.85);
   }
+
+  .hero__text-section {
+    width: 460px;
+  }
 }
 
 @media (max-width: 1080px) {
   .hero__image-section {
     transform: scale(0.8);
   }
+
+  .hero__text-section {
+    width: 100%;
+    max-width: 440px;
+  }
+}
+
+/* Ajustes específicos de animación para framer-motion */
+.hero__float,
+.hero__badge,
+.hero__image {
+  will-change: transform;
+}
+
+.hero__shape-1,
+.hero__shape-2,
+.hero__shape-3,
+.hero__avion-2 {
+  will-change: transform;
+  backface-visibility: hidden;
 }
