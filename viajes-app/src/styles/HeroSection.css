@@ -23,11 +23,14 @@
 }
 
 .hero__title {
-  @apply font-bold font-urbanist relative flex items-start;
+  @apply font-bold font-urbanist;
   font-size: 64px;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  overflow: hidden;
+}
+
+.hero__title > div {
+  @apply relative;
 }
 
 .hero__title-dark {
@@ -39,11 +42,11 @@
 }
 
 .hero__title-cursor {
-  @apply inline-block rounded-sm bg-pink-600 absolute;
+  @apply absolute bg-pink-600;
   width: 4px;
   height: 72px;
-  margin-left: 8px;
-  vertical-align: middle;
+  right: -12px;
+  top: 0;
 }
 
 .hero__description {
@@ -423,8 +426,11 @@
   }
 
   .hero__title {
-    @apply justify-center;
     font-size: 40px;
+  }
+
+  .hero__title > div {
+    @apply inline-flex flex-col items-center;
   }
 
   .hero__title-cursor {
