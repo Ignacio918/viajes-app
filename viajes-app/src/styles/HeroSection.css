@@ -2,14 +2,17 @@
 
 .hero {
   @apply w-full min-h-screen relative bg-[#FDFDFD];
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero__content {
   @apply flex justify-between items-center;
-  margin-left: 100px;
-  margin-right: 100px;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 100px;
   gap: 60px;
 }
 
@@ -83,7 +86,6 @@
   height: 274.68px;
   padding: 10px;
   z-index: 10;
-  animation: float 6s ease-in-out infinite;
 }
 
 .hero__shape-1-inner {
@@ -98,7 +100,6 @@
   width: 391.05px;
   height: 203.28px;
   z-index: 20;
-  animation: float 7s ease-in-out infinite;
 }
 
 .hero__avion-2-image {
@@ -108,12 +109,11 @@
 .hero__shape-2 {
   @apply absolute;
   left: 0;
-  top: 50px;
+  top: 57.33px;
   width: 250.38px;
   height: 264.78px;
   padding: 10px;
   z-index: 10;
-  animation: float 8s ease-in-out infinite;
 }
 
 .hero__shape-2-inner {
@@ -128,7 +128,6 @@
   height: 287.68px;
   padding: 10px;
   z-index: 10;
-  animation: float 10s ease-in-out infinite;
 }
 
 .hero__shape-3-inner {
@@ -143,7 +142,6 @@
   width: 24px;
   height: 24px;
   z-index: 15;
-  animation: pulse 2s ease-in-out infinite;
 }
 
 .hero__icon {
@@ -166,7 +164,6 @@
   width: 272px;
   height: 310px;
   z-index: 15;
-  animation: float 9s ease-in-out infinite;
 }
 
 .hero__image-2 {
@@ -176,7 +173,6 @@
   width: 272px;
   height: 310px;
   z-index: 15;
-  animation: float 7s ease-in-out infinite;
 }
 
 .hero__image-3 {
@@ -186,7 +182,6 @@
   width: 272px;
   height: 377px;
   z-index: 15;
-  animation: float 8s ease-in-out infinite;
 }
 
 .hero__float {
@@ -200,14 +195,12 @@
   @apply absolute;
   left: 104.02px;
   top: 338px;
-  animation: float 6s ease-in-out infinite;
 }
 
 .hero__float-2 {
   @apply absolute;
   left: 627px;
   top: 483px;
-  animation: float 8s ease-in-out infinite;
 }
 
 .hero__float-icon {
@@ -218,34 +211,33 @@
   @apply absolute flex items-center rounded-full border border-pink-600 bg-white;
   left: 376px;
   top: 627px;
-  padding: 16px 32px; /* Ajustado para dar más espacio al contenido */
-  gap: 8px; /* Espacio entre el ícono y el texto */
+  padding: 16px 32px;
+  gap: 8px;
   box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
   z-index: 25;
-  transition: all 0.3s ease;
-  animation: float 7s ease-in-out infinite;
-  width: auto; /* Cambiamos de width fijo a auto */
+  width: auto;
   height: 56px;
 }
 
 .hero__badge-icon {
-  @apply w-6 h-6 relative text-pink-600/60; /* Agregamos color con opacidad */
+  @apply relative flex items-center justify-center text-pink-600/60;
+  width: 24px;
+  height: 24px;
   transition: color 0.2s ease;
 }
 
+.hero__badge-icon-inner {
+  @apply w-[17px] h-5;
+}
+
 .hero__badge-text {
-  @apply text-dark text-sm font-bold font-urbanist whitespace-nowrap; /* Agregamos whitespace-nowrap */
+  @apply text-dark text-sm font-bold font-urbanist whitespace-nowrap;
   line-height: 16.8px;
 }
 
-/* Hover states */
-.hero__badge:hover {
-  @apply bg-gray-50;
+.hero__float:hover {
+  @apply bg-pink-700;
   transform: translateY(-2px);
-}
-
-.hero__badge:hover .hero__badge-icon {
-  @apply text-pink-600; /* Color sólido en hover */
 }
 
 .hero__image:hover {
@@ -289,8 +281,8 @@
 
 @media (min-width: 1800px) {
   .hero__content {
-    margin-left: 120px;
-    margin-right: 120px;
+    padding: 2rem 120px;
+    max-width: 1600px;
   }
 
   .hero__text-section {
@@ -312,8 +304,8 @@
 
 @media (min-width: 1600px) and (max-width: 1799px) {
   .hero__content {
-    margin-left: 100px;
-    margin-right: 100px;
+    padding: 2rem 100px;
+    max-width: 1440px;
   }
 
   .hero__text-section {
@@ -330,6 +322,10 @@
 }
 
 @media (max-width: 1599px) {
+  .hero__content {
+    padding: 2rem 60px;
+  }
+
   .hero__title {
     font-size: 60px;
   }
@@ -345,8 +341,7 @@
 
 @media (max-width: 1400px) {
   .hero__content {
-    margin-left: 60px;
-    margin-right: 60px;
+    padding: 2rem 40px;
   }
 
   .hero__text-section {
@@ -368,8 +363,7 @@
 
 @media (max-width: 1200px) {
   .hero__content {
-    margin-left: 40px;
-    margin-right: 40px;
+    padding: 2rem 24px;
     gap: 20px;
   }
 
@@ -389,8 +383,7 @@
 @media (max-width: 1079px) {
   .hero__content {
     @apply flex-col text-center;
-    margin-left: 24px;
-    margin-right: 24px;
+    padding: 2rem 16px;
     gap: 32px;
   }
 
