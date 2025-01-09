@@ -28,17 +28,59 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
         >
-          <motion.h1 
+          <motion.div 
             className="hero__title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease }}
           >
-            <span className="hero__title-dark">Descubre la manera </span>
-            <span className="hero__title-accent">más fácil de planificar</span>
-            <br />
-            <span className="hero__title-dark">tu próxima aventura</span>
-          </motion.h1>
+            <motion.div
+              className="overflow-hidden"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{
+                duration: 2,
+                ease: "linear",
+                delay: 0.3
+              }}
+            >
+              <div className="whitespace-nowrap">
+                <motion.span 
+                  className="hero__title-dark"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  Descubre la manera{" "}
+                </motion.span>
+                <motion.span 
+                  className="hero__title-accent"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1.0 }}
+                >
+                  más fácil de planificar
+                </motion.span>
+              </div>
+              <div className="whitespace-nowrap">
+                <motion.span 
+                  className="hero__title-dark"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1.5 }}
+                >
+                  tu próxima aventura
+                </motion.span>
+              </div>
+            </motion.div>
+            <motion.span
+              className="hero__title-cursor"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          </motion.div>
 
           <motion.p
             className="hero__description"
@@ -261,7 +303,7 @@ const HeroSection: React.FC = () => {
             }}
             whileHover={{ 
               y: -2,
-              backgroundColor: "rgb(249, 250, 251)", // equivalente a bg-gray-50
+              backgroundColor: "rgb(249, 250, 251)",
               transition: { 
                 duration: 0.3,
                 ease 
@@ -271,7 +313,7 @@ const HeroSection: React.FC = () => {
             <motion.div 
               className="hero__badge-icon"
               whileHover={{
-                color: "rgb(219, 39, 119)" // color completo en hover
+                color: "rgb(219, 39, 119)"
               }}
             >
               <img 

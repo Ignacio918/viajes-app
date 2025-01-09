@@ -23,10 +23,11 @@
 }
 
 .hero__title {
-  @apply font-bold font-urbanist;
+  @apply font-bold font-urbanist relative flex items-start;
   font-size: 64px;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  overflow: hidden;
 }
 
 .hero__title-dark {
@@ -35,6 +36,14 @@
 
 .hero__title-accent {
   @apply text-pink-600;
+}
+
+.hero__title-cursor {
+  @apply inline-block rounded-sm bg-pink-600 absolute;
+  width: 4px;
+  height: 72px;
+  margin-left: 8px;
+  vertical-align: middle;
 }
 
 .hero__description {
@@ -293,6 +302,10 @@
     font-size: 72px;
   }
 
+  .hero__title-cursor {
+    height: 80px;
+  }
+
   .hero__description {
     font-size: 1.25rem;
   }
@@ -316,6 +329,10 @@
     font-size: 68px;
   }
 
+  .hero__title-cursor {
+    height: 76px;
+  }
+
   .hero__image-section {
     width: 850px;
   }
@@ -328,6 +345,10 @@
 
   .hero__title {
     font-size: 60px;
+  }
+
+  .hero__title-cursor {
+    height: 68px;
   }
 
   .hero__text-section {
@@ -350,6 +371,10 @@
 
   .hero__title {
     font-size: 48px;
+  }
+
+  .hero__title-cursor {
+    height: 56px;
   }
 
   .hero__description {
@@ -375,6 +400,10 @@
     font-size: 44px;
   }
 
+  .hero__title-cursor {
+    height: 52px;
+  }
+
   .hero__image-section {
     width: 600px;
   }
@@ -393,17 +422,22 @@
     margin: 0 auto;
   }
 
+  .hero__title {
+    @apply justify-center;
+    font-size: 40px;
+  }
+
+  .hero__title-cursor {
+    height: 48px;
+  }
+
   .hero__button-container {
-    @apply flex justify-center; /* Añadimos el centrado del botón */
+    @apply flex justify-center;
     width: 100%;
   }
 
   .hero__button {
-    @apply inline-flex; /* Cambiamos a inline-flex para mejor centrado */
-  }
-
-  .hero__title {
-    font-size: 40px;
+    @apply inline-flex;
   }
 
   .hero__image-section,
@@ -429,6 +463,10 @@
 
   .hero__title {
     font-size: 36px;
+  }
+
+  .hero__title-cursor {
+    height: 40px;
   }
 
   .hero__description {
