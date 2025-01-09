@@ -76,8 +76,8 @@
 
 .hero__shape-1 {
   @apply absolute;
-  right: 0;
-  top: 31px;
+  right: 440px;
+  top: 141px;
   width: 147px;
   height: 274px;
   padding: 20px;
@@ -118,20 +118,6 @@
   height: 267.68px;
 }
 
-.hero__avion-2 {
-  @apply absolute;
-  left: 221px;
-  top: 1px;
-  width: 391px;
-  height: 203px;
-  z-index: 20;
-  animation: float 7s ease-in-out infinite;
-}
-
-.hero__avion-2-image {
-  @apply w-full h-full object-contain;
-}
-
 .hero__location-icon {
   @apply absolute;
   left: 635px;
@@ -157,7 +143,7 @@
 
 .hero__image-1 {
   @apply absolute;
-  left: 136px;
+  left: 156px;
   top: 67px;
   z-index: 15;
   animation: float 9s ease-in-out infinite;
@@ -269,8 +255,7 @@
 
 .hero__shape-1,
 .hero__shape-2,
-.hero__shape-3,
-.hero__avion-2 {
+.hero__shape-3 {
   will-change: transform;
   backface-visibility: hidden;
 }
@@ -396,7 +381,6 @@
   .hero__shape-1,
   .hero__shape-2,
   .hero__shape-3,
-  .hero__avion-2,
   .hero__float,
   .hero__badge,
   .hero__location-icon,
