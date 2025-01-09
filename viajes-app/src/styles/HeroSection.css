@@ -393,6 +393,15 @@
     margin: 0 auto;
   }
 
+  .hero__button-container {
+    @apply flex justify-center; /* Añadimos el centrado del botón */
+    width: 100%;
+  }
+
+  .hero__button {
+    @apply inline-flex; /* Cambiamos a inline-flex para mejor centrado */
+  }
+
   .hero__title {
     font-size: 40px;
   }
