@@ -1,5 +1,6 @@
 // HeroSection.tsx
 import React from 'react';
+import { motion } from 'framer-motion';
 import '../styles/HeroSection.css';
 // Imágenes de lugares
 import bigBen from '../assets/imagen_bigben.png';
@@ -20,110 +21,226 @@ const HeroSection: React.FC = () => {
     <div className="hero">
       <div className="hero__content">
         {/* Left Section - Text Content */}
-        <div className="hero__text-section">
-          <h1 className="hero__title">
+        <motion.div 
+          className="hero__text-section"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h1 
+            className="hero__title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
             <span className="hero__title-dark">Descubre la manera </span>
             <span className="hero__title-accent">más fácil de planificar</span>
             <br />
             <span className="hero__title-dark">tu próxima aventura</span>
-          </h1>
+          </motion.h1>
           
-          <div className="hero__description-container">
+          <motion.div 
+            className="hero__description-container"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             <p className="hero__description">
               Con zentrip, tienes todo lo necesario para transformar tus viajes en momentos únicos.
             </p>
-            <button className="hero__button">
+            <motion.button 
+              className="hero__button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <span className="hero__button-text">
                 Comenzar a planificar mi viaje
               </span>
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
 
         {/* Right Section - Images */}
         <div className="hero__image-section">
           {/* Background Shapes with Illustrations */}
-          <div className="hero__shape-1">
+          <motion.div 
+            className="hero__shape-1"
+            animate={{ 
+              y: [0, -10, 0],
+              rotate: [0, 5, 0]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
             <img 
               src={avion3}
               alt="Ilustración avión 3"
               className="hero__shape-1-inner"
             />
-          </div>
-          <div className="hero__shape-2">
+          </motion.div>
+          
+          <motion.div 
+            className="hero__shape-2"
+            animate={{ 
+              y: [0, 10, 0],
+              rotate: [0, -5, 0]
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
             <img 
               src={avion1}
               alt="Ilustración avión 1"
               className="hero__shape-2-inner"
             />
-          </div>
-          <div className="hero__shape-3">
+          </motion.div>
+
+          <motion.div 
+            className="hero__shape-3"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
             <img 
               src={mapa}
               alt="Ilustración mapa"
               className="hero__shape-3-inner"
             />
-          </div>
+          </motion.div>
 
           {/* Avión 2 */}
-          <div className="hero__avion-2">
+          <motion.div 
+            className="hero__avion-2"
+            animate={{ 
+              y: [0, -15, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
             <img 
               src={avion2}
               alt="Ilustración avión 2 principal"
               className="hero__avion-2-image"
             />
-          </div>
+          </motion.div>
 
           {/* Location Icon near the map */}
-          <div className="hero__location-icon">
+          <motion.div 
+            className="hero__location-icon"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
             <img 
               src={locationIcon} 
               alt="Location icon"
               className="hero__icon"
             />
-          </div>
+          </motion.div>
 
           {/* Destination Images */}
-          <div className="hero__image-1">
+          <motion.div 
+            className="hero__image-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+          >
             <img 
               src={bigBen}
               alt="Big Ben"
               className="hero__image"
             />
-          </div>
-          <div className="hero__image-2">
+          </motion.div>
+
+          <motion.div 
+            className="hero__image-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+          >
             <img 
               src={coliseo}
               alt="Coliseo"
               className="hero__image"
             />
-          </div>
-          <div className="hero__image-3">
+          </motion.div>
+
+          <motion.div 
+            className="hero__image-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+          >
             <img 
               src={torreEiffel}
               alt="Torre Eiffel"
               className="hero__image hero__image--tall"
             />
-          </div>
+          </motion.div>
 
           {/* Floating Elements */}
-          <div className="hero__float hero__float-1">
+          <motion.div 
+            className="hero__float hero__float-1"
+            animate={{ 
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            whileHover={{ scale: 1.1 }}
+          >
             <img 
               src={sendIcon}
               alt="Send icon"
               className="hero__float-icon"
             />
-          </div>
-          <div className="hero__float hero__float-2">
+          </motion.div>
+
+          <motion.div 
+            className="hero__float hero__float-2"
+            animate={{ 
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+            whileHover={{ scale: 1.1 }}
+          >
             <img 
               src={addUserIcon}
               alt="Add user icon"
               className="hero__float-icon"
             />
-          </div>
+          </motion.div>
 
           {/* Bottom Badge */}
-          <div className="hero__badge">
+          <motion.div 
+            className="hero__badge"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+          >
             <div className="hero__badge-icon">
               <img 
                 src={locationIcon}
@@ -134,7 +251,7 @@ const HeroSection: React.FC = () => {
             <span className="hero__badge-text">
               Explora. Organiza. Disfruta.
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
