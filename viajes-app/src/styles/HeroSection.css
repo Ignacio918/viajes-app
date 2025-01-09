@@ -108,7 +108,7 @@
   margin-left: 0;
 }
 
-/* Breakpoints para scaling y tipografía */
+/* Breakpoints para scaling uniforme */
 @media (min-width: 1600px) {
   .hero__content {
     @apply px-32;
@@ -131,7 +131,7 @@
   }
 }
 
-@media (max-width: 1599px) {
+@media (max-width: 1599px) and (min-width: 1400px) {
   .hero__image-section {
     transform: scale(0.95);
   }
@@ -141,9 +141,9 @@
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1399px) and (min-width: 1300px) {
   .hero__image-section {
-    transform: scale(0.85);
+    transform: scale(0.9);
   }
 
   .hero__title {
@@ -155,9 +155,15 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1299px) and (min-width: 1200px) {
   .hero__image-section {
-    transform: scale(0.75);
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 1080px) {
+  .hero__image-section {
+    transform: scale(0.8);
   }
 }
 
