@@ -31,6 +31,13 @@
 
 .hero__title > div {
   @apply relative;
+  width: 100%;
+}
+
+.hero__title-dark,
+.hero__title-accent {
+  display: inline;
+  white-space: pre;
 }
 
 .hero__title-dark {
@@ -45,8 +52,7 @@
   @apply absolute bg-pink-600;
   width: 4px;
   height: 72px;
-  right: -12px;
-  top: 0;
+  margin-left: 0;
 }
 
 .hero__description {
@@ -430,11 +436,11 @@
   }
 
   .hero__title > div {
-    @apply inline-flex flex-col items-center;
+    @apply flex flex-col items-center;
   }
 
   .hero__title-cursor {
-    height: 48px;
+    display: none;
   }
 
   .hero__button-container {
@@ -469,10 +475,6 @@
 
   .hero__title {
     font-size: 36px;
-  }
-
-  .hero__title-cursor {
-    height: 40px;
   }
 
   .hero__description {
