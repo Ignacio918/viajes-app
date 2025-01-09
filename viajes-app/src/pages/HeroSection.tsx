@@ -154,26 +154,12 @@ const HeroSection: React.FC = () => {
           <motion.div 
             className="hero__image-1"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              rotate: [-2, 2, -2],
-              x: [-3, 3, -3]
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
             }}
-            transition={{ 
-              opacity: { duration: 0.8, delay: 0.3 },
-              rotate: { 
-                duration: 8, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              },
-              x: {
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
-            whileHover={{ scale: 1.05 }}
           >
             <img 
               src={bigBen}
@@ -185,26 +171,12 @@ const HeroSection: React.FC = () => {
           <motion.div 
             className="hero__image-2"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              rotate: [2, -2, 2],
-              x: [3, -3, 3]
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
             }}
-            transition={{ 
-              opacity: { duration: 0.8, delay: 0.5 },
-              rotate: { 
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut"
-              },
-              x: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
-            whileHover={{ scale: 1.05 }}
           >
             <img 
               src={coliseo}
@@ -216,26 +188,12 @@ const HeroSection: React.FC = () => {
           <motion.div 
             className="hero__image-3"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              rotate: [-1.5, 1.5, -1.5],
-              x: [-2, 2, -2]
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
             }}
-            transition={{ 
-              opacity: { duration: 0.8, delay: 0.7 },
-              rotate: { 
-                duration: 9,
-                repeat: Infinity,
-                ease: "easeInOut"
-              },
-              x: {
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
-            whileHover={{ scale: 1.05 }}
           >
             <img 
               src={torreEiffel}
@@ -284,49 +242,24 @@ const HeroSection: React.FC = () => {
             />
           </motion.div>
 
-          {/* Bottom Badge with enhanced animation */}
+          {/* Bottom Badge - simplified */}
           <motion.div 
             className="hero__badge"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              scale: [1, 1.02, 1],
-              rotate: [-1, 1, -1]
-            }}
-            transition={{ 
-              opacity: { duration: 0.8, delay: 0.9 },
-              scale: {
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              },
-              rotate: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
             whileHover={{ 
-              scale: 1.1,
-              boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
+              scale: 1.05,
+              transition: { duration: 0.3 }
             }}
           >
-            <motion.div 
-              className="hero__badge-icon"
-              animate={{ rotate: [0, 360] }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            >
+            <div className="hero__badge-icon">
               <img 
                 src={locationIcon}
                 alt="Location icon"
                 className="hero__badge-icon-inner"
               />
-            </motion.div>
+            </div>
             <span className="hero__badge-text">
               Explora. Organiza. Disfruta.
             </span>
