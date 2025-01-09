@@ -74,13 +74,14 @@
   margin-left: auto;
 }
 
-/* Vector pequeño del avión 3 */
+/* Avión 3 */
 .hero__shape-1 {
   @apply absolute;
-  left: 611.75px;
-  top: 0;
-  width: 39.18px;
-  height: 33.27px;
+  left: 644.93px;
+  top: 31.23px;
+  width: 147.09px;
+  height: 274.68px;
+  padding: 10px;
   z-index: 10;
   animation: float 6s ease-in-out infinite;
 }
