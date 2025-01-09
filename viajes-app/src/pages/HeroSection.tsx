@@ -22,53 +22,51 @@ const HeroSection: React.FC = () => {
   return (
     <div className="hero">
       <div className="hero__content">
-        {/* Left Section - Text Content with new styling */}
-        <div className="flex flex-col gap-4 w-full lg:max-w-2xl">
-          <motion.div 
-            className="hero__text-section"
+        {/* Left Section - Text Content */}
+        <motion.div 
+          className="hero__text-section"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease }}
+        >
+          <motion.h1 
+            className="hero__title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease }}
+            transition={{ delay: 0.3, duration: 0.8, ease }}
           >
-            <motion.h1 
-              className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease }}
-            >
-              <span className="text-foreground">Descubre la manera </span>
-              <span className="text-primary">más fácil de planificar</span>
-              <br />
-              <span className="text-foreground">tu próxima aventura</span>
-            </motion.h1>
+            <span className="hero__title-dark">Descubre la manera </span>
+            <span className="hero__title-accent">más fácil de planificar</span>
+            <br />
+            <span className="hero__title-dark">tu próxima aventura</span>
+          </motion.h1>
 
-            <motion.p
-              className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8, ease }}
-            >
-              Con zentrip, tienes todo lo necesario para transformar tus viajes en momentos únicos.
-            </motion.p>
+          <motion.p
+            className="hero__description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.8, ease }}
+          >
+            Con zentrip, tienes todo lo necesario para transformar tus viajes en momentos únicos.
+          </motion.p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8, ease }}
+          <motion.div
+            className="hero__button-container"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease }}
+          >
+            <motion.button 
+              className="hero__button"
+              whileHover={{ opacity: 0.9 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <motion.button 
-                className="hero__button inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="hero__button-text">
-                  Comenzar a planificar mi viaje
-                </span>
-              </motion.button>
-            </motion.div>
+              <span className="hero__button-text">
+                Comenzar a planificar mi viaje
+              </span>
+            </motion.button>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Right Section - Images */}
         <div className="hero__image-section">

@@ -5,15 +5,21 @@
 }
 
 .hero__content {
-  @apply flex justify-between items-center px-4 md:px-8 lg:px-12 pt-24 lg:pt-36 max-w-[1440px] mx-auto;
+  @apply flex justify-between items-center mx-auto;
+  max-width: 1280px;
+  padding: 2rem 1rem;
 }
 
 .hero__text-section {
-  @apply w-full max-w-[502px] flex flex-col gap-6 lg:gap-8;
+  @apply flex flex-col gap-6;
+  max-width: 480px;
 }
 
 .hero__title {
-  @apply text-4xl md:text-5xl font-bold font-urbanist leading-[1.1];
+  @apply font-bold font-urbanist;
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .hero__title-dark {
@@ -24,86 +30,26 @@
   @apply text-pink-600;
 }
 
-.hero__description-container {
-  @apply flex flex-col gap-4;
+.hero__description {
+  @apply text-gray-800 font-urbanist;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  max-width: 42rem;
 }
 
-.hero__description {
-  @apply text-base text-gray-800 font-urbanist leading-relaxed;
+.hero__button-container {
+  @apply mt-6;
 }
 
 .hero__button {
-  @apply inline-flex px-4 py-3 lg:px-6 lg:py-4 bg-dark text-white rounded-full items-center justify-center transition-colors hover:bg-opacity-90;
+  @apply flex items-center justify-center rounded-full bg-dark text-white;
+  padding: 0.875rem 2rem;
+  transition: opacity 0.2s ease;
 }
 
 .hero__button-text {
-  @apply text-base lg:text-lg font-medium font-urbanist;
-}
-
-/* Media query para pantallas menores a 1080px */
-@media (max-width: 1079px) {
-  .hero__content {
-    @apply flex-col text-center px-4;
-  }
-
-  .hero__text-section {
-    @apply items-center mx-auto max-w-[400px];
-  }
-
-  .hero__title {
-    @apply text-3xl md:text-4xl;
-  }
-
-  /* Navbar responsive */
-  .navbar {
-    @apply w-full;
-  }
-  
-  .navbar__menu {
-    @apply hidden;
-  }
-
-  .navbar__hamburger {
-    @apply block;
-  }
-
-  /* Ocultar elementos visuales */
-  .hero__image-section,
-  .hero__shape-1,
-  .hero__shape-2,
-  .hero__shape-3,
-  .hero__avion-2,
-  .hero__float,
-  .hero__badge,
-  .hero__location-icon,
-  .hero__image-1,
-  .hero__image-2,
-  .hero__image-3 {
-    @apply hidden;
-  }
-}
-
-/* Media query para pantallas desde 1080px */
-@media (min-width: 1080px) {
-  .hero__content {
-    @apply flex-row justify-between items-center gap-4;
-  }
-
-  .hero__text-section {
-    @apply w-[45%] shrink-0;
-  }
-
-  .hero__image-section {
-    @apply w-[55%] relative;
-  }
-
-  .navbar__hamburger {
-    @apply hidden;
-  }
-
-  .navbar__menu {
-    @apply flex;
-  }
+  @apply font-medium font-urbanist;
+  font-size: 1rem;
 }
 
 /* Contenedor principal con scaling uniforme */
@@ -111,65 +57,6 @@
   @apply relative w-full max-w-[792px] h-[525px] lg:h-[725px];
   margin-left: 0;
   transform-origin: center right;
-}
-
-/* Breakpoints para scaling uniforme y tipografía */
-@media (min-width: 1600px) {
-  .hero__content {
-    @apply px-32;
-  }
-
-  .hero__text-section {
-    @apply max-w-[600px];
-  }
-
-  .hero__title {
-    @apply text-[64px];
-  }
-
-  .hero__description {
-    @apply text-xl;
-  }
-
-  .hero__image-section {
-    transform: scale(1);
-  }
-}
-
-@media (max-width: 1599px) {
-  .hero__image-section {
-    transform: scale(0.95);
-  }
-
-  .hero__title {
-    @apply text-6xl;
-  }
-}
-
-@media (max-width: 1400px) {
-  .hero__image-section {
-    transform: scale(0.9);
-  }
-
-  .hero__title {
-    @apply text-5xl;
-  }
-
-  .hero__description {
-    @apply text-base;
-  }
-}
-
-@media (max-width: 1200px) {
-  .hero__image-section {
-    transform: scale(0.85);
-  }
-}
-
-@media (max-width: 1080px) {
-  .hero__image-section {
-    transform: scale(0.8);
-  }
 }
 
 /* Ilustraciones y formas */
@@ -297,4 +184,129 @@
 
 .hero__image:hover {
   @apply opacity-95;
+}
+
+/* Media queries */
+@media (max-width: 1079px) {
+  .hero__content {
+    @apply flex-col text-center;
+    padding: 2rem 1.5rem;
+  }
+
+  .hero__text-section {
+    @apply items-center mx-auto;
+    max-width: 440px;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  /* Ocultar elementos visuales en móvil */
+  .hero__image-section,
+  .hero__shape-1,
+  .hero__shape-2,
+  .hero__shape-3,
+  .hero__avion-2,
+  .hero__float,
+  .hero__badge,
+  .hero__location-icon,
+  .hero__image-1,
+  .hero__image-2,
+  .hero__image-3 {
+    @apply hidden;
+  }
+}
+
+@media (min-width: 1080px) {
+  .hero__content {
+    padding: 4rem 2rem;
+  }
+
+  .hero__text-section {
+    width: 45%;
+  }
+
+  .hero__title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero__content {
+    padding: 4rem;
+  }
+
+  .hero__title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero__content {
+    padding: 4rem 2rem;
+  }
+
+  .hero__title {
+    font-size: 4rem;
+  }
+}
+
+/* Breakpoints para scaling uniforme y tipografía */
+@media (min-width: 1600px) {
+  .hero__content {
+    @apply px-32;
+  }
+
+  .hero__text-section {
+    @apply max-w-[600px];
+  }
+
+  .hero__title {
+    @apply text-[64px];
+  }
+
+  .hero__description {
+    @apply text-xl;
+  }
+
+  .hero__image-section {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1599px) {
+  .hero__image-section {
+    transform: scale(0.95);
+  }
+
+  .hero__title {
+    @apply text-6xl;
+  }
+}
+
+@media (max-width: 1400px) {
+  .hero__image-section {
+    transform: scale(0.9);
+  }
+
+  .hero__title {
+    @apply text-5xl;
+  }
+
+  .hero__description {
+    @apply text-base;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero__image-section {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero__image-section {
+    transform: scale(0.8);
+  }
 }
