@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
 import '../styles/HeroSection.css';
 // Imágenes de lugares
 import bigBen from '../assets/imagen_bigben.png';
@@ -18,6 +19,19 @@ import locationIcon from '../assets/icon_location.svg';
 const ease = [0.16, 1, 0.3, 1];
 
 const HeroSection: React.FC = () => {
+  const words = [
+    {
+      text: "Descubre la manera",
+    },
+    {
+      text: "más fácil de planificar",
+      className: "text-pink-600",
+    },
+    {
+      text: "tu próxima aventura",
+    },
+  ];
+
   return (
     <div className="hero">
       <div className="hero__content">
@@ -28,53 +42,11 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
         >
-          <motion.div className="hero__title">
-            <div className="flex flex-col">
-              <div className="relative overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{
-                    duration: 2,
-                    ease: "linear"
-                  }}
-                  className="whitespace-nowrap"
-                >
-                  <span className="hero__title-dark">Descubre la manera </span>
-                  <span className="hero__title-accent">más fácil de planificar</span>
-                </motion.div>
-                <motion.div
-                  className="hero__title-cursor"
-                  animate={{
-                    opacity: [1, 0]
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                  style={{
-                    left: "calc(100% + 4px)"
-                  }}
-                />
-              </div>
-              
-              <div className="relative overflow-hidden mt-2">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{
-                    duration: 1.5,
-                    ease: "linear",
-                    delay: 2
-                  }}
-                  className="whitespace-nowrap"
-                >
-                  <span className="hero__title-dark">tu próxima aventura</span>
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
+          <TypewriterEffectSmooth 
+            words={words}
+            className="hero__title !text-left" 
+            cursorClassName="bg-pink-600"
+          />
 
           <motion.p
             className="hero__description"
