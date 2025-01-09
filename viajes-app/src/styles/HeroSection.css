@@ -66,13 +66,20 @@
 
 .hero__image-section {
   @apply relative;
-  width: calc(100% - 710px);
+  width: 800px;
   height: 725px;
   flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+  margin-left: auto;
 }
 
 .hero__shape-1 {
-  @apply absolute right-[20px] top-[31.23px] w-[147.09px] h-[274.68px];
+  @apply absolute;
+  right: 0;
+  top: 31px;
+  width: 147px;
+  height: 274px;
   padding: 20px;
   z-index: 10;
   animation: float 6s ease-in-out infinite;
@@ -83,7 +90,11 @@
 }
 
 .hero__shape-2 {
-  @apply absolute left-[20px] top-[77.33px] w-[250.38px] h-[264.78px];
+  @apply absolute;
+  left: 20px;
+  top: 77px;
+  width: 250px;
+  height: 264px;
   z-index: 10;
   animation: float 8s ease-in-out infinite;
 }
@@ -93,9 +104,11 @@
 }
 
 .hero__shape-3 {
-  @apply absolute left-[66.21px] top-0;
-  width: 680.23px;
-  height: 565.36px;
+  @apply absolute;
+  left: 46px;
+  top: 0;
+  width: 680px;
+  height: 565px;
   z-index: 10;
   animation: float 10s ease-in-out infinite;
 }
@@ -107,10 +120,10 @@
 
 .hero__avion-2 {
   @apply absolute;
-  left: calc(50% - 195px);
-  top: 1.45px;
-  width: 391.05px;
-  height: 203.28px;
+  left: 221px;
+  top: 1px;
+  width: 391px;
+  height: 203px;
   z-index: 20;
   animation: float 7s ease-in-out infinite;
 }
@@ -120,7 +133,11 @@
 }
 
 .hero__location-icon {
-  @apply absolute left-[635px] top-[78px] w-6 h-6;
+  @apply absolute;
+  left: 635px;
+  top: 78px;
+  width: 24px;
+  height: 24px;
   z-index: 15;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -139,19 +156,25 @@
 }
 
 .hero__image-1 {
-  @apply absolute left-[156.02px] top-[67.49px];
+  @apply absolute;
+  left: 136px;
+  top: 67px;
   z-index: 15;
   animation: float 9s ease-in-out infinite;
 }
 
 .hero__image-2 {
-  @apply absolute left-[156.02px] top-[407.49px];
+  @apply absolute;
+  left: 136px;
+  top: 407px;
   z-index: 15;
   animation: float 7s ease-in-out infinite;
 }
 
 .hero__image-3 {
-  @apply absolute left-[460px] top-[141.49px];
+  @apply absolute;
+  left: 440px;
+  top: 141px;
   z-index: 15;
   animation: float 8s ease-in-out infinite;
 }
@@ -164,12 +187,16 @@
 }
 
 .hero__float-1 {
-  @apply absolute left-[124.02px] top-[338px];
+  @apply absolute;
+  left: 104px;
+  top: 338px;
   animation: float 6s ease-in-out infinite;
 }
 
 .hero__float-2 {
-  @apply absolute left-[647px] top-[483px];
+  @apply absolute;
+  left: 627px;
+  top: 483px;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -178,7 +205,9 @@
 }
 
 .hero__badge {
-  @apply absolute left-[396px] top-[627px] px-8 py-4 bg-white rounded-full border border-pink-600 flex items-center gap-2;
+  @apply absolute px-8 py-4 bg-white rounded-full border border-pink-600 flex items-center gap-2;
+  left: 376px;
+  top: 627px;
   box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
   z-index: 25;
   transition: all 0.3s ease;
@@ -263,6 +292,10 @@
   .hero__description {
     font-size: 1.25rem;
   }
+
+  .hero__image-section {
+    width: 900px;
+  }
 }
 
 @media (min-width: 1600px) and (max-width: 1799px) {
@@ -278,6 +311,10 @@
   .hero__title {
     font-size: 68px;
   }
+
+  .hero__image-section {
+    width: 850px;
+  }
 }
 
 @media (max-width: 1599px) {
@@ -290,7 +327,7 @@
   }
 
   .hero__image-section {
-    width: calc(100% - 620px);
+    width: 750px;
   }
 }
 
@@ -313,7 +350,7 @@
   }
 
   .hero__image-section {
-    width: calc(100% - 540px);
+    width: 650px;
   }
 }
 
@@ -333,7 +370,7 @@
   }
 
   .hero__image-section {
-    width: calc(100% - 470px);
+    width: 600px;
   }
 }
 
