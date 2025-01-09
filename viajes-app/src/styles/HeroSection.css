@@ -9,11 +9,11 @@
 }
 
 .hero__text-section {
-  @apply w-full max-w-[640px] flex flex-col gap-6 lg:gap-8;
+  @apply w-full max-w-[502px] flex flex-col gap-6 lg:gap-8;
 }
 
 .hero__title {
-  @apply text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-urbanist tracking-tight leading-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold font-urbanist leading-tight;
 }
 
 .hero__title-dark {
@@ -25,20 +25,19 @@
 }
 
 .hero__description-container {
-  @apply flex flex-col gap-4 lg:gap-6 max-w-[42rem];
+  @apply flex flex-col gap-4 lg:gap-6;
 }
 
 .hero__description {
-  @apply text-base lg:text-xl text-gray-800 font-urbanist leading-normal;
+  @apply text-base lg:text-lg text-gray-800 font-urbanist;
 }
 
 .hero__button {
-  @apply inline-flex px-8 py-4 bg-pink-600 text-white rounded-md items-center justify-center transition-all hover:bg-pink-700 text-sm font-medium;
-  @apply ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  @apply inline-flex px-4 py-3 lg:px-6 lg:py-4 bg-dark text-white rounded-full items-center justify-center transition-colors hover:bg-opacity-90;
 }
 
 .hero__button-text {
-  @apply text-lg font-medium font-urbanist;
+  @apply text-lg lg:text-xl font-medium font-urbanist;
 }
 
 /* Media query para pantallas menores a 1080px */
