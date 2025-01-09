@@ -1,4 +1,3 @@
-// HeroSection.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/HeroSection.css';
@@ -255,19 +254,32 @@ const HeroSection: React.FC = () => {
             className="hero__badge"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.9,
+              ease
+            }}
             whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.3 }
+              y: -2,
+              backgroundColor: "rgb(249, 250, 251)", // equivalente a bg-gray-50
+              transition: { 
+                duration: 0.3,
+                ease 
+              }
             }}
           >
-            <div className="hero__badge-icon">
+            <motion.div 
+              className="hero__badge-icon"
+              whileHover={{
+                color: "rgb(219, 39, 119)" // color completo en hover
+              }}
+            >
               <img 
                 src={locationIcon}
                 alt="Location icon"
                 className="hero__badge-icon-inner"
               />
-            </div>
+            </motion.div>
             <span className="hero__badge-text">
               Explora. Organiza. Disfruta.
             </span>

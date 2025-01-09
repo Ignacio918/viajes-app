@@ -215,37 +215,37 @@
 }
 
 .hero__badge {
-  @apply absolute px-8 py-4 bg-white rounded-full border border-pink-600 flex items-center gap-2;
+  @apply absolute flex items-center rounded-full border border-pink-600 bg-white;
   left: 376px;
   top: 627px;
-  width: 269px;
-  height: 56px;
+  padding: 16px 32px; /* Ajustado para dar más espacio al contenido */
+  gap: 8px; /* Espacio entre el ícono y el texto */
   box-shadow: 0px 43px 26px rgba(0, 0, 0, 0.05);
   z-index: 25;
   transition: all 0.3s ease;
   animation: float 7s ease-in-out infinite;
+  width: auto; /* Cambiamos de width fijo a auto */
+  height: 56px;
 }
 
 .hero__badge-icon {
-  @apply w-6 h-6 relative;
-}
-
-.hero__badge-icon-inner {
-  @apply w-[17px] h-5 absolute left-[3.5px] top-[2px];
+  @apply w-6 h-6 relative text-pink-600/60; /* Agregamos color con opacidad */
+  transition: color 0.2s ease;
 }
 
 .hero__badge-text {
-  @apply text-dark text-sm font-bold font-urbanist leading-[16.8px];
+  @apply text-dark text-sm font-bold font-urbanist whitespace-nowrap; /* Agregamos whitespace-nowrap */
+  line-height: 16.8px;
 }
 
-.hero__float:hover {
-  @apply bg-pink-700;
-  transform: translateY(-2px);
-}
-
+/* Hover states */
 .hero__badge:hover {
   @apply bg-gray-50;
   transform: translateY(-2px);
+}
+
+.hero__badge:hover .hero__badge-icon {
+  @apply text-pink-600; /* Color sólido en hover */
 }
 
 .hero__image:hover {
