@@ -16,6 +16,19 @@ module.exports = {
         gray: {
           800: "#3E3E3E",
         },
+        // Agregamos los colores necesarios para los rings y backgrounds
+        background: "white",
+        "background-foreground": "#000000",
+        ring: "#E61C5D",
+        "ring-foreground": "white",
+        primary: {
+          DEFAULT: "#E61C5D",
+          foreground: "white",
+        },
+        secondary: {
+          DEFAULT: "#3E3E3E",
+          foreground: "white",
+        },
       },
       boxShadow: {
         custom: "0px 12px 40px 0px rgba(0, 0, 0, 0.04)", // Sombra personalizada
@@ -77,6 +90,15 @@ module.exports = {
         "skeleton-gradient":
           "linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 50%, #f3f4f6 100%)",
       },
+      ringColor: {
+        DEFAULT: "#E61C5D",
+      },
+      ringOffsetColor: {
+        DEFAULT: "white",
+      },
+      ringOffsetWidth: {
+        DEFAULT: "2px",
+      },
     },
   },
   plugins: [],
@@ -93,5 +115,12 @@ module.exports = {
     "animate-spin",
     "animate-shimmer",
     "bg-skeleton-gradient",
+    // Agregamos las nuevas clases al safelist
+    "ring",
+    "ring-offset",
+    "ring-primary",
+    "ring-secondary",
+    "focus-visible:ring",
+    "focus-visible:ring-offset",
   ],
 };
