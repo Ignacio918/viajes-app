@@ -10,18 +10,18 @@
   margin-right: 100px;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  gap: 40px;
+  gap: 20px;
 }
 
 .hero__text-section {
   @apply flex flex-col gap-6;
-  width: 600px;
+  width: 650px;
   flex-shrink: 0;
 }
 
 .hero__title {
   @apply font-bold font-urbanist;
-  font-size: 56px;
+  font-size: 64px;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -66,9 +66,10 @@
 
 .hero__image-section {
   @apply relative;
-  width: calc(100% - 640px);
+  width: calc(100% - 670px);
   height: 725px;
   flex-shrink: 0;
+  margin-left: -40px;
 }
 
 .hero__shape-1 {
@@ -106,7 +107,9 @@
 }
 
 .hero__avion-2 {
-  @apply absolute left-[221.06px] top-[1.45px];
+  @apply absolute;
+  left: calc(50% - 195px);
+  top: 1.45px;
   width: 391.05px;
   height: 203.28px;
   z-index: 20;
@@ -244,18 +247,18 @@
   backface-visibility: hidden;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1800px) {
   .hero__content {
     margin-left: 120px;
     margin-right: 120px;
   }
 
   .hero__text-section {
-    width: 650px;
+    width: 700px;
   }
 
   .hero__title {
-    font-size: 64px;
+    font-size: 72px;
   }
 
   .hero__description {
@@ -263,9 +266,32 @@
   }
 }
 
+@media (min-width: 1600px) and (max-width: 1799px) {
+  .hero__content {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  .hero__text-section {
+    width: 650px;
+  }
+
+  .hero__title {
+    font-size: 68px;
+  }
+}
+
 @media (max-width: 1599px) {
   .hero__title {
-    font-size: 56px;
+    font-size: 60px;
+  }
+
+  .hero__text-section {
+    width: 600px;
+  }
+
+  .hero__image-section {
+    width: calc(100% - 620px);
   }
 }
 
