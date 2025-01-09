@@ -108,7 +108,7 @@
 .hero__shape-2 {
   @apply absolute;
   left: 0;
-  top: 57.33px;
+  top: 50px;
   width: 250.38px;
   height: 264.78px;
   padding: 10px;
