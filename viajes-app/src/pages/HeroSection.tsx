@@ -28,53 +28,51 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
         >
-          <motion.div 
-            className="hero__title"
-          >
-            <div className="relative flex flex-col">
-              <motion.div
-                className="overflow-hidden"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{
-                  duration: 2.5,
-                  ease: "linear"
-                }}
-              >
-                <div className="whitespace-pre">
+          <motion.div className="hero__title">
+            <div className="flex flex-col">
+              <div className="relative overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{
+                    duration: 2,
+                    ease: "linear"
+                  }}
+                  className="whitespace-nowrap"
+                >
                   <span className="hero__title-dark">Descubre la manera </span>
                   <span className="hero__title-accent">más fácil de planificar</span>
-                </div>
-              </motion.div>
+                </motion.div>
+                <motion.div
+                  className="hero__title-cursor"
+                  animate={{
+                    opacity: [1, 0]
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                  style={{
+                    left: "calc(100% + 4px)"
+                  }}
+                />
+              </div>
               
-              <motion.div
-                className="overflow-hidden"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{
-                  duration: 2,
-                  ease: "linear",
-                  delay: 2.5
-                }}
-              >
-                <div className="whitespace-pre">
+              <div className="relative overflow-hidden mt-2">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{
+                    duration: 1.5,
+                    ease: "linear",
+                    delay: 2
+                  }}
+                  className="whitespace-nowrap"
+                >
                   <span className="hero__title-dark">tu próxima aventura</span>
-                </div>
-              </motion.div>
-
-              <motion.span
-                className="hero__title-cursor"
-                initial={{ left: "0%" }}
-                animate={{ 
-                  left: ["0%", "100%", "0%", "100%"],
-                  top: ["0%", "0%", "100%", "100%"]
-                }}
-                transition={{
-                  duration: 4.5,
-                  times: [0, 0.55, 0.55, 1],
-                  ease: "linear"
-                }}
-              />
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 
