@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // Función de utilidad cn
 function cn(...inputs: any[]) {
@@ -116,6 +116,7 @@ export const TypewriterEffectSmooth = ({
   const [displayedText, setDisplayedText] = useState<string[]>(words.map(() => ""));
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (currentLine >= words.length) return;
@@ -133,7 +134,6 @@ export const TypewriterEffectSmooth = ({
 
       return () => clearTimeout(timer);
     } else {
-      // Cuando termine una línea, espera un poco y pasa a la siguiente
       const timer = setTimeout(() => {
         setCurrentLine(prev => prev + 1);
         setCurrentChar(0);
@@ -148,24 +148,9 @@ export const TypewriterEffectSmooth = ({
       <div className="flex flex-col gap-2">
         {words.map((word, idx) => (
           <div key={`word-${idx}`} className="relative inline-block">
-            <span className={cn(``, word.className)}>
+            <span className={cn(`inline-block`, word.className)}>
               {displayedText[idx]}
             </span>
-            {idx === currentLine && (
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  duration: 0.8,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-                className={cn(
-                  "absolute -right-[4px] top-0 block rounded-sm w-[4px] h-full",
-                  cursorClassName
-                )}
-              />
-            )}
           </div>
         ))}
       </div>
@@ -173,12 +158,30 @@ export const TypewriterEffectSmooth = ({
   };
 
   return (
-    <div className={cn("flex items-start my-6", className)}>
+    <div className={cn("flex items-start my-6 relative", className)} ref={containerRef}>
       <div className="overflow-hidden">
         <div className="text-left">
           {renderWords()}
         </div>
       </div>
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        className={cn(
+          "absolute block rounded-sm w-[4px] h-[64px]",
+          cursorClassName
+        )}
+        style={{
+          top: `${currentLine * 76}px`,  // Ajusta este valor según el espaciado de tus líneas
+          left: `${displayedText[currentLine].length * 35}px`,  // Ajusta este valor según el ancho de tus caracteres
+          display: currentLine < words.length ? 'block' : 'none'
+        }}
+      />
     </div>
   );
 };
