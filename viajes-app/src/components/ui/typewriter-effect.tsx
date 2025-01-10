@@ -187,7 +187,7 @@ export const TypewriterEffectSmooth = ({
             top: `${currentLine * 76}px`,
             left: `${displayedText[currentLine].length * 35}px`,
             height: '64px',
-            transform: 'translateY(4px)', // Bajé el cursor: cambié de -2px a 4px
+            transform: 'translateY(6px)', // Bajé el cursor: cambié de -2px a 4px
             display: 'block'
           }}
         />
