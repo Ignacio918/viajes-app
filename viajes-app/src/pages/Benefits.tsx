@@ -2,8 +2,8 @@
 import iconCalendar from '../assets/icons/icon-calendar.svg';
 import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconMap from '../assets/icons/icon-map.svg';
-import ilustracionAvion from '../assets/ilustrations/illustracion_avion_beneficios.svg';
-import ilustracionObjects from '../assets/ilustrations/ilustracion_objects.svg';
+import ilustracionAvion from '../assets/illustrations/illustracion_avion_beneficios.svg';
+import ilustracionObjects from '../assets/illustrations/ilustracion_objects.svg';
 import imagenPlaya from '../assets/photos/imagen_playa.png';
 import imagenCataratas from '../assets/photos/imagen_cataratas.png';
 import '../styles/Benefits.css';
