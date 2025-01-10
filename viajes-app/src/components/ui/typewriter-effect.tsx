@@ -182,7 +182,7 @@ export const TypewriterEffectSmooth = ({
 
     return {
       top: rect.top - containerRect.top,
-      left: rect.left - containerRect.left + (displayedText[currentLine].length * 11.5)
+      left: rect.left - containerRect.left + ((displayedText[currentLine].length + 1) * 11.5)
     };
   };
 
