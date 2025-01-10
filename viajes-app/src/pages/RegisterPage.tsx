@@ -6,12 +6,12 @@ import '../styles/RegisterPage.css';
 // Importamos los mismos assets que usamos en LoginPage
 import videoLogin from '../assets/video_login.mp4';
 import Logo from '../assets/logo_medium.svg';
-import GoogleIcon from '../assets/devicon_google.svg';
-import EyeIcon from '../assets/eye.svg';
-import EyeOffIcon from '../assets/eye-slash.svg';
-import IlusMonumentos from '../assets/ilus_monumentos.svg';
-import IlusMezquita from '../assets/ilus_mezquita.svg';
-import IlusAvionLogin from '../assets/ilus_avion_login.svg';
+import GoogleIcon from '../assets/icons/devicon_google.svg';
+import EyeIcon from '../assets/icons/eye.svg';
+import EyeOffIcon from '../assets/icons/eye-slash.svg';
+import IlusMonumentos from '../assets/illustrations/ilus_monumentos.svg';
+import IlusMezquita from '../assets/illustrations/ilus_mezquita.svg';
+import IlusAvionLogin from '../assets/illustrations/ilus_avion_login.svg';
 import TextField from '../components/TextField';
 
 interface RegisterPageProps {
