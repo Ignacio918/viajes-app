@@ -15,7 +15,8 @@ import UserProfile from "./pages/UserProfile";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Navbar from "./components/Navbar";
-import HeroSection from "./pages/HeroSection"; // Nuevo import
+import HeroSection from "./pages/HeroSection";
+import Benefits from "./pages/Benefits"; // Nuevo import
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -76,7 +77,7 @@ const App: React.FC = () => {
                 <>
                   {showAuthPage === null ? (
                     <div className="flex-grow">
-                      <HeroSection /> {/* Reemplazamos el header anterior por el nuevo HeroSection */}
+                      <HeroSection />
                       <header className="section-spacing bg-white hero-offset">
                         <div className="container-spacing grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                           <div className="text-center md:text-left">
@@ -171,6 +172,10 @@ const App: React.FC = () => {
                           </div>
                         </div>
                       </section>
+
+                      {/* Nueva sección de Benefits con el diseño de Figma */}
+                      <Benefits />
+
                       <section className="section-spacing">
                         <div className="container-spacing text-center">
                           <h2 className="text-3xl font-bold mb-6 text-gray-900">

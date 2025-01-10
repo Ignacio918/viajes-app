@@ -2,18 +2,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/HeroSection.css';
 // Imágenes de lugares
-import bigBen from '../assets/imagen_bigben.png';
-import coliseo from '../assets/imagen_coliseo.png';
-import torreEiffel from '../assets/imagen_torreeiffel.png';
+import bigBen from '../assets/photos/imagen_bigben.png';
+import coliseo from '../assets/photos/imagen_coliseo.png';
+import torreEiffel from '../assets/photos/imagen_torreeiffel.png';
 // Ilustraciones
-import avion1 from '../assets/ilustracion_avion_1.svg';
-import avion2 from '../assets/ilustracion_avion_2.svg';
-import avion3 from '../assets/ilustracion_avion_3.svg';
-import mapa from '../assets/ilustracion_mapa.svg';
+import avion1 from '../assets/illustrations/ilustracion_avion_1.svg';
+import avion2 from '../assets/illustrations/ilustracion_avion_2.svg';
+import avion3 from '../assets/illustrations/ilustracion_avion_3.svg';
+import mapa from '../assets/illustrations/ilustracion_mapa.svg';
 // Iconos
-import sendIcon from '../assets/send.svg';
-import addUserIcon from '../assets/add-user-2.svg';
-import locationIcon from '../assets/icon_location.svg';
+import sendIcon from '../assets/icons/send.svg';
+import addUserIcon from '../assets/icons/add-user-2.svg';
+import locationIcon from '../assets/icons/icon_location.svg';
 
 const ease = [0.16, 1, 0.3, 1];
 
