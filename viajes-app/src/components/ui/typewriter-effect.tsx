@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Función de utilidad cn
 function cn(...inputs: any[]) {
@@ -113,76 +113,72 @@ export const TypewriterEffectSmooth = ({
   className?: string;
   cursorClassName?: string;
 }) => {
-  const wordsArray = words.map((word) => {
-    return {
-      ...word,
-      text: word.text.split(""),
-    };
-  });
-  
+  const [displayedText, setDisplayedText] = useState<string[]>(words.map(() => ""));
+  const [currentLine, setCurrentLine] = useState(0);
+  const [currentChar, setCurrentChar] = useState(0);
+
+  useEffect(() => {
+    if (currentLine >= words.length) return;
+
+    const word = words[currentLine].text;
+    if (currentChar < word.length) {
+      const timer = setTimeout(() => {
+        setDisplayedText(prev => {
+          const newText = [...prev];
+          newText[currentLine] = word.substring(0, currentChar + 1);
+          return newText;
+        });
+        setCurrentChar(prev => prev + 1);
+      }, 100); // Velocidad de escritura por caracter
+
+      return () => clearTimeout(timer);
+    } else {
+      // Cuando termine una línea, espera un poco y pasa a la siguiente
+      const timer = setTimeout(() => {
+        setCurrentLine(prev => prev + 1);
+        setCurrentChar(0);
+      }, 500); // Pausa entre líneas
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentLine, currentChar, words]);
+
   const renderWords = () => {
     return (
       <div className="flex flex-col gap-2">
-        {wordsArray.map((word, idx) => {
-          return (
-            <div key={`word-${idx}`} className="inline-block">
-              {word.text.map((char, index) => (
-                <span
-                  key={`char-${index}`}
-                  className={cn(`text-black`, word.className)}
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-          );
-        })}
+        {words.map((word, idx) => (
+          <div key={`word-${idx}`} className="inline-block">
+            <span className={cn(``, word.className)}>
+              {displayedText[idx]}
+            </span>
+          </div>
+        ))}
       </div>
     );
   };
 
   return (
     <div className={cn("flex items-start my-6", className)}>
-      <motion.div
-        className="overflow-hidden pb-2"
-        initial={{
-          width: "0%",
-        }}
-        whileInView={{
-          width: "fit-content",
-        }}
-        transition={{
-          duration: 2,
-          ease: "linear",
-          delay: 0.5,
-        }}
-      >
-        <div
-          className="text-left"
-          style={{
-            whiteSpace: "pre-line",
-          }}
-        >
+      <div className="overflow-hidden">
+        <div className="text-left">
           {renderWords()}
         </div>
-      </motion.div>
-      <motion.span
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className={cn(
-          "block rounded-sm w-[4px]",
-          cursorClassName
-        )}
-      ></motion.span>
+      </div>
+      {currentLine < words.length && (
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className={cn(
+            "block rounded-sm w-[4px]",
+            cursorClassName
+          )}
+        ></motion.span>
+      )}
     </div>
   );
 };
