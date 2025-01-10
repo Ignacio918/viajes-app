@@ -139,7 +139,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 150); // Aumentado a 150ms para sincronizar con la barra
+      }, 80);
 
       return () => clearTimeout(timer);
     } else {
@@ -148,7 +148,7 @@ export const TypewriterEffectSmooth = ({
           setCurrentLine(prev => prev + 1);
           setCurrentChar(0);
         }
-      }, 400);
+      }, 300);
 
       return () => clearTimeout(timer);
     }
@@ -183,7 +183,7 @@ export const TypewriterEffectSmooth = ({
 
     return {
       top: rect.top - containerRect.top,
-      left: rect.left - containerRect.left + (displayedText[currentLine].length * 15)
+      left: rect.left - containerRect.left + (currentChar * 12) // Ahora usa currentChar para sincronizar exactamente con la posición actual
     };
   };
 
@@ -201,7 +201,7 @@ export const TypewriterEffectSmooth = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            duration: 0.3, // Reducido a 0.3s para un parpadeo más rápido
+            duration: 0.2,
             repeat: Infinity,
             repeatType: "reverse",
           }}
