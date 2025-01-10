@@ -120,7 +120,6 @@ export const TypewriterEffectSmooth = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Inicializar los refs para cada línea
   useEffect(() => {
     lineRefs.current = new Array(words.length).fill(null);
   }, [words.length]);
@@ -140,7 +139,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 70); // Velocidad de escritura por caracter
+      }, 100); // Velocidad de escritura ajustada
 
       return () => clearTimeout(timer);
     } else {
@@ -184,7 +183,7 @@ export const TypewriterEffectSmooth = ({
 
     return {
       top: rect.top - containerRect.top,
-      left: rect.left - containerRect.left + (displayedText[currentLine].length * 18)
+      left: rect.left - containerRect.left + (displayedText[currentLine].length * 15)
     };
   };
 
@@ -202,7 +201,7 @@ export const TypewriterEffectSmooth = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            duration: 0.8,
+            duration: 0.5,
             repeat: Infinity,
             repeatType: "reverse",
           }}
