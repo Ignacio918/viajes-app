@@ -1,85 +1,57 @@
 /* styles/Benefits.css */
 .benefits-section {
-  @apply w-full min-h-screen bg-[#FDFDFD] relative overflow-hidden py-16;
+  @apply w-full;
 }
 
-.benefits-background {
-  @apply absolute inset-0 bg-radial-gradient;
+.pattern-light {
+  @apply w-full h-[810px] bg-[#FDFDFD] relative;
 }
 
-.benefits-objects {
-  @apply absolute left-7 bottom-0;
+.radial-background {
+  @apply w-full h-full relative;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 104, 147, 0.10) 0%, #FDFDFD 100%);
 }
 
-.objects-image {
-  @apply w-[332px] h-[352px];
+.vector-container {
+  @apply absolute left-[7px] bottom-0 w-[332px] h-[351.95px];
 }
 
-.benefits-airplane {
-  @apply absolute right-8 top-7;
+.vector-image {
+  @apply w-full h-full;
+}
+
+.airplane-container {
+  @apply absolute right-[32px] top-[28px] w-[168.56px] h-[188.06px];
 }
 
 .airplane-image {
-  @apply w-[169px] h-[188px];
+  @apply w-full h-full;
 }
 
-.benefits-container {
-  @apply container mx-auto px-4;
+.benefits-content {
+  @apply flex justify-center items-center gap-x-8 mt-[120px];
 }
 
-.benefits-header {
-  @apply text-center mb-12;
-}
-
-.benefits-title {
-  @apply text-4xl font-bold text-[#353535] mb-6;
-}
-
-.benefits-grid {
-  @apply grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto;
-}
-
-.benefit-card {
-  @apply bg-white p-6 rounded-xl shadow-lg text-center;
-  transition: transform 0.3s ease;
-}
-
-.benefit-card:hover {
-  transform: translateY(-5px);
-}
-
-.benefit-image-container {
-  @apply relative mb-4 rounded-lg overflow-hidden;
+.image-with-icon {
+  @apply relative w-[300px] h-[200px] rounded-lg overflow-hidden;
 }
 
 .benefit-image {
-  @apply w-full h-48 object-cover;
+  @apply w-full h-full object-cover;
 }
 
 .benefit-icon {
-  @apply w-16 h-16 absolute bottom-4 right-4;
+  @apply absolute bottom-4 right-4 w-[64px] h-[64px];
 }
 
-.benefit-icon-container {
-  @apply relative mb-4;
+.center-icon {
+  @apply flex items-center justify-center w-[120px];
 }
 
-.benefit-center-icon {
-  @apply w-16 h-16 mx-auto;
+.solo-icon {
+  @apply w-[64px] h-[64px];
 }
 
-.benefit-title {
-  @apply text-xl font-semibold mb-2;
-}
-
-.benefit-description {
-  @apply text-gray-600;
-}
-
-.benefits-footer {
-  @apply text-center text-[#353535] text-xl font-medium mt-12;
-}
-
-.bg-radial-gradient {
-  background: radial-gradient(circle at center, rgba(255,104,147,0.1) 0%, rgba(253,253,253,1) 70%);
+.benefits-text {
+  @apply absolute left-1/2 -translate-x-1/2 bottom-[35px] text-[#353535] text-[20px] font-urbanist font-medium text-center;
 }
