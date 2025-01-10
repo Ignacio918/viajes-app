@@ -3,7 +3,6 @@
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
-// Función de utilidad cn
 function cn(...inputs: any[]) {
   return inputs.filter(Boolean).join(' ');
 }
@@ -131,7 +130,7 @@ export const TypewriterEffectSmooth = ({
     }
 
     const word = words[currentLine].text;
-    if (currentChar < word.length) {
+    if (currentChar <= word.length) { // Cambiado a <= para incluir la última posición
       const timer = setTimeout(() => {
         setDisplayedText(prev => {
           const newText = [...prev];
@@ -139,7 +138,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 80);
+      }, 50); // Reducido para que vaya más rápido
 
       return () => clearTimeout(timer);
     } else {
@@ -148,7 +147,7 @@ export const TypewriterEffectSmooth = ({
           setCurrentLine(prev => prev + 1);
           setCurrentChar(0);
         }
-      }, 300);
+      }, 200); // Reducido el tiempo entre líneas
 
       return () => clearTimeout(timer);
     }
@@ -181,9 +180,12 @@ export const TypewriterEffectSmooth = ({
     
     if (!containerRect) return { top: 0, left: 0 };
 
+    const currentWord = words[currentLine].text;
+    const charPosition = Math.min(currentChar, currentWord.length);
+
     return {
       top: rect.top - containerRect.top,
-      left: rect.left - containerRect.left + (currentChar * 12) // Ahora usa currentChar para sincronizar exactamente con la posición actual
+      left: rect.left - containerRect.left + (charPosition * 9.8) // Ajustado el multiplicador para mejor posicionamiento
     };
   };
 
