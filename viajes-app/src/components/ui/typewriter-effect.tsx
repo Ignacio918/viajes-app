@@ -130,7 +130,7 @@ export const TypewriterEffectSmooth = ({
     }
 
     const word = words[currentLine].text;
-    if (currentChar <= word.length) { // Cambiado a <= para incluir la última posición
+    if (currentChar <= word.length) {
       const timer = setTimeout(() => {
         setDisplayedText(prev => {
           const newText = [...prev];
@@ -138,7 +138,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 50); // Reducido para que vaya más rápido
+      }, 50);
 
       return () => clearTimeout(timer);
     } else {
@@ -147,7 +147,7 @@ export const TypewriterEffectSmooth = ({
           setCurrentLine(prev => prev + 1);
           setCurrentChar(0);
         }
-      }, 200); // Reducido el tiempo entre líneas
+      }, 200);
 
       return () => clearTimeout(timer);
     }
@@ -180,12 +180,9 @@ export const TypewriterEffectSmooth = ({
     
     if (!containerRect) return { top: 0, left: 0 };
 
-    const currentWord = words[currentLine].text;
-    const charPosition = Math.min(currentChar, currentWord.length);
-
     return {
       top: rect.top - containerRect.top,
-      left: rect.left - containerRect.left + (charPosition * 9.8) // Ajustado el multiplicador para mejor posicionamiento
+      left: rect.left - containerRect.left + (displayedText[currentLine].length * 11.5)
     };
   };
 
