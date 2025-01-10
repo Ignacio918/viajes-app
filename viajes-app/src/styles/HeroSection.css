@@ -43,7 +43,7 @@
 }
 
 .hero__title-accent {
-  @apply text-pink-600;
+  color: rgb(219, 39, 119);
 }
 
 .hero__title-cursor {
@@ -325,10 +325,6 @@
 
 .hero__title span {
   color: inherit;
-}
-
-.text-pink-600 {
-  @apply text-pink-600;
 }
 
 @keyframes blink {
