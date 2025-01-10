@@ -1,8 +1,12 @@
 "use client";
 
-import { cn } from "../../lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
+
+// Función de utilidad cn (para evitar importar de utils)
+function cn(...inputs: any[]) {
+  return inputs.filter(Boolean).join(' ');
+}
 
 export const TypewriterEffect = ({
   words,
@@ -54,7 +58,7 @@ export const TypewriterEffect = ({
                   initial={{}}
                   key={`char-${index}`}
                   className={cn(
-                    `dark:text-white text-black opacity-0 hidden`,
+                    `text-black opacity-0 hidden`,
                     word.className
                   )}
                 >
@@ -71,7 +75,7 @@ export const TypewriterEffect = ({
   return (
     <div
       className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center",
+        "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold",
         className
       )}
     >
@@ -124,7 +128,7 @@ export const TypewriterEffectSmooth = ({
               {word.text.map((char, index) => (
                 <span
                   key={`char-${index}`}
-                  className={cn(`dark:text-white text-black `, word.className)}
+                  className={cn(`text-black`, word.className)}
                 >
                   {char}
                 </span>
@@ -156,7 +160,9 @@ export const TypewriterEffectSmooth = ({
         <div
           className="text-xs sm:text-base md:text-xl lg:text:3xl xl:text-5xl font-bold"
           style={{
-            whiteSpace: "nowrap",
+            whiteSpace: "normal",
+            wordWrap: "break-word",
+            maxWidth: "100%"
           }}
         >
           {renderWords()}{" "}
@@ -175,7 +181,7 @@ export const TypewriterEffectSmooth = ({
           repeatType: "reverse",
         }}
         className={cn(
-          "block rounded-sm w-[4px]  h-4 sm:h-6 xl:h-12 bg-blue-500",
+          "block rounded-sm w-[4px] h-4 sm:h-6 xl:h-12 bg-blue-500",
           cursorClassName
         )}
       ></motion.span>

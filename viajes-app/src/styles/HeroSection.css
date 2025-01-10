@@ -23,10 +23,14 @@
 }
 
 .hero__title {
-  @apply font-bold font-urbanist;
+  @apply font-bold font-urbanist relative;
   font-size: 64px;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  color: #1a1a1a;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  max-width: 600px;
 }
 
 .hero__title > div {
@@ -145,7 +149,6 @@
   @apply w-full object-contain;
   height: 267.68px;
 }
-
 .hero__location-icon {
   @apply absolute;
   left: 635px;
@@ -290,6 +293,54 @@
   backface-visibility: hidden;
 }
 
+/* Typewriter effect styles */
+.hero__title .typewriter-container {
+  @apply relative w-full;
+}
+
+.hero__title .typewriter-text {
+  @apply font-bold font-urbanist;
+  font-size: inherit;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero__title .typewriter-cursor {
+  @apply absolute bg-pink-600;
+  width: 4px;
+  height: 100%;
+  right: -8px;
+  top: 0;
+  animation: blink 0.8s infinite;
+}
+
+.hero__title .overflow-hidden {
+  @apply w-full;
+}
+
+.hero__title .whitespace-normal {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+.hero__title span {
+  color: inherit;
+}
+
+.text-pink-600 {
+  @apply text-pink-600;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Media queries */
 @media (min-width: 1800px) {
   .hero__content {
     padding: 2rem 120px;

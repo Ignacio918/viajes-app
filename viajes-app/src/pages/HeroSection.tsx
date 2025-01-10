@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import { TypewriterEffectSmooth } from '../components/ui/typewriter-effect';
 import '../styles/HeroSection.css';
 // Imágenes de lugares
 import bigBen from '../assets/imagen_bigben.png';
@@ -22,13 +22,15 @@ const HeroSection: React.FC = () => {
   const words = [
     {
       text: "Descubre la manera",
+      className: "text-gray-900 font-bold"
     },
     {
       text: "más fácil de planificar",
-      className: "text-pink-600",
+      className: "text-pink-600 font-bold"
     },
     {
       text: "tu próxima aventura",
+      className: "text-gray-900 font-bold"
     },
   ];
 
@@ -44,7 +46,7 @@ const HeroSection: React.FC = () => {
         >
           <TypewriterEffectSmooth 
             words={words}
-            className="hero__title !text-left" 
+            className="hero__title !text-left max-w-[600px] whitespace-normal" 
             cursorClassName="bg-pink-600"
           />
 
