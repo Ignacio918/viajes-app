@@ -48,7 +48,7 @@
 }
 
 .subtitle {
-  @apply text-[18px] text-[#3E3E3E] font-inter leading-[28.8px];
+  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
 
 .Frame44 {
@@ -80,7 +80,7 @@
 }
 
 .card-content p {
-  @apply text-[18px] text-[#3E3E3E] font-inter leading-[28.8px];
+  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
 
 /* Frame 139 - Imágenes derecha */
