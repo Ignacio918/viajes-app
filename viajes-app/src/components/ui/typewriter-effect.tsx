@@ -147,10 +147,25 @@ export const TypewriterEffectSmooth = ({
     return (
       <div className="flex flex-col gap-2">
         {words.map((word, idx) => (
-          <div key={`word-${idx}`} className="inline-block">
+          <div key={`word-${idx}`} className="relative inline-block">
             <span className={cn(``, word.className)}>
               {displayedText[idx]}
             </span>
+            {idx === currentLine && (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+                className={cn(
+                  "absolute -right-[4px] top-0 block rounded-sm w-[4px] h-full",
+                  cursorClassName
+                )}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -164,21 +179,6 @@ export const TypewriterEffectSmooth = ({
           {renderWords()}
         </div>
       </div>
-      {currentLine < words.length && (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.8,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className={cn(
-            "block rounded-sm w-[4px]",
-            cursorClassName
-          )}
-        ></motion.span>
-      )}
     </div>
   );
 };
