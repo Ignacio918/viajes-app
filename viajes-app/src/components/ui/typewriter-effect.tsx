@@ -134,7 +134,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 100);
+      }, 70); // Velocidad aumentada: cambié de 100ms a 70ms
 
       return () => clearTimeout(timer);
     } else {
@@ -143,7 +143,7 @@ export const TypewriterEffectSmooth = ({
           setCurrentLine(prev => prev + 1);
           setCurrentChar(0);
         }
-      }, 500);
+      }, 400); // Pausa entre líneas reducida: cambié de 500ms a 400ms
 
       return () => clearTimeout(timer);
     }
@@ -187,7 +187,7 @@ export const TypewriterEffectSmooth = ({
             top: `${currentLine * 76}px`,
             left: `${displayedText[currentLine].length * 35}px`,
             height: '64px',
-            transform: 'translateY(-2px)',
+            transform: 'translateY(4px)', // Bajé el cursor: cambié de -2px a 4px
             display: 'block'
           }}
         />
