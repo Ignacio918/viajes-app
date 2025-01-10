@@ -46,8 +46,8 @@ const HeroSection: React.FC = () => {
         >
           <TypewriterEffectSmooth 
             words={words}
-            className="hero__title !text-left max-w-[600px] whitespace-normal" 
-            cursorClassName="bg-pink-600"
+            className="hero__title !text-left !text-[64px] leading-tight"
+            cursorClassName="hero__title-cursor !bg-pink-600"
           />
 
           <motion.p
