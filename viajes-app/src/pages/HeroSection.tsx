@@ -20,12 +20,6 @@ const ease = [0.16, 1, 0.3, 1];
 const HeroSection: React.FC = () => {
   return (
     <div className="hero">
-      <div className="text-sm text-gray-500 mb-4">
-        Current Date and Time (UTC): 2025-01-10 20:59:08
-        <br />
-        Current User's Login: Ignacio918
-      </div>
-      
       <div className="hero__content">
         {/* Left Section - Text Content */}
         <motion.div 
