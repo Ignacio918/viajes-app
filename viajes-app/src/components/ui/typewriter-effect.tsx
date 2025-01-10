@@ -116,10 +116,14 @@ export const TypewriterEffectSmooth = ({
   const [displayedText, setDisplayedText] = useState<string[]>(words.map(() => ""));
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (currentLine >= words.length) return;
+    if (currentLine >= words.length) {
+      setIsComplete(true);
+      return;
+    }
 
     const word = words[currentLine].text;
     if (currentChar < word.length) {
@@ -130,14 +134,16 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 100); // Velocidad de escritura por caracter
+      }, 100);
 
       return () => clearTimeout(timer);
     } else {
       const timer = setTimeout(() => {
-        setCurrentLine(prev => prev + 1);
-        setCurrentChar(0);
-      }, 500); // Pausa entre líneas
+        if (currentLine < words.length - 1) {
+          setCurrentLine(prev => prev + 1);
+          setCurrentChar(0);
+        }
+      }, 500);
 
       return () => clearTimeout(timer);
     }
@@ -164,24 +170,28 @@ export const TypewriterEffectSmooth = ({
           {renderWords()}
         </div>
       </div>
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className={cn(
-          "absolute block rounded-sm w-[4px] h-[64px]",
-          cursorClassName
-        )}
-        style={{
-          top: `${currentLine * 76}px`,  // Ajusta este valor según el espaciado de tus líneas
-          left: `${displayedText[currentLine].length * 35}px`,  // Ajusta este valor según el ancho de tus caracteres
-          display: currentLine < words.length ? 'block' : 'none'
-        }}
-      />
+      {!isComplete && (
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className={cn(
+            "absolute block rounded-sm w-[4px]",
+            cursorClassName
+          )}
+          style={{
+            top: `${currentLine * 76}px`,
+            left: `${displayedText[currentLine].length * 35}px`,
+            height: '64px',
+            transform: 'translateY(-2px)',
+            display: 'block'
+          }}
+        />
+      )}
     </div>
   );
 };
