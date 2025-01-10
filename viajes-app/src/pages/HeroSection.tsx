@@ -44,11 +44,13 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
         >
-          <TypewriterEffectSmooth 
-            words={words}
-            className="hero__title !text-left !text-[64px] leading-tight"
-            cursorClassName="hero__title-cursor !bg-pink-600"
-          />
+          <div className="hero__title-container">
+            <TypewriterEffectSmooth 
+              words={words}
+              className="!m-0 !text-left !text-[64px] leading-tight"
+              cursorClassName="!bg-pink-600 !h-[64px] !top-2"
+            />
+          </div>
 
           <motion.p
             className="hero__description"
