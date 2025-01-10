@@ -118,6 +118,12 @@ export const TypewriterEffectSmooth = ({
   const [currentChar, setCurrentChar] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Inicializar los refs para cada línea
+  useEffect(() => {
+    lineRefs.current = new Array(words.length).fill(null);
+  }, [words.length]);
 
   useEffect(() => {
     if (currentLine >= words.length) {
@@ -134,7 +140,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 70); // Velocidad aumentada: cambié de 100ms a 70ms
+      }, 70); // Velocidad de escritura por caracter
 
       return () => clearTimeout(timer);
     } else {
@@ -143,7 +149,7 @@ export const TypewriterEffectSmooth = ({
           setCurrentLine(prev => prev + 1);
           setCurrentChar(0);
         }
-      }, 400); // Pausa entre líneas reducida: cambié de 500ms a 400ms
+      }, 400); // Pausa entre líneas
 
       return () => clearTimeout(timer);
     }
@@ -153,7 +159,11 @@ export const TypewriterEffectSmooth = ({
     return (
       <div className="flex flex-col gap-2">
         {words.map((word, idx) => (
-          <div key={`word-${idx}`} className="relative inline-block">
+          <div 
+            key={`word-${idx}`} 
+            className="relative inline-block"
+            ref={el => lineRefs.current[idx] = el}
+          >
             <span className={cn(`inline-block`, word.className)}>
               {displayedText[idx]}
             </span>
@@ -162,6 +172,23 @@ export const TypewriterEffectSmooth = ({
       </div>
     );
   };
+
+  const getCursorPosition = () => {
+    const currentLineEl = lineRefs.current[currentLine];
+    if (!currentLineEl) return { top: 0, left: 0 };
+
+    const rect = currentLineEl.getBoundingClientRect();
+    const containerRect = containerRef.current?.getBoundingClientRect();
+    
+    if (!containerRect) return { top: 0, left: 0 };
+
+    return {
+      top: rect.top - containerRect.top,
+      left: rect.left - containerRect.left + (displayedText[currentLine].length * 18)
+    };
+  };
+
+  const cursorPosition = getCursorPosition();
 
   return (
     <div className={cn("flex items-start my-6 relative", className)} ref={containerRef}>
@@ -184,10 +211,10 @@ export const TypewriterEffectSmooth = ({
             cursorClassName
           )}
           style={{
-            top: `${currentLine * 76}px`,
-            left: `${displayedText[currentLine].length * 30}px`,
+            top: `${cursorPosition.top}px`,
+            left: `${cursorPosition.left}px`,
             height: '46px',
-            transform: 'translateY(20px)', 
+            transform: 'translateY(18px)',
             display: 'block'
           }}
         />
