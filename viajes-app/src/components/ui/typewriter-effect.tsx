@@ -184,9 +184,9 @@ export const TypewriterEffectSmooth = ({
             cursorClassName
           )}
           style={{
-            top: `${currentLine * 50}px`,
+            top: `${currentLine * 76}px`,
             left: `${displayedText[currentLine].length * 30}px`,
-            height: '42px',
+            height: '46px',
             transform: 'translateY(20px)', 
             display: 'block'
           }}
