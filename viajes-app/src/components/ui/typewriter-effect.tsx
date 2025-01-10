@@ -139,7 +139,7 @@ export const TypewriterEffectSmooth = ({
           return newText;
         });
         setCurrentChar(prev => prev + 1);
-      }, 100); // Velocidad de escritura ajustada
+      }, 150); // Aumentado a 150ms para sincronizar con la barra
 
       return () => clearTimeout(timer);
     } else {
@@ -148,7 +148,7 @@ export const TypewriterEffectSmooth = ({
           setCurrentLine(prev => prev + 1);
           setCurrentChar(0);
         }
-      }, 400); // Pausa entre líneas
+      }, 400);
 
       return () => clearTimeout(timer);
     }
@@ -201,7 +201,7 @@ export const TypewriterEffectSmooth = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            duration: 0.5,
+            duration: 0.3, // Reducido a 0.3s para un parpadeo más rápido
             repeat: Infinity,
             repeatType: "reverse",
           }}
