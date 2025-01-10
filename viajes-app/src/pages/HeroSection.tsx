@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TypewriterEffectSmooth } from '../components/ui/typewriter-effect';
 import '../styles/HeroSection.css';
 // Imágenes de lugares
 import bigBen from '../assets/imagen_bigben.png';
@@ -19,23 +18,14 @@ import locationIcon from '../assets/icon_location.svg';
 const ease = [0.16, 1, 0.3, 1];
 
 const HeroSection: React.FC = () => {
-  const words = [
-    {
-      text: "Descubre la manera",
-      className: "text-gray-900 font-bold"
-    },
-    {
-      text: "más fácil de planificar",
-      className: "text-pink-600 font-bold"
-    },
-    {
-      text: "tu próxima aventura",
-      className: "text-gray-900 font-bold"
-    },
-  ];
-
   return (
     <div className="hero">
+      <div className="text-sm text-gray-500 mb-4">
+        Current Date and Time (UTC): 2025-01-10 20:59:08
+        <br />
+        Current User's Login: Ignacio918
+      </div>
+      
       <div className="hero__content">
         {/* Left Section - Text Content */}
         <motion.div 
@@ -44,13 +34,11 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
         >
-          <div className="hero__title-container">
-            <TypewriterEffectSmooth 
-              words={words}
-              className="!m-0 !text-left !text-[64px] leading-tight"
-              cursorClassName="!bg-pink-600 !h-[64px] !top-2"
-            />
-          </div>
+          <h1 className="hero__title !text-left !text-[64px] leading-tight">
+            <span className="text-gray-900 font-bold">Descubre la manera </span>
+            <span className="text-pink-600 font-bold">más fácil de planificar </span>
+            <span className="text-gray-900 font-bold">tu próxima aventura</span>
+          </h1>
 
           <motion.p
             className="hero__description"
