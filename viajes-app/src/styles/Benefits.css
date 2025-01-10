@@ -8,13 +8,8 @@
   @apply w-full h-[810px] relative bg-[#FDFDFD];
 }
 
-.Radial {
-  @apply w-[1440px] h-[810px] left-0 top-0 absolute;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 104, 147, 0.10) 0%, #FDFDFD 100%);
-}
-
 .main-content-container {
-  @apply flex justify-between px-16 pt-16;
+  @apply max-w-[1440px] mx-auto px-16 pt-16 relative flex justify-center gap-16;
 }
 
 /* Frame 52 - Contenido izquierdo */
@@ -52,11 +47,13 @@
 }
 
 .Frame44 {
-  @apply h-[475px] flex flex-col gap-6;
+  @apply h-[475px] flex flex-col gap-6 relative;
+  z-index: 1;
 }
 
 .benefit-card {
   @apply flex items-center gap-6 p-6 bg-white rounded-[32px] border border-[#ECECEC];
+  z-index: 2;
 }
 
 .icon-container {
@@ -107,6 +104,7 @@
 /* Ilustraciones decorativas */
 .IlustracionObjects {
   @apply w-[332px] h-[351.95px] left-[7px] top-[578px] absolute;
+  z-index: -1;
 }
 
 .objects-image {
@@ -114,7 +112,9 @@
 }
 
 .IlustracionAvionBeneficios {
-  @apply w-[168.56px] h-[188.06px] left-[1231px] top-[28px] absolute;
+  @apply w-[168.56px] h-[188.06px] absolute;
+  right: 32px;
+  top: 28px;
 }
 
 .avion-image {
@@ -122,5 +122,9 @@
 }
 
 .bottom-text {
-  @apply absolute left-[367px] top-[845px] text-[#353535] text-[20px] font-urbanist font-medium;
+  @apply text-[#353535] text-[20px] font-urbanist font-medium text-center absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 35px;
+  width: max-content;
 }

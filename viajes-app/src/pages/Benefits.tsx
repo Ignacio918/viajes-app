@@ -12,9 +12,16 @@ const Benefits = () => {
   return (
     <section className="benefits-section">
       <div className="PatternLight">
-        <div className="Radial" />
+        {/* Ilustraciones decorativas - Con z-index bajo */}
+        <div className="IlustracionObjects">
+          <img 
+            src={ilustracionObjects} 
+            alt="Pattern decorativo" 
+            className="objects-image"
+          />
+        </div>
         
-        {/* Contenedor principal flex */}
+        {/* Contenedor principal centrado */}
         <div className="main-content-container">
           {/* Frame 52 - Contenido izquierdo */}
           <div className="Frame52">
@@ -82,15 +89,6 @@ const Benefits = () => {
           </div>
         </div>
 
-        {/* Ilustraciones decorativas */}
-        <div className="IlustracionObjects">
-          <img 
-            src={ilustracionObjects} 
-            alt="Pattern decorativo" 
-            className="objects-image"
-          />
-        </div>
-
         <div className="IlustracionAvionBeneficios">
           <img 
             src={ilustracionAvion} 
@@ -99,7 +97,6 @@ const Benefits = () => {
           />
         </div>
 
-        {/* Texto final */}
         <p className="bottom-text">
           ...y muchas más funciones creadas para que disfrutes al máximo cada aventura.
         </p>
