@@ -162,7 +162,7 @@
   width: 353.15px;
   height: 502px;
   border-radius: 168px;
-  border: 29px solid #FDFDFD;
+  border: 29px solid #f00000;
   @apply object-cover;
   box-sizing: border-box;
   position: relative;
