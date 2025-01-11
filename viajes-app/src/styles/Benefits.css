@@ -13,7 +13,7 @@
 .main-content-container {
   @apply relative flex;
   width: 100%;
-  max-width: 600px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 64px 24px;
   gap: 64px;
@@ -144,7 +144,7 @@
   position: absolute;
   width: 332px;
   height: 352px;
-  left: 7px;
+  left: 600px; /* Margen izquierdo en pantallas grandes */
   bottom: -100px;
   z-index: 0;
 }
@@ -157,7 +157,7 @@
   position: absolute;
   width: 169px;
   height: 188px;
-  right: 40px;
+  right: 600px; /* Margen derecho en pantallas grandes */
   top: 28px;
   z-index: 2;
 }
@@ -177,6 +177,16 @@
 }
 
 /* Media queries para responsividad */
+@media (max-width: 1440px) {
+  .IlustracionObjects {
+    left: 300px; /* Ajuste del margen para pantallas más pequeñas */
+  }
+
+  .IlustracionAvionBeneficios {
+    right: 300px; /* Ajuste del margen para pantallas más pequeñas */
+  }
+}
+
 @media (max-width: 1024px) {
   .main-content-container {
     flex-direction: column;
