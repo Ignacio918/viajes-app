@@ -1,4 +1,4 @@
-// Benefits.tsx (sin cambios en el componente)
+// Benefits.tsx (sin cambios)
 import iconCalendar from '../assets/icons/icon-calendar.svg';
 import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconMap from '../assets/icons/icon-map.svg';
