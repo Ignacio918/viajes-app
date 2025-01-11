@@ -7,21 +7,23 @@
 .PatternLight {
   @apply w-full relative;
   min-height: 1000px;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 104, 147, 0.10) 0%, #FDFDFD 100%);
+  background: #FDFDFD;
 }
 
 .main-content-container {
-  @apply relative flex;
-  max-width: 1440px;
+  @apply relative flex justify-center;
+  width: 100%;
+  max-width: 1200px; /* Tamaño máximo para contenido centrado */
   margin: 0 auto;
-  padding: 64px 112px;
-  gap: 128px;
+  padding: 64px 24px; /* Padding responsivo */
+  gap: 64px; /* Gap más pequeño para mejor responsividad */
 }
 
 /* Frame 52 - Contenido izquierdo */
 .Frame52 {
   @apply flex flex-col;
-  width: 636px;
+  width: 100%;
+  max-width: 636px;
   gap: 48px;
 }
 
@@ -62,12 +64,12 @@
 }
 
 .benefit-card {
-  @apply flex items-center p-6 bg-white rounded-[32px] border border-[#ECECEC];
+  @apply flex items-start p-6 bg-white rounded-[32px] border border-[#ECECEC];
   gap: 24px;
 }
 
 .icon-container {
-  @apply flex items-center justify-center;
+  @apply flex-shrink-0; /* Evita que el icono se encoja */
   width: 80px;
   height: 80px;
 }
@@ -86,7 +88,8 @@
 
 .card-content {
   @apply flex flex-col gap-2;
-  width: 508px;
+  width: 100%;
+  max-width: 508px;
 }
 
 .card-content h3 {
@@ -102,6 +105,7 @@
   position: relative;
   width: 574px;
   height: 810px;
+  @apply hidden lg:block; /* Oculto en móvil, visible en desktop */
 }
 
 .Frame138 {
@@ -141,6 +145,7 @@
   left: 7px;
   bottom: 80px;
   z-index: 0;
+  @apply hidden md:block; /* Oculto en móvil pequeño */
 }
 
 .objects-image {
@@ -153,6 +158,7 @@
   height: 188px;
   right: 40px;
   top: 28px;
+  @apply hidden md:block; /* Oculto en móvil pequeño */
 }
 
 .avion-image {
@@ -165,6 +171,70 @@
   transform: translateX(-50%);
   bottom: 35px;
   width: max-content;
+  padding: 0 24px;
+  text-align: center;
   @apply text-[20px] font-urbanist font-medium text-[#353535];
   z-index: 10;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 1024px) {
+  .main-content-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+  }
+
+  .Frame52 {
+    width: 100%;
+  }
+
+  .benefit-card {
+    width: 100%;
+  }
+
+  .bottom-text {
+    position: relative;
+    margin-top: 48px;
+    bottom: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    @apply text-[32px] leading-[38.4px];
+  }
+
+  .subtitle {
+    @apply text-[16px] leading-[25.6px];
+  }
+
+  .benefit-card {
+    padding: 16px;
+  }
+
+  .card-content h3 {
+    @apply text-[20px] leading-[24px];
+  }
+
+  .card-content p {
+    @apply text-[16px] leading-[25.6px];
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
 }
