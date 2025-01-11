@@ -149,7 +149,7 @@
 }
 
 .imagen-playa-container {
-  width: 353.15px;
+  width: 360x;
   height: 502px;
   display: inline-flex;
   flex-direction: column;
@@ -160,10 +160,10 @@
 }
 
 .imagen-playa {
-  width: 353.15px;
+  width: 360px;
   height: 502px;
   border-radius: 100%;
-  border: 29px solid #FDFDFD;
+  border: 100% solid #FDFDFD;
   @apply object-cover;
   box-sizing: border-box;
   position: relative;
