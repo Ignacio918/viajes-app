@@ -10,6 +10,8 @@
   background: #FDFDFD;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content-container {
@@ -18,6 +20,7 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 64px 112px;
+  flex: 1;
 }
 
 /* Frame 52 - Contenido izquierdo */
@@ -60,6 +63,7 @@
 .Frame44 {
   @apply flex flex-col;
   gap: 24px;
+  margin-bottom: 0;
 }
 
 .benefit-card {
@@ -197,9 +201,9 @@
 }
 
 .bottom-text {
-  position: relative;
-  text-align: center;
-  margin-top: 32px;
+  margin: 32px auto 0;
+  padding: 0;
+  width: max-content;
   @apply text-[20px] font-urbanist font-medium text-[#353535];
 }
 
