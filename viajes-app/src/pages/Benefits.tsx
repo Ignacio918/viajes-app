@@ -98,10 +98,11 @@ const Benefits = () => {
           />
         </div>
 
-        {/* Texto final */}
-        <p className="bottom-text">
-          ...y muchas más funciones creadas para que disfrutes al máximo cada aventura.
-        </p>
+        <div className="text-container">
+          <p className="bottom-text">
+            ...y muchas más funciones creadas para que disfrutes al máximo cada aventura.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -10,8 +10,6 @@
   background: #FDFDFD;
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .main-content-container {
@@ -19,8 +17,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 64px 112px;
-  flex: 1;
+  padding: 64px 112px 0 112px;
 }
 
 /* Frame 52 - Contenido izquierdo */
@@ -63,7 +60,6 @@
 .Frame44 {
   @apply flex flex-col;
   gap: 24px;
-  margin-bottom: 0;
 }
 
 .benefit-card {
@@ -200,11 +196,15 @@
   @apply w-full h-full;
 }
 
+.text-container {
+  width: 100%;
+  padding-top: 32px;
+  text-align: center;
+}
+
 .bottom-text {
-  margin: 32px auto 0;
-  padding: 0;
-  width: max-content;
   @apply text-[20px] font-urbanist font-medium text-[#353535];
+  margin: 0;
 }
 
 /* Media queries */
