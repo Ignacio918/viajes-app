@@ -17,64 +17,58 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 64px 24px 0; /* Base padding */
+  padding: 64px 112px 0 112px;
 }
 
-/* Base styles - Mobile first */
+/* Frame 52 - Contenido izquierdo */
 .Frame52 {
   @apply flex flex-col;
-  width: 100%;
-  gap: 32px;
+  width: 636px;
+  gap: 48px;
 }
 
 .Frame22 {
-  @apply flex flex-col gap-12;
+  @apply flex flex-col gap-16;
 }
 
 .Frame47 {
-  @apply flex flex-col gap-6;
+  @apply flex flex-col gap-8;
 }
 
 .Frame39 {
-  @apply flex flex-col gap-3;
+  @apply flex flex-col gap-4;
 }
 
-/* Badge styles */
+/* Badge styles actualizado */
 .BadgeBenefits {
   @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
-  padding: 4px 12px;
+  padding: 4px 16px;
   width: auto;
-  min-width: 69px;
-  height: auto;
+  min-width: 85px;
 }
 
 .BadgeBenefits .Text {
   @apply text-[#E61C5D] font-urbanist font-medium;
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-/* Typography base styles */
 .main-title {
-  @apply text-[32px] text-[#161616] font-urbanist font-bold;
-  line-height: 1.2;
+  @apply text-[44px] text-[#161616] font-urbanist font-bold leading-[52.8px];
 }
 
 .subtitle {
-  @apply text-[16px] text-[#3E3E3E] font-urbanist;
-  line-height: 1.6;
+  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
 
 .Frame44 {
   @apply flex flex-col;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* Card styles */
 .benefit-card {
-  @apply flex items-start bg-white rounded-[32px] border border-[#ECECEC];
-  padding: 16px;
-  gap: 16px;
+  @apply flex items-start p-6 bg-white rounded-[32px] border border-[#ECECEC];
+  gap: 24px;
   position: relative;
   z-index: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -82,43 +76,132 @@
 
 .icon-container {
   @apply flex-shrink-0;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .icon-circle {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   @apply flex items-center justify-center rounded-full;
   background: linear-gradient(168deg, #FF487C 0%, #E61C5D 100%);
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 }
 
 .card-content {
   @apply flex flex-col gap-2;
   width: 100%;
+  max-width: 508px;
 }
 
 .card-content h3 {
-  @apply text-[20px] text-[#161616] font-urbanist font-bold;
-  line-height: 1.2;
+  @apply text-[24px] text-[#161616] font-urbanist font-bold leading-[28.8px];
 }
 
 .card-content p {
-  @apply text-[16px] text-[#3E3E3E] font-urbanist;
-  line-height: 1.6;
+  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
 
-/* Images styles */
+/* Frame 139 - Imágenes derecha */
 .Frame139 {
-  display: none; /* Hidden on mobile */
+  position: relative;
+  width: 574px;
+  height: 810px;
+  margin-left: 64px;
+  isolation: isolate;
+  margin-top: -120px;
 }
 
-/* Text container */
+.Frame138 {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.imagen-cataratas {
+  width: 478.23px;
+  height: 594px;
+  border-radius: 222.5px;
+  @apply object-cover;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.Frame137 {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  position: absolute;
+  left: 211.26px;
+  top: 257px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+  background: transparent;
+}
+
+.imagen-playa-container {
+  width: 353.15px;
+  height: 502px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.imagen-playa {
+  width: 353.15px;
+  height: 502px;
+  border-radius: 168px;
+  border: 100% solid #FDFDFD;
+  @apply object-cover;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.IlustracionObjects {
+  position: absolute;
+  width: 332px;
+  height: 351.95px;
+  left: calc(50% - 720px);
+  top: 578px;
+  z-index: 0;
+}
+
+.objects-image {
+  @apply w-full h-full;
+}
+
+.IlustracionAvionBeneficios {
+  position: absolute;
+  width: 168.56px;
+  height: 188.06px;
+  right: calc(50% - 720px);
+  top: 28px;
+  z-index: 2;
+}
+
+.avion-image {
+  @apply w-full h-full;
+}
+
 .text-container {
   width: 100%;
   padding-top: 32px;
@@ -126,223 +209,33 @@
 }
 
 .bottom-text {
-  @apply text-[18px] font-urbanist font-medium text-[#353535];
+  @apply text-[20px] font-urbanist font-medium text-[#353535];
   margin: 0;
 }
 
-/* Responsive Breakpoints */
-
-/* Tablet (768px) */
-@media screen and (min-width: 768px) {
-  .main-content-container {
-    padding: 64px 48px 0;
-  }
-
-  .Frame52 {
-    gap: 40px;
-  }
-
-  .BadgeBenefits {
-    padding: 5px 14px;
-    min-width: 80px;
-  }
-  
-  .BadgeBenefits .Text {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .main-title {
-    @apply text-[44px];
-  }
-
-  .subtitle {
-    @apply text-[18px];
-  }
-
-  .benefit-card {
-    padding: 24px;
-    gap: 20px;
-  }
-
-  .icon-container,
-  .icon-circle {
-    width: 70px;
-    height: 70px;
-  }
-
-  .icon {
-    width: 35px;
-    height: 35px;
-  }
-
-  .card-content h3 {
-    @apply text-[24px];
-  }
-
-  .card-content p {
-    @apply text-[18px];
-  }
-
-  .bottom-text {
-    @apply text-[20px];
-  }
-}
-
-/* Desktop (1024px) */
-@media screen and (min-width: 1024px) {
-  .main-content-container {
-    padding: 64px 112px 0;
-  }
-
-  .Frame52 {
-    width: 636px;
-    gap: 48px;
-  }
-
-  .BadgeBenefits {
-    padding: 6px 16px;
-    min-width: 90px;
-  }
-  
-  .BadgeBenefits .Text {
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .main-title {
-    @apply text-[52px];
-  }
-
-  .subtitle {
-    @apply text-[20px];
-  }
-
-  .Frame139 {
-    display: block;
-    position: relative;
-    width: 574px;
-    height: 810px;
-    margin-left: 64px;
-    margin-top: -120px;
-  }
-
-  .icon-container,
-  .icon-circle {
-    width: 80px;
-    height: 80px;
-  }
-
-  .icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .card-content h3 {
-    @apply text-[28px];
-  }
-
-  .card-content p {
-    @apply text-[20px];
-  }
-}
-
-/* Large Desktop (1440px) */
-@media screen and (min-width: 1440px) {
-  .BadgeBenefits {
-    padding: 8px 20px;
-    min-width: 100px;
-  }
-  
-  .BadgeBenefits .Text {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  .main-title {
-    @apply text-[64px];
-  }
-
-  .subtitle {
-    @apply text-[24px];
-  }
-
-  .card-content h3 {
-    @apply text-[32px];
-  }
-
-  .card-content p {
-    @apply text-[22px];
-  }
-
-  .bottom-text {
-    @apply text-[24px];
-  }
-}
-
-/* Extra Large Desktop (1920px) */
-@media screen and (min-width: 1920px) {
-  .Frame52 {
-    width: 800px;
-  }
-
-  .BadgeBenefits {
-    padding: 10px 24px;
-    min-width: 120px;
-  }
-  
-  .BadgeBenefits .Text {
-    font-size: 20px;
-    line-height: 26px;
-  }
-
-  .main-title {
-    @apply text-[72px];
-  }
-
-  .subtitle {
-    @apply text-[28px];
-  }
-
-  .benefit-card {
-    padding: 32px;
-  }
-
-  .icon-container,
-  .icon-circle {
-    width: 100px;
-    height: 100px;
-  }
-
-  .icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .card-content h3 {
-    @apply text-[36px];
-  }
-
-  .card-content p {
-    @apply text-[24px];
-  }
-
-  .bottom-text {
-    @apply text-[28px];
-  }
-}
-
-/* Animations */
+/* Animaciones */
 @keyframes floating {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes floating-reverse {
-  0% { transform: translateY(0px) rotate(-15deg); }
-  50% { transform: translateY(-10px) rotate(-15deg); }
-  100% { transform: translateY(0px) rotate(-15deg); }
+  0% {
+    transform: translateY(0px) rotate(-15deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-15deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(-15deg);
+  }
 }
 
 .floating-animation {
@@ -353,19 +246,93 @@
   animation: floating-reverse 8s ease-in-out infinite;
 }
 
-/* Hover effects */
-.benefit-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+/* Media queries */
+@media (max-width: 1440px) {
+  .IlustracionObjects {
+    left: 5%;
+  }
+
+  .IlustracionAvionBeneficios {
+    right: 5%;
+  }
+
+  .BadgeBenefits {
+    padding: 5px 18px;
+    min-width: 95px;
+  }
+  
+  .BadgeBenefits .Text {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 
-.imagen-cataratas:hover,
-.imagen-playa:hover {
-  transform: scale(1.02);
+@media (max-width: 1024px) {
+  .main-content-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+  }
+
+  .Frame52 {
+    width: 100%;
+  }
+
+  .Frame139 {
+    display: none;
+  }
+
+  .IlustracionAvionBeneficios,
+  .IlustracionObjects {
+    display: none;
+  }
 }
 
-/* Optimization */
-* {
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
+@media (max-width: 768px) {
+  .main-content-container {
+    padding: 32px 24px;
+  }
+
+  .main-title {
+    @apply text-[32px] leading-[38.4px];
+  }
+
+  .subtitle {
+    @apply text-[16px] leading-[25.6px];
+  }
+
+  .benefit-card {
+    padding: 16px;
+  }
+
+  .card-content h3 {
+    @apply text-[20px] leading-[24px];
+  }
+
+  .card-content p {
+    @apply text-[16px] leading-[25.6px];
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-container,
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .BadgeBenefits {
+    padding: 4px 14px;
+    min-width: 75px;
+  }
+  
+  .BadgeBenefits .Text {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
