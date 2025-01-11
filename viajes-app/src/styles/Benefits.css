@@ -269,15 +269,16 @@
 }
 
 @media (min-width: 1440px) {
+  .BadgeBenefits {
+    width: auto;
+    max-width: 160px;
+    height: auto;
+    padding: 6px 20px;
+  }
+  
   .BadgeBenefits .Text {
     font-size: 24px;
     line-height: 30px;
-  }
-  
-  .BadgeBenefits {
-    width: auto;
-    height: auto;
-    padding: 4px 16px;
   }
 }
 
