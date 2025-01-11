@@ -1,4 +1,4 @@
-// Benefits.tsx (sin cambios)
+// Benefits.tsx
 import iconCalendar from '../assets/icons/icon-calendar.svg';
 import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconMap from '../assets/icons/icon-map.svg';
@@ -79,9 +79,7 @@ const Benefits = () => {
           {/* Frame 139 - Imágenes derecha */}
           <div className="Frame139">
             <div className="Frame138">
-              <div className="imagen-cataratas-container">
-                <img src={imagenCataratas} alt="Cataratas" className="imagen-cataratas" />
-              </div>
+              <img src={imagenCataratas} alt="Cataratas" className="imagen-cataratas" />
             </div>
             <div className="Frame137">
               <div className="imagen-playa-container">
