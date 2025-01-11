@@ -60,7 +60,7 @@
 .Frame44 {
   @apply flex flex-col;
   gap: 24px;
-  margin-bottom: 120px;
+  margin-bottom: 32px;
 }
 
 .benefit-card {
@@ -109,6 +109,7 @@
   height: 810px;
   margin-left: 64px;
   isolation: isolate;
+  margin-top: -120px;
 }
 
 .Frame138 {
@@ -144,11 +145,11 @@
   align-items: center;
   gap: 10px;
   z-index: 2;
-  
+  background: transparent;
 }
 
 .imagen-playa-container {
-  width: 360px;
+  width: 353.15px;
   height: 502px;
   display: inline-flex;
   flex-direction: column;
@@ -159,10 +160,10 @@
 }
 
 .imagen-playa {
-  width: 360px;
+  width: 353.15px;
   height: 502px;
-  border-radius: 168px;
-  border: 100% solid #FDFDFD;
+  border-radius: 100%;
+  border: 29px solid #FDFDFD;
   @apply object-cover;
   box-sizing: border-box;
   position: relative;
@@ -200,7 +201,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 35px;
+  bottom: 32px;
   width: max-content;
   @apply text-[20px] font-urbanist font-medium text-[#353535];
   z-index: 1;
