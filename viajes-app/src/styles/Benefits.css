@@ -108,6 +108,7 @@
   width: 574px;
   height: 810px;
   margin-left: 64px;
+  isolation: isolate;
 }
 
 .Frame138 {
@@ -128,6 +129,7 @@
   height: 594px;
   border-radius: 222.5px;
   @apply object-cover;
+  z-index: 1;
 }
 
 .Frame137 {
@@ -141,6 +143,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  z-index: 2;
   background: transparent;
 }
 
@@ -151,15 +154,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .imagen-playa {
   width: 353.15px;
   height: 502px;
   border-radius: 168px;
-  border: 29px solid white;
+  border: 29px solid #FDFDFD;
   @apply object-cover;
   box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 }
 
 /* Ilustraciones decorativas */
