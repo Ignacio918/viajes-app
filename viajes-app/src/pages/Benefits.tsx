@@ -1,4 +1,4 @@
-// pages/Benefits.tsx
+// Benefits.tsx (sin cambios)
 import iconCalendar from '../assets/icons/icon-calendar.svg';
 import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconMap from '../assets/icons/icon-map.svg';
@@ -37,7 +37,7 @@ const Benefits = () => {
               </div>
             </div>
             <div className="Frame44">
-              {/* Card Calendario */}
+              {/* Cards */}
               <div className="benefit-card">
                 <div className="icon-container">
                   <div className="icon-circle">
@@ -50,7 +50,6 @@ const Benefits = () => {
                 </div>
               </div>
 
-              {/* Card Mapa */}
               <div className="benefit-card">
                 <div className="icon-container">
                   <div className="icon-circle">
@@ -63,7 +62,6 @@ const Benefits = () => {
                 </div>
               </div>
 
-              {/* Card Dólar */}
               <div className="benefit-card">
                 <div className="icon-container">
                   <div className="icon-circle">
