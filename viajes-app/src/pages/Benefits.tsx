@@ -1,4 +1,5 @@
 // Benefits.tsx
+import { motion } from "framer-motion";
 import iconCalendar from '../assets/icons/icon-calendar.svg';
 import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconMap from '../assets/icons/icon-map.svg';
@@ -9,11 +10,25 @@ import imagenCataratas from '../assets/photos/imagen_cataratas.png';
 import '../styles/Benefits.css';
 
 const Benefits = () => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.8 }
+    }
+  };
+
   return (
     <section className="benefits-section">
       <div className="PatternLight">
-        {/* Ilustración Objects */}
-        <div className="IlustracionObjects">
+        {/* Ilustración Objects con animación flotante */}
+        <div className="IlustracionObjects floating-animation">
           <img 
             src={ilustracionObjects} 
             alt="Pattern decorativo" 
@@ -21,9 +36,7 @@ const Benefits = () => {
           />
         </div>
         
-        {/* Contenedor principal */}
         <div className="main-content-container">
-          {/* Frame 52 - Contenido izquierdo */}
           <div className="Frame52">
             <div className="Frame22">
               <div className="Frame47">
@@ -37,60 +50,81 @@ const Benefits = () => {
               </div>
             </div>
             <div className="Frame44">
-              {/* Cards */}
-              <div className="benefit-card">
-                <div className="icon-container">
-                  <div className="icon-circle">
-                    <img src={iconCalendar} alt="Calendario" className="icon" />
+              {[
+                {
+                  icon: iconCalendar,
+                  title: "Planificación Inteligente de Itinerarios",
+                  description: "Diseña cada día de tu viaje con actividades, atracciones y tiempos libres adaptados a tus necesidades."
+                },
+                {
+                  icon: iconMap,
+                  title: "Mapas Interactivos Personalizados",
+                  description: "Explora destinos, restaurantes y lugares únicos con mapas intuitivos diseñados para ti."
+                },
+                {
+                  icon: iconDollar,
+                  title: "Gestión de Presupuesto Simplificada",
+                  description: "Lleva el control de tus gastos en tiempo real para viajar sin preocupaciones."
+                }
+              ].map((card, index) => (
+                <motion.div
+                  key={index}
+                  className="benefit-card"
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.5,
+                    delay: index * 0.2
+                  }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <div className="icon-container">
+                    <div className="icon-circle">
+                      <img src={card.icon} alt={card.title} className="icon" />
+                    </div>
                   </div>
-                </div>
-                <div className="card-content">
-                  <h3>Planificación Inteligente de Itinerarios</h3>
-                  <p>Diseña cada día de tu viaje con actividades, atracciones y tiempos libres adaptados a tus necesidades.</p>
-                </div>
-              </div>
-
-              <div className="benefit-card">
-                <div className="icon-container">
-                  <div className="icon-circle">
-                    <img src={iconMap} alt="Mapa" className="icon" />
+                  <div className="card-content">
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
                   </div>
-                </div>
-                <div className="card-content">
-                  <h3>Mapas Interactivos Personalizados</h3>
-                  <p>Explora destinos, restaurantes y lugares únicos con mapas intuitivos diseñados para ti.</p>
-                </div>
-              </div>
-
-              <div className="benefit-card">
-                <div className="icon-container">
-                  <div className="icon-circle">
-                    <img src={iconDollar} alt="Dólar" className="icon" />
-                  </div>
-                </div>
-                <div className="card-content">
-                  <h3>Gestión de Presupuesto Simplificada</h3>
-                  <p>Lleva el control de tus gastos en tiempo real para viajar sin preocupaciones.</p>
-                </div>
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
 
           {/* Frame 139 - Imágenes derecha */}
           <div className="Frame139">
-            <div className="Frame138">
+            <motion.div 
+              className="Frame138"
+              variants={imageVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               <img src={imagenCataratas} alt="Cataratas" className="imagen-cataratas" />
-            </div>
-            <div className="Frame137">
+            </motion.div>
+            <motion.div 
+              className="Frame137"
+              variants={imageVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
               <div className="imagen-playa-container">
                 <img src={imagenPlaya} alt="Playa" className="imagen-playa" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Ilustración Avión */}
-        <div className="IlustracionAvionBeneficios">
+        {/* Ilustración Avión con animación flotante */}
+        <div className="IlustracionAvionBeneficios floating-animation-reverse">
           <img 
             src={ilustracionAvion} 
             alt="Avión decorativo" 
@@ -99,9 +133,15 @@ const Benefits = () => {
         </div>
 
         <div className="text-container">
-          <p className="bottom-text">
+          <motion.p 
+            className="bottom-text"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 }}
+          >
             ...y muchas más funciones creadas para que disfrutes al máximo cada aventura.
-          </p>
+          </motion.p>
         </div>
       </div>
     </section>
