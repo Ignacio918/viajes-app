@@ -39,18 +39,16 @@
   @apply flex flex-col gap-4;
 }
 
-/* Badge styles actualizado */
 .BadgeBenefits {
   @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
-  padding: 4px 16px;
-  width: auto;
-  min-width: 85px;
+  width: 69px;
+  height: 22px;
 }
 
 .BadgeBenefits .Text {
   @apply text-[#E61C5D] font-urbanist font-medium;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 18px;
 }
 
 .main-title {
@@ -138,6 +136,10 @@
   transition: transform 0.3s ease;
 }
 
+.imagen-cataratas:hover {
+  transform: scale(1.02);
+}
+
 .Frame137 {
   width: 100%;
   height: 100%;
@@ -174,6 +176,10 @@
   position: relative;
   z-index: 2;
   transition: transform 0.3s ease;
+}
+
+.imagen-playa:hover {
+  transform: scale(1.02);
 }
 
 .IlustracionObjects {
@@ -246,6 +252,11 @@
   animation: floating-reverse 8s ease-in-out infinite;
 }
 
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
 /* Media queries */
 @media (max-width: 1440px) {
   .IlustracionObjects {
@@ -255,15 +266,18 @@
   .IlustracionAvionBeneficios {
     right: 5%;
   }
+}
 
-  .BadgeBenefits {
-    padding: 5px 18px;
-    min-width: 95px;
+@media (min-width: 1440px) {
+  .BadgeBenefits .Text {
+    font-size: 24px;
+    line-height: 30px;
   }
   
-  .BadgeBenefits .Text {
-    font-size: 16px;
-    line-height: 22px;
+  .BadgeBenefits {
+    width: auto;
+    height: auto;
+    padding: 4px 16px;
   }
 }
 
@@ -325,14 +339,10 @@
     width: 30px;
     height: 30px;
   }
+}
 
-  .BadgeBenefits {
-    padding: 4px 14px;
-    min-width: 75px;
-  }
-  
-  .BadgeBenefits .Text {
-    font-size: 12px;
-    line-height: 18px;
-  }
+/* Optimizaciones */
+* {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
