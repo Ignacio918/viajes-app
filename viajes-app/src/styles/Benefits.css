@@ -162,7 +162,7 @@
 .imagen-playa {
   width: 350px;
   height: 502px;
-  border-radius: 100%;
+  border-radius: 168px;
   border: 100% solid #FDFDFD;
   @apply object-cover;
   box-sizing: border-box;
