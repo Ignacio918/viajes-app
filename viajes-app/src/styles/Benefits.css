@@ -112,32 +112,59 @@
 }
 
 .Frame138 {
-  position: absolute;
+  padding: 10px;
   left: 0;
   top: 0;
-  padding: 10px;
+  position: absolute;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.imagen-cataratas-container {
+  width: 478.23px;
+  height: 594px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .imagen-cataratas {
-  width: 478px;
+  width: 478.23px;
   height: 594px;
   border-radius: 222.5px;
   @apply object-cover;
 }
 
 .Frame137 {
-  position: absolute;
-  left: 211px;
-  top: 257px;
   padding: 10px;
+  left: 211.26px;
+  top: 257px;
+  position: absolute;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.imagen-playa-container {
+  width: 353.15px;
+  height: 502px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .imagen-playa {
-  width: 353px;
+  width: 353.15px;
   height: 502px;
   border-radius: 168px;
-  @apply object-cover;
   border: 29px solid white;
+  @apply object-cover;
+  background: linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%);
 }
 
 /* Ilustraciones decorativas */
