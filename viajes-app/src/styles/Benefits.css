@@ -1,22 +1,28 @@
-/* Benefits.css */
+/* styles/Benefits.css */
 .benefits-section {
   @apply w-full relative;
   margin-top: -1px;
 }
 
 .PatternLight {
-  @apply w-full h-[810px] relative;
-  /* Eliminado el background que ocultaba ilustracion_objects */
+  @apply w-full relative;
+  min-height: 1000px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 104, 147, 0.10) 0%, #FDFDFD 100%);
 }
 
 .main-content-container {
-  @apply max-w-[1440px] mx-auto px-16 pt-16 relative flex justify-between;
-  gap: 64px; /* Ajustado el gap entre frames */
+  @apply relative flex;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px 112px;
+  gap: 128px;
 }
 
 /* Frame 52 - Contenido izquierdo */
 .Frame52 {
-  @apply flex flex-col gap-[22px] w-[636px];
+  @apply flex flex-col;
+  width: 636px;
+  gap: 48px;
 }
 
 .Frame22 {
@@ -32,18 +38,17 @@
 }
 
 .BadgeBenefits {
-  @apply inline-flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
-  width: 69px; /* Tamaño fijo del badge */
+  width: 69px;
   height: 22px;
+  @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
 }
 
 .BadgeBenefits .Text {
   @apply text-[#E61C5D] text-xs font-urbanist font-medium leading-[18px];
-  white-space: nowrap;
 }
 
 .main-title {
-  @apply text-[44px] text-[#161616] font-urbanist font-bold;
+  @apply text-[44px] text-[#161616] font-urbanist font-bold leading-[52.8px];
 }
 
 .subtitle {
@@ -51,74 +56,37 @@
 }
 
 .Frame44 {
-  @apply flex flex-col gap-6 relative;
-  padding-bottom: 80px; /* Espacio para que el texto final sea visible */
-}
-
-/* Frame 139 - Imágenes derecha */
-.Frame139 {
-  @apply relative w-[574.41px];
-}
-
-.Frame138 {
-  @apply absolute left-0 top-0 p-[10px];
-}
-
-.imagen-cataratas {
-  @apply w-[478.23px] h-[594px] rounded-[222.5px] object-cover;
-}
-
-.Frame137 {
-  @apply absolute left-[211.26px] top-[257px] p-[10px];
-}
-
-.imagen-playa {
-  @apply w-[353.15px] h-[502px] rounded-[168px] border-[29px] border-white object-cover;
-}
-
-/* Ilustraciones decorativas */
-.IlustracionObjects {
-  @apply absolute;
-  width: 332px;
-  height: 351.95px;
-  left: 7px;
-  bottom: 80px; /* Ajustado para que se vea debajo del contenido */
-  z-index: -1; /* Asegura que esté detrás del contenido */
-}
-
-.objects-image {
-  @apply w-full h-full;
-}
-
-.IlustracionAvionBeneficios {
-  @apply absolute;
-  width: 168.56px;
-  height: 188.06px;
-  right: 40px; /* Ajustado para estar más cerca de las fotos */
-  top: 28px;
-}
-
-.avion-image {
-  @apply w-full h-full;
-}
-
-.bottom-text {
-  @apply absolute text-[#353535] text-[20px] font-urbanist font-medium text-center;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 35px;
-  width: max-content;
-  z-index: 2; /* Asegura que el texto esté por encima de todo */
+  @apply flex flex-col;
+  gap: 24px;
+  margin-bottom: 120px;
 }
 
 .benefit-card {
-  @apply flex items-center gap-6 p-6 bg-white rounded-[32px] border border-[#ECECEC];
-  position: relative;
-  z-index: 1; /* Asegura que las cards estén por encima de ilustracion_objects */
+  @apply flex items-center p-6 bg-white rounded-[32px] border border-[#ECECEC];
+  gap: 24px;
+}
+
+.icon-container {
+  @apply flex items-center justify-center;
+  width: 80px;
+  height: 80px;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  @apply flex items-center justify-center rounded-full;
+  background: linear-gradient(168deg, #FF487C 0%, #E61C5D 100%);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
 }
 
 .card-content {
-  @apply flex flex-col gap-2 w-[508px];
+  @apply flex flex-col gap-2;
+  width: 508px;
 }
 
 .card-content h3 {
@@ -127,4 +95,76 @@
 
 .card-content p {
   @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
+}
+
+/* Frame 139 - Imágenes derecha */
+.Frame139 {
+  position: relative;
+  width: 574px;
+  height: 810px;
+}
+
+.Frame138 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+}
+
+.imagen-cataratas {
+  width: 478px;
+  height: 594px;
+  border-radius: 222.5px;
+  @apply object-cover;
+}
+
+.Frame137 {
+  position: absolute;
+  left: 211px;
+  top: 257px;
+  padding: 10px;
+}
+
+.imagen-playa {
+  width: 353px;
+  height: 502px;
+  border-radius: 168px;
+  @apply object-cover;
+  border: 29px solid white;
+}
+
+/* Ilustraciones decorativas */
+.IlustracionObjects {
+  position: absolute;
+  width: 332px;
+  height: 352px;
+  left: 7px;
+  bottom: 80px;
+  z-index: 0;
+}
+
+.objects-image {
+  @apply w-full h-full;
+}
+
+.IlustracionAvionBeneficios {
+  position: absolute;
+  width: 169px;
+  height: 188px;
+  right: 40px;
+  top: 28px;
+}
+
+.avion-image {
+  @apply w-full h-full;
+}
+
+.bottom-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 35px;
+  width: max-content;
+  @apply text-[20px] font-urbanist font-medium text-[#353535];
+  z-index: 10;
 }
