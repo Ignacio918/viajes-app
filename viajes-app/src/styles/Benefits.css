@@ -1,4 +1,4 @@
-/* styles/Benefits.css */
+/* Benefits.css */
 .benefits-section {
   @apply w-full relative;
   margin-top: -1px;
@@ -11,19 +11,17 @@
 }
 
 .main-content-container {
-  @apply relative flex;
+  @apply relative flex justify-between;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 64px 24px;
-  gap: 64px;
+  padding: 64px 112px;
 }
 
 /* Frame 52 - Contenido izquierdo */
 .Frame52 {
   @apply flex flex-col;
-  width: 100%;
-  max-width: 636px;
+  width: 636px;
   gap: 48px;
 }
 
@@ -108,6 +106,7 @@
   width: 574px;
   height: 810px;
   z-index: 1;
+  margin-left: 64px;
 }
 
 .Frame138 {
@@ -143,9 +142,9 @@
 .IlustracionObjects {
   position: absolute;
   width: 332px;
-  height: 352px;
-  left: 600px; /* Margen izquierdo en pantallas grandes */
-  bottom: -100px;
+  height: 351.95px;
+  left: 112px; /* Mismo padding que el contenedor principal */
+  top: 578px;
   z-index: 0;
 }
 
@@ -155,9 +154,9 @@
 
 .IlustracionAvionBeneficios {
   position: absolute;
-  width: 169px;
-  height: 188px;
-  right: 600px; /* Margen derecho en pantallas grandes */
+  width: 168.56px;
+  height: 188.06px;
+  right: 112px; /* Mismo padding que el contenedor principal */
   top: 28px;
   z-index: 2;
 }
@@ -178,12 +177,16 @@
 
 /* Media queries para responsividad */
 @media (max-width: 1440px) {
+  .main-content-container {
+    padding: 64px 5%; /* Padding responsivo */
+  }
+
   .IlustracionObjects {
-    left: 300px; /* Ajuste del margen para pantallas más pequeñas */
+    left: 5%; /* Se ajusta al mismo padding que el contenedor */
   }
 
   .IlustracionAvionBeneficios {
-    right: 300px; /* Ajuste del margen para pantallas más pequeñas */
+    right: 5%; /* Se ajusta al mismo padding que el contenedor */
   }
 }
 
