@@ -1,15 +1,17 @@
-/* styles/Benefits.css */
+/* Benefits.css */
 .benefits-section {
-  @apply w-full;
+  @apply w-full relative;
   margin-top: -1px;
 }
 
 .PatternLight {
-  @apply w-full h-[810px] relative bg-[#FDFDFD];
+  @apply w-full h-[810px] relative;
+  /* Eliminado el background que ocultaba ilustracion_objects */
 }
 
 .main-content-container {
-  @apply max-w-[1440px] mx-auto px-16 pt-16 relative flex justify-center gap-16;
+  @apply max-w-[1440px] mx-auto px-16 pt-16 relative flex justify-between;
+  gap: 64px; /* Ajustado el gap entre frames */
 }
 
 /* Frame 52 - Contenido izquierdo */
@@ -18,24 +20,26 @@
 }
 
 .Frame22 {
-  @apply h-[234px] flex flex-col gap-16;
+  @apply flex flex-col gap-16;
 }
 
 .Frame47 {
-  @apply h-[234px] flex flex-col gap-8;
+  @apply flex flex-col gap-8;
 }
 
 .Frame39 {
-  @apply h-[144px] flex flex-col gap-4;
+  @apply flex flex-col gap-4;
 }
 
 .BadgeBenefits {
-  @apply px-2 py-[2px] bg-[#FFE8EF] rounded-[36px] inline-flex items-center;
-  box-shadow: 0px 1px 2px rgba(105, 81, 255, 0.05);
+  @apply inline-flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
+  width: 69px; /* Tamaño fijo del badge */
+  height: 22px;
 }
 
 .BadgeBenefits .Text {
   @apply text-[#E61C5D] text-xs font-urbanist font-medium leading-[18px];
+  white-space: nowrap;
 }
 
 .main-title {
@@ -47,37 +51,8 @@
 }
 
 .Frame44 {
-  @apply h-[475px] flex flex-col gap-6 relative;
-  z-index: 1;
-}
-
-.benefit-card {
-  @apply flex items-center gap-6 p-6 bg-white rounded-[32px] border border-[#ECECEC];
-  z-index: 2;
-}
-
-.icon-container {
-  @apply w-20 h-20 relative;
-}
-
-.icon-circle {
-  @apply w-20 h-20 bg-[#E61C5D] rounded-full flex items-center justify-center;
-}
-
-.icon {
-  @apply w-10 h-10;
-}
-
-.card-content {
-  @apply flex flex-col gap-2 w-[508px];
-}
-
-.card-content h3 {
-  @apply text-[24px] text-[#161616] font-urbanist font-bold leading-[28.8px];
-}
-
-.card-content p {
-  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
+  @apply flex flex-col gap-6 relative;
+  padding-bottom: 80px; /* Espacio para que el texto final sea visible */
 }
 
 /* Frame 139 - Imágenes derecha */
@@ -103,8 +78,12 @@
 
 /* Ilustraciones decorativas */
 .IlustracionObjects {
-  @apply w-[332px] h-[351.95px] left-[7px] top-[578px] absolute;
-  z-index: -1;
+  @apply absolute;
+  width: 332px;
+  height: 351.95px;
+  left: 7px;
+  bottom: 80px; /* Ajustado para que se vea debajo del contenido */
+  z-index: -1; /* Asegura que esté detrás del contenido */
 }
 
 .objects-image {
@@ -112,8 +91,10 @@
 }
 
 .IlustracionAvionBeneficios {
-  @apply w-[168.56px] h-[188.06px] absolute;
-  right: 32px;
+  @apply absolute;
+  width: 168.56px;
+  height: 188.06px;
+  right: 40px; /* Ajustado para estar más cerca de las fotos */
   top: 28px;
 }
 
@@ -122,9 +103,28 @@
 }
 
 .bottom-text {
-  @apply text-[#353535] text-[20px] font-urbanist font-medium text-center absolute;
+  @apply absolute text-[#353535] text-[20px] font-urbanist font-medium text-center;
   left: 50%;
   transform: translateX(-50%);
   bottom: 35px;
   width: max-content;
+  z-index: 2; /* Asegura que el texto esté por encima de todo */
+}
+
+.benefit-card {
+  @apply flex items-center gap-6 p-6 bg-white rounded-[32px] border border-[#ECECEC];
+  position: relative;
+  z-index: 1; /* Asegura que las cards estén por encima de ilustracion_objects */
+}
+
+.card-content {
+  @apply flex flex-col gap-2 w-[508px];
+}
+
+.card-content h3 {
+  @apply text-[24px] text-[#161616] font-urbanist font-bold leading-[28.8px];
+}
+
+.card-content p {
+  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
