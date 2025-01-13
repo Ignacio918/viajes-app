@@ -1,0 +1,174 @@
+/* src/styles/HowItWorks.css */
+.how-it-works {
+  width: 100%;
+  height: 100%;
+  background: #FDFDFD;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.frame6 {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.badge {
+  padding: 2px 8px;
+  background: #FFE8EF;
+  box-shadow: 0px 1px 2px rgba(105, 81, 255, 0.05);
+  border-radius: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.text {
+  color: #E61C5D;
+  font-size: 12px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  line-height: 18px;
+  word-wrap: break-word;
+}
+
+.title {
+  width: 554px;
+  color: #161616;
+  font-size: 48px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 700;
+  line-height: 60px;
+  word-wrap: break-word;
+}
+
+.steps {
+  display: flex;
+  gap: 32px;
+}
+
+.step {
+  width: 261px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.icon-wrapper {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  background: #E61C5D;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-user, .icon-sparkle, .icon-routing, .icon-suitcase-rolling {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.vector {
+  position: absolute;
+  background: white;
+}
+
+.vector1 {
+  width: 11.5px;
+  height: 11.5px;
+  left: 6.25px;
+  top: 1.25px;
+}
+
+.vector2 {
+  width: 18.68px;
+  height: 8.5px;
+  left: 2.66px;
+  top: 14.25px;
+}
+
+.vector3 {
+  width: 21.37px;
+  height: 21.37px;
+  left: 1.69px;
+  top: 0.94px;
+}
+
+.vector4 {
+  width: 8.5px;
+  height: 9.5px;
+  left: 1.22px;
+  top: 1.25px;
+}
+
+.vector5 {
+  width: 2.01px;
+  height: 2px;
+  left: 4.51px;
+  top: 4.2px;
+}
+
+.vector6 {
+  width: 8.54px;
+  height: 9.51px;
+  left: 14.22px;
+  top: 13.24px;
+}
+
+.vector7 {
+  width: 2.01px;
+  height: 2px;
+  left: 17.53px;
+  top: 16.2px;
+}
+
+.vector8 {
+  width: 10.86px;
+  height: 15.5px;
+  left: 6.57px;
+  top: 4.25px;
+}
+
+.vector9 {
+  width: 14.62px;
+  height: 22.88px;
+  left: 4.69px;
+  top: 0.19px;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.step-title {
+  align-self: stretch;
+  color: #161616;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 700;
+  line-height: 30px;
+  word-wrap: break-word;
+}
+
+.step-description {
+  align-self: stretch;
+  color: #3E3E3E;
+  font-size: 16px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+  word-wrap: break-word;
+}
