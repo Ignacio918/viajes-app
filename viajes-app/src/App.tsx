@@ -17,6 +17,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Navbar from "./components/Navbar";
 import HeroSection from "./pages/HeroSection";
 import Benefits from "./pages/Benefits";
+import HowItWorks from "./pages/HowItWorks"; // Importar el nuevo componente
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -76,6 +77,7 @@ const App: React.FC = () => {
                   {showAuthPage === null ? (
                     <div className="flex-grow">
                       <HeroSection />
+                      <HowItWorks /> {/* Agregar la nueva sección */}
                       <Benefits />
                     </div>
                   ) : showAuthPage === "login" ? (
