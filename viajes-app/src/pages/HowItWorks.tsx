@@ -11,11 +11,11 @@ const HowItWorks = () => {
     <section className="how-it-works-section">
       <div className="how-it-works-container">
         {/* Contenedor izquierdo - Imagen */}
-        <div className="left-container">
+        <div className="photo-frame">
           <img
             src={fotoRandom3}
             alt="Random travel"
-            className="main-image"
+            className="foto-random3"
           />
         </div>
 

@@ -7,12 +7,12 @@
   @apply container mx-auto flex flex-row justify-between max-w-[1440px];
 }
 
-.left-container {
-  @apply w-1/2 relative flex justify-center items-center;
+.photo-frame {
+  @apply w-full h-full pt-[21px] pb-[21px] pl-[124px] pr-[779px] flex justify-start items-center;
 }
 
-.main-image {
-  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px] object-cover;
+.foto-random3 {
+  @apply w-[537px] h-[768px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px] object-cover;
 }
 
 .right-container {
