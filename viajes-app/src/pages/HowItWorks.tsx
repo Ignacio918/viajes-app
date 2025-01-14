@@ -11,62 +11,62 @@ const HowItWorks = () => {
     <section className="how-it-works-section">
       <div className="how-it-works-container">
         {/* Imagen */}
-        <img
-          src={fotoRandom3}
-          alt="Random travel"
-          className="main-image"
-        />
+        <div className="left-container">
+          <img
+            src={fotoRandom3}
+            alt="Random travel"
+            className="main-image"
+          />
+        </div>
 
-        {/* Contenedor derecho - Contenido */}
+        {/* Contenido */}
         <div className="right-container">
-          <div className="content-wrapper">
-            <div className="badge">
-              <span>Como funciona</span>
+          <div className="badge">
+            <span>Como funciona</span>
+          </div>
+          
+          <h2 className="main-title">
+            Gestiona tu viaje desde un solo lugar
+          </h2>
+          
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="icon-container">
+                <img src={iconUser} alt="User icon" className="icon" />
+              </div>
+              <div className="feature-content">
+                <h3>Registrate y Crea tu Cuenta</h3>
+                <p>Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</p>
+              </div>
             </div>
-            
-            <h2 className="main-title">
-              Gestiona tu viaje desde un solo lugar
-            </h2>
-            
-            <div className="features-grid">
-              <div className="feature-card">
-                <div className="icon-container">
-                  <img src={iconUser} alt="User icon" className="icon" />
-                </div>
-                <div className="feature-content">
-                  <h3>Registrate y Crea tu Cuenta</h3>
-                  <p>Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</p>
-                </div>
-              </div>
 
-              <div className="feature-card">
-                <div className="icon-container">
-                  <img src={iconSparkle} alt="Sparkle icon" className="icon" />
-                </div>
-                <div className="feature-content">
-                  <h3>Accede a Herramientas Inteligentes</h3>
-                  <p>Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</p>
-                </div>
+            <div className="feature-card">
+              <div className="icon-container">
+                <img src={iconSparkle} alt="Sparkle icon" className="icon" />
               </div>
-
-              <div className="feature-card">
-                <div className="icon-container">
-                  <img src={iconRouting} alt="Routing icon" className="icon" />
-                </div>
-                <div className="feature-content">
-                  <h3>Personaliza tu Experiencia</h3>
-                  <p>Añade tus destinos, actividades y preferencias para un viaje a tu medida</p>
-                </div>
+              <div className="feature-content">
+                <h3>Accede a Herramientas Inteligentes</h3>
+                <p>Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</p>
               </div>
+            </div>
 
-              <div className="feature-card">
-                <div className="icon-container">
-                  <img src={iconSuitcaseRolling} alt="Suitcase icon" className="icon" />
-                </div>
-                <div className="feature-content">
-                  <h3>Disfruta de un Viaje sin Complicaciones</h3>
-                  <p>Consulta tus planes, documentos y recomendaciones siempre que los necesites.</p>
-                </div>
+            <div className="feature-card">
+              <div className="icon-container">
+                <img src={iconRouting} alt="Routing icon" className="icon" />
+              </div>
+              <div className="feature-content">
+                <h3>Personaliza tu Experiencia</h3>
+                <p>Añade tus destinos, actividades y preferencias para un viaje a tu medida</p>
+              </div>
+            </div>
+
+            <div className="feature-card">
+              <div className="icon-container">
+                <img src={iconSuitcaseRolling} alt="Suitcase icon" className="icon" />
+              </div>
+              <div className="feature-content">
+                <h3>Disfruta de un Viaje sin Complicaciones</h3>
+                <p>Consulta tus planes, documentos y recomendaciones siempre que los necesites.</p>
               </div>
             </div>
           </div>
