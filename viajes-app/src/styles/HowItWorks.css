@@ -1,22 +1,18 @@
 /* src/styles/HowItWorks.css */
 .how-it-works-section {
-  @apply w-full min-h-screen bg-[#FDFDFD];
+  @apply w-full min-h-screen py-16 bg-[#FDFDFD];
 }
 
 .how-it-works-container {
   @apply container mx-auto flex flex-row justify-between max-w-[1440px];
 }
 
-.pattern-light {
-  @apply w-full h-full relative bg-[#FDFDFD];
+.left-container {
+  @apply w-1/2 relative flex justify-center items-center;
 }
 
-.radial {
-  @apply w-[1440px] h-[810px] left-0 top-0 absolute;
-}
-
-.foto-random3 {
-  @apply w-[537px] h-[768px] left-[124px] top-[21px] absolute shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px] object-cover;
+.main-image {
+  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px] object-cover;
 }
 
 .right-container {
