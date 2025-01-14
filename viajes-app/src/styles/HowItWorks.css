@@ -1,6 +1,6 @@
 .how-it-works {
   @apply w-full bg-[#FDFDFD];
-  padding: 32px 0 160px 0; /* 128px arriba (py-32) y 160px abajo para dar más espacio hacia beneficios */
+  padding: 20px 0 160px 0; /* 128px arriba (py-32) y 160px abajo para dar más espacio hacia beneficios */
 }
 
 .how-it-works__container {
