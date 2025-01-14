@@ -8,53 +8,63 @@ import '../styles/HowItWorks.css';
 
 const HowItWorks = () => {
   return (
-    <section className="section">
+    <div className="how-it-works">
         <img
           src={fotoRandom3}
           alt="Random travel"
-          className="foto"
+          className="how-it-works__image"
         />
 
-        <div className="container">
-          <div className="badge">Como funciona</div>
+        <div className="how-it-works__content">
+          <div className="how-it-works__badge">Como funciona</div>
           
-          <h2 className="title">Gestiona tu viaje desde un solo lugar</h2>
+          <div className="how-it-works__title">
+            Gestiona tu viaje desde un solo lugar
+          </div>
           
-          <div className="features">
-            <div className="feature">
-              <div className="icon">
+          <div className="how-it-works__features">
+            <div className="how-it-works__feature">
+              <div className="how-it-works__feature-icon">
                 <img src={iconUser} alt="User icon" />
               </div>
-              <h3>Registrate y Crea tu Cuenta</h3>
-              <p>Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</p>
+              <div className="how-it-works__feature-content">
+                <div className="how-it-works__feature-title">Registrate y Crea tu Cuenta</div>
+                <div className="how-it-works__feature-text">Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</div>
+              </div>
             </div>
 
-            <div className="feature">
-              <div className="icon">
+            <div className="how-it-works__feature">
+              <div className="how-it-works__feature-icon">
                 <img src={iconSparkle} alt="Sparkle icon" />
               </div>
-              <h3>Accede a Herramientas Inteligentes</h3>
-              <p>Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</p>
+              <div className="how-it-works__feature-content">
+                <div className="how-it-works__feature-title">Accede a Herramientas Inteligentes</div>
+                <div className="how-it-works__feature-text">Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</div>
+              </div>
             </div>
 
-            <div className="feature">
-              <div className="icon">
+            <div className="how-it-works__feature">
+              <div className="how-it-works__feature-icon">
                 <img src={iconRouting} alt="Routing icon" />
               </div>
-              <h3>Personaliza tu Experiencia</h3>
-              <p>Añade tus destinos, actividades y preferencias para un viaje a tu medida</p>
+              <div className="how-it-works__feature-content">
+                <div className="how-it-works__feature-title">Personaliza tu Experiencia</div>
+                <div className="how-it-works__feature-text">Añade tus destinos, actividades y preferencias para un viaje a tu medida</div>
+              </div>
             </div>
 
-            <div className="feature">
-              <div className="icon">
+            <div className="how-it-works__feature">
+              <div className="how-it-works__feature-icon">
                 <img src={iconSuitcaseRolling} alt="Suitcase icon" />
               </div>
-              <h3>Disfruta de un Viaje sin Complicaciones</h3>
-              <p>Consulta tus planes, documentos y recomendaciones siempre que los necesites.</p>
+              <div className="how-it-works__feature-content">
+                <div className="how-it-works__feature-title">Disfruta de un Viaje sin Complicaciones</div>
+                <div className="how-it-works__feature-text">Consulta tus planes, documentos y recomendaciones siempre que los necesites.</div>
+              </div>
             </div>
           </div>
         </div>
-    </section>
+    </div>
   );
 };
 

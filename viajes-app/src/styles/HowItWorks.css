@@ -1,40 +1,44 @@
 /* src/styles/HowItWorks.css */
-.section {
-  @apply min-h-screen relative bg-[#FDFDFD];
+.how-it-works {
+  @apply w-[1440px] h-[809px] relative bg-[#FDFDFD];
 }
 
-.foto {
-  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
+.how-it-works__image {
+  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px];
 }
 
-.container {
-  @apply absolute left-[736px] top-[88px] w-[554px] space-y-8;
+.how-it-works__content {
+  @apply w-[554px] absolute left-[736px] top-[88px] flex flex-col gap-8;
 }
 
-.badge {
-  @apply w-fit px-2 py-0.5 bg-[#FFE8EF] text-[#E61C5D] text-xs font-medium rounded-[36px];
+.how-it-works__badge {
+  @apply w-fit px-2 py-0.5 bg-[#FFE8EF] text-[#E61C5D] text-xs font-urbanist font-medium rounded-[36px];
 }
 
-.title {
-  @apply text-[48px] font-bold text-[#161616] leading-[60px];
+.how-it-works__title {
+  @apply w-[554px] text-[48px] text-[#161616] font-urbanist font-bold leading-[60px];
 }
 
-.features {
+.how-it-works__features {
   @apply grid grid-cols-2 gap-8;
 }
 
-.feature {
-  @apply w-[261px] space-y-4;
+.how-it-works__feature {
+  @apply w-[261px] flex flex-col gap-4;
 }
 
-.icon {
+.how-it-works__feature-icon {
   @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex items-center justify-center;
 }
 
-.feature h3 {
-  @apply text-xl font-bold text-[#161616];
+.how-it-works__feature-content {
+  @apply flex flex-col gap-2.5;
 }
 
-.feature p {
-  @apply text-base text-[#3E3E3E];
+.how-it-works__feature-title {
+  @apply text-xl text-[#161616] font-urbanist font-bold leading-[30px];
+}
+
+.how-it-works__feature-text {
+  @apply text-base text-[#3E3E3E] font-urbanist font-medium leading-6;
 }
