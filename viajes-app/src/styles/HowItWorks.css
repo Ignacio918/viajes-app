@@ -1,25 +1,26 @@
+/* src/styles/HowItWorks.css */
 .how-it-works-section {
-  @apply relative w-[1440px] min-h-screen mx-auto bg-[#FDFDFD];
+  @apply w-full h-full relative bg-[#FDFDFD];
 }
 
 .foto-random3 {
-  @apply absolute w-[537px] h-[768px] left-[124px] top-[21px] rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
+  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px];
 }
 
 .content-container {
-  @apply absolute w-[554px] left-[736px] top-[88px] flex flex-col gap-8;
+  @apply w-[554px] absolute left-[736px] top-[88px] inline-flex flex-col gap-8;
 }
 
 .badge {
-  @apply bg-[#FFE8EF] px-2 py-0.5 rounded-[36px] flex justify-center items-center shadow-[0px_1px_2px_rgba(105,81,255,0.05)] w-fit;
+  @apply px-2 py-0.5 bg-[#FFE8EF] shadow-[0px_1px_2px_rgba(105,81,255,0.05)] rounded-[36px] overflow-hidden flex justify-center items-center;
 }
 
-.badge {
+.badge-text {
   @apply text-[#E61C5D] text-xs font-urbanist font-medium leading-[18px];
 }
 
 .main-title {
-  @apply text-[#161616] text-[48px] font-urbanist font-bold leading-[60px];
+  @apply w-[554px] text-[#161616] text-[48px] font-urbanist font-bold leading-[60px];
 }
 
 .features-grid {
@@ -31,7 +32,11 @@
 }
 
 .icon-container {
-  @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex justify-center items-center;
+  @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full inline-flex justify-start items-center gap-2.5;
+}
+
+.icon-wrapper {
+  @apply w-6 h-6 flex justify-center items-center;
 }
 
 .icon {
@@ -42,10 +47,10 @@
   @apply flex flex-col gap-2.5;
 }
 
-.feature-content h3 {
+.feature-title {
   @apply text-[#161616] text-xl font-urbanist font-bold leading-[30px];
 }
 
-.feature-content p {
+.feature-description {
   @apply text-[#3E3E3E] text-base font-urbanist font-medium leading-6;
 }

@@ -16,50 +16,76 @@ const HowItWorks = () => {
         />
 
         <div className="content-container">
-          <div className="badge">Como funciona</div>
+          <div className="badge">
+            <div className="badge-text">Como funciona</div>
+          </div>
           
-          <h2 className="main-title">
+          <div className="main-title">
             Gestiona tu viaje desde un solo lugar
-          </h2>
+          </div>
           
           <div className="features-grid">
             <div className="feature-card">
               <div className="icon-container">
-                <img src={iconUser} alt="User icon" className="icon" />
+                <div className="icon-wrapper">
+                  <img src={iconUser} alt="User icon" className="icon" />
+                </div>
               </div>
               <div className="feature-content">
-                <h3>Registrate y Crea tu Cuenta</h3>
-                <p>Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</p>
+                <div className="feature-title">
+                  Registrate y Crea tu Cuenta
+                </div>
+                <div className="feature-description">
+                  Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.
+                </div>
               </div>
             </div>
 
             <div className="feature-card">
               <div className="icon-container">
-                <img src={iconSparkle} alt="Sparkle icon" className="icon" />
+                <div className="icon-wrapper">
+                  <img src={iconSparkle} alt="Sparkle icon" className="icon" />
+                </div>
               </div>
               <div className="feature-content">
-                <h3>Accede a Herramientas Inteligentes</h3>
-                <p>Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</p>
+                <div className="feature-title">
+                  Accede a Herramientas Inteligentes
+                </div>
+                <div className="feature-description">
+                  Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
+                </div>
               </div>
             </div>
 
             <div className="feature-card">
               <div className="icon-container">
-                <img src={iconRouting} alt="Routing icon" className="icon" />
+                <div className="icon-wrapper">
+                  <img src={iconRouting} alt="Routing icon" className="icon" />
+                </div>
               </div>
               <div className="feature-content">
-                <h3>Personaliza tu Experiencia</h3>
-                <p>Añade tus destinos, actividades y preferencias para un viaje a tu medida</p>
+                <div className="feature-title">
+                  Personaliza tu Experiencia
+                </div>
+                <div className="feature-description">
+                  Añade tus destinos, actividades y preferencias para un viaje a tu medida
+                </div>
               </div>
             </div>
 
             <div className="feature-card">
               <div className="icon-container">
-                <img src={iconSuitcaseRolling} alt="Suitcase icon" className="icon" />
+                <div className="icon-wrapper">
+                  <img src={iconSuitcaseRolling} alt="Suitcase icon" className="icon" />
+                </div>
               </div>
               <div className="feature-content">
-                <h3>Disfruta de un Viaje sin Complicaciones</h3>
-                <p>Consulta tus planes, documentos y recomendaciones siempre que los necesites.</p>
+                <div className="feature-title">
+                  Disfruta de un Viaje sin Complicaciones
+                </div>
+                <div className="feature-description">
+                  Consulta tus planes, documentos y recomendaciones siempre que los necesites.
+                </div>
               </div>
             </div>
           </div>
