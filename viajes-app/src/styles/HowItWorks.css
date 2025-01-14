@@ -4,7 +4,7 @@
 }
 
 .how-it-works__container {
-  @apply max-w-[1440px] mx-auto px-[160px] flex items-start gap-[75px];
+  @apply max-w-[1440px] mx-auto px-[160px] flex items-start gap-[100px];
 }
 
 .how-it-works__image {
