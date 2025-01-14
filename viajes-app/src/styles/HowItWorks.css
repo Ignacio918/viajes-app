@@ -1,9 +1,6 @@
+/* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full flex justify-center items-center;
-}
-
-.how-it-works__content {
-  @apply max-w-[1440px] w-full mx-auto flex justify-between items-start;
+  @apply w-full flex justify-between items-start bg-[#FDFDFD] px-[124px] py-[21px];
 }
 
 .how-it-works__image {
@@ -47,13 +44,13 @@
 }
 
 @media (max-width: 1439px) {
-  .how-it-works__content {
+  .how-it-works {
     @apply px-16;
   }
 }
 
 @media (max-width: 1279px) {
-  .how-it-works__content {
+  .how-it-works {
     @apply flex-col items-center;
   }
   
@@ -63,7 +60,7 @@
 }
 
 @media (max-width: 639px) {
-  .how-it-works__content {
+  .how-it-works {
     @apply px-4;
   }
   
