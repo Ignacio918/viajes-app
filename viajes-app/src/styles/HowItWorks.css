@@ -1,6 +1,6 @@
 /* src/styles/HowItWorks.css */
 
-/* Contenedor principal */
+/* Contenedor Principal */
 .how-it-works {
   @apply w-full min-h-screen bg-[#FDFDFD] flex justify-center items-center px-4;
 }
@@ -10,16 +10,8 @@
 }
 
 /* Imagen principal */
-.how-it-works__image-container {
-  @apply relative w-[537px] flex-shrink-0;
-}
-
-.how-it-works__image-wrapper {
-  @apply rounded-[20px] bg-[#FDFDFD] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
-}
-
 .how-it-works__image {
-  @apply w-full h-[768px] object-cover rounded-[20px];
+  @apply w-[537px] h-[768px] object-cover rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
 }
 
 /* Contenido de la sección */
@@ -66,8 +58,8 @@
     @apply flex-col items-center;
   }
 
-  .how-it-works__image-container {
-    @apply w-full max-w-[537px];
+  .how-it-works__image {
+    @apply w-full h-auto;
   }
 
   .how-it-works__content {

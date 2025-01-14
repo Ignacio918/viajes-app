@@ -10,16 +10,12 @@ const HowItWorks = () => {
   return (
     <div className="how-it-works">
       <div className="how-it-works__container">
-        {/* Imagen principal */}
-        <div className="how-it-works__image-container">
-          <div className="how-it-works__image-wrapper">
-            <img
-              src={fotoRandom3}
-              alt="Random travel"
-              className="how-it-works__image"
-            />
-          </div>
-        </div>
+        {/* Imagen con sombreado */}
+        <img
+          src={fotoRandom3}
+          alt="Random travel"
+          className="how-it-works__image"
+        />
 
         {/* Contenido principal */}
         <div className="how-it-works__content">
@@ -45,7 +41,7 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            {/* Característica 2 */}
+            {/* Repetir para otras características */}
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
                 <img src={iconSparkle} alt="Sparkle icon" />
@@ -61,7 +57,7 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            {/* Característica 3 */}
+            {/* Más características */}
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
                 <img src={iconRouting} alt="Routing icon" />
@@ -77,7 +73,6 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            {/* Característica 4 */}
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
                 <img src={iconSuitcaseRolling} alt="Suitcase icon" />
