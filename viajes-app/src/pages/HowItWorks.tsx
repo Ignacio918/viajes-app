@@ -13,18 +13,18 @@ const HowItWorks = () => {
         <img
           src={fotoRandom3}
           alt="Random travel"
-          className="how-it-works__image"
+          className="how-it-works__image animate-fade-in"
         />
 
         <div className="how-it-works__right">
-          <div className="how-it-works__badge">Como funciona</div>
+          <div className="how-it-works__badge animate-slide-down">Como funciona</div>
           
-          <h2 className="how-it-works__title">
+          <h2 className="how-it-works__title animate-slide-down">
             Gestiona tu viaje desde un solo lugar
           </h2>
           
           <div className="how-it-works__features">
-            <div className="how-it-works__feature">
+            <div className="how-it-works__feature animate-fade-in">
               <div className="how-it-works__feature-icon">
                 <img src={iconUser} alt="User icon" />
               </div>
@@ -38,21 +38,7 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            <div className="how-it-works__feature">
-              <div className="how-it-works__feature-icon">
-                <img src={iconSparkle} alt="Sparkle icon" />
-              </div>
-              <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">
-                  Accede a Herramientas Inteligentes
-                </div>
-                <div className="how-it-works__feature-text">
-                  Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
-                </div>
-              </div>
-            </div>
-
-            <div className="how-it-works__feature">
+            <div className="how-it-works__feature animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="how-it-works__feature-icon">
                 <img src={iconRouting} alt="Routing icon" />
               </div>
@@ -66,7 +52,21 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            <div className="how-it-works__feature">
+            <div className="how-it-works__feature animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="how-it-works__feature-icon">
+                <img src={iconSparkle} alt="Sparkle icon" />
+              </div>
+              <div className="how-it-works__feature-content">
+                <div className="how-it-works__feature-title">
+                  Accede a Herramientas Inteligentes
+                </div>
+                <div className="how-it-works__feature-text">
+                  Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
+                </div>
+              </div>
+            </div>
+
+            <div className="how-it-works__feature animate-fade-in" style={{ animationDelay: '0.6s' }}>
               <div className="how-it-works__feature-icon">
                 <img src={iconSuitcaseRolling} alt="Suitcase icon" />
               </div>
