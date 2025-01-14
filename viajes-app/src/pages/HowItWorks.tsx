@@ -9,8 +9,8 @@ import '../styles/HowItWorks.css';
 const HowItWorks = () => {
   return (
     <div className="how-it-works">
-      <div className="flex items-start justify-between gap-16">
-        <div className="flex-shrink-0">
+      <div className="how-it-works__container">
+        <div className="how-it-works__image-container">
           <img
             src={fotoRandom3}
             alt="Random travel"
@@ -28,7 +28,7 @@ const HowItWorks = () => {
           <div className="how-it-works__features">
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconUser} alt="User icon" className="w-5 h-5" />
+                <img src={iconUser} alt="User icon" className="w-6 h-6" />
               </div>
               <div className="how-it-works__feature-content">
                 <h3 className="how-it-works__feature-title">Registrate y Crea tu Cuenta</h3>
@@ -40,7 +40,7 @@ const HowItWorks = () => {
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconSparkle} alt="Sparkle icon" className="w-5 h-5" />
+                <img src={iconSparkle} alt="Sparkle icon" className="w-6 h-6" />
               </div>
               <div className="how-it-works__feature-content">
                 <h3 className="how-it-works__feature-title">Accede a Herramientas Inteligentes</h3>
@@ -52,7 +52,7 @@ const HowItWorks = () => {
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconRouting} alt="Routing icon" className="w-5 h-5" />
+                <img src={iconRouting} alt="Routing icon" className="w-6 h-6" />
               </div>
               <div className="how-it-works__feature-content">
                 <h3 className="how-it-works__feature-title">Personaliza tu Experiencia</h3>
@@ -64,7 +64,7 @@ const HowItWorks = () => {
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconSuitcaseRolling} alt="Suitcase icon" className="w-5 h-5" />
+                <img src={iconSuitcaseRolling} alt="Suitcase icon" className="w-6 h-6" />
               </div>
               <div className="how-it-works__feature-content">
                 <h3 className="how-it-works__feature-title">Disfruta de un Viaje sin Complicaciones</h3>
