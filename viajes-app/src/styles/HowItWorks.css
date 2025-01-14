@@ -1,13 +1,13 @@
 /* src/styles/HowItWorks.css */
-.how-it-works {
+.section {
   @apply min-h-screen relative bg-[#FDFDFD];
 }
 
-.foto-random3 {
+.foto {
   @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
 }
 
-.content-container {
+.container {
   @apply absolute left-[736px] top-[88px] w-[554px] space-y-8;
 }
 
@@ -27,7 +27,7 @@
   @apply w-[261px] space-y-4;
 }
 
-.feature-icon {
+.icon {
   @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex items-center justify-center;
 }
 

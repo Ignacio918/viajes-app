@@ -8,21 +8,21 @@ import '../styles/HowItWorks.css';
 
 const HowItWorks = () => {
   return (
-    <section className="how-it-works">
+    <section className="section">
         <img
           src={fotoRandom3}
           alt="Random travel"
-          className="foto-random3"
+          className="foto"
         />
 
-        <div className="content-container">
+        <div className="container">
           <div className="badge">Como funciona</div>
           
           <h2 className="title">Gestiona tu viaje desde un solo lugar</h2>
           
           <div className="features">
             <div className="feature">
-              <div className="feature-icon">
+              <div className="icon">
                 <img src={iconUser} alt="User icon" />
               </div>
               <h3>Registrate y Crea tu Cuenta</h3>
@@ -30,7 +30,7 @@ const HowItWorks = () => {
             </div>
 
             <div className="feature">
-              <div className="feature-icon">
+              <div className="icon">
                 <img src={iconSparkle} alt="Sparkle icon" />
               </div>
               <h3>Accede a Herramientas Inteligentes</h3>
@@ -38,7 +38,7 @@ const HowItWorks = () => {
             </div>
 
             <div className="feature">
-              <div className="feature-icon">
+              <div className="icon">
                 <img src={iconRouting} alt="Routing icon" />
               </div>
               <h3>Personaliza tu Experiencia</h3>
@@ -46,7 +46,7 @@ const HowItWorks = () => {
             </div>
 
             <div className="feature">
-              <div className="feature-icon">
+              <div className="icon">
                 <img src={iconSuitcaseRolling} alt="Suitcase icon" />
               </div>
               <h3>Disfruta de un Viaje sin Complicaciones</h3>
