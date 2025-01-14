@@ -1,5 +1,5 @@
 // src/pages/HowItWorks.jsx
-import fotoRandom3 from '../assets/photos/foto_random3.jpg';
+import fotoRandom3 from '../assets/photos/foto_random3.png';
 import iconUser from '../assets/icons/icon-user.svg';
 import iconSparkle from '../assets/icons/icon-Sparkle.svg';
 import iconRouting from '../assets/icons/icon-routing.svg';
