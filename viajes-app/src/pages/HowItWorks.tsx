@@ -10,20 +10,14 @@ const HowItWorks = () => {
   return (
     <section className="how-it-works-section">
       <div className="how-it-works-container">
-        {/* Imagen */}
-        <div className="left-container">
-          <img
-            src={fotoRandom3}
-            alt="Random travel"
-            className="main-image"
-          />
-        </div>
+        <img
+          src={fotoRandom3}
+          alt="Random travel"
+          className="main-image"
+        />
 
-        {/* Contenido */}
         <div className="right-container">
-          <div className="badge">
-            <span>Como funciona</span>
-          </div>
+          <div className="badge">Como funciona</div>
           
           <h2 className="main-title">
             Gestiona tu viaje desde un solo lugar

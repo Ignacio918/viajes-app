@@ -1,18 +1,14 @@
 /* src/styles/HowItWorks.css */
 .how-it-works-section {
-  @apply w-full min-h-screen py-16 bg-[#FDFDFD];
+  @apply w-full min-h-screen bg-[#FDFDFD];
 }
 
 .how-it-works-container {
-  @apply max-w-[1440px] mx-auto flex;
-}
-
-.left-container {
-  @apply flex justify-center items-center pl-[124px];
+  @apply max-w-[1440px] mx-auto flex items-center;
 }
 
 .main-image {
-  @apply w-[537px] h-[768px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px];
+  @apply w-[537px] h-[768px] ml-[124px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px];
 }
 
 .right-container {
@@ -20,11 +16,7 @@
 }
 
 .badge {
-  @apply px-2 py-0.5 bg-[#FFE8EF] shadow-sm rounded-full inline-flex;
-}
-
-.badge span {
-  @apply text-[#E61C5D] text-xs font-medium font-urbanist leading-[18px];
+  @apply text-[#E61C5D] text-xs font-medium font-urbanist leading-[18px] bg-[#FFE8EF] px-2 py-0.5 rounded-full w-fit;
 }
 
 .main-title {
