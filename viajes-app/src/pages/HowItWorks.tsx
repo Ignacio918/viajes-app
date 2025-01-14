@@ -8,7 +8,7 @@ import '../styles/HowItWorks.css';
 
 const HowItWorks = () => {
   return (
-    <div className="how-it-works-section">
+    <section className="how-it-works">
         <img
           src={fotoRandom3}
           alt="Random travel"
@@ -16,81 +16,45 @@ const HowItWorks = () => {
         />
 
         <div className="content-container">
-          <div className="badge">
-            <div className="badge-text">Como funciona</div>
-          </div>
+          <div className="badge">Como funciona</div>
           
-          <div className="main-title">
-            Gestiona tu viaje desde un solo lugar
-          </div>
+          <h2 className="title">Gestiona tu viaje desde un solo lugar</h2>
           
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="icon-container">
-                <div className="icon-wrapper">
-                  <img src={iconUser} alt="User icon" className="icon" />
-                </div>
+          <div className="features">
+            <div className="feature">
+              <div className="feature-icon">
+                <img src={iconUser} alt="User icon" />
               </div>
-              <div className="feature-content">
-                <div className="feature-title">
-                  Registrate y Crea tu Cuenta
-                </div>
-                <div className="feature-description">
-                  Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.
-                </div>
-              </div>
+              <h3>Registrate y Crea tu Cuenta</h3>
+              <p>Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</p>
             </div>
 
-            <div className="feature-card">
-              <div className="icon-container">
-                <div className="icon-wrapper">
-                  <img src={iconSparkle} alt="Sparkle icon" className="icon" />
-                </div>
+            <div className="feature">
+              <div className="feature-icon">
+                <img src={iconSparkle} alt="Sparkle icon" />
               </div>
-              <div className="feature-content">
-                <div className="feature-title">
-                  Accede a Herramientas Inteligentes
-                </div>
-                <div className="feature-description">
-                  Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
-                </div>
-              </div>
+              <h3>Accede a Herramientas Inteligentes</h3>
+              <p>Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</p>
             </div>
 
-            <div className="feature-card">
-              <div className="icon-container">
-                <div className="icon-wrapper">
-                  <img src={iconRouting} alt="Routing icon" className="icon" />
-                </div>
+            <div className="feature">
+              <div className="feature-icon">
+                <img src={iconRouting} alt="Routing icon" />
               </div>
-              <div className="feature-content">
-                <div className="feature-title">
-                  Personaliza tu Experiencia
-                </div>
-                <div className="feature-description">
-                  Añade tus destinos, actividades y preferencias para un viaje a tu medida
-                </div>
-              </div>
+              <h3>Personaliza tu Experiencia</h3>
+              <p>Añade tus destinos, actividades y preferencias para un viaje a tu medida</p>
             </div>
 
-            <div className="feature-card">
-              <div className="icon-container">
-                <div className="icon-wrapper">
-                  <img src={iconSuitcaseRolling} alt="Suitcase icon" className="icon" />
-                </div>
+            <div className="feature">
+              <div className="feature-icon">
+                <img src={iconSuitcaseRolling} alt="Suitcase icon" />
               </div>
-              <div className="feature-content">
-                <div className="feature-title">
-                  Disfruta de un Viaje sin Complicaciones
-                </div>
-                <div className="feature-description">
-                  Consulta tus planes, documentos y recomendaciones siempre que los necesites.
-                </div>
-              </div>
+              <h3>Disfruta de un Viaje sin Complicaciones</h3>
+              <p>Consulta tus planes, documentos y recomendaciones siempre que los necesites.</p>
             </div>
           </div>
         </div>
-    </div>
+    </section>
   );
 };
 
