@@ -1,10 +1,10 @@
 /* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full bg-[#FDFDFD] py-20;
+  @apply w-full bg-[#FDFDFD] py-32;
 }
 
 .how-it-works__container {
-  @apply max-w-[1440px] mx-auto px-[124px] flex items-start gap-[75px];
+  @apply max-w-[1440px] mx-auto px-[160px] flex items-start gap-[75px];
 }
 
 .how-it-works__image {
