@@ -1,3 +1,4 @@
+// src/pages/HowItWorks.tsx
 import fotoRandom3 from '../assets/photos/foto_random3.png';
 import iconUser from '../assets/icons/icon-user.svg';
 import iconSparkle from '../assets/icons/icon-Sparkle.svg';
@@ -7,7 +8,7 @@ import '../styles/HowItWorks.css';
 
 const HowItWorks = () => {
   return (
-    <section className="how-it-works-section">
+    <div className="how-it-works-section">
         <img
           src={fotoRandom3}
           alt="Random travel"
@@ -63,7 +64,7 @@ const HowItWorks = () => {
             </div>
           </div>
         </div>
-    </section>
+    </div>
   );
 };
 

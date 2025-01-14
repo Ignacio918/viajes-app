@@ -1,21 +1,25 @@
 .how-it-works-section {
-  @apply w-full min-h-screen relative bg-[#FDFDFD];
+  @apply relative w-[1440px] min-h-screen mx-auto bg-[#FDFDFD];
 }
 
 .foto-random3 {
-  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px];
+  @apply absolute w-[537px] h-[768px] left-[124px] top-[21px] rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
 }
 
 .content-container {
-  @apply w-[554px] absolute left-[736px] top-[88px] flex flex-col gap-8;
+  @apply absolute w-[554px] left-[736px] top-[88px] flex flex-col gap-8;
 }
 
 .badge {
-  @apply px-2 py-0.5 bg-[#FFE8EF] text-[#E61C5D] text-xs font-medium font-urbanist leading-[18px] rounded-full w-fit shadow-[0px_1px_2px_rgba(105,81,255,0.05)];
+  @apply bg-[#FFE8EF] px-2 py-0.5 rounded-[36px] flex justify-center items-center shadow-[0px_1px_2px_rgba(105,81,255,0.05)] w-fit;
+}
+
+.badge {
+  @apply text-[#E61C5D] text-xs font-urbanist font-medium leading-[18px];
 }
 
 .main-title {
-  @apply text-[#161616] text-5xl font-bold font-urbanist leading-[60px];
+  @apply text-[#161616] text-[48px] font-urbanist font-bold leading-[60px];
 }
 
 .features-grid {
@@ -23,7 +27,7 @@
 }
 
 .feature-card {
-  @apply flex flex-col gap-4 max-w-[261px];
+  @apply w-[261px] flex flex-col gap-4;
 }
 
 .icon-container {
@@ -39,9 +43,9 @@
 }
 
 .feature-content h3 {
-  @apply text-[#161616] text-xl font-bold font-urbanist leading-[30px];
+  @apply text-[#161616] text-xl font-urbanist font-bold leading-[30px];
 }
 
 .feature-content p {
-  @apply text-[#3E3E3E] text-base font-medium font-urbanist leading-6;
+  @apply text-[#3E3E3E] text-base font-urbanist font-medium leading-6;
 }
