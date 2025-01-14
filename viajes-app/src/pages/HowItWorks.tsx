@@ -12,11 +12,13 @@ const HowItWorks = () => {
       <div className="how-it-works__container">
         {/* Imagen principal */}
         <div className="how-it-works__image-container">
-          <img
-            src={fotoRandom3}
-            alt="Random travel"
-            className="how-it-works__image"
-          />
+          <div className="how-it-works__image-wrapper">
+            <img
+              src={fotoRandom3}
+              alt="Random travel"
+              className="how-it-works__image"
+            />
+          </div>
         </div>
 
         {/* Contenido principal */}
@@ -28,7 +30,6 @@ const HowItWorks = () => {
 
           {/* Características */}
           <div className="how-it-works__features">
-            {/* Característica 1 */}
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
                 <img src={iconUser} alt="User icon" />
