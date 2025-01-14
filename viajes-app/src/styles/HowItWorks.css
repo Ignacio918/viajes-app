@@ -1,17 +1,9 @@
-/* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full relative bg-[#FDFDFD];
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply w-full flex justify-center items-center bg-[#FDFDFD];
 }
 
 .how-it-works__content {
-  @apply relative flex justify-between items-start;
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 21px 124px 20px;
+  @apply max-w-[1440px] w-full mx-auto flex justify-between items-start;
 }
 
 .how-it-works__image {
