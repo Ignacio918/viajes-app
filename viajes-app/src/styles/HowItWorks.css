@@ -1,15 +1,19 @@
 /* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full min-h-screen bg-[#FDFDFD] flex items-center justify-center gap-16 px-24;
+  @apply w-full bg-[#FDFDFD] py-20;
+}
+
+.how-it-works__container {
+  @apply max-w-[1440px] mx-auto px-[124px] flex items-start gap-[75px];
 }
 
 .how-it-works__image {
-  @apply w-[537px] h-[768px] rounded-[20px] object-cover;
+  @apply w-[537px] h-[768px] rounded-[20px] object-cover mt-[21px];
   filter: drop-shadow(0px 4px 44px rgba(0, 0, 0, 0.25));
 }
 
 .how-it-works__right {
-  @apply w-[554px] flex flex-col gap-8;
+  @apply w-[554px] mt-[88px] flex flex-col gap-8;
 }
 
 .how-it-works__badge {
@@ -45,23 +49,31 @@
 }
 
 @media (max-width: 1439px) {
-  .how-it-works {
+  .how-it-works__container {
     @apply px-16;
   }
 }
 
 @media (max-width: 1279px) {
-  .how-it-works {
+  .how-it-works__container {
     @apply flex-col items-center;
   }
   
   .how-it-works__right {
     @apply mt-8;
   }
+
+  .how-it-works__title {
+    @apply text-center;
+  }
+
+  .how-it-works__badge {
+    @apply mx-auto;
+  }
 }
 
 @media (max-width: 639px) {
-  .how-it-works {
+  .how-it-works__container {
     @apply px-4;
   }
   
