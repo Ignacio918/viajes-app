@@ -12,6 +12,7 @@
 .how-it-works__image {
   @apply w-[550px] h-[800px] rounded-[20px];
   object-fit: cover;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .how-it-works__right {
@@ -21,10 +22,12 @@
 
 .how-it-works__badge {
   @apply w-fit px-2 py-0.5 bg-[#FFE8EF] text-[#E61C5D] text-xs font-urbanist font-medium rounded-[36px];
+  animation: slideIn 0.6s ease-out;
 }
 
 .how-it-works__title {
   @apply w-[554px] text-[48px] text-[#161616] font-urbanist font-bold leading-[60px];
+  animation: slideIn 0.6s ease-out 0.2s backwards;
 }
 
 .how-it-works__features {
@@ -33,20 +36,22 @@
 
 .how-it-works__feature {
   @apply w-[261px] flex flex-col gap-4;
-  transition: transform 0.3s ease;
+  animation: fadeUp 0.6s ease-out backwards;
 }
 
-.how-it-works__feature:hover {
-  transform: translateY(-5px);
-}
+/* Aplicando delays a cada feature */
+.how-it-works__feature:nth-child(1) { animation-delay: 0.3s; }
+.how-it-works__feature:nth-child(2) { animation-delay: 0.4s; }
+.how-it-works__feature:nth-child(3) { animation-delay: 0.5s; }
+.how-it-works__feature:nth-child(4) { animation-delay: 0.6s; }
 
 .how-it-works__feature-icon {
   @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex items-center justify-center;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .how-it-works__feature:hover .how-it-works__feature-icon {
-  background-color: #d11a54;
+  transform: scale(1.1);
 }
 
 .how-it-works__feature-content {
@@ -65,6 +70,26 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
     transform: translateY(20px);
   }
   to {
@@ -73,34 +98,7 @@
   }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-down {
-  animation: slideDown 0.8s ease-out forwards;
-  opacity: 0;
-}
-
 /* Media queries */
-@media (min-width: 1440px) {
-  .how-it-works__container {
-    padding: 0 120px;
-  }
-}
-
 @media (max-width: 1439px) {
   .how-it-works__container {
     padding: 0 60px;
@@ -170,10 +168,4 @@
   .how-it-works__feature-icon {
     @apply w-10 h-10 p-2;
   }
-}
-
-/* Optimizaciones */
-* {
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
 }
