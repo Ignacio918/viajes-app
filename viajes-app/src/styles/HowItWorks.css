@@ -1,45 +1,97 @@
 /* src/styles/HowItWorks.css */
-
-/* Contenedor Principal */
 .how-it-works {
-  @apply flex justify-between items-center w-full min-h-screen bg-[#FDFDFD] px-4;
+  @apply w-full relative bg-[#FDFDFD];
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Imagen Principal */
-.how-it-works__image {
-  @apply w-[537px] h-[768px] rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] object-cover;
-}
-
-/* Contenido Principal */
 .how-it-works__content {
-  @apply flex flex-col gap-8 max-w-[554px];
+  @apply relative flex justify-between items-start;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 21px 124px 20px;
+}
+
+.how-it-works__image {
+  @apply w-[537px] h-[768px] rounded-[20px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)];
+}
+
+.how-it-works__right {
+  @apply w-[554px] mt-[67px] flex flex-col gap-8;
 }
 
 .how-it-works__badge {
-  @apply bg-[#FFE8EF] text-[#E61C5D] text-xs font-medium rounded-[36px] px-2 py-1 shadow-[0px_1px_2px_rgba(105,81,255,0.05)];
+  @apply w-fit px-2 py-0.5 bg-[#FFE8EF] text-[#E61C5D] text-xs font-urbanist font-medium rounded-[36px];
 }
 
 .how-it-works__title {
-  @apply text-5xl font-bold text-[#161616] leading-[60px];
+  @apply w-[554px] text-[48px] text-[#161616] font-urbanist font-bold leading-[60px];
 }
 
-/* Características */
 .how-it-works__features {
   @apply grid grid-cols-2 gap-8;
 }
 
 .how-it-works__feature {
-  @apply flex flex-col gap-4 w-[261px];
+  @apply w-[261px] flex flex-col gap-4;
 }
 
 .how-it-works__feature-icon {
-  @apply w-12 h-12 bg-[#E61C5D] rounded-full flex items-center justify-center p-3;
+  @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex items-center justify-center;
+}
+
+.how-it-works__feature-content {
+  @apply flex flex-col gap-2.5;
 }
 
 .how-it-works__feature-title {
-  @apply text-xl font-bold text-[#161616];
+  @apply text-xl text-[#161616] font-urbanist font-bold leading-[30px];
 }
 
 .how-it-works__feature-text {
-  @apply text-base font-medium text-[#3E3E3E];
+  @apply text-base text-[#3E3E3E] font-urbanist font-medium leading-6;
+}
+
+@media (max-width: 1439px) {
+  .how-it-works__content {
+    @apply px-16;
+  }
+}
+
+@media (max-width: 1279px) {
+  .how-it-works__content {
+    @apply flex-col items-center;
+  }
+  
+  .how-it-works__right {
+    @apply mt-8;
+  }
+}
+
+@media (max-width: 639px) {
+  .how-it-works__content {
+    @apply px-4;
+  }
+  
+  .how-it-works__image {
+    @apply w-full h-auto;
+  }
+  
+  .how-it-works__right {
+    @apply w-full;
+  }
+  
+  .how-it-works__title {
+    @apply w-full text-3xl;
+  }
+  
+  .how-it-works__features {
+    @apply grid-cols-1;
+  }
+  
+  .how-it-works__feature {
+    @apply w-full;
+  }
 }
