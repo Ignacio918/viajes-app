@@ -9,25 +9,25 @@ import '../styles/HowItWorks.css';
 const HowItWorks = () => {
   return (
     <div className="how-it-works">
-      {/* Imagen principal */}
+      {/* Imagen Principal */}
       <img
         src={fotoRandom3}
-        alt="Random travel"
+        alt="Travel Image"
         className="how-it-works__image"
       />
 
-      {/* Contenido principal */}
+      {/* Contenido Principal */}
       <div className="how-it-works__content">
         <div className="how-it-works__badge">Como funciona</div>
         <h2 className="how-it-works__title">
           Gestiona tu viaje desde un solo lugar
         </h2>
 
-        {/* Características */}
         <div className="how-it-works__features">
+          {/* Característica 1 */}
           <div className="how-it-works__feature">
             <div className="how-it-works__feature-icon">
-              <img src={iconUser} alt="User icon" />
+              <img src={iconUser} alt="User Icon" />
             </div>
             <div className="how-it-works__feature-content">
               <h3 className="how-it-works__feature-title">
@@ -40,10 +40,10 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          {/* Repetir para otras características */}
+          {/* Característica 2 */}
           <div className="how-it-works__feature">
             <div className="how-it-works__feature-icon">
-              <img src={iconSparkle} alt="Sparkle icon" />
+              <img src={iconSparkle} alt="Sparkle Icon" />
             </div>
             <div className="how-it-works__feature-content">
               <h3 className="how-it-works__feature-title">
@@ -56,9 +56,10 @@ const HowItWorks = () => {
             </div>
           </div>
 
+          {/* Característica 3 */}
           <div className="how-it-works__feature">
             <div className="how-it-works__feature-icon">
-              <img src={iconRouting} alt="Routing icon" />
+              <img src={iconRouting} alt="Routing Icon" />
             </div>
             <div className="how-it-works__feature-content">
               <h3 className="how-it-works__feature-title">
@@ -71,9 +72,10 @@ const HowItWorks = () => {
             </div>
           </div>
 
+          {/* Característica 4 */}
           <div className="how-it-works__feature">
             <div className="how-it-works__feature-icon">
-              <img src={iconSuitcaseRolling} alt="Suitcase icon" />
+              <img src={iconSuitcaseRolling} alt="Suitcase Icon" />
             </div>
             <div className="how-it-works__feature-content">
               <h3 className="how-it-works__feature-title">
