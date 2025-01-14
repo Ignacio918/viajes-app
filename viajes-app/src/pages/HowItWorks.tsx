@@ -10,14 +10,12 @@ const HowItWorks = () => {
   return (
     <section className="how-it-works-section">
       <div className="how-it-works-container">
-        {/* Contenedor izquierdo - Imagen */}
-        <div className="photo-frame">
-          <img
-            src={fotoRandom3}
-            alt="Random travel"
-            className="foto-random3"
-          />
-        </div>
+        {/* Imagen */}
+        <img
+          src={fotoRandom3}
+          alt="Random travel"
+          className="main-image"
+        />
 
         {/* Contenedor derecho - Contenido */}
         <div className="right-container">
