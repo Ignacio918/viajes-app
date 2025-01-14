@@ -1,5 +1,5 @@
 .how-it-works {
-  @apply w-full flex justify-center items-center bg-[#FDFDFD];
+  @apply w-full flex justify-center items-center;
 }
 
 .how-it-works__content {
