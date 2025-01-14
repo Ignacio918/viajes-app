@@ -9,61 +9,73 @@ import '../styles/HowItWorks.css';
 const HowItWorks = () => {
   return (
     <div className="how-it-works">
-        <img
-          src={fotoRandom3}
-          alt="Random travel"
-          className="how-it-works__image"
-        />
+      <div className="flex items-start justify-between gap-16">
+        <div className="flex-shrink-0">
+          <img
+            src={fotoRandom3}
+            alt="Random travel"
+            className="how-it-works__image"
+          />
+        </div>
 
         <div className="how-it-works__content">
           <div className="how-it-works__badge">Como funciona</div>
           
-          <div className="how-it-works__title">
+          <h2 className="how-it-works__title">
             Gestiona tu viaje desde un solo lugar
-          </div>
+          </h2>
           
           <div className="how-it-works__features">
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconUser} alt="User icon" />
+                <img src={iconUser} alt="User icon" className="w-5 h-5" />
               </div>
               <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">Registrate y Crea tu Cuenta</div>
-                <div className="how-it-works__feature-text">Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.</div>
+                <h3 className="how-it-works__feature-title">Registrate y Crea tu Cuenta</h3>
+                <p className="how-it-works__feature-text">
+                  Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.
+                </p>
               </div>
             </div>
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconSparkle} alt="Sparkle icon" />
+                <img src={iconSparkle} alt="Sparkle icon" className="w-5 h-5" />
               </div>
               <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">Accede a Herramientas Inteligentes</div>
-                <div className="how-it-works__feature-text">Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.</div>
+                <h3 className="how-it-works__feature-title">Accede a Herramientas Inteligentes</h3>
+                <p className="how-it-works__feature-text">
+                  Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
+                </p>
               </div>
             </div>
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconRouting} alt="Routing icon" />
+                <img src={iconRouting} alt="Routing icon" className="w-5 h-5" />
               </div>
               <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">Personaliza tu Experiencia</div>
-                <div className="how-it-works__feature-text">Añade tus destinos, actividades y preferencias para un viaje a tu medida</div>
+                <h3 className="how-it-works__feature-title">Personaliza tu Experiencia</h3>
+                <p className="how-it-works__feature-text">
+                  Añade tus destinos, actividades y preferencias para un viaje a tu medida
+                </p>
               </div>
             </div>
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconSuitcaseRolling} alt="Suitcase icon" />
+                <img src={iconSuitcaseRolling} alt="Suitcase icon" className="w-5 h-5" />
               </div>
               <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">Disfruta de un Viaje sin Complicaciones</div>
-                <div className="how-it-works__feature-text">Consulta tus planes, documentos y recomendaciones siempre que los necesites.</div>
+                <h3 className="how-it-works__feature-title">Disfruta de un Viaje sin Complicaciones</h3>
+                <p className="how-it-works__feature-text">
+                  Consulta tus planes, documentos y recomendaciones siempre que los necesites.
+                </p>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };
