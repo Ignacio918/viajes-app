@@ -1,6 +1,6 @@
 /* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full relative bg-[#FDFDFD];
+  @apply w-full bg-[#FDFDFD];
 }
 
 .how-it-works__container {
