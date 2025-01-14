@@ -10,13 +10,11 @@ const HowItWorks = () => {
   return (
     <div className="how-it-works">
       <div className="how-it-works__container">
-        <div className="how-it-works__image-wrapper">
-          <img
-            src={fotoRandom3}
-            alt="Random travel"
-            className="how-it-works__image"
-          />
-        </div>
+        <img
+          src={fotoRandom3}
+          alt="Random travel"
+          className="how-it-works__image"
+        />
 
         <div className="how-it-works__right">
           <div className="how-it-works__badge">Como funciona</div>
