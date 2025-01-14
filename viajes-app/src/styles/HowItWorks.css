@@ -1,6 +1,6 @@
-/* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full bg-[#FDFDFD] mb-20;
+  @apply w-full bg-[#FDFDFD];
+  padding: 128px 0 160px 0; /* 128px arriba (py-32) y 160px abajo para dar más espacio hacia beneficios */
 }
 
 .how-it-works__container {
@@ -58,7 +58,7 @@
   .how-it-works__container {
     @apply flex-col items-center;
   }
-  
+
   .how-it-works__right {
     @apply mt-8;
   }
@@ -76,23 +76,23 @@
   .how-it-works__container {
     @apply px-4;
   }
-  
+
   .how-it-works__image {
     @apply w-full h-auto;
   }
-  
+
   .how-it-works__right {
     @apply w-full;
   }
-  
+
   .how-it-works__title {
     @apply w-full text-3xl;
   }
-  
+
   .how-it-works__features {
     @apply grid-cols-1;
   }
-  
+
   .how-it-works__feature {
     @apply w-full;
   }
