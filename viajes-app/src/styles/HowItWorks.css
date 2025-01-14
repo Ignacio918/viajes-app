@@ -8,7 +8,7 @@
 }
 
 .how-it-works__image {
-  @apply w-[537px] h-[768px] rounded-[20px] object-cover mt-[21px];
+  @apply w-[537px] h-[768px] rounded-[20px] ;
   filter: drop-shadow(0px 4px 44px rgba(0, 0, 0, 0.25));
 }
 
