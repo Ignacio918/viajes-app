@@ -1,6 +1,6 @@
 /* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full bg-[#FDFDFD] py-32;
+  @apply w-full bg-[#FDFDFD] py-32 mb-24;
 }
 
 .how-it-works__container {
