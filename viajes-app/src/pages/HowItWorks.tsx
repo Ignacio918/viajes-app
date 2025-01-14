@@ -11,14 +11,13 @@ const HowItWorks = () => {
     <section className="how-it-works-section">
       <div className="how-it-works-container">
         {/* Contenedor izquierdo - Imagen */}
-        <div className="left-container">
-          <div className="image-wrapper">
-            <img
-              src={fotoRandom3}
-              alt="Random travel"
-              className="main-image"
-            />
-          </div>
+        <div className="pattern-light">
+          <div className="radial" />
+          <img
+            src={fotoRandom3}
+            alt="Random travel"
+            className="foto-random3"
+          />
         </div>
 
         {/* Contenedor derecho - Contenido */}
