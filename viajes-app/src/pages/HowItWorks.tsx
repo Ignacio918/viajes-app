@@ -9,76 +9,72 @@ import '../styles/HowItWorks.css';
 const HowItWorks = () => {
   return (
     <div className="how-it-works">
-      <div className="how-it-works__content">
-        <div className="how-it-works__image-section">
-          <img
-            src={fotoRandom3}
-            alt="Random travel"
-            className="how-it-works__image"
-          />
+      <img
+        src={fotoRandom3}
+        alt="Random travel"
+        className="how-it-works__image"
+      />
+
+      <div className="how-it-works__right">
+        <div className="how-it-works__badge">Como funciona</div>
+        
+        <div className="how-it-works__title">
+          Gestiona tu viaje desde un solo lugar
         </div>
-
-        <div className="how-it-works__right">
-          <div className="how-it-works__badge">Como funciona</div>
-          
-          <div className="how-it-works__title">
-            Gestiona tu viaje desde un solo lugar
+        
+        <div className="how-it-works__features">
+          <div className="how-it-works__feature">
+            <div className="how-it-works__feature-icon">
+              <img src={iconUser} alt="User icon" />
+            </div>
+            <div className="how-it-works__feature-content">
+              <div className="how-it-works__feature-title">
+                Registrate y Crea tu Cuenta
+              </div>
+              <div className="how-it-works__feature-text">
+                Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.
+              </div>
+            </div>
           </div>
-          
-          <div className="how-it-works__features">
-            <div className="how-it-works__feature">
-              <div className="how-it-works__feature-icon">
-                <img src={iconUser} alt="User icon" />
+
+          <div className="how-it-works__feature">
+            <div className="how-it-works__feature-icon">
+              <img src={iconSparkle} alt="Sparkle icon" />
+            </div>
+            <div className="how-it-works__feature-content">
+              <div className="how-it-works__feature-title">
+                Accede a Herramientas Inteligentes
               </div>
-              <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">
-                  Registrate y Crea tu Cuenta
-                </div>
-                <div className="how-it-works__feature-text">
-                  Accede a zentrip y empieza a planificar tu próxima aventura fácilmente.
-                </div>
+              <div className="how-it-works__feature-text">
+                Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
               </div>
             </div>
+          </div>
 
-            <div className="how-it-works__feature">
-              <div className="how-it-works__feature-icon">
-                <img src={iconSparkle} alt="Sparkle icon" />
+          <div className="how-it-works__feature">
+            <div className="how-it-works__feature-icon">
+              <img src={iconRouting} alt="Routing icon" />
+            </div>
+            <div className="how-it-works__feature-content">
+              <div className="how-it-works__feature-title">
+                Personaliza tu Experiencia
               </div>
-              <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">
-                  Accede a Herramientas Inteligentes
-                </div>
-                <div className="how-it-works__feature-text">
-                  Desde itinerarios creados con IA hasta recordatorios y gestión de gastos.
-                </div>
+              <div className="how-it-works__feature-text">
+                Añade tus destinos, actividades y preferencias para un viaje a tu medida
               </div>
             </div>
+          </div>
 
-            <div className="how-it-works__feature">
-              <div className="how-it-works__feature-icon">
-                <img src={iconRouting} alt="Routing icon" />
-              </div>
-              <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">
-                  Personaliza tu Experiencia
-                </div>
-                <div className="how-it-works__feature-text">
-                  Añade tus destinos, actividades y preferencias para un viaje a tu medida
-                </div>
-              </div>
+          <div className="how-it-works__feature">
+            <div className="how-it-works__feature-icon">
+              <img src={iconSuitcaseRolling} alt="Suitcase icon" />
             </div>
-
-            <div className="how-it-works__feature">
-              <div className="how-it-works__feature-icon">
-                <img src={iconSuitcaseRolling} alt="Suitcase icon" />
+            <div className="how-it-works__feature-content">
+              <div className="how-it-works__feature-title">
+                Disfruta de un Viaje sin Complicaciones
               </div>
-              <div className="how-it-works__feature-content">
-                <div className="how-it-works__feature-title">
-                  Disfruta de un Viaje sin Complicaciones
-                </div>
-                <div className="how-it-works__feature-text">
-                  Consulta tus planes, documentos y recomendaciones siempre que los necesites.
-                </div>
+              <div className="how-it-works__feature-text">
+                Consulta tus planes, documentos y recomendaciones siempre que los necesites.
               </div>
             </div>
           </div>
