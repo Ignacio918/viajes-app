@@ -1,174 +1,64 @@
 /* src/styles/HowItWorks.css */
 .how-it-works {
-  width: 100%;
-  height: 100%;
-  background: #FDFDFD;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
+  @apply flex flex-row justify-between w-full h-full bg-[#FDFDFD];
 }
 
-.frame6 {
-  width: 100%;
-  height: 100%;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
+.left-container {
+  @apply flex-1 flex justify-center items-center relative;
+}
+
+.image-wrapper {
+  @apply w-full h-full bg-[#FDFDFD] relative;
+}
+
+.main-image {
+  @apply w-[537px] h-[768px] absolute left-[124px] top-[21px] shadow-[0px_4px_44px_rgba(0,0,0,0.25)] rounded-[20px];
+}
+
+.right-container {
+  @apply flex-1 flex flex-col items-start gap-8 p-5;
+}
+
+.content-wrapper {
+  @apply flex flex-col items-start gap-8;
 }
 
 .badge {
-  padding: 2px 8px;
-  background: #FFE8EF;
-  box-shadow: 0px 1px 2px rgba(105, 81, 255, 0.05);
-  border-radius: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
+  @apply px-2 py-0.5 bg-[#FFE8EF] shadow-sm rounded-full flex justify-center items-center gap-0.5;
 }
 
-.text {
-  color: #E61C5D;
-  font-size: 12px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 500;
-  line-height: 18px;
-  word-wrap: break-word;
+.badge span {
+  @apply text-[#E61C5D] text-xs font-medium font-urbanist leading-[18px];
 }
 
-.title {
-  width: 554px;
-  color: #161616;
-  font-size: 48px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 700;
-  line-height: 60px;
-  word-wrap: break-word;
+.main-title {
+  @apply w-[554px] text-[#161616] text-5xl font-bold font-urbanist leading-[60px];
 }
 
-.steps {
-  display: flex;
-  gap: 32px;
+.features-grid {
+  @apply flex gap-8;
 }
 
-.step {
-  width: 261px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+.feature-card {
+  @apply w-[261px] flex flex-col items-start gap-4;
 }
 
-.icon-wrapper {
-  width: 48px;
-  height: 48px;
-  padding: 12px;
-  background: #E61C5D;
-  border-radius: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.icon-container {
+  @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex justify-center items-center;
 }
 
-.icon-user, .icon-sparkle, .icon-routing, .icon-suitcase-rolling {
-  width: 24px;
-  height: 24px;
-  position: relative;
+.icon {
+  @apply w-6 h-6;
 }
 
-.vector {
-  position: absolute;
-  background: white;
+.feature-content {
+  @apply flex flex-col items-start gap-2.5;
 }
 
-.vector1 {
-  width: 11.5px;
-  height: 11.5px;
-  left: 6.25px;
-  top: 1.25px;
+.feature-content h3 {
+  @apply text-[#161616] text-xl font-bold font-urbanist leading-[30px];
 }
 
-.vector2 {
-  width: 18.68px;
-  height: 8.5px;
-  left: 2.66px;
-  top: 14.25px;
-}
-
-.vector3 {
-  width: 21.37px;
-  height: 21.37px;
-  left: 1.69px;
-  top: 0.94px;
-}
-
-.vector4 {
-  width: 8.5px;
-  height: 9.5px;
-  left: 1.22px;
-  top: 1.25px;
-}
-
-.vector5 {
-  width: 2.01px;
-  height: 2px;
-  left: 4.51px;
-  top: 4.2px;
-}
-
-.vector6 {
-  width: 8.54px;
-  height: 9.51px;
-  left: 14.22px;
-  top: 13.24px;
-}
-
-.vector7 {
-  width: 2.01px;
-  height: 2px;
-  left: 17.53px;
-  top: 16.2px;
-}
-
-.vector8 {
-  width: 10.86px;
-  height: 15.5px;
-  left: 6.57px;
-  top: 4.25px;
-}
-
-.vector9 {
-  width: 14.62px;
-  height: 22.88px;
-  left: 4.69px;
-  top: 0.19px;
-}
-
-.step-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.step-title {
-  align-self: stretch;
-  color: #161616;
-  font-size: 20px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 700;
-  line-height: 30px;
-  word-wrap: break-word;
-}
-
-.step-description {
-  align-self: stretch;
-  color: #3E3E3E;
-  font-size: 16px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 500;
-  line-height: 24px;
-  word-wrap: break-word;
+.feature-content p {
+  @apply text-[#3E3E3E] text-base font-medium font-urbanist leading-6;
 }
