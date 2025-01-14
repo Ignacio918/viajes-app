@@ -9,9 +9,17 @@
   padding: 0 112px;
 }
 
+.how-it-works__image-container {
+  @apply relative;
+  width: 550px;
+}
+
 .how-it-works__image {
-  @apply w-[550px] h-[800px] rounded-[20px];
+  @apply w-full h-[800px] rounded-[20px];
   object-fit: cover;
+  box-shadow: 
+    0 4px 44px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.8s ease-out;
 }
 
@@ -121,6 +129,11 @@
   .how-it-works__badge {
     @apply mx-auto;
   }
+  
+  .how-it-works__image-container {
+    width: 100%;
+    max-width: 550px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -139,8 +152,8 @@
   }
   
   .how-it-works__image {
-    width: 100%;
     height: auto;
+    aspect-ratio: 550/800;
   }
   
   .how-it-works__right {

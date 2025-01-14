@@ -10,11 +10,13 @@ const HowItWorks = () => {
   return (
     <div className="how-it-works">
       <div className="how-it-works__container">
-        <img
-          src={fotoRandom3}
-          alt="Random travel"
-          className="how-it-works__image"
-        />
+        <div className="how-it-works__image-container">
+          <img
+            src={fotoRandom3}
+            alt="Random travel"
+            className="how-it-works__image"
+          />
+        </div>
 
         <div className="how-it-works__right">
           <div className="how-it-works__badge">Como funciona</div>
@@ -24,7 +26,6 @@ const HowItWorks = () => {
           </h2>
           
           <div className="how-it-works__features">
-            {/* Orden correcto de las features */}
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
                 <img src={iconUser} alt="User icon" />
