@@ -7,7 +7,7 @@
 .PatternLight {
   @apply w-full relative;
   min-height: 1000px;
-  background: #fdfdfd;
+  background: #FDFDFD;
   position: relative;
   overflow: hidden;
 }
@@ -41,14 +41,18 @@
 
 .SectionBadge {
   @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
-  width: 69px;
+  width: fit-content;
+  min-width: 69px;
+  max-width: 200px;
   height: 22px;
+  padding: 0 16px;
 }
 
 .SectionBadge__text {
   @apply text-[#E61C5D] font-urbanist font-medium;
   font-size: 12px;
   line-height: 18px;
+  white-space: nowrap;
 }
 
 .main-title {
@@ -82,7 +86,7 @@
   width: 80px;
   height: 80px;
   @apply flex items-center justify-center rounded-full;
-  background: linear-gradient(168deg, #ff487c 0%, #e61c5d 100%);
+  background: linear-gradient(168deg, #FF487C 0%, #E61C5D 100%);
 }
 
 .icon {
@@ -103,6 +107,7 @@
 .card-content p {
   @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
+
 /* Frame 139 - Imágenes derecha */
 .Frame139 {
   position: relative;
@@ -257,8 +262,8 @@
 
 @media (min-width: 1440px) {
   .SectionBadge {
-    width: auto;
-    max-width: 160px;
+    width: fit-content;
+    max-width: 200px;
     height: auto;
     padding: 4px 16px;
   }
@@ -297,8 +302,8 @@
   }
 
   .SectionBadge {
-    width: auto;
-    max-width: 160px;
+    width: fit-content;
+    max-width: 200px;
     padding: 4px 16px;
   }
 
