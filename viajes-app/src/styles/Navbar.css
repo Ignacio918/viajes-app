@@ -4,53 +4,53 @@
 @tailwind utilities;
 
 .floating-nav-container {
-  @apply fixed top-4 inset-x-0 max-w-4xl mx-auto z-50; /* Aumentado de 2xl a 4xl para más espacio */
+  @apply fixed top-4 inset-x-0 max-w-5xl mx-auto z-50;
 }
 
 .floating-nav-content {
   @apply bg-white/80 dark:bg-black/60 backdrop-blur-md rounded-full border border-neutral-200 dark:border-white/[0.2] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] px-6 py-2;
-  /* Reducido el padding horizontal y vertical */
 }
 
 .floating-nav-inner {
-  @apply flex items-center justify-between gap-2; /* Reducido el gap */
+  @apply flex items-center justify-between gap-2;
 }
 
 .logo-container {
-  @apply flex items-center flex-shrink-0; /* Added flex-shrink-0 para evitar que el logo se encoja */
+  @apply flex items-center flex-shrink-0;
 }
 
 .logo {
-  @apply h-10 w-auto; /* Ajustado el tamaño del logo */
+  @apply h-10 w-auto;
 }
 
 .nav-links {
-  @apply hidden md:flex items-center gap-4 flex-nowrap; /* Reducido el gap y añadido flex-nowrap */
+  @apply hidden md:flex items-center gap-4 flex-nowrap;
 }
 
 .nav-link {
   @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm whitespace-nowrap;
-  /* Añadido text-sm para reducir tamaño de texto y whitespace-nowrap para evitar saltos de línea */
 }
 
 .auth-buttons {
-  @apply flex items-center gap-3 flex-shrink-0; /* Reducido el gap y añadido flex-shrink-0 */
+  @apply flex items-center gap-3 flex-shrink-0;
 }
 
 .login-link {
-  @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm whitespace-nowrap;
-  /* Añadido text-sm y whitespace-nowrap */
+  @apply px-4 py-1.5 rounded-full border border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-all duration-200 text-sm whitespace-nowrap;
+  min-width: 100px;
+  text-align: center;
 }
 
 .register-button {
-  @apply bg-dark text-white px-3 py-1.5 rounded-full hover:bg-gray-700 transition-colors text-sm whitespace-nowrap;
-  /* Reducido el padding y añadido text-sm */
+  @apply px-4 py-1.5 rounded-full bg-dark text-white hover:bg-gray-700 transition-all duration-200 text-sm whitespace-nowrap;
+  min-width: 100px;
+  text-align: center;
 }
 
 /* Media queries para responsive */
 @media (max-width: 768px) {
   .floating-nav-container {
-    @apply max-w-[95%]; /* Ajustado para móviles */
+    @apply max-w-[95%];
   }
   
   .nav-links {
