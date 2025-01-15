@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-import { ThemeProvider } from './context/ThemeContext'; // Importamos ThemeProvider
+import { ThemeProvider } from './context/ThemeContext';
 import Dashboard from "./pages/Dashboard";
 import PasswordResetForm from "./pages/PasswordResetForm";
 import SetNewPassword from "./pages/SetNewPassword";
@@ -24,9 +24,6 @@ import HowItWorks from "./pages/HowItWorks";
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [showAuthPage, setShowAuthPage] = useState<"login" | "register" | null>(
-    null
-  );
 
   useEffect(() => {
     const getSession = async () => {
@@ -50,13 +47,8 @@ const App: React.FC = () => {
     };
   }, []);
 
-  const handleRegisterClick = () => {
-    setShowAuthPage("register");
-  };
-
   const handleAuthSuccess = () => {
     setIsLoggedIn(true);
-    setShowAuthPage(null);
   };
 
   if (loading) {
@@ -64,63 +56,105 @@ const App: React.FC = () => {
   }
 
   return (
-    <ThemeProvider> {/* Envolvemos toda la aplicación con ThemeProvider */}
+    <ThemeProvider>
       <Router>
-        <div className={`min-h-screen flex flex-col ${showAuthPage ? "bg-white dark:bg-dark" : "bg-gray-50 dark:bg-gray-900"}`}>
-          {!showAuthPage && <Navbar />}
-          
-          <div className="flex-grow">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    {showAuthPage === null ? (
-                      <div className="flex-grow">
-                        <HeroSection />
-                        <HowItWorks />
-                        <Benefits />
-                      </div>
-                    ) : showAuthPage === "login" ? (
-                      <LoginPage
-                        onAuthSuccess={handleAuthSuccess}
-                        handleRegisterClick={handleRegisterClick}
-                      />
-                    ) : (
-                      <RegisterPage onAuthSuccess={handleAuthSuccess} />
-                    )}
-                  </>
-                }
-              />
-              <Route
-                path="/login"
-                element={
+        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+          <Routes>
+            {/* Rutas de autenticación sin Navbar ni Footer */}
+            <Route
+              path="/login"
+              element={
+                <div className="min-h-screen">
                   <LoginPage
                     onAuthSuccess={handleAuthSuccess}
-                    handleRegisterClick={handleRegisterClick}
+                    handleRegisterClick={() => {}}
                   />
-                }
-              />
-              <Route
-                path="/registerform"
-                element={<RegisterPage onAuthSuccess={handleAuthSuccess} />}
-              />
-              <Route
-                path="/dashboard"
-                element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/profile"
-                element={isLoggedIn ? <UserProfile /> : <Navigate to="/login" />}
-              />
-              <Route path="/reset-password" element={<PasswordResetForm />} />
-              <Route path="/set-new-password" element={<SetNewPassword />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-            </Routes>
-          </div>
+                </div>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <div className="min-h-screen">
+                  <RegisterPage onAuthSuccess={handleAuthSuccess} />
+                </div>
+              }
+            />
+            <Route path="/reset-password" element={<PasswordResetForm />} />
+            <Route path="/set-new-password" element={<SetNewPassword />} />
 
-          {!showAuthPage && <Footer />}
+            {/* Rutas con Navbar y Footer */}
+            <Route
+              path="/"
+              element={
+                <>
+                  <Navbar />
+                  <div className="flex-grow">
+                    <HeroSection />
+                    <HowItWorks />
+                    <Benefits />
+                  </div>
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                isLoggedIn ? (
+                  <>
+                    <Navbar />
+                    <div className="flex-grow">
+                      <Dashboard />
+                    </div>
+                    <Footer />
+                  </>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                isLoggedIn ? (
+                  <>
+                    <Navbar />
+                    <div className="flex-grow">
+                      <UserProfile />
+                    </div>
+                    <Footer />
+                  </>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/privacy-policy"
+              element={
+                <>
+                  <Navbar />
+                  <div className="flex-grow">
+                    <PrivacyPolicy />
+                  </div>
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/terms-of-service"
+              element={
+                <>
+                  <Navbar />
+                  <div className="flex-grow">
+                    <TermsOfService />
+                  </div>
+                  <Footer />
+                </>
+              }
+            />
+          </Routes>
         </div>
       </Router>
     </ThemeProvider>

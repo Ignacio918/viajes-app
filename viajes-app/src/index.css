@@ -4,12 +4,17 @@
 
 @layer base {
   html {
+    @apply h-full;
     font-family: "Urbanist", system-ui, sans-serif;
   }
 
   body {
-    @apply m-0 p-0 overflow-x-hidden;
+    @apply h-full m-0 p-0 overflow-x-hidden;
     min-height: 100vh;
+  }
+
+  #root {
+    @apply h-full;
   }
 
   /* Ocultar scrollbar pero mantener funcionalidad */
@@ -56,10 +61,7 @@
 }
 
 @layer components {
-  .input-field {
-    @apply w-full px-4 py-2 border border-[#ECE8F4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#44178C] focus:border-transparent transition-all duration-200;
-  }
-
+  /* Estilos de botones existentes */
   .btn-primary {
     @apply bg-[#44178C] text-[#ECE8F4] text-[16px] font-urbanist font-normal py-[10px] rounded-full flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
   }
@@ -70,6 +72,34 @@
 
   .btn-dark {
     @apply bg-[#161616] text-[#ECE8F4] text-[16px] font-urbanist font-normal py-[10px] rounded-full flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
+  }
+
+  /* Nuevos estilos para el registro */
+  .auth-container {
+    @apply min-h-screen flex items-center justify-center bg-white dark:bg-black;
+  }
+
+  .auth-form-wrapper {
+    @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-lg;
+  }
+
+  .auth-input {
+    @apply w-full px-4 py-2 border border-[#ECE8F4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#44178C] focus:border-transparent transition-all duration-200;
+  }
+
+  .auth-button {
+    @apply w-full py-2 px-4 bg-[#44178C] text-white rounded-full font-medium 
+           transition-all duration-200 flex items-center justify-center hover:bg-opacity-90;
+  }
+
+  .auth-google-button {
+    @apply w-full py-2 px-4 bg-white text-[#44178C] rounded-full font-medium 
+           border border-[#ECE8F4] transition-all duration-200 flex items-center 
+           justify-center gap-2 hover:bg-gray-50;
+  }
+
+  .auth-divider {
+    @apply my-6 h-px bg-[#ECE8F4] dark:bg-neutral-700;
   }
 }
 
@@ -90,111 +120,62 @@
   font-display: swap;
 }
 
-/* Media queries para diferentes tamaños de pantalla */
+/* Media queries existentes */
 @media screen and (min-width: 2560px) {
-  .login-container {
+  .auth-container {
     max-width: 2560px;
-    margin: auto; /* Centrado automático */
-    padding-left: calc(
-      100% - var(--max-width)
-    ); /* Ajusta según sea necesario */
-    padding-right: calc(
-      100% - var(--max-width)
-    ); /* Ajusta según sea necesario */
+    margin: auto;
   }
 }
 
 @media screen and (min-width: 1440px) and (max-width: 2559px) {
-  .login-container {
+  .auth-container {
     max-width: 1440px;
     margin: auto;
   }
 }
 
-@media screen and (max-width: 1439px) {
-  .login-container {
-    width: 100%;
-  }
-}
-
-/* Nuevo breakpoint para tablet/mobile */
 @media screen and (max-width: 1024px) {
-  .w-\[704px\].h-\[781px\] {
-    display: none;
-  }
-  .pl-\[114px\] {
-    padding-left: 0;
-  }
-  .w-full.max-w-\[1440px\] {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .w-\[421px\] {
-    max-width: 421px;
+  .auth-form-wrapper {
     width: 100%;
-    min-height: 515px;
+    max-width: 90%;
     margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
+  .auth-container {
+    padding: 16px;
   }
-  .form-container {
-    width: 100%;
+  
+  .auth-form-wrapper {
+    max-width: 100%;
     padding: 16px;
   }
 }
 
-/* Estilos específicos para el login */
-.te-damos-la-bienvenida {
-  @apply text-[40px] font-medium text-[#161616] font-urbanist;
+/* Estilos específicos para textos */
+.auth-title {
+  @apply text-2xl font-bold text-[#161616] dark:text-neutral-200;
 }
 
-.email-label,
-.password-label,
-.no-tienes-cuenta {
-  @apply text-[14px] font-normal text-[#828282] font-urbanist;
+.auth-description {
+  @apply text-sm text-[#828282] dark:text-neutral-400 mt-2;
 }
 
-.olvidaste-tu-contrasena {
-  @apply text-[14px] font-normal text-[#44178C] font-urbanist hover:underline;
+.auth-label {
+  @apply text-sm font-medium text-[#161616] dark:text-neutral-200;
 }
 
-.ingresar-button,
-.registrarte-button {
-  @apply text-[16px] font-normal font-urbanist;
+.auth-helper-text {
+  @apply text-xs text-[#828282] dark:text-neutral-400 mt-1;
 }
 
-.ingresar-google-button {
-  @apply text-[16px] font-normal text-[#44178C] font-urbanist;
+.auth-error {
+  @apply text-red-500 text-sm text-center mt-4;
 }
 
-.accede-cuenta {
-  @apply text-[16px] font-medium text-[#161616] font-urbanist;
-}
-
-/* Ajustes para resolución */
-@media screen and (min-width: 2560px) {
-  .illustration-wrapper {
-    @apply flex items-center justify-center;
-    max-height: 100vh;
-  }
-
-  .illustration-image {
-    @apply object-contain;
-    max-height: 90vh;
-  }
-
-  .form-wrapper {
-    @apply flex items-center justify-center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-}
-
-/* Ajustes para elementos interactivos */
-.input-wrapper:focus-within {
-  @apply ring-2 ring-[#44178C] ring-opacity-50;
+/* Spinner para estados de carga */
+.spinner {
+  @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2;
 }
