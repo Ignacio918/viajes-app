@@ -169,7 +169,7 @@
   width: 353.15px;
   height: 502px;
   border-radius: 168px;
-  border: 100% solid #fdfdfd;
+  border: 100% solid #FDFDFD;
   @apply object-cover;
   box-sizing: border-box;
   position: relative;
@@ -220,27 +220,15 @@
 
 /* Animaciones */
 @keyframes floating {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 @keyframes floating-reverse {
-  0% {
-    transform: translateY(0px) rotate(-15deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-15deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(-15deg);
-  }
+  0% { transform: translateY(0px) rotate(-15deg); }
+  50% { transform: translateY(-10px) rotate(-15deg); }
+  100% { transform: translateY(0px) rotate(-15deg); }
 }
 
 .floating-animation {
@@ -270,14 +258,15 @@
 @media (min-width: 1440px) {
   .SectionBadge {
     width: auto;
-    max-width: none;
+    max-width: 160px;
     height: auto;
     padding: 4px 16px;
   }
-
+  
   .SectionBadge__text {
     font-size: 18px;
     line-height: 20px;
+    white-space: nowrap;
   }
 }
 
@@ -309,7 +298,7 @@
 
   .SectionBadge {
     width: auto;
-    max-width: none;
+    max-width: 160px;
     padding: 4px 16px;
   }
 
