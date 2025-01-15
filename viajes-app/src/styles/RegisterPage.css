@@ -1,183 +1,86 @@
 .auth-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background-color: #f5f5f5;
+  @apply min-h-screen flex items-center justify-center bg-white dark:bg-dark;
 }
 
 .auth-form-wrapper {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 16px;
-  padding: 40px;
+  @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
   box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.04);
 }
 
 .auth-form-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  @apply flex flex-col space-y-6;
 }
 
 .auth-logo-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
+  @apply flex justify-center;
 }
 
 .auth-logo-image {
-  height: 32px;
+  @apply h-8;
 }
 
 .auth-title {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  color: #161616;
-  text-align: center;
-  margin-bottom: 8px;
+  @apply font-urbanist font-bold text-xl text-dark dark:text-white;
 }
 
 .auth-description {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 14px;
-  color: #3E3E3E;
-  text-align: center;
-  margin-bottom: 32px;
+  @apply text-gray-800 dark:text-gray-300 text-sm max-w-sm mt-2 font-urbanist;
 }
 
 .auth-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  @apply flex flex-col space-y-4 my-8;
 }
 
 .auth-input-group {
-  width: 100%;
+  @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4;
 }
 
 .auth-button {
-  width: 100%;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-color: #E61C5D;
-  color: white;
-  border: none;
-  border-radius: 24px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.auth-button:hover {
-  background-color: #d41953;
-}
-
-.auth-button:disabled {
-  background-color: #e6e6e6;
-  cursor: not-allowed;
+  @apply relative group/btn flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
+  @apply bg-pink-600 text-white transition-all duration-300;
+  @apply hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
 }
 
 .auth-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(62, 62, 62, 0.1);
-  margin: 24px 0;
+  @apply bg-gradient-to-r from-transparent via-gray-800/20 dark:via-gray-300/20 to-transparent my-8 h-[1px] w-full;
 }
 
 .auth-google-button {
-  width: 100%;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: white;
-  border: 1px solid rgba(62, 62, 62, 0.1);
-  border-radius: 24px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: #161616;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.auth-google-button:hover {
-  background: #f5f5f5;
+  @apply relative group/btn flex items-center justify-center space-x-2 px-4 w-full rounded-full h-12;
+  @apply bg-white dark:bg-dark text-dark dark:text-white font-urbanist font-medium;
+  @apply border border-gray-800/20 dark:border-gray-300/20;
+  @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5 transition-all duration-300;
 }
 
 .google-icon {
-  width: 20px;
-  height: 20px;
+  @apply w-5 h-5;
 }
 
 .auth-login-link {
-  margin-top: 24px;
-  text-align: center;
+  @apply flex items-center justify-center space-x-1 mt-6 font-urbanist;
 }
 
 .auth-text {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 14px;
-  color: #3E3E3E;
+  @apply text-gray-800 dark:text-gray-300;
 }
 
 .auth-link {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 14px;
-  color: #E61C5D;
-  margin-left: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.auth-link:hover {
-  text-decoration: underline;
+  @apply text-pink-600 hover:underline cursor-pointer;
 }
 
 .auth-error {
-  width: 100%;
-  margin-top: 16px;
-  padding: 12px;
-  background: rgba(230, 28, 93, 0.1);
-  border-radius: 8px;
-  color: #E61C5D;
-  font-family: 'Urbanist', sans-serif;
-  font-size: 14px;
-  text-align: center;
+  @apply mt-4 p-3 rounded-lg bg-pink-600/10 text-pink-600 text-sm text-center font-urbanist;
 }
 
 .spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid white;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  @apply w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .auth-form-wrapper {
-    padding: 24px;
-    border-radius: 12px;
-  }
+.toggle-password {
+  @apply flex items-center justify-center w-10 h-10 rounded-full;
+  @apply text-gray-800 dark:text-gray-300;
+  @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5;
+  @apply disabled:opacity-50 transition-colors duration-300;
 }
