@@ -35,16 +35,22 @@
   @apply flex items-center gap-3 flex-shrink-0;
 }
 
-.login-link {
-  @apply px-4 py-1.5 rounded-full border border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-all duration-200 text-sm whitespace-nowrap;
-  min-width: 100px;
+/* Estilos base compartidos para ambos botones */
+.login-link,
+.register-button {
+  @apply px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-all duration-200;
+  min-width: 120px;
   text-align: center;
 }
 
+/* Estilos específicos para login */
+.login-link {
+  @apply border border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white;
+}
+
+/* Estilos específicos para register */
 .register-button {
-  @apply px-4 py-1.5 rounded-full bg-dark text-white hover:bg-gray-700 transition-all duration-200 text-sm whitespace-nowrap;
-  min-width: 100px;
-  text-align: center;
+  @apply bg-dark text-white hover:bg-gray-700 border border-dark;
 }
 
 /* Media queries para responsive */
