@@ -1,42 +1,85 @@
 // src/components/Navbar.tsx
-import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/Navbar.css';
-import logoSmall from '../assets/logo_small.svg'; // Asegúrate de que la ruta sea correcta
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Link } from 'react-router-dom'
+import logoSmall from '../assets/logo_small.svg'
+import '../styles/Navbar.css'
 
-const Navbar: FC = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+const Navbar = () => {
+  const [isVisible, setIsVisible] = useState(true)
+  const [prevScrollPos, setPrevScrollPos] = useState(0)
 
-  const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
+  const navItems = [
+    {
+      name: "Inicio",
+      link: "/",
+    },
+    {
+      name: "Cómo Funciona",
+      link: "/como-funciona",
+    },
+    {
+      name: "Beneficios",
+      link: "/beneficios",
+    },
+  ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY
+      setIsVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10)
+      setPrevScrollPos(currentScrollPos)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [prevScrollPos])
 
   return (
-    <nav className="w-full h-full px-24 py-8 bg-white flex justify-between items-center shadow-[0px_12px_40px_0px_rgba(0,0,0,0.04)]">
-      {/* Logo */}
-      <div className="logo-container">
-        <img src={logoSmall} alt="zentrip logo" className="logo" />
-      </div>
+    <AnimatePresence mode="wait">
+      {isVisible && (
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="floating-nav-container"
+        >
+          <div className="floating-nav-content">
+            <div className="floating-nav-inner">
+              {/* Logo */}
+              <div className="logo-container">
+                <img src={logoSmall} alt="zentrip logo" className="logo" />
+              </div>
 
-      {/* Navigation Links */}
-      <div className={`nav-links ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
-        <Link to="/" className="nav-link">Inicio</Link>
-        <Link to="/como-funciona" className="nav-link">Cómo Funciona</Link>
-        <Link to="/beneficios" className="nav-link">Beneficios</Link>
-      </div>
+              {/* Navigation Links */}
+              <div className="nav-links">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.link}
+                    className="nav-link"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
 
-      {/* Auth Links */}
-      <div className={`auth-buttons ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
-        <Link to="/login" className="login-link">Iniciar Sesión</Link>
-        <Link to="/register" className="register-button">Registrarse</Link>
-      </div>
+              {/* Auth Buttons */}
+              <div className="auth-buttons">
+                <Link to="/login" className="login-link">
+                  Iniciar Sesión
+                </Link>
+                <Link to="/register" className="register-button">
+                  Registrarse
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
 
-      {/* Hamburger Menu Icon */}
-      <div className="hamburger-menu" onClick={toggleMenu}>
-        &#9776; {/* This is the hamburger icon */}
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
+export default Navbar

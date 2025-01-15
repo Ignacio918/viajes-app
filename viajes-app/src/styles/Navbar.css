@@ -3,60 +3,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos personalizados para el componente Navbar */
-.navbar {
-  @apply w-full h-full px-24 py-8 bg-white flex justify-between items-center shadow-custom;
+.floating-nav-container {
+  @apply fixed top-4 inset-x-0 max-w-2xl mx-auto z-50;
+}
+
+.floating-nav-content {
+  @apply bg-white/80 dark:bg-black/60 backdrop-blur-md rounded-full border border-neutral-200 dark:border-white/[0.2] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] px-8 py-3;
+}
+
+.floating-nav-inner {
+  @apply flex items-center justify-between gap-4;
 }
 
 .logo-container {
-  @apply relative flex items-center;
+  @apply flex items-center;
 }
 
 .logo {
-  @apply h-8; /* Ajusta el tamaño del logo según sea necesario */
+  @apply h-8;
 }
 
 .nav-links {
-  @apply flex justify-center items-center gap-3;
+  @apply hidden md:flex items-center gap-6;
 }
 
 .nav-link {
-  @apply text-lg font-normal text-gray-800 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
-}
-
-.nav-link:hover {
-  @apply text-pink-600;
+  @apply text-neutral-600 hover:text-pink-600 transition-colors;
 }
 
 .auth-buttons {
-  @apply flex items-center gap-2;
+  @apply flex items-center gap-4;
 }
 
 .login-link {
-  @apply text-lg font-normal text-gray-800 px-4 py-4 rounded-full transition-colors duration-200 ease-in-out;
-}
-
-.login-link:hover {
-  @apply text-pink-600;
+  @apply text-neutral-600 hover:text-pink-600 transition-colors;
 }
 
 .register-button {
-  @apply bg-dark text-white font-light max-w-xs; /* Limitar el ancho máximo del botón */
-  width: 120px;
-  text-align: center;
-  transition: background-color 0.3s;
+  @apply bg-dark text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors;
 }
 
-.register-button:hover {
-  @apply bg-gray-700; /* Mismo efecto hover que en LoginPage */
-}
-
-.hamburger-menu {
-  @apply md:hidden cursor-pointer text-2xl;
-}
-
+/* Media queries para responsive */
 @media (max-width: 768px) {
-  .nav-links, .auth-buttons {
+  .nav-links {
     @apply flex-col items-center space-y-4;
+  }
+  
+  .auth-buttons {
+    @apply flex-col items-center gap-2;
   }
 }
