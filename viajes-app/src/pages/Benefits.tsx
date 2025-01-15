@@ -1,5 +1,5 @@
-// Benefits.tsx
 import { motion } from "framer-motion";
+import { useTheme } from '../context/ThemeContext';
 import iconCalendar from '../assets/icons/icon-calendar.svg';
 import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconMap from '../assets/icons/icon-map.svg';
@@ -10,6 +10,8 @@ import imagenCataratas from '../assets/photos/imagen_cataratas.png';
 import '../styles/Benefits.css';
 
 const Benefits = () => {
+  const { isDarkMode } = useTheme();
+  
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -25,7 +27,7 @@ const Benefits = () => {
   };
 
   return (
-    <section className="benefits-section">
+    <section className={`benefits-section ${isDarkMode ? 'dark' : ''}`}>
       <div className="PatternLight">
         {/* Ilustración Objects con animación flotante */}
         <div className="IlustracionObjects floating-animation">
@@ -97,7 +99,6 @@ const Benefits = () => {
             </div>
           </div>
 
-          {/* Frame 139 - Imágenes derecha */}
           <div className="Frame139">
             <motion.div 
               className="Frame138"
@@ -123,7 +124,6 @@ const Benefits = () => {
           </div>
         </div>
 
-        {/* Ilustración Avión con animación flotante */}
         <div className="IlustracionAvionBeneficios floating-animation-reverse">
           <img 
             src={ilustracionAvion} 

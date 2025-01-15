@@ -1,4 +1,5 @@
 // src/pages/HowItWorks.tsx
+import { useTheme } from '../context/ThemeContext';
 import fotoRandom3 from '../assets/photos/foto_random3.png';
 import iconUser from '../assets/icons/icon-user.svg';
 import iconSparkle from '../assets/icons/icon-Sparkle.svg';
@@ -7,8 +8,10 @@ import iconSuitcaseRolling from '../assets/icons/icon-SuitcaseRolling.svg';
 import '../styles/HowItWorks.css';
 
 const HowItWorks = () => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <div className="how-it-works">
+    <div className={`how-it-works ${isDarkMode ? 'dark' : ''}`}>
       <div className="how-it-works__container">
         <div className="how-it-works__image-container">
           <img
@@ -30,7 +33,11 @@ const HowItWorks = () => {
           <div className="how-it-works__features">
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconUser} alt="User icon" />
+                <img 
+                  src={iconUser} 
+                  alt="User icon" 
+                  className="how-it-works__icon-image"
+                />
               </div>
               <div className="how-it-works__feature-content">
                 <div className="how-it-works__feature-title">
@@ -44,7 +51,11 @@ const HowItWorks = () => {
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconRouting} alt="Routing icon" />
+                <img 
+                  src={iconRouting} 
+                  alt="Routing icon" 
+                  className="how-it-works__icon-image"
+                />
               </div>
               <div className="how-it-works__feature-content">
                 <div className="how-it-works__feature-title">
@@ -58,7 +69,11 @@ const HowItWorks = () => {
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconSparkle} alt="Sparkle icon" />
+                <img 
+                  src={iconSparkle} 
+                  alt="Sparkle icon" 
+                  className="how-it-works__icon-image"
+                />
               </div>
               <div className="how-it-works__feature-content">
                 <div className="how-it-works__feature-title">
@@ -72,7 +87,11 @@ const HowItWorks = () => {
 
             <div className="how-it-works__feature">
               <div className="how-it-works__feature-icon">
-                <img src={iconSuitcaseRolling} alt="Suitcase icon" />
+                <img 
+                  src={iconSuitcaseRolling} 
+                  alt="Suitcase icon" 
+                  className="how-it-works__icon-image"
+                />
               </div>
               <div className="how-it-works__feature-content">
                 <div className="how-it-works__feature-title">

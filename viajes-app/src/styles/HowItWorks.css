@@ -1,6 +1,6 @@
 /* src/styles/HowItWorks.css */
 .how-it-works {
-  @apply w-full bg-[#FDFDFD];
+  @apply w-full bg-[#FDFDFD] dark:bg-gray-900 transition-colors duration-300;
   padding: 64px 0 128px 0;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .how-it-works__image {
-  @apply w-full h-[800px] rounded-[20px];
+  @apply w-full h-[800px] rounded-[20px] dark:brightness-90 transition-all duration-300;
   object-fit: cover;
   box-shadow: 
     0 4px 44px rgba(0, 0, 0, 0.25),
@@ -29,7 +29,7 @@
 }
 
 .SectionBadge {
-  @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
+  @apply flex items-center justify-center bg-[#FFE8EF] dark:bg-pink-900/20 rounded-[36px] transition-colors duration-300;
   width: fit-content;
   min-width: 69px;
   max-width: 200px;
@@ -39,14 +39,14 @@
 }
 
 .SectionBadge__text {
-  @apply text-[#E61C5D] font-urbanist font-medium;
+  @apply text-[#E61C5D] dark:text-pink-500 font-urbanist font-medium transition-colors duration-300;
   font-size: 12px;
   line-height: 18px;
   white-space: nowrap;
 }
 
 .how-it-works__title {
-  @apply w-[554px] text-[48px] text-[#161616] font-urbanist font-bold leading-[60px];
+  @apply w-[554px] text-[48px] text-[#161616] dark:text-white font-urbanist font-bold leading-[60px] transition-colors duration-300;
   animation: slideIn 0.6s ease-out 0.2s backwards;
 }
 
@@ -66,12 +66,15 @@
 .how-it-works__feature:nth-child(4) { animation-delay: 0.6s; }
 
 .how-it-works__feature-icon {
-  @apply w-12 h-12 p-3 bg-[#E61C5D] rounded-full flex items-center justify-center;
-  transition: transform 0.3s ease;
+  @apply w-12 h-12 p-3 bg-[#E61C5D] dark:bg-pink-600 rounded-full flex items-center justify-center transition-all duration-300;
 }
 
 .how-it-works__feature:hover .how-it-works__feature-icon {
   transform: scale(1.1);
+}
+
+.how-it-works__icon-image {
+  @apply w-full h-full dark:filter dark:invert transition-all duration-300;
 }
 
 .how-it-works__feature-content {
@@ -79,11 +82,11 @@
 }
 
 .how-it-works__feature-title {
-  @apply text-xl text-[#161616] font-urbanist font-bold leading-[30px];
+  @apply text-xl text-[#161616] dark:text-white font-urbanist font-bold leading-[30px] transition-colors duration-300;
 }
 
 .how-it-works__feature-text {
-  @apply text-base text-[#3E3E3E] font-urbanist font-medium leading-6;
+  @apply text-base text-[#3E3E3E] dark:text-gray-400 font-urbanist font-medium leading-6 transition-colors duration-300;
 }
 
 /* Animaciones */

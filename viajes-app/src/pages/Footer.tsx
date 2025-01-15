@@ -6,9 +6,26 @@ import logo_small from '../assets/logo_small.svg';
 import '../styles/Footer.css';
 import { useTheme } from '../context/ThemeContext';
 
+const ThemeSwitch: FC = () => {
+  const { isDarkMode, toggleDarkMode } = useTheme();
+  
+  return (
+    <div className="theme-switch-wrapper">
+      <Sun className="theme-switch-icon text-yellow-400" />
+      <button
+        onClick={toggleDarkMode}
+        className="theme-switch-button"
+        aria-label="Cambiar tema"
+      >
+        <div className={`theme-switch-slider ${isDarkMode ? 'translate-x-6' : 'translate-x-1'}`} />
+      </button>
+      <Moon className="theme-switch-icon text-gray-400" />
+    </div>
+  );
+};
+
 const Footer: FC = () => {
   const [email, setEmail] = useState('');
-  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,7 +40,7 @@ const Footer: FC = () => {
           {/* Newsletter Section */}
           <div className="footer__section">
             <div className="footer__logo">
-              <img src={logo_small} alt="zentrip logo" />
+              <img src={logo_small} alt="zentrip logo" className="dark:invert" />
             </div>
             <h2 className="footer__title">Mantente Conectado</h2>
             <p className="footer__description">
@@ -65,22 +82,9 @@ const Footer: FC = () => {
               <p>Email: info@zentrip.com</p>
             </address>
             
-            {/* Theme Switch */}
-            <div className="footer__theme-switch">
-              <button
-                onClick={toggleDarkMode}
-                className="footer__theme-button group"
-                aria-label="Cambiar tema"
-              >
-                {isDarkMode ? (
-                  <Sun className="footer__theme-icon text-yellow-400" />
-                ) : (
-                  <Moon className="footer__theme-icon text-gray-600" />
-                )}
-                <span className="footer__theme-text">
-                  {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
-                </span>
-              </button>
+            {/* Theme Switch Component */}
+            <div className="mt-6">
+              <ThemeSwitch />
             </div>
           </div>
 

@@ -6,9 +6,8 @@
 }
 
 .PatternLight {
-  @apply w-full relative;
+  @apply w-full relative bg-[#FDFDFD] dark:bg-gray-900 transition-colors duration-300;
   min-height: 1000px;
-  background: #FDFDFD;
   position: relative;
   overflow: hidden;
 }
@@ -41,7 +40,7 @@
 }
 
 .SectionBadge {
-  @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
+  @apply flex items-center justify-center bg-[#FFE8EF] dark:bg-pink-900/20 rounded-[36px] transition-colors duration-300;
   width: fit-content;
   min-width: 69px;
   max-width: 200px;
@@ -50,18 +49,18 @@
 }
 
 .SectionBadge__text {
-  @apply text-[#E61C5D] font-urbanist font-medium;
+  @apply text-[#E61C5D] dark:text-pink-500 font-urbanist font-medium transition-colors duration-300;
   font-size: 12px;
   line-height: 18px;
   white-space: nowrap;
 }
 
 .main-title {
-  @apply text-[44px] text-[#161616] font-urbanist font-bold leading-[52.8px];
+  @apply text-[44px] text-[#161616] dark:text-white font-urbanist font-bold leading-[52.8px] transition-colors duration-300;
 }
 
 .subtitle {
-  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
+  @apply text-[18px] text-[#3E3E3E] dark:text-gray-400 font-urbanist leading-[28.8px] transition-colors duration-300;
 }
 
 .Frame44 {
@@ -70,7 +69,7 @@
 }
 
 .benefit-card {
-  @apply flex items-start p-6 bg-white rounded-[32px] border border-[#ECECEC];
+  @apply flex items-start p-6 bg-white dark:bg-gray-800 rounded-[32px] border border-[#ECECEC] dark:border-gray-700 transition-all duration-300;
   gap: 24px;
   position: relative;
   z-index: 1;
@@ -93,6 +92,7 @@
 .icon {
   width: 40px;
   height: 40px;
+  @apply dark:filter dark:invert transition-all duration-300;
 }
 
 .card-content {
@@ -102,11 +102,11 @@
 }
 
 .card-content h3 {
-  @apply text-[24px] text-[#161616] font-urbanist font-bold leading-[28.8px];
+  @apply text-[24px] text-[#161616] dark:text-white font-urbanist font-bold leading-[28.8px] transition-colors duration-300;
 }
 
 .card-content p {
-  @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
+  @apply text-[18px] text-[#3E3E3E] dark:text-gray-400 font-urbanist leading-[28.8px] transition-colors duration-300;
 }
 
 /* Frame 139 - Imágenes derecha */
@@ -136,7 +136,7 @@
   width: 478.23px;
   height: 594px;
   border-radius: 222.5px;
-  @apply object-cover;
+  @apply object-cover dark:brightness-90 transition-all duration-300;
   z-index: 1;
   transition: transform 0.3s ease;
 }
@@ -176,7 +176,7 @@
   height: 502px;
   border-radius: 168px;
   border: 100% solid #FDFDFD;
-  @apply object-cover;
+  @apply object-cover dark:brightness-90 transition-all duration-300;
   box-sizing: border-box;
   position: relative;
   z-index: 2;
@@ -197,7 +197,7 @@
 }
 
 .objects-image {
-  @apply w-full h-full;
+  @apply w-full h-full dark:filter dark:invert transition-all duration-300;
 }
 
 .IlustracionAvionBeneficios {
@@ -210,7 +210,7 @@
 }
 
 .avion-image {
-  @apply w-full h-full;
+  @apply w-full h-full dark:filter dark:invert transition-all duration-300;
 }
 
 .text-container {
@@ -220,7 +220,7 @@
 }
 
 .bottom-text {
-  @apply text-[20px] font-urbanist font-medium text-[#353535];
+  @apply text-[20px] font-urbanist font-medium text-[#353535] dark:text-gray-400 transition-colors duration-300;
   margin: 0;
 }
 

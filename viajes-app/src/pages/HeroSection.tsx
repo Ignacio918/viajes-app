@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/HeroSection.css';
+import { useTheme } from '../context/ThemeContext'; // Importamos useTheme
+
 // Imágenes de lugares
 import bigBen from '../assets/photos/imagen_bigben.png';
 import coliseo from '../assets/photos/imagen_coliseo.png';
@@ -18,8 +20,10 @@ import locationIcon from '../assets/icons/icon_location.svg';
 const ease = [0.16, 1, 0.3, 1];
 
 const HeroSection: React.FC = () => {
+  const { isDarkMode } = useTheme(); // Usamos el hook de tema
+
   return (
-    <div className="hero">
+    <div className={`hero ${isDarkMode ? 'dark' : ''}`}>
       <div className="hero__content">
         {/* Left Section - Text Content */}
         <motion.div 
@@ -29,9 +33,9 @@ const HeroSection: React.FC = () => {
           transition={{ duration: 0.8, ease }}
         >
           <h1 className="hero__title !text-left !text-[64px] leading-tight">
-            <span className="text-gray-900 font-bold">Descubre la manera </span>
+            <span className="dark:text-white text-gray-900 font-bold">Descubre la manera </span>
             <span className="text-pink-600 font-bold">más fácil de planificar </span>
-            <span className="text-gray-900 font-bold">tu próxima aventura</span>
+            <span className="dark:text-white text-gray-900 font-bold">tu próxima aventura</span>
           </h1>
 
           <motion.p
@@ -79,7 +83,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={avion3}
               alt="Ilustración avión 3"
-              className="hero__shape-1-inner"
+              className={`hero__shape-1-inner ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
           
@@ -98,7 +102,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={avion1}
               alt="Ilustración avión 1"
-              className="hero__shape-2-inner"
+              className={`hero__shape-2-inner ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
 
@@ -111,7 +115,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={mapa}
               alt="Ilustración mapa"
-              className="hero__shape-3-inner"
+              className={`hero__shape-3-inner ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
 
@@ -130,7 +134,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={avion2}
               alt="Ilustración avión 2 principal"
-              className="hero__avion-2-image"
+              className={`hero__avion-2-image ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
 
@@ -147,7 +151,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={locationIcon} 
               alt="Location icon"
-              className="hero__icon"
+              className={`hero__icon ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
 
@@ -219,7 +223,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={sendIcon}
               alt="Send icon"
-              className="hero__float-icon"
+              className={`hero__float-icon ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
 
@@ -239,7 +243,7 @@ const HeroSection: React.FC = () => {
             <img 
               src={addUserIcon}
               alt="Add user icon"
-              className="hero__float-icon"
+              className={`hero__float-icon ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
             />
           </motion.div>
 
@@ -255,7 +259,7 @@ const HeroSection: React.FC = () => {
             }}
             whileHover={{ 
               y: -2,
-              backgroundColor: "rgb(249, 250, 251)",
+              backgroundColor: isDarkMode ? "rgb(31, 41, 55)" : "rgb(249, 250, 251)",
               transition: { 
                 duration: 0.3,
                 ease 
@@ -271,7 +275,7 @@ const HeroSection: React.FC = () => {
               <img 
                 src={locationIcon}
                 alt="Location icon"
-                className="hero__badge-icon-inner"
+                className={`hero__badge-icon-inner ${isDarkMode ? 'dark:filter dark:invert' : ''}`}
               />
             </motion.div>
             <span className="hero__badge-text">
