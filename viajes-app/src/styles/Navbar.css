@@ -12,7 +12,7 @@
 }
 
 .floating-nav-inner {
-  @apply flex items-center justify-between gap-2;
+  @apply flex items-center justify-between gap-2 relative;
 }
 
 .logo-container {
@@ -23,7 +23,8 @@
   @apply h-10 w-auto;
 }
 
-.nav-links {
+/* Desktop Navigation */
+.nav-links-desktop {
   @apply hidden md:flex items-center gap-4 flex-nowrap;
 }
 
@@ -31,11 +32,12 @@
   @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm whitespace-nowrap;
 }
 
-.auth-buttons {
-  @apply flex items-center gap-3 flex-shrink-0;
+/* Desktop Auth Buttons */
+.auth-buttons-desktop {
+  @apply hidden md:flex items-center gap-3 flex-shrink-0;
 }
 
-/* Estilos base compartidos para ambos botones */
+/* Shared button styles */
 .login-link,
 .register-button {
   @apply px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-all duration-200;
@@ -43,27 +45,51 @@
   text-align: center;
 }
 
-/* Estilos específicos para login */
 .login-link {
   @apply border border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white;
 }
 
-/* Estilos específicos para register */
 .register-button {
   @apply bg-dark text-white hover:bg-gray-700 border border-dark;
 }
 
-/* Media queries para responsive */
+/* Hamburger Menu Button */
+.hamburger-button {
+  @apply md:hidden p-2 text-neutral-600 hover:text-pink-600 transition-colors;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  @apply absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-lg py-4 px-4;
+}
+
+.mobile-nav-links {
+  @apply flex flex-col space-y-3 mb-4;
+}
+
+.mobile-nav-link {
+  @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm py-2;
+}
+
+.mobile-auth-buttons {
+  @apply flex flex-col space-y-3;
+}
+
+/* Media Query for Mobile */
 @media (max-width: 768px) {
   .floating-nav-container {
     @apply max-w-[95%];
   }
-  
-  .nav-links {
-    @apply flex-col items-center space-y-4;
+
+  .mobile-menu {
+    @apply absolute right-0 bg-white/95 backdrop-blur-md border border-neutral-200 rounded-2xl shadow-lg;
   }
-  
-  .auth-buttons {
-    @apply flex-col items-center gap-2;
+
+  .mobile-nav-links {
+    @apply border-b border-neutral-200 pb-4;
+  }
+
+  .mobile-auth-buttons {
+    @apply pt-4;
   }
 }

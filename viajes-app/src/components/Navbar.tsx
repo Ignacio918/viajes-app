@@ -8,6 +8,7 @@ import '../styles/Navbar.css'
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navItems = [
     {
@@ -35,6 +36,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [prevScrollPos])
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <AnimatePresence mode="wait">
       {isVisible && (
@@ -52,8 +57,8 @@ const Navbar = () => {
                 <img src={logoSmall} alt="zentrip logo" className="logo" />
               </div>
 
-              {/* Navigation Links */}
-              <div className="nav-links">
+              {/* Desktop Navigation */}
+              <div className="nav-links-desktop">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -65,8 +70,8 @@ const Navbar = () => {
                 ))}
               </div>
 
-              {/* Auth Buttons */}
-              <div className="auth-buttons">
+              {/* Desktop Auth Buttons */}
+              <div className="auth-buttons-desktop">
                 <Link to="/login" className="login-link">
                   Iniciar Sesión
                 </Link>
@@ -74,6 +79,70 @@ const Navbar = () => {
                   Registrarse
                 </Link>
               </div>
+
+              {/* Hamburger Menu Button */}
+              <button
+                className="hamburger-button"
+                onClick={toggleMenu}
+                aria-label="Menu"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isMenuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+
+              {/* Mobile Menu */}
+              <AnimatePresence>
+                {isMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="mobile-menu"
+                  >
+                    <div className="mobile-nav-links">
+                      {navItems.map((item) => (
+                        <Link
+                          key={item.name}
+                          to={item.link}
+                          className="mobile-nav-link"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="mobile-auth-buttons">
+                      <Link 
+                        to="/login" 
+                        className="login-link"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Iniciar Sesión
+                      </Link>
+                      <Link 
+                        to="/register" 
+                        className="register-button"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Registrarse
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </motion.div>
