@@ -1,5 +1,5 @@
 .register-container {
-  @apply h-screen flex items-center justify-center bg-white dark:bg-black;
+  @apply min-h-screen flex items-center justify-center bg-white dark:bg-black;
 }
 
 .register-form-wrapper {
@@ -19,7 +19,7 @@
 }
 
 .register-title {
-  @apply text-xl font-bold text-neutral-800 dark:text-neutral-200;
+  @apply text-2xl font-bold text-neutral-800 dark:text-neutral-200;
 }
 
 .register-description {
@@ -31,12 +31,8 @@
 }
 
 .register-button {
-  @apply w-full py-2 px-4 bg-primary text-white rounded-md font-medium 
-         transition-all duration-200 flex items-center justify-center;
-}
-
-.register-button:hover {
-  @apply bg-primary/90;
+  @apply w-full py-2 px-4 bg-[#44178C] text-white rounded-full font-medium 
+         transition-all duration-200 flex items-center justify-center hover:bg-opacity-90;
 }
 
 .register-button:disabled {
@@ -49,12 +45,8 @@
 
 .register-google-button {
   @apply w-full py-2 px-4 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 
-         rounded-md font-medium border border-neutral-200 dark:border-neutral-700
-         transition-all duration-200 flex items-center justify-center gap-2;
-}
-
-.register-google-button:hover {
-  @apply bg-neutral-50 dark:bg-neutral-700;
+         rounded-full font-medium border border-neutral-200 dark:border-neutral-700
+         transition-all duration-200 flex items-center justify-center gap-2 hover:bg-neutral-50 dark:hover:bg-neutral-700;
 }
 
 .register-google-button:disabled {
@@ -74,7 +66,7 @@
 }
 
 .login-link {
-  @apply text-sm text-primary hover:underline cursor-pointer ml-1;
+  @apply text-sm text-[#44178C] hover:underline cursor-pointer ml-1;
 }
 
 .register-error {
@@ -83,4 +75,9 @@
 
 .spinner {
   @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2;
+}
+
+.toggle-password {
+  @apply p-2 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 
+         focus:outline-none focus:ring-2 focus:ring-[#44178C] rounded-full;
 }

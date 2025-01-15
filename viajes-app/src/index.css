@@ -3,20 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply h-full;
-    font-family: "Urbanist", system-ui, sans-serif;
-  }
-
-  body {
-    @apply h-full m-0 p-0 overflow-x-hidden;
-    min-height: 100vh;
-  }
-
-  #root {
-    @apply h-full;
-  }
-
   /* Ocultar scrollbar pero mantener funcionalidad */
   ::-webkit-scrollbar {
     width: 0px;
@@ -60,49 +46,6 @@
   }
 }
 
-@layer components {
-  /* Estilos de botones existentes */
-  .btn-primary {
-    @apply bg-[#44178C] text-[#ECE8F4] text-[16px] font-urbanist font-normal py-[10px] rounded-full flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
-  }
-
-  .btn-secondary {
-    @apply bg-white text-[#44178C] text-[16px] font-urbanist font-normal py-[10px] rounded-full border border-[#44178C] flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
-  }
-
-  .btn-dark {
-    @apply bg-[#161616] text-[#ECE8F4] text-[16px] font-urbanist font-normal py-[10px] rounded-full flex justify-center items-center gap-[10px] transition-transform duration-200 hover:scale-[1.02];
-  }
-
-  /* Nuevos estilos para el registro */
-  .auth-container {
-    @apply min-h-screen flex items-center justify-center bg-white dark:bg-black;
-  }
-
-  .auth-form-wrapper {
-    @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-lg;
-  }
-
-  .auth-input {
-    @apply w-full px-4 py-2 border border-[#ECE8F4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#44178C] focus:border-transparent transition-all duration-200;
-  }
-
-  .auth-button {
-    @apply w-full py-2 px-4 bg-[#44178C] text-white rounded-full font-medium 
-           transition-all duration-200 flex items-center justify-center hover:bg-opacity-90;
-  }
-
-  .auth-google-button {
-    @apply w-full py-2 px-4 bg-white text-[#44178C] rounded-full font-medium 
-           border border-[#ECE8F4] transition-all duration-200 flex items-center 
-           justify-center gap-2 hover:bg-gray-50;
-  }
-
-  .auth-divider {
-    @apply my-6 h-px bg-[#ECE8F4] dark:bg-neutral-700;
-  }
-}
-
 /* Fuente Urbanist */
 @font-face {
   font-family: "Urbanist";
@@ -118,64 +61,4 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-}
-
-/* Media queries existentes */
-@media screen and (min-width: 2560px) {
-  .auth-container {
-    max-width: 2560px;
-    margin: auto;
-  }
-}
-
-@media screen and (min-width: 1440px) and (max-width: 2559px) {
-  .auth-container {
-    max-width: 1440px;
-    margin: auto;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .auth-form-wrapper {
-    width: 100%;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .auth-container {
-    padding: 16px;
-  }
-  
-  .auth-form-wrapper {
-    max-width: 100%;
-    padding: 16px;
-  }
-}
-
-/* Estilos específicos para textos */
-.auth-title {
-  @apply text-2xl font-bold text-[#161616] dark:text-neutral-200;
-}
-
-.auth-description {
-  @apply text-sm text-[#828282] dark:text-neutral-400 mt-2;
-}
-
-.auth-label {
-  @apply text-sm font-medium text-[#161616] dark:text-neutral-200;
-}
-
-.auth-helper-text {
-  @apply text-xs text-[#828282] dark:text-neutral-400 mt-1;
-}
-
-.auth-error {
-  @apply text-red-500 text-sm text-center mt-4;
-}
-
-/* Spinner para estados de carga */
-.spinner {
-  @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2;
 }

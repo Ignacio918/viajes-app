@@ -1,7 +1,6 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../styles/RegisterPage.css';
 
 // Importamos los iconos necesarios
 import GoogleIcon from '../assets/icons/devicon_google.svg';
@@ -43,7 +42,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     confirmPassword: { isValid: false, message: '' }
   });
 
-  // Validaciones (mantener todas las funciones de validación existentes)
   const validateFullName = (name: string): FormValidation => {
     if (!name.trim()) {
       return { isValid: false, message: 'El nombre es requerido' };
@@ -165,19 +163,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-form-wrapper">
-        <div className="register-form-content">
-          <div className="register-logo-container">
-            <img src={Logo} alt="Zentrip Logo" className="register-logo-image" />
+    <div className="auth-container">
+      <div className="auth-form-wrapper">
+        <div className="auth-form-content">
+          <div className="auth-logo-container">
+            <img src={Logo} alt="Zentrip Logo" className="auth-logo-image" />
           </div>
 
-          <h2 className="register-title">Únete a Zentrip</h2>
-          <p className="register-description">
+          <h2 className="auth-title">Únete a Zentrip</h2>
+          <p className="auth-description">
             Transforma tus ideas en aventuras reales
           </p>
 
-          <form onSubmit={handleSubmit} className="register-form">
+          <form onSubmit={handleSubmit} className="auth-form">
             <TextField
               label="Nombre completo"
               placeholder="Ingresa tu nombre completo"
@@ -215,6 +213,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                   className="toggle-password"
                   onClick={() => setShowPassword(!showPassword)}
                   disabled={isLoading}
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
                   <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
                 </button>
@@ -236,6 +235,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                   className="toggle-password"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   disabled={isLoading}
+                  aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                 >
                   <img src={showConfirmPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
                 </button>
@@ -244,7 +244,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <button
               type="submit"
-              className="register-button"
+              className="auth-button"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -257,30 +257,33 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               )}
             </button>
 
-            <div className="register-divider" />
+            <div className="auth-divider" />
 
             <button
               type="button"
               onClick={handleGoogleLogin}
-              className="register-google-button"
+              className="auth-google-button"
               disabled={isLoading}
             >
               <img src={GoogleIcon} alt="Google" className="google-icon" />
               <span>Continuar con Google</span>
             </button>
 
-            <div className="register-login-link">
-              <span className="login-text">¿Ya tienes una cuenta?</span>
+            <div className="auth-login-link">
+              <span className="auth-text">¿Ya tienes una cuenta?</span>
               <span
-                className="login-link"
+                className="auth-link"
                 onClick={() => navigate('/login')}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => e.key === 'Enter' && navigate('/login')}
               >
                 Inicia sesión
               </span>
             </div>
           </form>
 
-          {error && <p className="register-error">{error}</p>}
+          {error && <p className="auth-error">{error}</p>}
         </div>
       </div>
     </div>
