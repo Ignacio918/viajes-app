@@ -41,8 +41,8 @@ const Benefits = () => {
             <div className="Frame22">
               <div className="Frame47">
                 <div className="Frame39">
-                  <div className="BadgeBenefits">
-                    <div className="Text">Beneficios</div>
+                  <div className="SectionBadge">
+                    <div className="SectionBadge__text">Beneficios</div>
                   </div>
                   <h2 className="main-title">Todo lo que zentrip puede hacer por ti</h2>
                 </div>

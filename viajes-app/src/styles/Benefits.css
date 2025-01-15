@@ -39,13 +39,13 @@
   @apply flex flex-col gap-4;
 }
 
-.BadgeBenefits {
+.SectionBadge {
   @apply flex items-center justify-center bg-[#FFE8EF] rounded-[36px];
   width: 69px;
   height: 22px;
 }
 
-.BadgeBenefits .Text {
+.SectionBadge__text {
   @apply text-[#E61C5D] font-urbanist font-medium;
   font-size: 12px;
   line-height: 18px;
@@ -269,14 +269,14 @@
 }
 
 @media (min-width: 1440px) {
-  .BadgeBenefits {
+  .SectionBadge {
     width: auto;
     max-width: 160px;
     height: auto;
     padding: 6px 20px;
   }
   
-  .BadgeBenefits .Text {
+  .SectionBadge__text {
     font-size: 24px;
     line-height: 30px;
   }

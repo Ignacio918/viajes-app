@@ -19,7 +19,9 @@ const HowItWorks = () => {
         </div>
 
         <div className="how-it-works__right">
-          <div className="how-it-works__badge">Como funciona</div>
+          <div className="SectionBadge">
+            <span className="SectionBadge__text">Como funciona</span>
+          </div>
           
           <h2 className="how-it-works__title">
             Gestiona tu viaje desde un solo lugar
