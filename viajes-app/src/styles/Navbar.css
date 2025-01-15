@@ -26,16 +26,16 @@
 
 /* Desktop Navigation */
 .nav-links-desktop {
-  @apply hidden md:flex items-center gap-4 flex-nowrap;
+  @apply flex items-center gap-4 flex-nowrap;
 }
 
 .nav-link {
   @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm whitespace-nowrap;
 }
 
-/* Desktop Auth Buttons */
+/* Auth Buttons Desktop */
 .auth-buttons-desktop {
-  @apply hidden md:flex items-center gap-3 flex-shrink-0;
+  @apply flex items-center gap-3 flex-shrink-0;
 }
 
 /* Shared button styles */
@@ -54,26 +54,15 @@
   @apply bg-dark text-white hover:bg-gray-700 border border-dark;
 }
 
-/* Hamburger Menu Button */
+/* Hamburger Menu Button - Hidden by default */
 .hamburger-button {
-  @apply md:hidden p-2 text-neutral-600 hover:text-pink-600 transition-colors;
+  @apply hidden p-2 text-neutral-600 hover:text-pink-600 transition-colors;
 }
 
-/* Mobile Menu */
+/* Mobile Menu - Hidden by default */
 .mobile-menu {
   @apply absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg py-4 px-4;
-}
-
-.mobile-nav-links {
-  @apply flex flex-col space-y-3 mb-4;
-}
-
-.mobile-nav-link {
-  @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm py-2;
-}
-
-.mobile-auth-buttons {
-  @apply flex flex-col space-y-3 w-full;
+  display: none;
 }
 
 /* Media Queries */
@@ -81,6 +70,10 @@
   .floating-nav-container {
     padding: 0 1.5rem;
     max-width: 100%;
+  }
+  
+  .floating-nav-content {
+    @apply px-4;
   }
 }
 
@@ -90,11 +83,20 @@
     max-width: 100%;
   }
 
-  .floating-nav-content {
-    @apply px-4;
+  /* Hide desktop navigation and auth buttons */
+  .nav-links-desktop,
+  .auth-buttons-desktop {
+    @apply hidden;
   }
 
+  /* Show hamburger button */
+  .hamburger-button {
+    @apply block;
+  }
+
+  /* Mobile menu styling */
   .mobile-menu {
+    display: block;
     right: 1rem;
     left: 1rem;
     width: auto;
@@ -102,16 +104,30 @@
   }
 
   .mobile-nav-links {
-    @apply border-b border-neutral-200 pb-4;
+    @apply flex flex-col space-y-3 mb-4 border-b border-neutral-200 pb-4;
+  }
+
+  .mobile-nav-link {
+    @apply text-neutral-600 hover:text-pink-600 transition-colors text-sm py-2;
   }
 
   .mobile-auth-buttons {
-    @apply pt-4;
+    @apply flex flex-col space-y-3 w-full pt-4;
   }
 
+  /* Mobile button styles */
   .login-link,
   .register-button {
     @apply w-full;
     width: 100%;
   }
+}
+
+/* Specific mobile menu visibility */
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu.active {
+  display: block;
 }
