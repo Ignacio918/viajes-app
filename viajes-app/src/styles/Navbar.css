@@ -1,4 +1,3 @@
-/* src/styles/Navbar.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,7 +40,7 @@
 .login-link,
 .register-button {
   @apply px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-all duration-200;
-  min-width: 120px;
+  width: 110px; /* Tamaño fijo para ambos botones */
   text-align: center;
 }
 
@@ -60,7 +59,7 @@
 
 /* Mobile Menu */
 .mobile-menu {
-  @apply absolute top-full right-0 mt-2 w-60 bg-white rounded-lg shadow-lg py-4 px-4;
+  @apply absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-4 px-4;
 }
 
 .mobile-nav-links {
@@ -72,10 +71,10 @@
 }
 
 .mobile-auth-buttons {
-  @apply flex flex-col space-y-3;
+  @apply flex flex-col space-y-3 w-full;
 }
 
-/* Media Query for Mobile */
+/* Mobile specific button styles */
 @media (max-width: 768px) {
   .floating-nav-container {
     @apply max-w-[95%];
@@ -91,5 +90,12 @@
 
   .mobile-auth-buttons {
     @apply pt-4;
+  }
+
+  /* Ajustar botones en móvil para que ocupen todo el ancho */
+  .login-link,
+  .register-button {
+    @apply w-full; /* Ancho completo en móvil */
+    width: 100%;
   }
 }
