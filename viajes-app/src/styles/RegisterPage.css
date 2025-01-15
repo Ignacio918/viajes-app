@@ -1,121 +1,81 @@
-.register-container {
-  @apply min-h-screen flex items-center justify-center bg-white dark:bg-black;
+.auth-container {
+  @apply min-h-screen flex items-center justify-center bg-background dark:bg-background-dark p-4;
 }
 
-.register-form-wrapper {
-  @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-lg;
+.auth-form-wrapper {
+  @apply max-w-md w-full mx-auto rounded-2xl p-6 md:p-8 bg-background dark:bg-background-dark shadow-custom dark:shadow-custom-dark;
 }
 
-.register-form-content {
+.auth-form-content {
   @apply w-full;
 }
 
-.register-logo-container {
-  @apply flex justify-center mb-6;
+.auth-logo-container {
+  @apply flex justify-center mb-8;
 }
 
-.register-logo-image {
+.auth-logo-image {
   @apply h-8;
 }
 
-.register-title {
-  @apply text-2xl font-bold text-[#161616] dark:text-neutral-200;
+.auth-title {
+  @apply text-dark dark:text-white text-xl font-urbanist font-bold text-center mb-2;
 }
 
-.register-description {
-  @apply text-sm text-[#828282] dark:text-neutral-400 mt-2;
+.auth-description {
+  @apply text-gray-800 dark:text-gray-300 text-sm font-urbanist text-center mb-8;
 }
 
-.register-form {
-  @apply space-y-4 my-8;
+.auth-form {
+  @apply flex flex-col gap-6;
 }
 
-.register-label {
-  @apply text-sm font-medium text-[#161616] dark:text-neutral-200;
+.auth-input-group {
+  @apply w-full;
 }
 
-.register-input {
-  @apply w-full px-4 py-2 border border-[#ECE8F4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#44178C] focus:border-transparent transition-all duration-200;
+.auth-button {
+  @apply flex items-center justify-center gap-2 w-full px-4 py-3 bg-pink-600 text-white font-urbanist font-medium rounded-full 
+  transition-all duration-300 hover:bg-opacity-90 hover:transform hover:-translate-y-1 
+  active:translate-y-0 disabled:bg-opacity-70 disabled:cursor-not-allowed;
 }
 
-.register-button {
-  @apply w-full py-2 px-4 bg-[#44178C] text-white rounded-full font-medium 
-         transition-all duration-200 flex items-center justify-center hover:bg-opacity-90;
+.auth-divider {
+  @apply my-6 h-px bg-gray-800/10 dark:bg-gray-300/10;
 }
 
-.register-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
+.auth-google-button {
+  @apply flex items-center justify-center gap-3 w-full px-4 py-3 bg-background dark:bg-background-dark 
+  text-dark dark:text-white font-urbanist font-medium rounded-full border border-gray-800/20 dark:border-gray-300/20
+  transition-all duration-300 hover:bg-gray-800/5 dark:hover:bg-gray-300/5 
+  disabled:opacity-70 disabled:cursor-not-allowed;
 }
 
-.register-divider {
-  @apply my-6 h-px bg-[#ECE8F4] dark:bg-neutral-700;
+.google-icon {
+  @apply w-5 h-5;
 }
 
-.register-google-button {
-  @apply w-full py-2 px-4 bg-white text-[#161616] rounded-full font-medium 
-         border border-[#ECE8F4] transition-all duration-200 flex items-center 
-         justify-center gap-2 hover:bg-gray-50 dark:bg-neutral-800 dark:text-neutral-200 
-         dark:border-neutral-700 dark:hover:bg-neutral-700;
+.auth-login-link {
+  @apply mt-6 text-center font-urbanist;
 }
 
-.register-google-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
+.auth-text {
+  @apply text-gray-800 dark:text-gray-300 text-sm;
 }
 
-.register-login-link {
-  @apply mt-6 text-center;
+.auth-link {
+  @apply text-pink-600 text-sm cursor-pointer hover:underline ml-1;
 }
 
-.register-login-text {
-  @apply text-sm text-[#828282] dark:text-neutral-400;
-}
-
-.register-login-link-text {
-  @apply text-sm text-[#44178C] hover:underline cursor-pointer ml-1;
-}
-
-.register-error {
-  @apply text-red-500 text-sm text-center mt-4;
-}
-
-.register-helper-text {
-  @apply text-xs text-[#828282] dark:text-neutral-400 mt-1;
+.auth-error {
+  @apply mt-4 p-3 rounded-lg bg-pink-600/10 text-pink-600 text-sm font-urbanist text-center;
 }
 
 .spinner {
-  @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2;
+  @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin;
 }
 
-/* Media queries */
-@media screen and (min-width: 2560px) {
-  .register-container {
-    max-width: 2560px;
-    margin: auto;
-  }
-}
-
-@media screen and (min-width: 1440px) and (max-width: 2559px) {
-  .register-container {
-    max-width: 1440px;
-    margin: auto;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .register-form-wrapper {
-    width: 100%;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .register-container {
-    padding: 16px;
-  }
-  
-  .register-form-wrapper {
-    max-width: 100%;
-    padding: 16px;
-  }
+.toggle-password {
+  @apply p-2 text-gray-800 dark:text-gray-300 hover:text-dark dark:hover:text-white 
+  disabled:opacity-70 disabled:cursor-not-allowed transition-colors duration-300;
 }

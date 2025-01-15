@@ -176,71 +176,79 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
           </p>
 
           <form onSubmit={handleSubmit} className="auth-form">
-            <TextField
-              label="Nombre completo"
-              placeholder="Ingresa tu nombre completo"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              state={formValidation.fullName.isValid ? 'success' : fullName ? 'error' : 'enabled'}
-              type="text"
-              disabled={isLoading}
-              helperText={fullName ? formValidation.fullName.message : ''}
-            />
+            <div className="auth-input-group">
+              <TextField
+                label="Nombre completo"
+                placeholder="Ingresa tu nombre completo"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                state={formValidation.fullName.isValid ? 'success' : fullName ? 'error' : 'enabled'}
+                type="text"
+                disabled={isLoading}
+                helperText={fullName ? formValidation.fullName.message : ''}
+              />
+            </div>
 
-            <TextField
-              label="Email"
-              placeholder="tu@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              state={formValidation.email.isValid ? 'success' : email ? 'error' : 'enabled'}
-              type="email"
-              disabled={isLoading}
-              helperText={email ? formValidation.email.message : ''}
-            />
+            <div className="auth-input-group">
+              <TextField
+                label="Email"
+                placeholder="tu@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                state={formValidation.email.isValid ? 'success' : email ? 'error' : 'enabled'}
+                type="email"
+                disabled={isLoading}
+                helperText={email ? formValidation.email.message : ''}
+              />
+            </div>
 
-            <TextField
-              label="Contraseña"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              state={formValidation.password.isValid ? 'success' : password ? 'error' : 'enabled'}
-              type={showPassword ? "text" : "password"}
-              disabled={isLoading}
-              helperText={password ? formValidation.password.message : ''}
-              icon={
-                <button
-                  type="button"
-                  className="toggle-password"
-                  onClick={() => setShowPassword(!showPassword)}
-                  disabled={isLoading}
-                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-                >
-                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-                </button>
-              }
-            />
+            <div className="auth-input-group">
+              <TextField
+                label="Contraseña"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                state={formValidation.password.isValid ? 'success' : password ? 'error' : 'enabled'}
+                type={showPassword ? "text" : "password"}
+                disabled={isLoading}
+                helperText={password ? formValidation.password.message : ''}
+                icon={
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                    disabled={isLoading}
+                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  >
+                    <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                  </button>
+                }
+              />
+            </div>
 
-            <TextField
-              label="Confirmar contraseña"
-              placeholder="••••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              state={formValidation.confirmPassword.isValid ? 'success' : confirmPassword ? 'error' : 'enabled'}
-              type={showConfirmPassword ? "text" : "password"}
-              disabled={isLoading}
-              helperText={confirmPassword ? formValidation.confirmPassword.message : ''}
-              icon={
-                <button
-                  type="button"
-                  className="toggle-password"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  disabled={isLoading}
-                  aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-                >
-                  <img src={showConfirmPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-                </button>
-              }
-            />
+            <div className="auth-input-group">
+              <TextField
+                label="Confirmar contraseña"
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                state={formValidation.confirmPassword.isValid ? 'success' : confirmPassword ? 'error' : 'enabled'}
+                type={showConfirmPassword ? "text" : "password"}
+                disabled={isLoading}
+                helperText={confirmPassword ? formValidation.confirmPassword.message : ''}
+                icon={
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    disabled={isLoading}
+                    aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  >
+                    <img src={showConfirmPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                  </button>
+                }
+              />
+            </div>
 
             <button
               type="submit"
