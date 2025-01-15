@@ -1,8 +1,8 @@
-// src/components/Footer.tsx
+// src/pages/Footer.tsx
 import { FC, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Twitter, Send } from 'lucide-react';
-import logo from '../assets/logo_small.svg';
+import logo_small from '../assets/logo_small.svg';
 import '../styles/Footer.css';
 
 const Footer: FC = () => {
@@ -21,7 +21,7 @@ const Footer: FC = () => {
           {/* Newsletter Section */}
           <div className="footer__section">
             <div className="footer__logo">
-              <img src={logo} alt="zentrip logo" />
+              <img src={logo_small} alt="zentrip logo" />
             </div>
             <h2 className="footer__title">Mantente Conectado</h2>
             <p className="footer__description">

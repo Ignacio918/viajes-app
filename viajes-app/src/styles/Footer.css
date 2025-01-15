@@ -97,6 +97,6 @@
   }
 
   .sr-only {
-    @apply absolute w-1 h-1 p-0 -m-1 overflow-hidden clip-path[inset(50%)] whitespace-nowrap border-0;
+    @apply absolute w-1 h-1 p-0 -m-1 overflow-hidden whitespace-nowrap border-0;
   }
 }
