@@ -1,118 +1,86 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  @apply m-0 font-urbanist;
+.register-page {
+  @apply h-screen flex items-center justify-center bg-background;
 }
 
 .register-container {
-  @apply w-full h-full relative bg-white rounded-3xl overflow-hidden;
-}
-
-.register-image {
-  @apply w-[683px] h-[768px] absolute top-0 left-0;
-}
-
-.register-header {
-  @apply absolute top-[71px] left-[121px] flex flex-col justify-start items-center gap-2.5 h-[117px];
-}
-
-.register-header {
-  @apply absolute top-[71px] left-[121px] flex flex-col justify-start items-center gap-2.5 h-[117px];
-}
-.register-logo {
-  @apply relative w-[187px] h-[72px];
-}
-
-.register-logo-text {
-  @apply absolute top-0 left-0 text-[#FEFEFE] text-[60px] font-medium;
-}
-
-.register-logo-dot {
-  @apply absolute top-[16px] left-[141px] w-[6.20px] h-[6.20px] bg-[#E61C5D] rounded-full;
-}
-
-.register-subtitle {
-  @apply text-center text-white text-[18px] font-bold;
-}
-
-.register-form-container {
-  @apply absolute top-[168.5px] left-[862px] flex flex-col justify-start items-center gap-6 h-[432px];
-}
-
-.register-form-header {
-  @apply flex flex-col justify-start items-start gap-4 h-[64px] w-full;
-}
-
-.register-title {
-  @apply text-center text-[#161616] text-[28px] font-bold w-full;
-}
-
-.register-description {
-  @apply text-center text-[#161616] text-[12px] font-normal w-full;
+  @apply max-w-md w-full mx-auto bg-card rounded-lg shadow-lg p-6;
 }
 
 .register-form {
-  @apply flex flex-col justify-start items-center gap-4 h-[344px];
+  @apply w-full;
 }
 
-.register-input-group {
-  @apply flex flex-col justify-start items-end gap-4 h-[158px];
+.form-header {
+  @apply flex flex-col items-center space-y-4 mb-8;
 }
 
-.register-input-label {
-  @apply flex justify-start items-center gap-2 text-[#292929] text-[14px] font-bold;
+.logo {
+  @apply h-8 w-auto mb-4;
 }
 
-.register-input {
-  @apply inline-flex justify-between items-center w-[311px] h-[44px] p-[10px] bg-white rounded-md border border-[#CECCBF];
+.form-title {
+  @apply text-2xl font-bold text-foreground;
 }
 
-.register-input input {
-  @apply border-none outline-none w-full text-[14px] text-[rgba(0,0,0,0.20)] font-normal;
+.form-description {
+  @apply text-sm text-muted-foreground text-center;
 }
 
-.toggle-password {
-  @apply bg-none border-none cursor-pointer;
+.form-content {
+  @apply space-y-4;
 }
 
-.register-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[14px] font-normal;
+.submit-button {
+  @apply w-full flex items-center justify-center gap-2 px-4 py-2 mt-6
+         bg-primary text-primary-foreground rounded-md
+         hover:bg-primary/90 transition-colors
+         disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
-.register-button {
-  @apply inline-flex justify-center items-center w-[311px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer;
+.divider {
+  @apply relative my-6;
 }
 
-.register-google-button {
-  @apply inline-flex justify-center items-center gap-2.5 w-[311px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer;
+.divider::before {
+  content: '';
+  @apply absolute top-1/2 left-0 w-full h-px bg-border;
+}
+
+.divider span {
+  @apply relative px-2 bg-background text-sm text-muted-foreground;
+}
+
+.google-button {
+  @apply w-full flex items-center justify-center gap-2 px-4 py-2
+         bg-secondary text-secondary-foreground rounded-md
+         hover:bg-secondary/80 transition-colors
+         disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .google-icon {
-  @apply w-[16px] h-[16px];
+  @apply w-5 h-5;
 }
 
-.register-signup {
-  @apply inline-flex justify-center items-center gap-1 w-[215px];
+.login-link {
+  @apply mt-6 text-center space-x-1 text-sm;
 }
 
-.signup-text {
-  @apply text-[rgba(0,0,0,0.20)] text-[14px] font-normal;
+.login-link span {
+  @apply text-muted-foreground;
 }
 
-.signup-link {
-  @apply text-[#E61C5D] text-[14px] font-normal cursor-pointer;
+.login-link .link {
+  @apply text-primary hover:underline;
 }
 
-.register-decorative-rect-1 {
-  @apply absolute top-[632px] left-[1409.23px] w-[237.17px] h-[136px] bg-[#E61C5D] transform rotate-180 origin-[0_0];
+.error-message {
+  @apply mt-4 text-sm text-destructive text-center;
 }
 
-.register-decorative-rect-2 {
-  @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px] bg-[#E61C5D];
+.spinner {
+  @apply w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
 }
 
-.register-icon {
-  @apply absolute top-[656px] left-[665.45px] w-[193px] h-[112px];
+.toggle-password {
+  @apply p-1 rounded-md hover:bg-accent transition-colors;
 }

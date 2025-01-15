@@ -3,15 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
 
-// Importamos los mismos assets que usamos en LoginPage
-import videoLogin from '../assets/video_login.mp4';
+// Importamos los iconos necesarios
 import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/icons/devicon_google.svg';
 import EyeIcon from '../assets/icons/eye.svg';
 import EyeOffIcon from '../assets/icons/eye-slash.svg';
-import IlusMonumentos from '../assets/illustrations/ilus_monumentos.svg';
-import IlusMezquita from '../assets/illustrations/ilus_mezquita.svg';
-import IlusAvionLogin from '../assets/illustrations/ilus_avion_login.svg';
 import TextField from '../components/TextField';
 
 interface RegisterPageProps {
@@ -174,33 +170,16 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-image-container">
-        <video 
-          className="login-video"
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-        >
-          <source src={videoLogin} type="video/mp4" />
-        </video>
-      </div>
-
-      <div className="form-container">
-        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
-          <div className="login-branding">
-            <div className="login-logo">
-              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
-              <div className="login-logo-dot"></div>
-            </div>
+    <div className="register-page">
+      <div className="register-container">
+        <div className="register-form">
+          <div className="form-header">
+            <img src={Logo} alt="Zentrip Logo" className="logo" />
+            <h2 className="form-title">Únete a Zentrip</h2>
+            <p className="form-description">Transforma tus ideas en aventuras reales</p>
           </div>
 
-          <div className="login-form-header">
-            <span className="login-description">Únete hoy y transforma tus ideas en aventuras reales.</span>
-          </div>
-          
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit} className="form-content">
             <TextField
               label="Nombre completo"
               placeholder="Ingresa tu nombre completo"
@@ -222,7 +201,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               disabled={isLoading}
               helperText={email ? formValidation.email.message : ''}
             />
-            
+
             <TextField
               label="Contraseña"
               placeholder="Ingresa una contraseña"
@@ -267,7 +246,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <button 
               type="submit" 
-              className={`login-button ${isLoading ? 'button-loading' : ''}`}
+              className="submit-button"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -280,10 +259,14 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               )}
             </button>
 
+            <div className="divider">
+              <span>O continúa con</span>
+            </div>
+
             <button 
               type="button" 
               onClick={handleGoogleLogin} 
-              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
+              className="google-button"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -294,30 +277,27 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               ) : (
                 <>
                   <img src={GoogleIcon} alt="Google" className="google-icon" />
-                  Regístrate con Google
+                  Continuar con Google
                 </>
               )}
             </button>
 
-            <div className="login-signup">
-              <span className="signup-text">¿Ya tienes una cuenta?</span>
-              <span 
-                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
+            <div className="login-link">
+              <span>¿Ya tienes una cuenta?</span>
+              <button 
+                type="button"
+                className="link"
                 onClick={() => navigate('/login')}
+                disabled={isLoading}
               >
-                Iniciar Sesión
-              </span>
+                Inicia sesión
+              </button>
             </div>
           </form>
 
-          {error && <p className="login-error">{error}</p>}
+          {error && <p className="error-message">{error}</p>}
         </div>
       </div>
-
-      {/* Ilustraciones */}
-      <img src={IlusAvionLogin} alt="Avión" className="illustration" />
-      <img src={IlusMezquita} alt="Mezquita" className="illustration" />
-      <img src={IlusMonumentos} alt="Monumentos" className="illustration" />
     </div>
   );
 };
