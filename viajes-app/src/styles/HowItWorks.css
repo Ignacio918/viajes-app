@@ -118,7 +118,7 @@
 @media (min-width: 1440px) {
   .SectionBadge {
     width: auto;
-    max-width: 160px;
+    max-width: 180px;
     height: auto;
     padding: 6px 20px;
   }
