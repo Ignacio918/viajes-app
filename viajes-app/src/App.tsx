@@ -15,9 +15,10 @@ import UserProfile from "./pages/UserProfile";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Navbar from "./components/Navbar";
+import Footer from "./pages/Footer";
 import HeroSection from "./pages/HeroSection";
 import Benefits from "./pages/Benefits";
-import HowItWorks from "./pages/HowItWorks"; // Importar el nuevo componente
+import HowItWorks from "./pages/HowItWorks";
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -63,12 +64,10 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div
-        className={`min-h-screen ${showAuthPage ? "bg-white" : "bg-gray-50"}`}
-      >
-        <div className="flex-grow main-content">
-          {!showAuthPage && <Navbar />}
-
+      <div className={`min-h-screen flex flex-col ${showAuthPage ? "bg-white" : "bg-gray-50"}`}>
+        {!showAuthPage && <Navbar />}
+        
+        <div className="flex-grow">
           <Routes>
             <Route
               path="/"
@@ -77,7 +76,7 @@ const App: React.FC = () => {
                   {showAuthPage === null ? (
                     <div className="flex-grow">
                       <HeroSection />
-                      <HowItWorks /> {/* Agregar la nueva sección */}
+                      <HowItWorks />
                       <Benefits />
                     </div>
                   ) : showAuthPage === "login" ? (
@@ -118,6 +117,8 @@ const App: React.FC = () => {
             <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>
         </div>
+
+        {!showAuthPage && <Footer />} {/* Agregamos el Footer */}
       </div>
     </Router>
   );
