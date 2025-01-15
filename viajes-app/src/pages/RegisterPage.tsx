@@ -4,10 +4,10 @@ import { supabase } from '../supabaseClient';
 import '../styles/RegisterPage.css';
 
 // Importamos los iconos necesarios
-import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/icons/devicon_google.svg';
 import EyeIcon from '../assets/icons/eye.svg';
 import EyeOffIcon from '../assets/icons/eye-slash.svg';
+import Logo from '../assets/logo_medium.svg';
 import TextField from '../components/TextField';
 
 interface RegisterPageProps {
@@ -43,7 +43,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     confirmPassword: { isValid: false, message: '' }
   });
 
-  // Validación de nombre completo
+  // Validaciones (mantener todas las funciones de validación existentes)
   const validateFullName = (name: string): FormValidation => {
     if (!name.trim()) {
       return { isValid: false, message: 'El nombre es requerido' };
@@ -57,7 +57,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     return { isValid: true, message: 'Nombre válido' };
   };
 
-  // Validación de email
   const validateEmail = (email: string): FormValidation => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
@@ -69,7 +68,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     return { isValid: true, message: 'Email válido' };
   };
 
-  // Validación de contraseña
   const validatePassword = (pass: string): FormValidation => {
     if (!pass) {
       return { isValid: false, message: 'La contraseña es requerida' };
@@ -89,7 +87,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     return { isValid: true, message: 'Contraseña válida' };
   };
 
-  // Validación de confirmación de contraseña
   const validateConfirmPassword = (confirm: string): FormValidation => {
     if (!confirm) {
       return { isValid: false, message: 'Debe confirmar la contraseña' };
@@ -100,7 +97,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     return { isValid: true, message: 'Las contraseñas coinciden' };
   };
 
-  // Efecto para validar en tiempo real
   useEffect(() => {
     setFormValidation({
       fullName: validateFullName(fullName),
@@ -115,7 +111,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     setIsLoading(true);
     setError('');
 
-    // Validar todo el formulario antes de enviar
     const allValidations = {
       fullName: validateFullName(fullName),
       email: validateEmail(email),
@@ -170,16 +165,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="register-page">
-      <div className="register-container">
-        <div className="register-form">
-          <div className="form-header">
-            <img src={Logo} alt="Zentrip Logo" className="logo" />
-            <h2 className="form-title">Únete a Zentrip</h2>
-            <p className="form-description">Transforma tus ideas en aventuras reales</p>
+    <div className="register-container">
+      <div className="register-form-wrapper">
+        <div className="register-form-content">
+          <div className="register-logo-container">
+            <img src={Logo} alt="Zentrip Logo" className="register-logo-image" />
           </div>
 
-          <form onSubmit={handleSubmit} className="form-content">
+          <h2 className="register-title">Únete a Zentrip</h2>
+          <p className="register-description">
+            Transforma tus ideas en aventuras reales
+          </p>
+
+          <form onSubmit={handleSubmit} className="register-form">
             <TextField
               label="Nombre completo"
               placeholder="Ingresa tu nombre completo"
@@ -193,7 +191,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <TextField
               label="Email"
-              placeholder="Ingresa tu email"
+              placeholder="tu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               state={formValidation.email.isValid ? 'success' : email ? 'error' : 'enabled'}
@@ -204,7 +202,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <TextField
               label="Contraseña"
-              placeholder="Ingresa una contraseña"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               state={formValidation.password.isValid ? 'success' : password ? 'error' : 'enabled'}
@@ -225,7 +223,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
             <TextField
               label="Confirmar contraseña"
-              placeholder="Confirma tu contraseña"
+              placeholder="••••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               state={formValidation.confirmPassword.isValid ? 'success' : confirmPassword ? 'error' : 'enabled'}
@@ -244,9 +242,9 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               }
             />
 
-            <button 
-              type="submit" 
-              className="submit-button"
+            <button
+              type="submit"
+              className="register-button"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -259,43 +257,30 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               )}
             </button>
 
-            <div className="divider">
-              <span>O continúa con</span>
-            </div>
+            <div className="register-divider" />
 
-            <button 
-              type="button" 
-              onClick={handleGoogleLogin} 
-              className="google-button"
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="register-google-button"
               disabled={isLoading}
             >
-              {isLoading ? (
-                <>
-                  <span className="spinner"></span>
-                  Conectando...
-                </>
-              ) : (
-                <>
-                  <img src={GoogleIcon} alt="Google" className="google-icon" />
-                  Continuar con Google
-                </>
-              )}
+              <img src={GoogleIcon} alt="Google" className="google-icon" />
+              <span>Continuar con Google</span>
             </button>
 
-            <div className="login-link">
-              <span>¿Ya tienes una cuenta?</span>
-              <button 
-                type="button"
-                className="link"
+            <div className="register-login-link">
+              <span className="login-text">¿Ya tienes una cuenta?</span>
+              <span
+                className="login-link"
                 onClick={() => navigate('/login')}
-                disabled={isLoading}
               >
                 Inicia sesión
-              </button>
+              </span>
             </div>
           </form>
 
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="register-error">{error}</p>}
         </div>
       </div>
     </div>

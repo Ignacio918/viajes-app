@@ -1,86 +1,86 @@
-.register-page {
-  @apply h-screen flex items-center justify-center bg-background;
-}
-
 .register-container {
-  @apply max-w-md w-full mx-auto bg-card rounded-lg shadow-lg p-6;
+  @apply h-screen flex items-center justify-center bg-white dark:bg-black;
 }
 
-.register-form {
+.register-form-wrapper {
+  @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-lg;
+}
+
+.register-form-content {
   @apply w-full;
 }
 
-.form-header {
-  @apply flex flex-col items-center space-y-4 mb-8;
+.register-logo-container {
+  @apply flex justify-center mb-6;
 }
 
-.logo {
-  @apply h-8 w-auto mb-4;
+.register-logo-image {
+  @apply h-8;
 }
 
-.form-title {
-  @apply text-2xl font-bold text-foreground;
+.register-title {
+  @apply text-xl font-bold text-neutral-800 dark:text-neutral-200;
 }
 
-.form-description {
-  @apply text-sm text-muted-foreground text-center;
+.register-description {
+  @apply text-sm text-neutral-600 dark:text-neutral-300 mt-2;
 }
 
-.form-content {
-  @apply space-y-4;
+.register-form {
+  @apply space-y-4 my-8;
 }
 
-.submit-button {
-  @apply w-full flex items-center justify-center gap-2 px-4 py-2 mt-6
-         bg-primary text-primary-foreground rounded-md
-         hover:bg-primary/90 transition-colors
-         disabled:opacity-50 disabled:cursor-not-allowed;
+.register-button {
+  @apply w-full py-2 px-4 bg-primary text-white rounded-md font-medium 
+         transition-all duration-200 flex items-center justify-center;
 }
 
-.divider {
-  @apply relative my-6;
+.register-button:hover {
+  @apply bg-primary/90;
 }
 
-.divider::before {
-  content: '';
-  @apply absolute top-1/2 left-0 w-full h-px bg-border;
+.register-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
 }
 
-.divider span {
-  @apply relative px-2 bg-background text-sm text-muted-foreground;
+.register-divider {
+  @apply my-6 h-px bg-neutral-200 dark:bg-neutral-700;
 }
 
-.google-button {
-  @apply w-full flex items-center justify-center gap-2 px-4 py-2
-         bg-secondary text-secondary-foreground rounded-md
-         hover:bg-secondary/80 transition-colors
-         disabled:opacity-50 disabled:cursor-not-allowed;
+.register-google-button {
+  @apply w-full py-2 px-4 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 
+         rounded-md font-medium border border-neutral-200 dark:border-neutral-700
+         transition-all duration-200 flex items-center justify-center gap-2;
+}
+
+.register-google-button:hover {
+  @apply bg-neutral-50 dark:bg-neutral-700;
+}
+
+.register-google-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
 }
 
 .google-icon {
   @apply w-5 h-5;
 }
 
+.register-login-link {
+  @apply mt-6 text-center;
+}
+
+.login-text {
+  @apply text-sm text-neutral-600 dark:text-neutral-300;
+}
+
 .login-link {
-  @apply mt-6 text-center space-x-1 text-sm;
+  @apply text-sm text-primary hover:underline cursor-pointer ml-1;
 }
 
-.login-link span {
-  @apply text-muted-foreground;
-}
-
-.login-link .link {
-  @apply text-primary hover:underline;
-}
-
-.error-message {
-  @apply mt-4 text-sm text-destructive text-center;
+.register-error {
+  @apply text-red-500 text-sm text-center mt-4;
 }
 
 .spinner {
-  @apply w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
-}
-
-.toggle-password {
-  @apply p-1 rounded-md hover:bg-accent transition-colors;
+  @apply w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2;
 }
