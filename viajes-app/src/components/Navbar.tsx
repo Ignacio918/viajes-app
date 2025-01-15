@@ -1,5 +1,5 @@
 // src/components/Navbar.tsx
-import { useState, useEffect, useRef } from "react" // Agregamos useRef
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from 'react-router-dom'
 import logoSmall from '../assets/logo_small.svg'
@@ -9,8 +9,8 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const menuRef = useRef<HTMLDivElement>(null) // Referencia para el menú
-  const buttonRef = useRef<HTMLButtonElement>(null) // Referencia para el botón hamburguesa
+  const menuRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   const navItems = [
     {
@@ -112,7 +112,7 @@ const Navbar = () => {
 
               {/* Hamburger Menu Button */}
               <button
-                ref={buttonRef} // Agregamos la referencia al botón
+                ref={buttonRef}
                 className="hamburger-button"
                 onClick={toggleMenu}
                 aria-label="Menu"
@@ -138,7 +138,7 @@ const Navbar = () => {
               <AnimatePresence>
                 {isMenuOpen && (
                   <motion.div
-                    ref={menuRef} // Agregamos la referencia al menú
+                    ref={menuRef}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}

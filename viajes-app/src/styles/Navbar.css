@@ -59,10 +59,9 @@
   @apply hidden p-2 text-neutral-600 hover:text-pink-600 transition-colors;
 }
 
-/* Mobile Menu - Hidden by default */
+/* Mobile Menu */
 .mobile-menu {
   @apply absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg py-4 px-4;
-  display: none;
 }
 
 /* Media Queries */
@@ -91,16 +90,18 @@
 
   /* Show hamburger button */
   .hamburger-button {
-    @apply block;
+    @apply flex md:hidden;
   }
 
   /* Mobile menu styling */
   .mobile-menu {
-    display: block;
-    right: 1rem;
-    left: 1rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    left: 0;
     width: auto;
-    @apply bg-white/95 backdrop-blur-md border border-neutral-200 rounded-2xl;
+    margin: 0 1rem;
+    @apply bg-white/95 backdrop-blur-md border border-neutral-200 rounded-2xl shadow-lg py-4 px-4;
   }
 
   .mobile-nav-links {
@@ -121,13 +122,4 @@
     @apply w-full;
     width: 100%;
   }
-}
-
-/* Specific mobile menu visibility */
-.mobile-menu {
-  display: none;
-}
-
-.mobile-menu.active {
-  display: block;
 }
