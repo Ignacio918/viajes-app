@@ -1,12 +1,14 @@
 // src/pages/Footer.tsx
 import { FC, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Linkedin, Twitter, Send } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Send, Moon, Sun } from 'lucide-react';
 import logo_small from '../assets/logo_small.svg';
 import '../styles/Footer.css';
+import { useTheme } from '../context/ThemeContext';
 
 const Footer: FC = () => {
   const [email, setEmail] = useState('');
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,28 +64,46 @@ const Footer: FC = () => {
               <p>Buenos Aires</p>
               <p>Email: info@zentrip.com</p>
             </address>
+            
+            {/* Theme Switch */}
+            <div className="footer__theme-switch">
+              <button
+                onClick={toggleDarkMode}
+                className="footer__theme-button group"
+                aria-label="Cambiar tema"
+              >
+                {isDarkMode ? (
+                  <Sun className="footer__theme-icon text-yellow-400" />
+                ) : (
+                  <Moon className="footer__theme-icon text-gray-600" />
+                )}
+                <span className="footer__theme-text">
+                  {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
+                </span>
+              </button>
+            </div>
           </div>
 
           {/* Social Media */}
           <div className="footer__section">
             <h3 className="footer__subtitle">Síguenos</h3>
             <div className="footer__social">
-              <button className="footer__social-button">
+              <a href="#" className="footer__social-button">
                 <Facebook className="footer__social-icon" />
                 <span className="sr-only">Facebook</span>
-              </button>
-              <button className="footer__social-button">
+              </a>
+              <a href="#" className="footer__social-button">
                 <Twitter className="footer__social-icon" />
                 <span className="sr-only">Twitter</span>
-              </button>
-              <button className="footer__social-button">
+              </a>
+              <a href="#" className="footer__social-button">
                 <Instagram className="footer__social-icon" />
                 <span className="sr-only">Instagram</span>
-              </button>
-              <button className="footer__social-button">
+              </a>
+              <a href="#" className="footer__social-button">
                 <Linkedin className="footer__social-icon" />
                 <span className="sr-only">LinkedIn</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>

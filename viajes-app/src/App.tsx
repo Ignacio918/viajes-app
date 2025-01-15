@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
+import { ThemeProvider } from './context/ThemeContext'; // Importamos ThemeProvider
 import Dashboard from "./pages/Dashboard";
 import PasswordResetForm from "./pages/PasswordResetForm";
 import SetNewPassword from "./pages/SetNewPassword";
@@ -63,64 +64,66 @@ const App: React.FC = () => {
   }
 
   return (
-    <Router>
-      <div className={`min-h-screen flex flex-col ${showAuthPage ? "bg-white" : "bg-gray-50"}`}>
-        {!showAuthPage && <Navbar />}
-        
-        <div className="flex-grow">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  {showAuthPage === null ? (
-                    <div className="flex-grow">
-                      <HeroSection />
-                      <HowItWorks />
-                      <Benefits />
-                    </div>
-                  ) : showAuthPage === "login" ? (
-                    <LoginPage
-                      onAuthSuccess={handleAuthSuccess}
-                      handleRegisterClick={handleRegisterClick}
-                    />
-                  ) : (
-                    <RegisterPage onAuthSuccess={handleAuthSuccess} />
-                  )}
-                </>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <LoginPage
-                  onAuthSuccess={handleAuthSuccess}
-                  handleRegisterClick={handleRegisterClick}
-                />
-              }
-            />
-            <Route
-              path="/registerform"
-              element={<RegisterPage onAuthSuccess={handleAuthSuccess} />}
-            />
-            <Route
-              path="/dashboard"
-              element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/profile"
-              element={isLoggedIn ? <UserProfile /> : <Navigate to="/login" />}
-            />
-            <Route path="/reset-password" element={<PasswordResetForm />} />
-            <Route path="/set-new-password" element={<SetNewPassword />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-          </Routes>
-        </div>
+    <ThemeProvider> {/* Envolvemos toda la aplicación con ThemeProvider */}
+      <Router>
+        <div className={`min-h-screen flex flex-col ${showAuthPage ? "bg-white dark:bg-dark" : "bg-gray-50 dark:bg-gray-900"}`}>
+          {!showAuthPage && <Navbar />}
+          
+          <div className="flex-grow">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    {showAuthPage === null ? (
+                      <div className="flex-grow">
+                        <HeroSection />
+                        <HowItWorks />
+                        <Benefits />
+                      </div>
+                    ) : showAuthPage === "login" ? (
+                      <LoginPage
+                        onAuthSuccess={handleAuthSuccess}
+                        handleRegisterClick={handleRegisterClick}
+                      />
+                    ) : (
+                      <RegisterPage onAuthSuccess={handleAuthSuccess} />
+                    )}
+                  </>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <LoginPage
+                    onAuthSuccess={handleAuthSuccess}
+                    handleRegisterClick={handleRegisterClick}
+                  />
+                }
+              />
+              <Route
+                path="/registerform"
+                element={<RegisterPage onAuthSuccess={handleAuthSuccess} />}
+              />
+              <Route
+                path="/dashboard"
+                element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/profile"
+                element={isLoggedIn ? <UserProfile /> : <Navigate to="/login" />}
+              />
+              <Route path="/reset-password" element={<PasswordResetForm />} />
+              <Route path="/set-new-password" element={<SetNewPassword />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+            </Routes>
+          </div>
 
-        {!showAuthPage && <Footer />} {/* Agregamos el Footer */}
-      </div>
-    </Router>
+          {!showAuthPage && <Footer />}
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 };
 
