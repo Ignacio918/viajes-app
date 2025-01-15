@@ -7,7 +7,7 @@
 .PatternLight {
   @apply w-full relative;
   min-height: 1000px;
-  background: #FDFDFD;
+  background: #fdfdfd;
   position: relative;
   overflow: hidden;
 }
@@ -82,7 +82,7 @@
   width: 80px;
   height: 80px;
   @apply flex items-center justify-center rounded-full;
-  background: linear-gradient(168deg, #FF487C 0%, #E61C5D 100%);
+  background: linear-gradient(168deg, #ff487c 0%, #e61c5d 100%);
 }
 
 .icon {
@@ -103,7 +103,6 @@
 .card-content p {
   @apply text-[18px] text-[#3E3E3E] font-urbanist leading-[28.8px];
 }
-
 /* Frame 139 - Imágenes derecha */
 .Frame139 {
   position: relative;
@@ -170,7 +169,7 @@
   width: 353.15px;
   height: 502px;
   border-radius: 168px;
-  border: 100% solid #FDFDFD;
+  border: 100% solid #fdfdfd;
   @apply object-cover;
   box-sizing: border-box;
   position: relative;
@@ -271,14 +270,14 @@
 @media (min-width: 1440px) {
   .SectionBadge {
     width: auto;
-    max-width: 180px;
+    max-width: none;
     height: auto;
-    padding: 6px 20px;
+    padding: 4px 16px;
   }
-  
+
   .SectionBadge__text {
     font-size: 18px;
-    line-height: 30px;
+    line-height: 20px;
   }
 }
 
@@ -306,6 +305,18 @@
 @media (max-width: 768px) {
   .main-content-container {
     padding: 32px 24px;
+  }
+
+  .SectionBadge {
+    width: auto;
+    max-width: none;
+    padding: 4px 16px;
+  }
+
+  .SectionBadge__text {
+    font-size: 16px;
+    line-height: 20px;
+    white-space: nowrap;
   }
 
   .main-title {
