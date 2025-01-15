@@ -2,7 +2,7 @@
 import { FC, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Twitter, Send } from 'lucide-react';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo_small.svg';
 import '../styles/Footer.css';
 
 const Footer: FC = () => {
