@@ -1,5 +1,5 @@
 // src/components/Navbar.tsx
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react" // Agregamos useRef
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from 'react-router-dom'
 import logoSmall from '../assets/logo_small.svg'
@@ -9,6 +9,8 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null) // Referencia para el menú
+  const buttonRef = useRef<HTMLButtonElement>(null) // Referencia para el botón hamburguesa
 
   const navItems = [
     {
@@ -26,6 +28,23 @@ const Navbar = () => {
   ]
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        buttonRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isMenuOpen])
+
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY
       setIsVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10)
@@ -35,6 +54,17 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [prevScrollPos])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -82,6 +112,7 @@ const Navbar = () => {
 
               {/* Hamburger Menu Button */}
               <button
+                ref={buttonRef} // Agregamos la referencia al botón
                 className="hamburger-button"
                 onClick={toggleMenu}
                 aria-label="Menu"
@@ -107,9 +138,11 @@ const Navbar = () => {
               <AnimatePresence>
                 {isMenuOpen && (
                   <motion.div
+                    ref={menuRef} // Agregamos la referencia al menú
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.2 }}
                     className="mobile-menu"
                   >
                     <div className="mobile-nav-links">
