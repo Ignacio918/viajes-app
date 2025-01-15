@@ -159,14 +159,14 @@ const Navbar = () => {
                     </div>
                     <div className="mobile-auth-buttons">
                       <Link 
-                        to="/login" 
+                        to="/LoginPage" 
                         className="login-link"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Iniciar Sesión
                       </Link>
                       <Link 
-                        to="/register" 
+                        to="/RegisterPage" 
                         className="register-button"
                         onClick={() => setIsMenuOpen(false)}
                       >
