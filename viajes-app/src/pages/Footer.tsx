@@ -1,4 +1,3 @@
-// src/pages/Footer.tsx
 import { FC, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Twitter, Send, Moon, Sun } from 'lucide-react';
@@ -83,7 +82,7 @@ const Footer: FC = () => {
             </address>
             
             {/* Theme Switch Component */}
-            <div className="mt-6">
+            <div className="footer__theme-switch">
               <ThemeSwitch />
             </div>
           </div>

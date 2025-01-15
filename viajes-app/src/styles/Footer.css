@@ -1,4 +1,3 @@
-/* src/styles/Footer.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +17,7 @@
   }
 
   .footer__section {
-    @apply relative;
+    @apply relative flex flex-col h-full;
   }
 
   .footer__logo {
@@ -72,7 +71,11 @@
   }
 
   .footer__address {
-    @apply space-y-2 text-sm not-italic text-gray-600 dark:text-gray-400;
+    @apply space-y-2 text-sm not-italic text-gray-600 dark:text-gray-400 mb-4;
+  }
+
+  .footer__theme-switch {
+    @apply mt-auto;
   }
 
   .footer__social {
@@ -112,7 +115,7 @@
 
   /* Theme Switch Styles */
   .theme-switch-wrapper {
-    @apply flex items-center justify-center space-x-2;
+    @apply flex items-center space-x-2;
   }
 
   .theme-switch-button {
