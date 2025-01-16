@@ -158,24 +158,17 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
   const handleGoogleLogin = async () => {
     try {
-      // Abrimos una ventana popup para la autenticación de Google
-      const popup = window.open("", "popup", "width=600,height=600");
+      setIsLoading(true);
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+      });
 
-      if (popup) {
-        popup.document.write("<p>Loading...</p>");
+      if (error) throw error;
 
-        const { error } = await supabase.auth.signInWithOAuth({
-          provider: 'google',
-          options: {
-            redirectTo: `${window.location.origin}/auth/callback`,
-          },
-        });
+      const popup = window.open(data.url, "popup", "width=600,height=600");
 
-        if (error) throw error;
-
-        popup.location.href = `${window.location.origin}/auth/callback`;
-      } else {
-        setError("Popup blocked. Please allow popups for this site.");
+      if (!popup) {
+        throw new Error("Popup blocked. Please allow popups for this site.");
       }
     } catch (error) {
       setError('Error al intentar registrarse con Google');
