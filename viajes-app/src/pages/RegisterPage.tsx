@@ -6,7 +6,7 @@ import EyeIcon from "../assets/icons/eye.svg";
 import EyeOffIcon from "../assets/icons/eye-slash.svg";
 import Logo from "../assets/logo_medium.svg";
 import TextField from "../components/TextField";
-import { AnimatedGradient } from '../components/ui/AnimatedGradient';  // Importa el componente AnimatedGradient
+import { BackgroundGradientAnimation } from '../components/ui/BackgroundGradientAnimation';  // Importa el componente
 import "../styles/RegisterPage.css";
 
 interface RegisterPageProps {
@@ -159,75 +159,78 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
-    setError('');
-    
+    setError("");
+
     const width = 500;
     const height = 600;
-    const left = (window.screen.width / 2) - (width / 2);
-    const top = (window.screen.height / 2) - (height / 2);
-    
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+
     let authListener: any = null;
     let popupClosed = false;
 
     // Configuramos el listener de autenticación antes de abrir el popup
     authListener = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session) {
-            onAuthSuccess();
-            navigate('/dashboard');
-            if (authListener) authListener.unsubscribe();
-        }
+      if (event === "SIGNED_IN" && session) {
+        onAuthSuccess();
+        navigate("/dashboard");
+        if (authListener) authListener.unsubscribe();
+      }
     });
-    
+
     const popup = window.open(
-        `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
-        'GoogleSignIn',
-        `width=${width},height=${height},top=${top},left=${left}`
+      `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
+      "GoogleSignIn",
+      `width=${width},height=${height},top=${top},left=${left}`
     );
 
     if (!popup) {
-        setError('No se pudo abrir el popup para la autenticación de Google.');
-        setIsLoading(false);
-        if (authListener) authListener.unsubscribe();
-        return;
+      setError("No se pudo abrir el popup para la autenticación de Google.");
+      setIsLoading(false);
+      if (authListener) authListener.unsubscribe();
+      return;
     }
 
     const interval = setInterval(async () => {
-        if (popup.closed && !popupClosed) {
-            popupClosed = true;
-            clearInterval(interval);
-            
-            try {
-                const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-                
-                if (sessionError) throw sessionError;
+      if (popup.closed && !popupClosed) {
+        popupClosed = true;
+        clearInterval(interval);
 
-                if (!session?.user?.id) {
-                    setError('No se completó el inicio de sesión con Google');
-                    if (authListener) authListener.unsubscribe();
-                }
-            } catch (error) {
-                console.error('Error al verificar sesión:', error);
-                setError('Error al verificar la sesión');
-                if (authListener) authListener.unsubscribe();
-            }
-            
-            setIsLoading(false);
+        try {
+          const {
+            data: { session },
+            error: sessionError,
+          } = await supabase.auth.getSession();
+
+          if (sessionError) throw sessionError;
+
+          if (!session?.user?.id) {
+            setError("No se completó el inicio de sesión con Google");
+            if (authListener) authListener.unsubscribe();
+          }
+        } catch (error) {
+          console.error("Error al verificar sesión:", error);
+          setError("Error al verificar la sesión");
+          if (authListener) authListener.unsubscribe();
         }
+
+        setIsLoading(false);
+      }
     }, 1000);
 
     // Limpieza al desmontar
     return () => {
-        clearInterval(interval);
-        if (authListener) authListener.unsubscribe();
+      clearInterval(interval);
+      if (authListener) authListener.unsubscribe();
     };
   };
 
-  const gradientColor = '#E61C5D'; // Color rosa principal
+  const gradientColor = "#E61C5D"; // Color rosa principal
 
   return (
     <div className="auth-container relative">
       {/* Fondo animado */}
-      <AnimatedGradient color={gradientColor} blur="medium" />
+      <BackgroundGradientAnimation />
 
       <div className="auth-form-wrapper relative z-10">
         <div className="auth-logo-container">
@@ -364,7 +367,11 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             onClick={handleGoogleLogin}
             className="auth-google-button"
             disabled={isLoading}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             {isLoading ? (
               <>
@@ -373,7 +380,12 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               </>
             ) : (
               <>
-                <img src={GoogleIcon} alt="Google" className="google-icon" style={{ marginRight: '8px' }} />
+                <img
+                  src={GoogleIcon}
+                  alt="Google"
+                  className="google-icon"
+                  style={{ marginRight: "8px" }}
+                />
                 Registrarse con Google
               </>
             )}
