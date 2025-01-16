@@ -162,16 +162,18 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+          skipBrowserRedirect: false,
           queryParams: {
-            access_type: 'offline',
-            prompt: 'consent'
+            prompt: 'select_account' // Esto fuerza a que aparezca el selector de cuentas de Google
           }
         }
       });
-      
+
       if (error) throw error;
     } catch (error) {
       setError('Error al intentar registrarse con Google');
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
