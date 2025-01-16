@@ -156,30 +156,69 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      setIsLoading(true);
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
+  const handleGoogleLogin = () => {
+    setIsLoading(true);
+    setError('');
+    
+    const width = 500;
+    const height = 600;
+    const left = (window.screen.width / 2) - (width / 2);
+    const top = (window.screen.height / 2) - (height / 2);
+    
+    let authListener: any = null;
+    let popupClosed = false;
 
-      if (error) throw error;
+    // Configuramos el listener de autenticación antes de abrir el popup
+    authListener = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+            onAuthSuccess();
+            navigate('/dashboard');
+            if (authListener) authListener.unsubscribe();
+        }
+    });
+    
+    const popup = window.open(
+        `https://szloqueilztpbdurfowm.supabase.co/auth/v1/authorize?provider=google&redirect_to=https://zentrip.vercel.app/dashboard`,
+        'GoogleSignIn',
+        `width=${width},height=${height},top=${top},left=${left}`
+    );
 
-      // Abrir una nueva ventana popup manualmente
-      const popup = window.open(data.url, "popup", "width=600,height=600");
-
-      if (!popup) {
-        throw new Error("Popup bloqueado. Por favor, permita popups para este sitio.");
-      }
-    } catch (error) {
-      setError('Error al intentar registrarse con Google');
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+    if (!popup) {
+        setError('No se pudo abrir el popup para la autenticación de Google.');
+        setIsLoading(false);
+        if (authListener) authListener.unsubscribe();
+        return;
     }
+
+    const interval = setInterval(async () => {
+        if (popup.closed && !popupClosed) {
+            popupClosed = true;
+            clearInterval(interval);
+            
+            try {
+                const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+                
+                if (sessionError) throw sessionError;
+
+                if (!session?.user?.id) {
+                    setError('No se completó el inicio de sesión con Google');
+                    if (authListener) authListener.unsubscribe();
+                }
+            } catch (error) {
+                console.error('Error al verificar sesión:', error);
+                setError('Error al verificar la sesión');
+                if (authListener) authListener.unsubscribe();
+            }
+            
+            setIsLoading(false);
+        }
+    }, 1000);
+
+    // Limpieza al desmontar
+    return () => {
+        clearInterval(interval);
+        if (authListener) authListener.unsubscribe();
+    };
   };
 
   return (
@@ -320,8 +359,17 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             className="auth-google-button"
             disabled={isLoading}
           >
-            <img src={GoogleIcon} alt="Google" className="google-icon" />
-            <span>Continuar con Google</span>
+            {isLoading ? (
+              <>
+                <span className="spinner"></span>
+                Conectando...
+              </>
+            ) : (
+              <>
+                <img src={GoogleIcon} alt="Google" className="google-icon" />
+                Continuar con Google
+              </>
+            )}
           </button>
 
           <div className="auth-login-link">
