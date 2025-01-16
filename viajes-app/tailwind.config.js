@@ -63,13 +63,23 @@ module.exports = {
         illustration: "704/781",
       },
       keyframes: {
+        "fadeIn": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
         "background-gradient": {
-          "0%": { transform: "translate(0, 0)" },
+          "0%, 100%": { transform: "translate(0, 0)" },
           "50%": { transform: "translate(50px, 50px)" },
-          "100%": { transform: "translate(0, 0)" },
         },
       },
       animation: {
+        "fadeIn": "fadeIn 0.3s ease-out forwards",
         "background-gradient": "background-gradient 10s ease-in-out infinite",
       },
       backgroundImage: {

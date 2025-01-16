@@ -1,24 +1,21 @@
 /* src/components/AnimatedGradient.css */
 
 .animated-gradient-container {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+  @apply absolute inset-0 overflow-hidden;
 }
 
 .animated-gradient-svg {
-  position: absolute;
-  animation: background-gradient 10s ease-in-out infinite;
+  @apply absolute animate-background-gradient;
 }
 
 .blur-light {
-  filter: blur(2px);
+  @apply blur-2xl;
 }
 
 .blur-medium {
-  filter: blur(5px);
+  @apply blur-3xl;
 }
 
 .blur-heavy {
-  filter: blur(10px);
+  @apply blur-[10px];
 }
