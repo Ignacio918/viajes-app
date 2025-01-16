@@ -163,11 +163,8 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
-          skipBrowserRedirect: false,
-          queryParams: {
-            prompt: 'select_account' // Esto fuerza a que aparezca el selector de cuentas de Google
-          }
-        }
+          skipBrowserRedirect: true,
+        },
       });
 
       if (error) throw error;
