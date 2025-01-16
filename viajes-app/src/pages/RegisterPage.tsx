@@ -6,7 +6,6 @@ import EyeIcon from "../assets/icons/eye.svg";
 import EyeOffIcon from "../assets/icons/eye-slash.svg";
 import Logo from "../assets/logo_medium.svg";
 import TextField from "../components/TextField";
-import { BackgroundGradientAnimation } from '../components/ui/BackgroundGradientAnimation';
 import "../styles/RegisterPage.css";
 
 interface RegisterPageProps {
@@ -226,124 +225,195 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="relative h-screen flex items-center justify-center">
-      {/* Fondo animado */}
-      <BackgroundGradientAnimation />
-
-      {/* Formulario de registro */}
-      <div className="relative z-10 w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+    <div className="auth-container">
+      <div className="auth-form-wrapper">
         <div className="auth-logo-container">
           <img src={Logo} alt="Zentrip Logo" className="auth-logo-image" />
         </div>
-        <h2 className="text-2xl font-semibold text-center mb-4">Crea tu cuenta gratis</h2>
-        <p className="text-center text-gray-600 mb-6">Transforma tus ideas en aventuras reales</p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <TextField
-            label="Nombre completo"
-            placeholder="Ingresa tu nombre completo"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            state={formValidation.fullName.isValid ? "success" : fullName ? "error" : "enabled"}
-            type="text"
-            disabled={isLoading}
-            helperText={fullName ? formValidation.fullName.message : ""}
-          />
-          <TextField
-            label="Email"
-            placeholder="tu@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            state={formValidation.email.isValid ? "success" : email ? "error" : "enabled"}
-            type="email"
-            disabled={isLoading}
-            helperText={email ? formValidation.email.message : ""}
-          />
-          <TextField
-            label="Contraseña"
-            placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            state={formValidation.password.isValid ? "success" : password ? "error" : "enabled"}
-            type={showPassword ? "text" : "password"}
-            disabled={isLoading}
-            helperText={password ? formValidation.password.message : ""}
-            icon={
-              <button
-                type="button"
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
+        <h2 className="auth-title">Crea tu cuenta gratis</h2>
+        <p className="auth-description">
+          Transforma tus ideas en aventuras reales
+        </p>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="auth-inputs-container">
+            <LabelInputContainer>
+              <TextField
+                label="Nombre completo"
+                placeholder="Ingresa tu nombre completo"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                state={
+                  formValidation.fullName.isValid
+                    ? "success"
+                    : fullName
+                    ? "error"
+                    : "enabled"
+                }
+                type="text"
                 disabled={isLoading}
-              >
-                <img
-                  src={showPassword ? EyeOffIcon : EyeIcon}
-                  alt="Toggle password"
-                />
-              </button>
-            }
-          />
-          <TextField
-            label="Confirmar contraseña"
-            placeholder="••••••••"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            state={formValidation.confirmPassword.isValid ? "success" : confirmPassword ? "error" : "enabled"}
-            type={showConfirmPassword ? "text" : "password"}
-            disabled={isLoading}
-            helperText={confirmPassword ? formValidation.confirmPassword.message : ""}
-            icon={
-              <button
-                type="button"
-                className="toggle-password"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                helperText={fullName ? formValidation.fullName.message : ""}
+              />
+            </LabelInputContainer>
+
+            <LabelInputContainer>
+              <TextField
+                label="Email"
+                placeholder="tu@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                state={
+                  formValidation.email.isValid
+                    ? "success"
+                    : email
+                    ? "error"
+                    : "enabled"
+                }
+                type="email"
                 disabled={isLoading}
-              >
-                <img
-                  src={showConfirmPassword ? EyeOffIcon : EyeIcon}
-                  alt="Toggle password"
-                />
-              </button>
-            }
-          />
-          <button
-            type="submit"
-            className="auth-button w-full py-2 px-4 bg-primary text-white rounded-lg hover:bg-primary-dark disabled:bg-gray-400"
-            disabled={isLoading}
-          >
-            {isLoading ? "Registrando..." : "Regístrate"}
+                helperText={email ? formValidation.email.message : ""}
+              />
+            </LabelInputContainer>
+
+            <LabelInputContainer>
+              <TextField
+                label="Contraseña"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                state={
+                  formValidation.password.isValid
+                    ? "success"
+                    : password
+                    ? "error"
+                    : "enabled"
+                }
+                type={showPassword ? "text" : "password"}
+                disabled={isLoading}
+                helperText={password ? formValidation.password.message : ""}
+                icon={
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                    disabled={isLoading}
+                  >
+                    <img
+                      src={showPassword ? EyeOffIcon : EyeIcon}
+                      alt="Toggle password"
+                    />
+                  </button>
+                }
+              />
+            </LabelInputContainer>
+
+            <LabelInputContainer>
+              <TextField
+                label="Confirmar contraseña"
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                state={
+                  formValidation.confirmPassword.isValid
+                    ? "success"
+                    : confirmPassword
+                    ? "error"
+                    : "enabled"
+                }
+                type={showConfirmPassword ? "text" : "password"}
+                disabled={isLoading}
+                helperText={
+                  confirmPassword ? formValidation.confirmPassword.message : ""
+                }
+                icon={
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    disabled={isLoading}
+                  >
+                    <img
+                      src={showConfirmPassword ? EyeOffIcon : EyeIcon}
+                      alt="Toggle password"
+                    />
+                  </button>
+                }
+              />
+            </LabelInputContainer>
+          </div>
+
+          <button type="submit" className="auth-button" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className="spinner"></span>
+                <span>Registrando...</span>
+              </>
+            ) : (
+              "Regístrate"
+            )}
           </button>
+
+          <div className="auth-divider" />
+
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="auth-google-button"
+            disabled={isLoading}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner"></span>
+                Conectando...
+              </>
+            ) : (
+              <>
+                <img
+                  src={GoogleIcon}
+                  alt="Google"
+                  className="google-icon"
+                  style={{ marginRight: "8px" }}
+                />
+                Registrarse con Google
+              </>
+            )}
+          </button>
+
+          <div className="auth-login-link">
+            <span className="auth-text">¿Ya tienes una cuenta?</span>
+            <span
+              className="auth-link"
+              onClick={() => navigate("/login")}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => e.key === "Enter" && navigate("/login")}
+            >
+              Inicia sesión
+            </span>
+          </div>
         </form>
 
-        <div className="auth-divider my-4">
-          <span className="text-gray-500">o</span>
-        </div>
-
-        <button
-          type="button"
-          onClick={handleGoogleLogin}
-          className="auth-google-button flex items-center justify-center gap-2 w-full py-2 px-4 border rounded-lg hover:bg-gray-100 disabled:bg-gray-50 disabled:border-gray-200"
-          disabled={isLoading}
-        >
-          {isLoading ? "Conectando..." : (
-            <>
-              <img src={GoogleIcon} alt="Google" className="w-5 h-5" />
-              Registrarse con Google
-            </>
-          )}
-        </button>
-
-        <div className="auth-login-link mt-6 text-center">
-          <span className="auth-text text-gray-600">¿Ya tienes una cuenta?</span>
-          <span
-            className="auth-link text-primary cursor-pointer"
-            onClick={() => navigate("/login")}
-          >
-            Inicia sesión
-          </span>
-        </div>
-        {error && <p className="auth-error text-red-500 text-center mt-4">{error}</p>}
+        {error && <p className="auth-error">{error}</p>}
       </div>
     </div>
+  );
+};
+
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={`label-input-container ${className || ""}`}>{children}</div>
   );
 };
 
