@@ -1,12 +1,12 @@
-import React, { useState, FormEvent, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '../supabaseClient';
-import GoogleIcon from '../assets/icons/devicon_google.svg';
-import EyeIcon from '../assets/icons/eye.svg';
-import EyeOffIcon from '../assets/icons/eye-slash.svg';
-import Logo from '../assets/logo_medium.svg';
-import TextField from '../components/TextField';
-import '../styles/RegisterPage.css';
+import React, { useState, FormEvent, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
+import GoogleIcon from "../assets/icons/devicon_google.svg";
+import EyeIcon from "../assets/icons/eye.svg";
+import EyeOffIcon from "../assets/icons/eye-slash.svg";
+import Logo from "../assets/logo_medium.svg";
+import TextField from "../components/TextField";
+import "../styles/RegisterPage.css";
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
@@ -26,72 +26,81 @@ interface FormState {
 
 const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [formValidation, setFormValidation] = useState<FormState>({
-    fullName: { isValid: false, message: '' },
-    email: { isValid: false, message: '' },
-    password: { isValid: false, message: '' },
-    confirmPassword: { isValid: false, message: '' }
+    fullName: { isValid: false, message: "" },
+    email: { isValid: false, message: "" },
+    password: { isValid: false, message: "" },
+    confirmPassword: { isValid: false, message: "" },
   });
 
   const validateFullName = (name: string): FormValidation => {
     if (!name.trim()) {
-      return { isValid: false, message: 'El nombre es requerido' };
+      return { isValid: false, message: "El nombre es requerido" };
     }
     if (name.length < 3) {
-      return { isValid: false, message: 'El nombre debe tener al menos 3 caracteres' };
+      return {
+        isValid: false,
+        message: "El nombre debe tener al menos 3 caracteres",
+      };
     }
     if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name)) {
-      return { isValid: false, message: 'El nombre solo puede contener letras' };
+      return {
+        isValid: false,
+        message: "El nombre solo puede contener letras",
+      };
     }
-    return { isValid: true, message: 'Nombre válido' };
+    return { isValid: true, message: "Nombre válido" };
   };
 
   const validateEmail = (email: string): FormValidation => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
-      return { isValid: false, message: 'El email es requerido' };
+      return { isValid: false, message: "El email es requerido" };
     }
     if (!emailRegex.test(email)) {
-      return { isValid: false, message: 'Email inválido' };
+      return { isValid: false, message: "Email inválido" };
     }
-    return { isValid: true, message: 'Email válido' };
+    return { isValid: true, message: "Email válido" };
   };
 
   const validatePassword = (pass: string): FormValidation => {
     if (!pass) {
-      return { isValid: false, message: 'La contraseña es requerida' };
+      return { isValid: false, message: "La contraseña es requerida" };
     }
     if (pass.length < 8) {
-      return { isValid: false, message: 'Mínimo 8 caracteres' };
+      return { isValid: false, message: "Mínimo 8 caracteres" };
     }
     if (!/[A-Z]/.test(pass)) {
-      return { isValid: false, message: 'Debe incluir al menos una mayúscula' };
+      return { isValid: false, message: "Debe incluir al menos una mayúscula" };
     }
     if (!/[0-9]/.test(pass)) {
-      return { isValid: false, message: 'Debe incluir al menos un número' };
+      return { isValid: false, message: "Debe incluir al menos un número" };
     }
     if (!/[!@#$%^&*]/.test(pass)) {
-      return { isValid: false, message: 'Debe incluir al menos un carácter especial (!@#$%^&*)' };
+      return {
+        isValid: false,
+        message: "Debe incluir al menos un carácter especial (!@#$%^&*)",
+      };
     }
-    return { isValid: true, message: 'Contraseña válida' };
+    return { isValid: true, message: "Contraseña válida" };
   };
 
   const validateConfirmPassword = (confirm: string): FormValidation => {
     if (!confirm) {
-      return { isValid: false, message: 'Debe confirmar la contraseña' };
+      return { isValid: false, message: "Debe confirmar la contraseña" };
     }
     if (confirm !== password) {
-      return { isValid: false, message: 'Las contraseñas no coinciden' };
+      return { isValid: false, message: "Las contraseñas no coinciden" };
     }
-    return { isValid: true, message: 'Las contraseñas coinciden' };
+    return { isValid: true, message: "Las contraseñas coinciden" };
   };
 
   useEffect(() => {
@@ -99,26 +108,26 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
       fullName: validateFullName(fullName),
       email: validateEmail(email),
       password: validatePassword(password),
-      confirmPassword: validateConfirmPassword(confirmPassword)
+      confirmPassword: validateConfirmPassword(confirmPassword),
     });
   }, [fullName, email, password, confirmPassword]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     const allValidations = {
       fullName: validateFullName(fullName),
       email: validateEmail(email),
       password: validatePassword(password),
-      confirmPassword: validateConfirmPassword(confirmPassword)
+      confirmPassword: validateConfirmPassword(confirmPassword),
     };
 
     setFormValidation(allValidations);
 
-    if (!Object.values(allValidations).every(v => v.isValid)) {
-      setError('Por favor, corrige los errores en el formulario');
+    if (!Object.values(allValidations).every((v) => v.isValid)) {
+      setError("Por favor, corrige los errores en el formulario");
       setIsLoading(false);
       return;
     }
@@ -129,19 +138,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
         password,
         options: {
           data: {
-            full_name: fullName
-          }
-        }
+            full_name: fullName,
+          },
+        },
       });
 
       if (error) {
         setError(error.message);
       } else {
         onAuthSuccess();
-        navigate('/dashboard');
+        navigate("/dashboard");
       }
     } catch (error) {
-      setError('Ocurrió un error al intentar registrarse');
+      setError("Ocurrió un error al intentar registrarse");
     } finally {
       setIsLoading(false);
     }
@@ -151,19 +160,18 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
+        provider: "google",
         options: {
-          redirectTo: window.location.origin,
           queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
+            access_type: "offline",
+            prompt: "consent",
           },
-          skipBrowserRedirect: true
-        }
+        },
       });
+
       if (error) throw error;
     } catch (error) {
-      setError('Error al intentar registrarse con Google');
+      setError("Error al intentar registrarse con Google");
     } finally {
       setIsLoading(false);
     }
@@ -189,10 +197,16 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                 placeholder="Ingresa tu nombre completo"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                state={formValidation.fullName.isValid ? 'success' : fullName ? 'error' : 'enabled'}
+                state={
+                  formValidation.fullName.isValid
+                    ? "success"
+                    : fullName
+                    ? "error"
+                    : "enabled"
+                }
                 type="text"
                 disabled={isLoading}
-                helperText={fullName ? formValidation.fullName.message : ''}
+                helperText={fullName ? formValidation.fullName.message : ""}
               />
             </LabelInputContainer>
 
@@ -202,10 +216,16 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                 placeholder="tu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                state={formValidation.email.isValid ? 'success' : email ? 'error' : 'enabled'}
+                state={
+                  formValidation.email.isValid
+                    ? "success"
+                    : email
+                    ? "error"
+                    : "enabled"
+                }
                 type="email"
                 disabled={isLoading}
-                helperText={email ? formValidation.email.message : ''}
+                helperText={email ? formValidation.email.message : ""}
               />
             </LabelInputContainer>
 
@@ -215,10 +235,16 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                state={formValidation.password.isValid ? 'success' : password ? 'error' : 'enabled'}
+                state={
+                  formValidation.password.isValid
+                    ? "success"
+                    : password
+                    ? "error"
+                    : "enabled"
+                }
                 type={showPassword ? "text" : "password"}
                 disabled={isLoading}
-                helperText={password ? formValidation.password.message : ''}
+                helperText={password ? formValidation.password.message : ""}
                 icon={
                   <button
                     type="button"
@@ -226,7 +252,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={isLoading}
                   >
-                    <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                    <img
+                      src={showPassword ? EyeOffIcon : EyeIcon}
+                      alt="Toggle password"
+                    />
                   </button>
                 }
               />
@@ -238,10 +267,18 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                 placeholder="••••••••"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                state={formValidation.confirmPassword.isValid ? 'success' : confirmPassword ? 'error' : 'enabled'}
+                state={
+                  formValidation.confirmPassword.isValid
+                    ? "success"
+                    : confirmPassword
+                    ? "error"
+                    : "enabled"
+                }
                 type={showConfirmPassword ? "text" : "password"}
                 disabled={isLoading}
-                helperText={confirmPassword ? formValidation.confirmPassword.message : ''}
+                helperText={
+                  confirmPassword ? formValidation.confirmPassword.message : ""
+                }
                 icon={
                   <button
                     type="button"
@@ -249,25 +286,24 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     disabled={isLoading}
                   >
-                    <img src={showConfirmPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                    <img
+                      src={showConfirmPassword ? EyeOffIcon : EyeIcon}
+                      alt="Toggle password"
+                    />
                   </button>
                 }
               />
             </LabelInputContainer>
           </div>
 
-          <button
-            type="submit"
-            className="auth-button"
-            disabled={isLoading}
-          >
+          <button type="submit" className="auth-button" disabled={isLoading}>
             {isLoading ? (
               <>
                 <span className="spinner"></span>
                 <span>Registrando...</span>
               </>
             ) : (
-              'Regístrate'
+              "Regístrate"
             )}
           </button>
 
@@ -287,10 +323,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             <span className="auth-text">¿Ya tienes una cuenta?</span>
             <span
               className="auth-link"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
               role="button"
               tabIndex={0}
-              onKeyPress={(e) => e.key === 'Enter' && navigate('/login')}
+              onKeyPress={(e) => e.key === "Enter" && navigate("/login")}
             >
               Inicia sesión
             </span>
@@ -305,15 +341,13 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
 const LabelInputContainer = ({
   children,
-  className
+  className,
 }: {
   children: React.ReactNode;
   className?: string;
 }) => {
   return (
-    <div className={`label-input-container ${className || ''}`}>
-      {children}
-    </div>
+    <div className={`label-input-container ${className || ""}`}>{children}</div>
   );
 };
 
