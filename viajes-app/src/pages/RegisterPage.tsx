@@ -225,12 +225,15 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-form-wrapper">
+    <div className="register-page-container">
+      {/* Fondo animado */}
+      <div className="animated-background"></div>
+
+      {/* Formulario de registro */}
+      <div className="register-form-container">
         <div className="auth-logo-container">
           <img src={Logo} alt="Zentrip Logo" className="auth-logo-image" />
         </div>
-
         <h2 className="auth-title">Crea tu cuenta gratis</h2>
         <p className="auth-description">
           Transforma tus ideas en aventuras reales
