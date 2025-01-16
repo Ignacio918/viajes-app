@@ -101,6 +101,14 @@ module.exports = {
             transform: "translateY(-50%)",
           },
         },
+        move: {
+          '0%, 100%': { transform: 'translateY(0) translateX(0)' },
+          '50%': { transform: 'translateY(-10%) translateX(10%)' },
+        },
+        blur: {
+          '0%, 100%': { filter: 'blur(10px)' },
+          '50%': { filter: 'blur(5px)' },
+        },
         fadeIn: {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
@@ -114,6 +122,8 @@ module.exports = {
         fourth: "moveHorizontal 40s ease infinite",
         fifth: "moveInCircle 20s ease infinite",
         fadeIn: "fadeIn 1s ease-in-out",
+        move: 'move 5s ease-in-out infinite',
+        blur: 'blur 5s ease-in-out infinite',
       },
       backgroundImage: {
         "skeleton-gradient":
@@ -147,6 +157,7 @@ module.exports = {
     "animate-spin",
     "animate-shimmer",
     "animate-background-gradient",
+    "animate-move",  // Añadimos animate-move a la safelist
     "bg-skeleton-gradient",
     "bg-skeleton-gradient-dark",
     "ring",
