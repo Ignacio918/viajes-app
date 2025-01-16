@@ -1,19 +1,24 @@
-@keyframes background-gradient {
-    0%,
-    100% {
-      transform: translate(var(--tx-1), var(--ty-1));
-    }
-    25% {
-      transform: translate(var(--tx-2), var(--ty-2));
-    }
-    50% {
-      transform: translate(var(--tx-3), var(--ty-3));
-    }
-    75% {
-      transform: translate(var(--tx-4), var(--ty-4));
-    }
-  }
-  
-  .animate-background-gradient {
-    animation: background-gradient var(--background-gradient-speed) linear infinite;
-  }
+/* src/components/AnimatedGradient.css */
+
+.animated-gradient-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.animated-gradient-svg {
+  position: absolute;
+  animation: background-gradient 10s infinite;
+}
+
+.blur-light {
+  filter: blur(2px);
+}
+
+.blur-medium {
+  filter: blur(5px);
+}
+
+.blur-heavy {
+  filter: blur(10px);
+}

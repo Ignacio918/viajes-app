@@ -1,14 +1,13 @@
 import React, { useMemo, useRef } from 'react';
-import { cn } from '@/lib/utils';
 import { useDebouncedDimensions } from '@/components/hooks/useDebouncedDimensions';
+import './AnimatedGradient.css';
 
 const randomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 interface AnimatedGradientProps {
-  colors: string[];
-  speed?: number;
+  color?: string;
   blur?: 'light' | 'medium' | 'heavy';
 }
 
@@ -24,28 +23,28 @@ interface CustomCSSProperties extends React.CSSProperties {
   '--ty-4'?: number;
 }
 
-const AnimatedGradient: React.FC<AnimatedGradientProps> = ({ colors, speed = 5, blur = 'light' }) => {
+const AnimatedGradient: React.FC<AnimatedGradientProps> = ({ color = '#E61C5D', blur = 'light' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dimensions = useDebouncedDimensions(containerRef);
 
   const circleSize = useMemo(() => Math.max(dimensions.width, dimensions.height), [dimensions.width, dimensions.height]);
 
-  const blurClass =
-    blur === 'light' ? 'blur-2xl'
-    : blur === 'medium' ? 'blur-3xl'
-    : 'blur-[100px]';
+  const blurClass = 
+    blur === 'light' ? 'blur-2xl' : 
+    blur === 'medium' ? 'blur-3xl' : 
+    'blur-[100px]';
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
-      <div className={cn('absolute inset-0', blurClass)}>
-        {colors.map((color, index) => (
+    <div ref={containerRef} className="animated-gradient-container">
+      <div className={`absolute inset-0 ${blurClass}`}>
+        {[...Array(4)].map((_, index) => (
           <svg
             key={index}
-            className="absolute animate-background-gradient"
+            className="animated-gradient-svg animate-background-gradient"
             style={{
               top: `${Math.random() * 50}%`,
               left: `${Math.random() * 50}%`,
-              '--background-gradient-speed': `${1 / speed}s`,
+              '--background-gradient-speed': `10s`,
               '--tx-1': Math.random() - 0.5,
               '--ty-1': Math.random() - 0.5,
               '--tx-2': Math.random() - 0.5,

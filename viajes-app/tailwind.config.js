@@ -93,6 +93,10 @@ module.exports = {
             backgroundPosition: "200% 0",
           },
         },
+        "background-gradient": {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "50%": { transform: "translate(50px, 50px)" },
+        },
       },
       animation: {
         "slide-in": "slide-in 0.3s ease-out",
@@ -101,6 +105,7 @@ module.exports = {
         spin: "spin 1s linear infinite",
         "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         shimmer: "shimmer 2s linear infinite",
+        "background-gradient": "background-gradient 10s infinite",
       },
       backgroundImage: {
         "skeleton-gradient":

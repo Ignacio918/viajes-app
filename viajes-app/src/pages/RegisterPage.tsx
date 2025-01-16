@@ -6,7 +6,7 @@ import EyeIcon from "../assets/icons/eye.svg";
 import EyeOffIcon from "../assets/icons/eye-slash.svg";
 import Logo from "../assets/logo_medium.svg";
 import TextField from "../components/TextField";
-import { AnimatedGradient } from '../components/ui/AnimatedGradient'; // Importa el componente AnimatedGradient
+import { AnimatedGradient } from '../components/ui/AnimatedGradient';  // Importa el componente AnimatedGradient
 import "../styles/RegisterPage.css";
 
 interface RegisterPageProps {
@@ -222,12 +222,12 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     };
   };
 
-  const gradientColors = ['#FF5733', '#33FF57', '#3357FF']; // Colores de ejemplo
+  const gradientColor = '#E61C5D'; // Color rosa principal
 
   return (
     <div className="auth-container relative">
       {/* Fondo animado */}
-      <AnimatedGradient colors={gradientColors} speed={5} blur="medium" />
+      <AnimatedGradient color={gradientColor} blur="medium" />
 
       <div className="auth-form-wrapper relative z-10">
         <div className="auth-logo-container">
