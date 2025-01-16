@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
-import { cn } from '../../lib/utils';
-import { useDebouncedDimensions } from 'src/components/hooks/useDebouncedDimensions';
+import { cn } from '@/lib/utils';
+import { useDebouncedDimensions } from '@/components/hooks/useDebouncedDimensions';
 
 const randomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -28,17 +28,12 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({ colors, speed = 5, 
   const containerRef = useRef<HTMLDivElement>(null);
   const dimensions = useDebouncedDimensions(containerRef);
 
-  const circleSize = useMemo(
-    () => Math.max(dimensions.width, dimensions.height),
-    [dimensions.width, dimensions.height]
-  );
+  const circleSize = useMemo(() => Math.max(dimensions.width, dimensions.height), [dimensions.width, dimensions.height]);
 
   const blurClass =
-    blur === 'light'
-      ? 'blur-2xl'
-      : blur === 'medium'
-      ? 'blur-3xl'
-      : 'blur-[100px]';
+    blur === 'light' ? 'blur-2xl'
+    : blur === 'medium' ? 'blur-3xl'
+    : 'blur-[100px]';
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
