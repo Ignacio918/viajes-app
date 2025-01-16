@@ -227,7 +227,12 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
   return (
     <div className="register-page-container">
       {/* Fondo animado */}
-      <div className="animated-background"></div>
+      <div className="animated-background">
+        <div className="ball"></div>
+        <div className="ball"></div>
+        <div className="ball"></div>
+        <div className="ball"></div>
+      </div>
 
       {/* Formulario de registro */}
       <div className="register-form-container">
