@@ -68,7 +68,7 @@
   }
 
   .google-icon {
-    @apply w-5 h-5;
+    @apply w-5 h-5 mr-2; /* Agregar margen derecho para separar el icono del texto */
   }
 
   .auth-login-link {

@@ -358,6 +358,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
             onClick={handleGoogleLogin}
             className="auth-google-button"
             disabled={isLoading}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             {isLoading ? (
               <>
@@ -366,8 +367,8 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
               </>
             ) : (
               <>
-                <img src={GoogleIcon} alt="Google" className="google-icon" />
-                Continuar con Google
+                <img src={GoogleIcon} alt="Google" className="google-icon" style={{ marginRight: '8px' }} />
+                Registrarse con Google
               </>
             )}
           </button>
