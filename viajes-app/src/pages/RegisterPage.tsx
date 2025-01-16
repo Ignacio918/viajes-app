@@ -168,10 +168,11 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
 
       if (error) throw error;
 
+      // Abrir una nueva ventana popup manualmente
       const popup = window.open(data.url, "popup", "width=600,height=600");
 
       if (!popup) {
-        throw new Error("Popup blocked. Please allow popups for this site.");
+        throw new Error("Popup bloqueado. Por favor, permita popups para este sitio.");
       }
     } catch (error) {
       setError('Error al intentar registrarse con Google');
