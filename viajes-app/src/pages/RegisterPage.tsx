@@ -160,18 +160,18 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
+        provider: 'google',
         options: {
           queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-          },
-        },
+            access_type: 'offline',
+            prompt: 'consent'
+          }
+        }
       });
-
+      
       if (error) throw error;
     } catch (error) {
-      setError("Error al intentar registrarse con Google");
+      setError('Error al intentar registrarse con Google');
     } finally {
       setIsLoading(false);
     }
