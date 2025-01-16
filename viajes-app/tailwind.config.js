@@ -17,7 +17,6 @@ module.exports = {
         gray: {
           800: "#3E3E3E",
         },
-        // Agregamos colores para modo claro y oscuro
         background: {
           DEFAULT: "white",
           dark: "#161616",
@@ -64,48 +63,14 @@ module.exports = {
         illustration: "704/781",
       },
       keyframes: {
-        "slide-in": {
-          "0%": { transform: "translateX(100%)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
-        },
-        fadeIn: {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(10px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-        },
-        pulse: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
-        },
-        spin: {
-          to: { transform: "rotate(360deg)" },
-        },
-        shimmer: {
-          "0%": {
-            backgroundPosition: "-200% 0",
-          },
-          "100%": {
-            backgroundPosition: "200% 0",
-          },
-        },
         "background-gradient": {
-          "0%, 100%": { transform: "translate(0, 0)" },
+          "0%": { transform: "translate(0, 0)" },
           "50%": { transform: "translate(50px, 50px)" },
+          "100%": { transform: "translate(0, 0)" },
         },
       },
       animation: {
-        "slide-in": "slide-in 0.3s ease-out",
-        fadeIn: "fadeIn 0.3s ease-out forwards",
-        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        spin: "spin 1s linear infinite",
-        "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        shimmer: "shimmer 2s linear infinite",
-        "background-gradient": "background-gradient 10s infinite",
+        "background-gradient": "background-gradient 10s ease-in-out infinite",
       },
       backgroundImage: {
         "skeleton-gradient":
@@ -138,6 +103,7 @@ module.exports = {
     "animate-pulse",
     "animate-spin",
     "animate-shimmer",
+    "animate-background-gradient",
     "bg-skeleton-gradient",
     "bg-skeleton-gradient-dark",
     "ring",

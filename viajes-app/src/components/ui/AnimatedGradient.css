@@ -8,7 +8,7 @@
 
 .animated-gradient-svg {
   position: absolute;
-  animation: background-gradient 10s infinite;
+  animation: background-gradient 10s ease-in-out infinite;
 }
 
 .blur-light {

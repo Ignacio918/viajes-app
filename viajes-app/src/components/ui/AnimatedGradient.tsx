@@ -30,9 +30,9 @@ const AnimatedGradient: React.FC<AnimatedGradientProps> = ({ color = '#E61C5D', 
   const circleSize = useMemo(() => Math.max(dimensions.width, dimensions.height), [dimensions.width, dimensions.height]);
 
   const blurClass = 
-    blur === 'light' ? 'blur-2xl' : 
-    blur === 'medium' ? 'blur-3xl' : 
-    'blur-[100px]';
+    blur === 'light' ? 'blur-light' : 
+    blur === 'medium' ? 'blur-medium' : 
+    'blur-heavy';
 
   return (
     <div ref={containerRef} className="animated-gradient-container">
