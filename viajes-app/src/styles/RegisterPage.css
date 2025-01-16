@@ -35,11 +35,19 @@
   }
 
   .auth-form {
-    @apply flex flex-col space-y-6 my-8; /* Cambié space-y-4 por space-y-6 */
+    @apply flex flex-col space-y-6 my-8;
+  }
+
+  .auth-inputs-container {
+    @apply flex flex-col space-y-6;
+  }
+
+  .label-input-container {
+    @apply flex flex-col w-full;
   }
 
   .auth-input-group {
-    @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4;
+    @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-6;
   }
 
   .auth-button {
