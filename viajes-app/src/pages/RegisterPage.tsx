@@ -6,7 +6,7 @@ import EyeIcon from '../assets/icons/eye.svg';
 import EyeOffIcon from '../assets/icons/eye-slash.svg';
 import Logo from '../assets/logo_medium.svg';
 import TextField from '../components/TextField';
-import './RegisterPage.css';
+import '../styles/RegisterPage.css';
 
 interface RegisterPageProps {
   onAuthSuccess: () => void;
