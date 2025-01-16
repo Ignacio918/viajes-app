@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import "../styles/BackgroundGradientAnimation.css";
+import "../../styles/BackgroundGradientAnimation.css";
 
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
