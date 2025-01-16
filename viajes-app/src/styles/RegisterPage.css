@@ -43,7 +43,7 @@
   }
 
   .auth-button {
-    @apply relative group/btn flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
+    @apply relative flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
     @apply bg-pink-600 text-white transition-all duration-300;
     @apply hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
   }
@@ -53,7 +53,7 @@
   }
 
   .auth-google-button {
-    @apply relative group/btn flex items-center justify-center space-x-2 px-4 w-full rounded-full h-12;
+    @apply relative flex items-center justify-center space-x-2 px-4 w-full rounded-full h-12;
     @apply bg-white dark:bg-dark text-dark dark:text-white font-urbanist font-medium;
     @apply border border-gray-800/20 dark:border-gray-300/20;
     @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5 transition-all duration-300;
