@@ -1,86 +1,92 @@
-.auth-container {
-  @apply min-h-screen flex items-center justify-center bg-white dark:bg-dark;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.auth-form-wrapper {
-  @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.04);
-}
+@layer components {
+  .auth-container {
+    @apply min-h-screen flex items-center justify-center bg-white dark:bg-dark;
+  }
 
-.auth-form-content {
-  @apply flex flex-col space-y-6;
-}
+  .auth-form-wrapper {
+    @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.04);
+  }
 
-.auth-logo-container {
-  @apply flex justify-center;
-}
+  .auth-form-content {
+    @apply flex flex-col space-y-6;
+  }
 
-.auth-logo-image {
-  @apply h-8;
-}
+  .auth-logo-container {
+    @apply flex justify-center;
+  }
 
-.auth-title {
-  @apply font-urbanist font-bold text-xl text-dark dark:text-white;
-}
+  .auth-logo-image {
+    @apply h-8;
+  }
 
-.auth-description {
-  @apply text-gray-800 dark:text-gray-300 text-sm max-w-sm mt-2 font-urbanist;
-}
+  .auth-title {
+    @apply font-urbanist font-bold text-xl text-dark dark:text-white;
+  }
 
-.auth-form {
-  @apply flex flex-col space-y-4 my-8;
-}
+  .auth-description {
+    @apply text-gray-800 dark:text-gray-300 text-sm max-w-sm mt-2 font-urbanist;
+  }
 
-.auth-input-group {
-  @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4;
-}
+  .auth-form {
+    @apply flex flex-col space-y-4 my-8;
+  }
 
-.auth-button {
-  @apply relative group/btn flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
-  @apply bg-pink-600 text-white transition-all duration-300;
-  @apply hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
-}
+  .auth-input-group {
+    @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4;
+  }
 
-.auth-divider {
-  @apply bg-gradient-to-r from-transparent via-gray-800/20 dark:via-gray-300/20 to-transparent my-8 h-[1px] w-full;
-}
+  .auth-button {
+    @apply relative group/btn flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
+    @apply bg-pink-600 text-white transition-all duration-300;
+    @apply hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
+  }
 
-.auth-google-button {
-  @apply relative group/btn flex items-center justify-center space-x-2 px-4 w-full rounded-full h-12;
-  @apply bg-white dark:bg-dark text-dark dark:text-white font-urbanist font-medium;
-  @apply border border-gray-800/20 dark:border-gray-300/20;
-  @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5 transition-all duration-300;
-}
+  .auth-divider {
+    @apply bg-gradient-to-r from-transparent via-gray-800/20 dark:via-gray-300/20 to-transparent my-8 h-[1px] w-full;
+  }
 
-.google-icon {
-  @apply w-5 h-5;
-}
+  .auth-google-button {
+    @apply relative group/btn flex items-center justify-center space-x-2 px-4 w-full rounded-full h-12;
+    @apply bg-white dark:bg-dark text-dark dark:text-white font-urbanist font-medium;
+    @apply border border-gray-800/20 dark:border-gray-300/20;
+    @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5 transition-all duration-300;
+  }
 
-.auth-login-link {
-  @apply flex items-center justify-center space-x-1 mt-6 font-urbanist;
-}
+  .google-icon {
+    @apply w-5 h-5;
+  }
 
-.auth-text {
-  @apply text-gray-800 dark:text-gray-300;
-}
+  .auth-login-link {
+    @apply flex items-center justify-center space-x-1 mt-6 font-urbanist;
+  }
 
-.auth-link {
-  @apply text-pink-600 hover:underline cursor-pointer;
-}
+  .auth-text {
+    @apply text-gray-800 dark:text-gray-300;
+  }
 
-.auth-error {
-  @apply mt-4 p-3 rounded-lg bg-pink-600/10 text-pink-600 text-sm text-center font-urbanist;
-}
+  .auth-link {
+    @apply text-pink-600 hover:underline cursor-pointer;
+  }
 
-.spinner {
-  @apply w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin;
-}
+  .auth-error {
+    @apply mt-4 p-3 rounded-lg bg-pink-600/10 text-pink-600 text-sm text-center font-urbanist;
+  }
 
-.toggle-password {
-  @apply flex items-center justify-center w-10 h-10 rounded-full;
-  @apply text-gray-800 dark:text-gray-300;
-  @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5;
-  @apply disabled:opacity-50 transition-colors duration-300;
+  .spinner {
+    @apply w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin;
+  }
+
+  .toggle-password {
+    @apply flex items-center justify-center w-10 h-10 rounded-full;
+    @apply text-gray-800 dark:text-gray-300;
+    @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5;
+    @apply disabled:opacity-50 transition-colors duration-300;
+  }
 }
