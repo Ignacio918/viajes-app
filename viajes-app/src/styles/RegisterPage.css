@@ -27,15 +27,15 @@
   }
 
   .auth-title {
-    @apply font-urbanist font-bold text-xl text-dark dark:text-white;
+    @apply font-urbanist font-bold text-xl text-dark dark:text-white text-center;
   }
 
   .auth-description {
-    @apply text-gray-800 dark:text-gray-300 text-sm max-w-sm mt-2 font-urbanist;
+    @apply text-gray-800 dark:text-gray-300 text-sm max-w-sm mt-2 font-urbanist text-center mx-auto;
   }
 
   .auth-form {
-    @apply flex flex-col space-y-4 my-8;
+    @apply flex flex-col space-y-6 my-8; /* Cambié space-y-4 por space-y-6 */
   }
 
   .auth-input-group {
@@ -44,7 +44,7 @@
 
   .auth-button {
     @apply relative flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
-    @apply bg-pink-600 text-white transition-all duration-300;
+    @apply bg-dark text-white transition-all duration-300 dark:bg-white dark:text-dark;
     @apply hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
   }
 

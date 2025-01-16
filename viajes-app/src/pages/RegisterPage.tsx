@@ -168,7 +168,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onAuthSuccess }) => {
           <img src={Logo} alt="Zentrip Logo" className="auth-logo-image" />
         </div>
 
-        <h2 className="auth-title">Únete a Zentrip</h2>
+        <h2 className="auth-title">Crea tu cuenta gratis</h2>
         <p className="auth-description">
           Transforma tus ideas en aventuras reales
         </p>
