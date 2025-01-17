@@ -7,11 +7,21 @@
     @apply min-h-screen flex items-center justify-center bg-white dark:bg-dark;
   }
 
+  .register-page-container {
+    @apply relative h-screen flex items-center justify-center overflow-hidden;
+  }
+
+  .register-form-container {
+    @apply relative z-10 w-full max-w-md p-6 bg-white rounded-lg shadow-md;
+    @apply border-2 border-gray-200; /* Outline */
+    @apply dark:bg-gray-800 dark:border-gray-700; /* Outline en modo oscuro */
+  }
+
   .auth-form-wrapper {
     @apply max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.8); /* Ajuste de opacidad */
     backdrop-filter: blur(20px);
-    box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.1); /* Ajuste de sombra */
   }
 
   .auth-form-content {
