@@ -1,17 +1,12 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import '../styles/LoginPage.css';
-
-import videoLogin from '../assets/video_login.mp4';
-import Logo from '../assets/logo_medium.svg';
 import GoogleIcon from '../assets/icons/devicon_google.svg';
 import EyeIcon from '../assets/icons/eye.svg';
 import EyeOffIcon from '../assets/icons/eye-slash.svg';
-import IlusMonumentos from '../assets/illustrations/ilus_monumentos.svg';
-import IlusMezquita from '../assets/illustrations/ilus_mezquita.svg';
-import IlusAvionLogin from '../assets/illustrations/ilus_avion_login.svg';
+import Logo from '../assets/logo_medium.svg';
 import TextField from '../components/TextField';
+import '../styles/LoginPage.css';
 
 interface LoginPageProps {
   onAuthSuccess: () => void;
@@ -116,124 +111,130 @@ const LoginPage: React.FC<LoginPageProps> = ({ onAuthSuccess, handleRegisterClic
   };
 
   return (
-    <div className="login-container">
-      <div className="login-image-container">
-        <video 
-          className="login-video"
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-        >
-          <source src={videoLogin} type="video/mp4" />
-        </video>
-      </div>
-
-      <div className="form-container">
-        <div className={`login-form-container ${isLoading ? 'form-loading' : ''}`}>
-          <div className="login-branding">
-            <div className="login-logo">
-              <img src={Logo} alt="Zentrip Logo" className="login-logo-image" />
-              <div className="login-logo-dot"></div>
-            </div>
-          </div>
-
-          <div className="login-form-header">
-            <span className="login-description">Accede a tus planes de viaje y haz realidad tus ideas.</span>
-          </div>
-          
-          <form onSubmit={handleLogin} className="login-form">
-            <TextField
-              label="Email"
-              placeholder="Ingresa tu email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              state={error ? 'error' : 'enabled'}
-              type="email"
-              disabled={isLoading}
-            />
-            
-            <TextField
-              label="Contraseña"
-              placeholder="Ingresa tu contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              state={error ? 'error' : 'enabled'}
-              type={showPassword ? "text" : "password"}
-              disabled={isLoading}
-              icon={
-                <button
-                  type="button"
-                  className="toggle-password"
-                  onClick={() => setShowPassword(!showPassword)}
-                  disabled={isLoading}
-                >
-                  <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
-                </button>
-              }
-            />
-
-            <Link 
-              to="/forgot-password" 
-              className={`login-forgot-password ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
-            >
-              Olvidaste tu contraseña?
-            </Link>
-
-            <button 
-              type="submit" 
-              className={`login-button ${isLoading ? 'button-loading' : ''}`}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <span className="spinner"></span>
-                  Ingresando...
-                </>
-              ) : (
-                'Ingresar'
-              )}
-            </button>
-
-            <button 
-              type="button" 
-              onClick={handleGoogleLogin} 
-              className={`login-google-button ${isLoading ? 'button-loading' : ''}`}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <span className="spinner"></span>
-                  Conectando...
-                </>
-              ) : (
-                <>
-                  <img src={GoogleIcon} alt="Google" className="google-icon" />
-                  Ingresar con Google
-                </>
-              )}
-            </button>
-
-            <div className="login-signup">
-              <span className="signup-text">¿Aún no te unes?</span>
-              <span 
-                className={`signup-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
-                onClick={!isLoading ? handleRegisterClick : undefined}
-              >
-                Regístrate ahora
-              </span>
-            </div>
-          </form>
-
-          {error && <p className="login-error">{error}</p>}
+    <div className="login-page-container">
+      <div className="login-form-container">
+        <div className="auth-logo-container">
+          <img src={Logo} alt="Zentrip Logo" className="auth-logo-image" />
         </div>
-      </div>
+        <h2 className="auth-title">Inicia sesión en tu cuenta</h2>
+        <p className="auth-description">
+          Accede a tus planes de viaje y haz realidad tus ideas.
+        </p>
 
-      {/* Ilustraciones */}
-      <img src={IlusAvionLogin} alt="Avión" className="illustration" />
-      <img src={IlusMezquita} alt="Mezquita" className="illustration" />
-      <img src={IlusMonumentos} alt="Monumentos" className="illustration" />
+        <form onSubmit={handleLogin} className="auth-form">
+          <div className="auth-inputs-container">
+            <LabelInputContainer>
+              <TextField
+                label="Email"
+                placeholder="Ingresa tu email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                state={error ? 'error' : 'enabled'}
+                type="email"
+                disabled={isLoading}
+              />
+            </LabelInputContainer>
+            
+            <LabelInputContainer>
+              <TextField
+                label="Contraseña"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                state={error ? 'error' : 'enabled'}
+                type={showPassword ? "text" : "password"}
+                disabled={isLoading}
+                icon={
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                    disabled={isLoading}
+                  >
+                    <img src={showPassword ? EyeOffIcon : EyeIcon} alt="Toggle password" />
+                  </button>
+                }
+              />
+            </LabelInputContainer>
+          </div>
+
+          <Link 
+            to="/forgot-password" 
+            className={`login-forgot-password ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
+
+          <button 
+            type="submit" 
+            className={`auth-button ${isLoading ? 'button-loading' : ''}`}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner"></span>
+                Ingresando...
+              </>
+            ) : (
+              'Ingresar'
+            )}
+          </button>
+
+          <div className="auth-divider" />
+
+          <button 
+            type="button" 
+            onClick={handleGoogleLogin} 
+            className={`auth-google-button ${isLoading ? 'button-loading' : ''}`}
+            disabled={isLoading}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner"></span>
+                Conectando...
+              </>
+            ) : (
+              <>
+                <img src={GoogleIcon} alt="Google" className="google-icon" />
+                Ingresar con Google
+              </>
+            )}
+          </button>
+
+          <div className="auth-login-link">
+            <span className="auth-text">¿Aún no te unes?</span>
+            <span 
+              className={`auth-link ${isLoading ? 'pointer-events-none opacity-50' : ''}`} 
+              onClick={!isLoading ? handleRegisterClick : undefined}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => e.key === "Enter" && !isLoading && handleRegisterClick && handleRegisterClick()}
+            >
+              Regístrate ahora
+            </span>
+          </div>
+        </form>
+
+        {error && <p className="auth-error">{error}</p>}
+      </div>
     </div>
+  );
+};
+
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={`label-input-container ${className || ""}`}>{children}</div>
   );
 };
 
