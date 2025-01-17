@@ -2,207 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply m-0 font-urbanist;
-}
+@layer components {
+  .login-page-container {
+    @apply min-h-screen flex items-center justify-center bg-white dark:bg-dark;
+  }
 
-/* Contenedores principales */
-.login-container {
-  @apply w-screen h-screen bg-[#FDFDFD] overflow-hidden relative;
-}
-
-.login-image-container {
-  @apply w-[50%] h-screen fixed left-0 top-0;
-}
-
-.login-video {
-  @apply w-full h-full object-cover;
-}
-
-/* Barra de progreso */
-.loading-progress-bar {
-  @apply fixed top-0 left-0 w-full h-1 bg-gray-200;
-}
-
-.loading-progress-fill {
-  @apply h-full bg-[#E61C5D] transition-all duration-300 ease-out;
-}
-
-/* Contenedor del formulario */
-.form-container {
-  @apply flex justify-center items-center w-[50%] h-screen fixed right-0 top-0;
-}
-
-.login-form-container {
-  @apply flex flex-col justify-start items-center gap-4 w-full max-w-[311px] sm:max-w-[500px] animate-fadeIn;
-}
-
-.form-loading {
-  @apply opacity-75 pointer-events-none transition-opacity duration-300;
-}
-
-/* Logo y branding */
-.login-branding {
-  @apply flex justify-center items-center mb-2;
-}
-
-.login-logo {
-  @apply relative w-[187px] h-[72px] transition-transform duration-300 hover:scale-105;
-}
-
-.login-logo-image {
-  @apply w-full h-full object-contain;
-}
-
-.login-logo-dot {
-  @apply absolute top-[16px] left-[141px] w-[6.20px] h-[6.20px] bg-[#E61C5D] rounded-full;
-}
-
-/* Encabezado del formulario */
-.login-form-header {
-  @apply flex flex-col justify-start items-start w-full;
-}
-
-.login-description {
-  @apply text-center text-[#161616] text-[18px] font-normal w-full;
-}
-
-/* Formulario */
-.login-form {
-  @apply flex flex-col justify-start items-center gap-4 w-full;
-}
-
-/* Componentes del formulario */
-.login-input-group {
-  @apply flex flex-col justify-start items-end gap-4 w-full;
-}
-
-/* Toggle password button */
-.toggle-password {
-  @apply bg-none border-none cursor-pointer transition-opacity duration-200;
-}
-
-.toggle-password:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-/* Enlaces */
-.login-forgot-password {
-  @apply self-stretch text-right text-[#E61C5D] text-[16px] font-normal mt-2 cursor-pointer transition-all duration-300 hover:text-[#ff3377] !important;
-  text-decoration: none;
-}
-
-.login-forgot-password:hover {
-  text-decoration: underline;
-}
-
-/* Botones */
-.login-button {
-  @apply inline-flex justify-center items-center w-full max-w-[500px] h-[40px] p-[10px] bg-[#161616] rounded-full text-white text-[16px] font-normal border-none cursor-pointer mt-2 transition-all duration-300;
-}
-
-.login-button:hover:not(:disabled) {
-  @apply bg-[#2d2d2d] transform scale-[1.02] !important;
-}
-
-.login-google-button {
-  @apply inline-flex justify-center items-center gap-2.5 w-full max-w-[500px] h-[40px] p-[10px] bg-white rounded-full border border-[#A8A8A8] cursor-pointer transition-all duration-300;
-}
-
-.login-google-button:hover:not(:disabled) {
-  @apply bg-gray-50 border-[#8a8a8a] transform scale-[1.02];
-}
-
-/* Estados de loading */
-.button-loading {
-  @apply opacity-75 cursor-wait !important;
-  transform: scale(1) !important;
-}
-
-.spinner {
-  @apply inline-block w-4 h-4 border-2 border-white rounded-full border-t-transparent animate-spin mr-2;
-}
-
-.login-google-button .spinner {
-  @apply border-[#161616] border-t-transparent;
-}
-
-/* Skeleton loading */
-.skeleton {
-  @apply bg-gray-200 animate-pulse rounded;
-}
-
-.skeleton-text {
-  @apply h-4 w-3/4 mb-2;
-}
-
-.skeleton-input {
-  @apply h-[44px] w-full mb-4 rounded-[5px];
-}
-
-.skeleton-button {
-  @apply h-[40px] w-full rounded-full mb-4;
-}
-
-/* Signup section */
-.login-signup {
-  @apply inline-flex justify-center items-center gap-1 w-full;
-}
-
-.signup-text {
-  @apply text-[#161616] text-[16px] font-normal !important;
-}
-
-.signup-link {
-  @apply text-[#E61C5D] text-[16px] font-normal cursor-pointer transition-colors duration-300 hover:text-[#ff3377];
-}
-
-.signup-link:hover:not(.pointer-events-none) {
-  text-decoration: underline;
-}
-
-/* Ilustraciones */
-.illustration {
-  @apply absolute object-contain transition-opacity duration-300;
-}
-
-img[src*="ilus_avion_login"] {
-  width: 224px;
-  height: 47.92px;
-  right: 0;
-  top: 51.03px;
-}
-
-img[src*="ilus_mezquita"] {
-  width: 193px;
-  height: 112px;
-  left: 50%;
-  bottom: 0;
-}
-
-img[src*="ilus_monumentos"] {
-  width: 300px;
-  height: 200px;
-  right: -30px;
-  bottom: -30px;
-}
-
-/* Error message */
-.login-error {
-  @apply text-red-500 mt-2 text-center animate-fadeIn;
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
   .login-form-container {
-    @apply px-4;
+    @apply relative z-10 w-full max-w-md p-6 bg-white rounded-lg;
+    @apply border-2 border-gray-200; /* Outline */
+    @apply dark:bg-gray-800 dark:border-gray-700; /* Outline en modo oscuro */
   }
-  
-  .login-image-container {
-    @apply hidden;
+
+  .auth-logo-container {
+    @apply flex justify-center;
   }
-  
-  .form-container {
-    @apply w-full;
+
+  .auth-logo-image {
+    @apply h-8;
+  }
+
+  .auth-title {
+    @apply font-urbanist font-bold text-xl text-dark dark:text-white text-center;
+  }
+
+  .auth-description {
+    @apply text-gray-800 dark:text-gray-300 text-sm max-w-sm mt-2 font-urbanist text-center mx-auto;
+  }
+
+  .auth-form {
+    @apply flex flex-col space-y-6 my-8;
+  }
+
+  .auth-inputs-container {
+    @apply flex flex-col space-y-6;
+  }
+
+  .label-input-container {
+    @apply flex flex-col w-full;
+  }
+
+  .auth-input-group {
+    @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-6;
+  }
+
+  .auth-button {
+    @apply relative flex items-center justify-center w-full rounded-full h-12 font-urbanist font-medium;
+    @apply bg-dark text-white transition-all duration-300 dark:bg-white dark:text-dark;
+    @apply hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .auth-divider {
+    @apply bg-gradient-to-r from-transparent via-gray-800/20 dark:via-gray-300/20 to-transparent my-8 h-[1px] w-full;
+  }
+
+  .auth-google-button {
+    @apply relative flex items-center justify-center space-x-2 px-4 w-full rounded-full h-12;
+    @apply bg-white dark:bg-dark text-dark dark:text-white font-urbanist font-medium;
+    @apply border border-gray-800/20 dark:border-gray-300/20;
+    @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5 transition-all duration-300;
+  }
+
+  .google-icon {
+    @apply w-5 h-5 mr-2; /* Agregar margen derecho para separar el icono del texto */
+  }
+
+  .auth-login-link {
+    @apply flex items-center justify-center space-x-1 mt-6 font-urbanist;
+  }
+
+  .auth-text {
+    @apply text-gray-800 dark:text-gray-300;
+  }
+
+  .auth-link {
+    @apply text-pink-600 hover:underline cursor-pointer;
+  }
+
+  .auth-error {
+    @apply mt-4 p-3 rounded-lg bg-pink-600/10 text-pink-600 text-sm text-center font-urbanist;
+  }
+
+  .spinner {
+    @apply w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin;
+  }
+
+  .toggle-password {
+    @apply flex items-center justify-center w-10 h-10 rounded-full;
+    @apply text-gray-800 dark:text-gray-300;
+    @apply hover:bg-gray-800/5 dark:hover:bg-gray-300/5;
+    @apply disabled:opacity-50 transition-colors duration-300;
   }
 }
