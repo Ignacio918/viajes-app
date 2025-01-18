@@ -24,7 +24,7 @@
 }
 
 .logo-icon {
-  @apply h-6 w-6; /* 24px x 24px */
+  @apply h-8 w-8; /* 32px x 32px */
 }
 
 .logo {
