@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from 'react-router-dom'
 import logoSmall from '../assets/logo_small.svg'
+import logoIcon from '../assets/zentrip-logo-navegador.svg' // Importamos el nuevo logo
 import '../styles/Navbar.css'
 
 const Navbar = () => {
@@ -84,6 +85,7 @@ const Navbar = () => {
             <div className="floating-nav-inner">
               {/* Logo */}
               <div className="logo-container">
+                <img src={logoIcon} alt="Logo Icon" className="logo-icon" /> {/* Nuevo logo */}
                 <img src={logoSmall} alt="zentrip logo" className="logo" />
               </div>
 
@@ -159,14 +161,14 @@ const Navbar = () => {
                     </div>
                     <div className="mobile-auth-buttons">
                       <Link 
-                        to="/LoginPage" 
+                        to="/login" 
                         className="login-link"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Iniciar Sesión
                       </Link>
                       <Link 
-                        to="/RegisterPage" 
+                        to="/register" 
                         className="register-button"
                         onClick={() => setIsMenuOpen(false)}
                       >

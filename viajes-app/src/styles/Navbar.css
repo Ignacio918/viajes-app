@@ -18,6 +18,13 @@
 
 .logo-container {
   @apply flex items-center flex-shrink-0;
+
+  /* Agregamos un margen entre los logos */
+  gap: 14px;
+}
+
+.logo-icon {
+  @apply h-6 w-6; /* 24px x 24px */
 }
 
 .logo {
