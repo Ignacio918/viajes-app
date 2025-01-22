@@ -5,14 +5,14 @@ interface DashboardMenuItemProps {
   to: string
   icon: string
   label: string
-  isDisabled?: boolean
+  isActive?: boolean
 }
 
-const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label, isDisabled }) => {
+const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label, isActive }) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""} ${isDisabled ? "disabled" : ""}`}
+      className={({ isActive: navActive }) => `dashboard-menu-item ${navActive || isActive ? "active" : ""}`}
     >
       <img src={icon || "/placeholder.svg"} alt={`${label} icon`} className="menu-icon" />
       <span className="menu-text">{label}</span>

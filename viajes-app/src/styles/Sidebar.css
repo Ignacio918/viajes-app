@@ -11,9 +11,9 @@
   .sidebar {
     @apply mt-16 rounded-t-[20px] border border-[#F3F4F6];
     height: calc(100vh - 4rem);
-    width: 100%;
-    left: 0;
-    right: 0;
+    max-width: calc(100% - 32px);
+    left: 16px;
+    right: 16px;
   }
 }
 
