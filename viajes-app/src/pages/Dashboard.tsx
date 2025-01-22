@@ -1,7 +1,7 @@
 // src/pages/Dashboard.tsx
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import './Dashboard.css';
+import '../styles/Dashboard.css';
 
 const Dashboard: React.FC = () => {
     return (
