@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./styles/Sidebar.css";
 
 @layer base {
   /* Ocultar scrollbar pero mantener funcionalidad */
