@@ -1,6 +1,5 @@
 // src/components/Sidebar.tsx
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import '../styles/Sidebar.css';
 import logoIcon from '../assets/zentrip-logo-navegador.svg';
 import miViajeIcon from '../assets/mi-viaje.svg';
@@ -9,6 +8,7 @@ import transportesIcon from '../assets/transportes.svg';
 import presupuestoIcon from '../assets/presupuesto.svg';
 import lugaresIcon from '../assets/lugares.svg';
 import cerrarSesionIcon from '../assets/cerrar-sesion.svg';
+import DashboardMenuItem from './DashboardMenuItem';
 
 const Sidebar: React.FC = () => {
   return (
@@ -21,32 +21,44 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       <div className="menu">
-        <NavLink to="/dashboard" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-          <img src={miViajeIcon} alt="Mi Viaje" className="menu-icon" />
-          <span className="menu-text">Mi Viaje</span>
-        </NavLink>
-        <NavLink to="/dashboard/itinerario" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-          <img src={itinerarioIcon} alt="Itinerario" className="menu-icon" />
-          <span className="menu-text">Itinerario</span>
-        </NavLink>
-        <NavLink to="/dashboard/transportes" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-          <img src={transportesIcon} alt="Transportes" className="menu-icon" />
-          <span className="menu-text">Transportes</span>
-        </NavLink>
-        <NavLink to="/dashboard/presupuesto" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-          <img src={presupuestoIcon} alt="Presupuesto y Gastos" className="menu-icon" />
-          <span className="menu-text">Presupuesto y Gastos</span>
-        </NavLink>
-        <NavLink to="/dashboard/lugares" className={({ isActive }) => isActive ? "menu-item active" : "menu-item"}>
-          <img src={lugaresIcon} alt="Lugares y Actividades" className="menu-icon" />
-          <span className="menu-text">Lugares y Actividades</span>
-        </NavLink>
+        <DashboardMenuItem
+          to="/dashboard"
+          icon={miViajeIcon}
+          label="Mi Viaje"
+          isDisabled={false}
+        />
+        <DashboardMenuItem
+          to="/dashboard/itinerario"
+          icon={itinerarioIcon}
+          label="Itinerario"
+          isDisabled={false}
+        />
+        <DashboardMenuItem
+          to="/dashboard/transportes"
+          icon={transportesIcon}
+          label="Transportes"
+          isDisabled={false}
+        />
+        <DashboardMenuItem
+          to="/dashboard/presupuesto"
+          icon={presupuestoIcon}
+          label="Presupuesto y Gastos"
+          isDisabled={false}
+        />
+        <DashboardMenuItem
+          to="/dashboard/lugares"
+          icon={lugaresIcon}
+          label="Lugares y Actividades"
+          isDisabled={false}
+        />
       </div>
       <div className="logout">
-        <NavLink to="/logout" className="menu-item">
-          <img src={cerrarSesionIcon} alt="Cerrar Sesión" className="menu-icon" />
-          <span className="menu-text">Cerrar Sesión</span>
-        </NavLink>
+        <DashboardMenuItem
+          to="/logout"
+          icon={cerrarSesionIcon}
+          label="Cerrar Sesión"
+          isDisabled={false}
+        />
       </div>
     </div>
   );
