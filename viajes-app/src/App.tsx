@@ -1,71 +1,64 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
-import { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
-import { ThemeProvider } from './context/ThemeContext';
-import Dashboard from "./pages/Dashboard";
-import PasswordResetForm from "./pages/PasswordResetForm";
-import SetNewPassword from "./pages/SetNewPassword";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import UserProfile from "./pages/UserProfile";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import Navbar from "./components/Navbar";
-import Footer from "./pages/Footer";
-import HeroSection from "./pages/HeroSection";
-import Benefits from "./pages/Benefits";
-import HowItWorks from "./pages/HowItWorks";
+import type React from "react"
+import { useState, useEffect } from "react"
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom"
+import { supabase } from "./supabaseClient"
+import { ThemeProvider } from "./context/ThemeContext"
+import Dashboard from "./pages/Dashboard"
+import PasswordResetForm from "./pages/PasswordResetForm"
+import SetNewPassword from "./pages/SetNewPassword"
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+import UserProfile from "./pages/UserProfile"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
+import TermsOfService from "./pages/TermsOfService"
+import Navbar from "./components/Navbar"
+import Footer from "./pages/Footer"
+import HeroSection from "./pages/HeroSection"
+import Benefits from "./pages/Benefits"
+import HowItWorks from "./pages/HowItWorks"
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const getSession = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
-      setIsLoggedIn(!!session);
-      setLoading(false);
-    };
+      } = await supabase.auth.getSession()
+      setIsLoggedIn(!!session)
+      setLoading(false)
+    }
 
-    getSession();
+    getSession()
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setIsLoggedIn(!!session);
-      }
-    );
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session)
+    })
 
     return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
+      authListener.subscription.unsubscribe()
+    }
+  }, [])
 
   const handleAuthSuccess = () => {
-    setIsLoggedIn(true);
-  };
+    setIsLoggedIn(true)
+  }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   const AppContent = () => {
-    const location = useLocation();
+    const location = useLocation()
     const hideNavbarPaths = [
-      '/dashboard', 
-      '/dashboard/actividades', 
-      '/dashboard/traslados', 
-      '/dashboard/vuelos', 
-      '/dashboard/hoteles', 
-      '/dashboard/chat-ai'
-    ];
+      "/dashboard",
+      "/dashboard/actividades",
+      "/dashboard/traslados",
+      "/dashboard/vuelos",
+      "/dashboard/hoteles",
+      "/dashboard/chat-ai",
+    ]
 
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
@@ -76,10 +69,7 @@ const App: React.FC = () => {
             path="/login"
             element={
               <div className="min-h-screen">
-                <LoginPage
-                  onAuthSuccess={handleAuthSuccess}
-                  handleRegisterClick={() => {}}
-                />
+                <LoginPage onAuthSuccess={handleAuthSuccess} handleRegisterClick={() => {}} />
               </div>
             }
           />
@@ -94,6 +84,15 @@ const App: React.FC = () => {
           <Route path="/reset-password" element={<PasswordResetForm />} />
           <Route path="/set-new-password" element={<SetNewPassword />} />
 
+          {/* Rutas del dashboard */}
+          <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}>
+            <Route index element={<h1>Bienvenido al Dashboard</h1>} />
+            <Route path="itinerario" element={<h1>Itinerario</h1>} />
+            <Route path="transportes" element={<h1>Transportes</h1>} />
+            <Route path="presupuesto" element={<h1>Presupuesto y Gastos</h1>} />
+            <Route path="lugares" element={<h1>Lugares y Actividades</h1>} />
+          </Route>
+
           {/* Rutas con Navbar y Footer */}
           <Route
             path="/"
@@ -106,21 +105,6 @@ const App: React.FC = () => {
                 </div>
                 <Footer />
               </>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              isLoggedIn ? (
-                <>
-                  <div className="flex-grow">
-                    <Dashboard />
-                  </div>
-                  <Footer />
-                </>
-              ) : (
-                <Navigate to="/login" />
-              )
             }
           />
           <Route
@@ -162,8 +146,8 @@ const App: React.FC = () => {
           />
         </Routes>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <ThemeProvider>
@@ -171,7 +155,8 @@ const App: React.FC = () => {
         <AppContent />
       </Router>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App
+

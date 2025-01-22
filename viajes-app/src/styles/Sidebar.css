@@ -1,10 +1,10 @@
 /* src/styles/Sidebar.css */
 .sidebar {
-  @apply w-full h-full p-6 bg-white border-r border-gray-200 flex flex-col justify-start items-start gap-12;
+  @apply w-64 h-screen bg-white border-r border-gray-200 flex flex-col;
 }
 
 .logo-container {
-  @apply self-stretch p-1 bg-white flex flex-col justify-start items-start gap-3;
+  @apply p-6 flex items-center gap-1;
 }
 
 .logo {
@@ -24,19 +24,15 @@
 }
 
 .menu {
-  @apply flex flex-col justify-between items-start;
+  @apply flex-grow px-4 py-2;
 }
 
 .menu-item {
-  @apply w-full px-2 py-2 flex justify-start items-center gap-3 text-gray-900 transition-all;
-}
-
-.menu-item:hover {
-  @apply bg-gray-100 rounded-xl;
+  @apply flex items-center gap-3 px-2 py-2 rounded-xl transition-colors text-gray-700 hover:bg-gray-100;
 }
 
 .menu-item.active {
-  @apply text-red-500;
+  @apply bg-red-50 text-red-500;
 }
 
 .menu-icon {
@@ -44,9 +40,10 @@
 }
 
 .menu-text {
-  @apply text-base font-normal;
+  @apply text-sm font-medium;
 }
 
 .logout {
-  @apply h-9 flex flex-col justify-start items-start;
+  @apply p-4 border-t border-gray-200;
 }
+
