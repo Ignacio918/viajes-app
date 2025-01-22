@@ -1,5 +1,7 @@
 /* src/styles/Dashboard.css */
-@apply flex;
+.dashboard {
+    @apply flex;
+}
 
 .dashboard-content {
     @apply flex-grow p-5;
