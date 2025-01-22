@@ -1,19 +1,10 @@
 .sidebar {
-  @apply fixed top-0 left-0 w-64 h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out z-50;
+  @apply fixed top-0 left-0 w-full md:w-64 h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out z-50;
+  @apply md:translate-x-0 transform -translate-x-full;
 }
 
 .sidebar.open {
   @apply translate-x-0;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    @apply -translate-x-full;
-  }
-
-  .sidebar.open {
-    @apply translate-x-0;
-  }
 }
 
 .logo-container {
@@ -29,7 +20,7 @@
 }
 
 .logo-name {
-  @apply text-2xl font-extrabold text-gray-900;
+  @apply text-2xl font-extrabold text-[#161616];
 }
 
 .logo-dot {
@@ -58,14 +49,6 @@
 
 .dashboard-menu-item.active .menu-icon {
   @apply filter invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
-}
-
-.dashboard-menu-item.disabled {
-  @apply text-[#828282] cursor-not-allowed;
-}
-
-.dashboard-menu-item.disabled .menu-icon {
-  @apply filter invert-[51%] sepia-[0%] saturate-[0%] hue-rotate-[143deg] brightness-[98%] contrast-[92%];
 }
 
 .menu-icon {
