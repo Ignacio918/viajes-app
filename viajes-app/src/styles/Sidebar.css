@@ -13,7 +13,7 @@
     height: auto;
     min-height: 420px;
     width: calc(100% - 32px);
-    max-width: 239px;
+    max-width: 300px;
     left: -100%;
     border-radius: 0 20px 20px 20px;
   }
