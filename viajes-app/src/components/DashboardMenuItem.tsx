@@ -1,27 +1,19 @@
-import type React from "react";
-import { NavLink } from "react-router-dom";
+import type React from "react"
+import { NavLink } from "react-router-dom"
 
 interface DashboardMenuItemProps {
-  to: string;
-  icon: string;
-  label: string;
-  isDisabled?: boolean;
+  to: string
+  icon: string
+  label: string
+  isDisabled?: boolean
 }
 
-const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({
-  to,
-  icon,
-  label,
-  isDisabled,
-}) => {
+const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label, isDisabled }) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) =>
-        `dashboard-menu-item ${isActive ? "active" : ""} ${
-          isDisabled ? "disabled" : ""
-        }`
-      }
+      end
+      className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""} ${isDisabled ? "disabled" : ""}`}
     >
       {({ isActive }) => (
         <>
@@ -34,7 +26,8 @@ const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({
         </>
       )}
     </NavLink>
-  );
-};
+  )
+}
 
-export default DashboardMenuItem;
+export default DashboardMenuItem
+

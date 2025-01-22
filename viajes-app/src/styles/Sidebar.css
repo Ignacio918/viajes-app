@@ -48,10 +48,9 @@
   filter: brightness(0) saturate(100%);
 }
 
-.dashboard-menu-item:hover .menu-icon,
 .dashboard-menu-item.active .menu-icon {
-  filter: brightness(0) saturate(100%) invert(21%) sepia(99%) saturate(7414%)
-    hue-rotate(335deg) brightness(94%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(21%) sepia(99%) saturate(7414%) hue-rotate(335deg) brightness(94%)
+    contrast(97%);
 }
 
 .dashboard-menu-item.disabled {
@@ -59,10 +58,11 @@
 }
 
 .dashboard-menu-item.disabled .menu-icon {
-  filter: brightness(0) saturate(100%) invert(51%) sepia(0%) saturate(0%)
-    hue-rotate(143deg) brightness(98%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(51%) sepia(0%) saturate(0%) hue-rotate(143deg) brightness(98%)
+    contrast(92%);
 }
 
 .menu-text {
   @apply text-base font-normal font-['Urbanist'];
 }
+
