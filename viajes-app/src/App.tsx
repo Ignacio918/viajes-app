@@ -51,18 +51,11 @@ const App: React.FC = () => {
 
   const AppContent = () => {
     const location = useLocation()
-    const hideNavbarPaths = [
-      "/dashboard",
-      "/dashboard/actividades",
-      "/dashboard/traslados",
-      "/dashboard/vuelos",
-      "/dashboard/hoteles",
-      "/dashboard/chat-ai",
-    ]
+    const isDashboardRoute = location.pathname.startsWith("/dashboard")
 
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-        {!hideNavbarPaths.includes(location.pathname) && <Navbar />}
+        {!isDashboardRoute && <Navbar />}
         <Routes>
           {/* Rutas de autenticación sin Navbar ni Footer */}
           <Route
@@ -85,13 +78,7 @@ const App: React.FC = () => {
           <Route path="/set-new-password" element={<SetNewPassword />} />
 
           {/* Rutas del dashboard */}
-          <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}>
-            <Route index element={<h1>Bienvenido al Dashboard</h1>} />
-            <Route path="itinerario" element={<h1>Itinerario</h1>} />
-            <Route path="transportes" element={<h1>Transportes</h1>} />
-            <Route path="presupuesto" element={<h1>Presupuesto y Gastos</h1>} />
-            <Route path="lugares" element={<h1>Lugares y Actividades</h1>} />
-          </Route>
+          <Route path="/dashboard/*" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
 
           {/* Rutas con Navbar y Footer */}
           <Route
