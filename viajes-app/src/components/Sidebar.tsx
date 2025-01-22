@@ -22,12 +22,10 @@ const Sidebar: React.FC = () => {
     <>
       {/* Mobile header */}
       <div className="md:hidden flex justify-between items-center bg-white p-4 h-16 w-full">
-        <div className="flex items-center gap-1">
-          <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Logo" className="w-8 h-8" />
-          <span className="text-2xl font-extrabold text-[#161616]">zentrip</span>
-          <span className="w-1 h-1 bg-[#E61C5D] rounded-full"></span>
-        </div>
-        <button onClick={toggleSidebar} className="w-8 h-8 flex items-center justify-center bg-[#F3F4F6] rounded-full">
+        <button
+          onClick={toggleSidebar}
+          className={`w-8 h-8 flex items-center justify-center rounded-full ${isOpen ? "bg-[#F3F4F6]" : ""}`}
+        >
           {isOpen ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -44,6 +42,12 @@ const Sidebar: React.FC = () => {
             </svg>
           )}
         </button>
+        <div className="flex items-center gap-1 absolute left-1/2 transform -translate-x-1/2">
+          <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Logo" className="w-8 h-8" />
+          <span className="text-2xl font-extrabold text-[#161616]">zentrip</span>
+          <span className="w-1 h-1 bg-[#E61C5D] rounded-full"></span>
+        </div>
+        <div className="w-8 h-8"></div> {/* This empty div balances the layout */}
       </div>
 
       {/* Sidebar */}
@@ -71,4 +75,5 @@ const Sidebar: React.FC = () => {
 }
 
 export default Sidebar
+
 
