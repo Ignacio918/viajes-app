@@ -13,7 +13,7 @@
     height: auto;
     min-height: 420px;
     width: calc(100% - 32px);
-    max-width: 239px;
+    max-width: 300px;
     left: -100%;
     border-radius: 0 20px 20px 20px;
   }
@@ -64,11 +64,12 @@
 }
 
 .menu-icon {
-  @apply w-5 h-5 brightness-0;
+  @apply w-5 h-5;
+  filter: invert(8%) sepia(10%) saturate(200%) hue-rotate(169deg) brightness(95%) contrast(85%);
 }
 
 .dashboard-menu-item.active .menu-icon {
-  @apply invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
+  filter: invert(21%) sepia(99%) saturate(7414%) hue-rotate(335deg) brightness(94%) contrast(97%);
 }
 
 .menu-text {
