@@ -51,11 +51,12 @@ const App: React.FC = () => {
 
   const AppContent = () => {
     const location = useLocation()
-    const isDashboardRoute = location.pathname.startsWith("/dashboard")
+    const hideNavbar =
+      location.pathname.startsWith("/dashboard") || location.pathname === "/login" || location.pathname === "/register"
 
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-        {!isDashboardRoute && <Navbar />}
+        {!hideNavbar && <Navbar />}
         <Routes>
           {/* Rutas de autenticación sin Navbar ni Footer */}
           <Route
@@ -131,6 +132,7 @@ const App: React.FC = () => {
               </>
             }
           />
+          <Route path="/logout" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     )
