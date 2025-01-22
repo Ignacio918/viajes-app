@@ -1,22 +1,14 @@
-/* src/components/Sidebar.css */
-@apply bg-gray-800 text-white h-screen p-5;
+/* src/styles/Dashboard.css */
+@apply flex;
 
-.sidebar nav ul {
-    @apply list-none p-0;
+.dashboard-content {
+    @apply flex-grow p-5;
 }
 
-.sidebar nav ul li {
-    @apply mb-4;
+.dashboard-content h1 {
+    @apply text-2xl mb-4;
 }
 
-.sidebar nav ul li a {
-    @apply no-underline text-white font-bold;
-}
-
-.sidebar nav ul li a.active {
-    @apply text-blue-500;
-}
-
-.sidebar nav ul li a.inactive {
-    @apply text-white;
+.dashboard-content p {
+    @apply text-lg;
 }
