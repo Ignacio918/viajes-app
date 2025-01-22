@@ -11,6 +11,9 @@
   .sidebar {
     @apply mt-16 rounded-t-[20px] border border-[#F3F4F6];
     height: calc(100vh - 4rem);
+    width: 100%; /* Ensure full width on mobile */
+    left: 0; /* Align to the left edge */
+    right: 0; /* Align to the right edge */
   }
 }
 
@@ -64,5 +67,14 @@
 
 .menu-text {
   @apply text-base font-normal font-['Urbanist'];
+}
+
+/* Ensure internal content has 16px lateral padding */
+@media (max-width: 768px) {
+  .logo-container,
+  .menu,
+  .logout {
+    @apply px-4;
+  }
 }
 
