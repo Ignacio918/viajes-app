@@ -1,16 +1,24 @@
-/* src/styles/Dashboard.css */
-.dashboard {
-    @apply flex;
+/* src/styles/Sidebar.css */
+.sidebar {
+    @apply bg-gray-800 text-white h-screen p-5;
 }
 
-.dashboard-content {
-    @apply flex-grow p-5;
+.sidebar nav ul {
+    @apply list-none p-0;
 }
 
-.dashboard-content h1 {
-    @apply text-2xl mb-4;
+.sidebar nav ul li {
+    @apply mb-4;
 }
 
-.dashboard-content p {
-    @apply text-lg;
+.sidebar nav ul li a {
+    @apply no-underline text-white font-bold;
+}
+
+.sidebar nav ul li a.active {
+    @apply text-blue-500;
+}
+
+.sidebar nav ul li a.inactive {
+    @apply text-white;
 }
