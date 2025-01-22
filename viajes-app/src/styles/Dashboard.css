@@ -1,16 +1,23 @@
 /* src/styles/Dashboard.css */
 .dashboard {
-    @apply flex;
+  @apply flex min-h-screen bg-gray-100;
 }
 
 .dashboard-content {
-    @apply flex-grow p-5;
+  @apply flex-grow p-8 overflow-y-auto md:ml-64;
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    @apply ml-0;
+  }
 }
 
 .dashboard-content h1 {
-    @apply text-2xl mb-4;
+  @apply text-2xl font-bold mb-4;
 }
 
 .dashboard-content p {
-    @apply text-lg;
+  @apply text-lg;
 }
+
