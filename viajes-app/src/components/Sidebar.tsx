@@ -2,12 +2,12 @@
 import React from 'react';
 import '../styles/Sidebar.css';
 import logoIcon from '../assets/zentrip-logo-navegador.svg';
-import miViajeIcon from '../assets/mi-viaje.svg';
-import itinerarioIcon from '../assets/itinerario.svg';
-import transportesIcon from '../assets/transportes.svg';
-import presupuestoIcon from '../assets/presupuesto.svg';
-import lugaresIcon from '../assets/lugares.svg';
-import cerrarSesionIcon from '../assets/cerrar-sesion.svg';
+import miViajeIcon from '../assets/icons/mi-viaje.svg';
+import itinerarioIcon from '../assets/icons/icon-calendar.svg';
+import transportesIcon from '../assets/icons/icon-airplane.svg';
+import presupuestoIcon from '../assets/icons/icon-graph.svg';
+import lugaresIcon from '../assets/icons/icon-map-sidebar.svg';
+import cerrarSesionIcon from '../assets/icons/icon-logout.svg';
 import DashboardMenuItem from './DashboardMenuItem';
 
 const Sidebar: React.FC = () => {
