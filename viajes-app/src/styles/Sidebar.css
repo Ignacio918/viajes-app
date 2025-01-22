@@ -13,7 +13,7 @@
     height: auto;
     min-height: 420px;
     width: calc(100% - 32px);
-    max-width: 300px;
+    max-width: 239px;
     left: -100%;
     border-radius: 0 20px 20px 20px;
   }
@@ -68,8 +68,9 @@
   filter: invert(8%) sepia(10%) saturate(200%) hue-rotate(169deg) brightness(95%) contrast(85%);
 }
 
+.dashboard-menu-item:hover .menu-icon,
 .dashboard-menu-item.active .menu-icon {
-  filter: invert(21%) sepia(99%) saturate(7414%) hue-rotate(335deg) brightness(94%) contrast(97%);
+  filter: invert(15%) sepia(83%) saturate(4929%) hue-rotate(335deg) brightness(91%) contrast(101%);
 }
 
 .menu-text {
