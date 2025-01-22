@@ -47,18 +47,11 @@ const Sidebar: React.FC = () => {
           <span className="text-2xl font-extrabold text-[#161616]">zentrip</span>
           <span className="w-1 h-1 bg-[#E61C5D] rounded-full"></span>
         </div>
-        <div className="w-8 h-8"></div> {/* This empty div balances the layout */}
+        <div className="w-8 h-8"></div>
       </div>
 
       {/* Sidebar */}
       <aside className={`sidebar ${isOpen ? "open" : ""} md:translate-x-0`}>
-        <div className="logo-container flex">
-          <NavLink to="/dashboard" className="logo-text">
-            <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Logo" className="logo" />
-            <span className="logo-name">zentrip</span>
-            <span className="logo-dot"></span>
-          </NavLink>
-        </div>
         <nav className="menu">
           <DashboardMenuItem to="/dashboard" icon={miViajeIcon} label="Mi Viaje" />
           <DashboardMenuItem to="/dashboard/itinerario" icon={itinerarioIcon} label="Itinerario" />
@@ -75,5 +68,4 @@ const Sidebar: React.FC = () => {
 }
 
 export default Sidebar
-
 
