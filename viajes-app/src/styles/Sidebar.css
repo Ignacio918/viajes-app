@@ -1,67 +1,65 @@
 /* src/styles/Sidebar.css */
-@layer components {
-  .sidebar {
-    @apply w-64 h-screen bg-white border-r border-gray-200 flex flex-col;
-  }
+.sidebar {
+  @apply w-64 h-screen bg-white border-r border-gray-200 flex flex-col;
+}
 
-  .logo-container {
-    @apply p-6 flex items-center gap-1;
-  }
+.logo-container {
+  @apply p-6 flex items-center gap-1;
+}
 
-  .logo {
-    @apply w-8 h-8;
-  }
+.logo {
+  @apply w-8 h-8;
+}
 
-  .logo-text {
-    @apply flex items-center gap-1;
-  }
+.logo-text {
+  @apply flex items-center gap-1;
+}
 
-  .logo-name {
-    @apply text-2xl font-extrabold text-gray-900;
-  }
+.logo-name {
+  @apply text-2xl font-extrabold text-gray-900;
+}
 
-  .logo-dot {
-    @apply w-1 h-1 bg-[#E61C5D] rounded-full;
-  }
+.logo-dot {
+  @apply w-1 h-1 bg-[#E61C5D] rounded-full;
+}
 
-  .menu {
-    @apply flex-grow px-4 py-2;
-  }
+.menu {
+  @apply flex-grow px-4 py-2;
+}
 
-  .logout {
-    @apply p-4 border-t border-gray-200;
-  }
+.logout {
+  @apply p-4 border-t border-gray-200;
+}
 
-  .dashboard-menu-item {
-    @apply w-full h-10 px-2.5 py-2 flex items-center gap-3.5 rounded-[20px] transition-all duration-200 text-[#161616] no-underline;
-  }
+.dashboard-menu-item {
+  @apply w-full h-10 px-2.5 py-2 flex items-center gap-3.5 rounded-[20px] transition-all duration-200 text-[#161616] no-underline;
+}
 
-  .dashboard-menu-item:hover {
-    @apply bg-[#F3F4F6];
-  }
+.dashboard-menu-item:hover {
+  @apply bg-[#F3F4F6];
+}
 
-  .dashboard-menu-item.active {
-    @apply text-[#E61C5D];
-  }
+.dashboard-menu-item.active {
+  @apply text-[#E61C5D];
+}
 
-  .dashboard-menu-item.active .menu-icon {
-    @apply filter invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
-  }
+.dashboard-menu-item.active .menu-icon {
+  @apply filter invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
+}
 
-  .dashboard-menu-item.disabled {
-    @apply text-[#828282] cursor-not-allowed;
-  }
+.dashboard-menu-item.disabled {
+  @apply text-[#828282] cursor-not-allowed;
+}
 
-  .dashboard-menu-item.disabled .menu-icon {
-    @apply filter invert-[51%] sepia-[0%] saturate-[0%] hue-rotate-[143deg] brightness-[98%] contrast-[92%];
-  }
+.dashboard-menu-item.disabled .menu-icon {
+  @apply filter invert-[51%] sepia-[0%] saturate-[0%] hue-rotate-[143deg] brightness-[98%] contrast-[92%];
+}
 
-  .menu-icon {
-    @apply w-5 h-5;
-  }
+.menu-icon {
+  @apply w-5 h-5;
+}
 
-  .menu-text {
-    @apply text-base font-normal font-['Urbanist'];
-  }
+.menu-text {
+  @apply text-base font-normal font-['Urbanist'];
 }
 
