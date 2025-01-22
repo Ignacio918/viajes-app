@@ -7,6 +7,13 @@
   @apply translate-x-0;
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    @apply mt-16 rounded-t-[20px] border border-[#F3F4F6];
+    height: calc(100vh - 4rem);
+  }
+}
+
 .logo-container {
   @apply p-6 flex items-center gap-1;
 }
@@ -48,11 +55,11 @@
 }
 
 .dashboard-menu-item.active .menu-icon {
-  @apply filter invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
+  @apply invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
 }
 
 .menu-icon {
-  @apply w-5 h-5;
+  @apply w-5 h-5 brightness-0;
 }
 
 .menu-text {

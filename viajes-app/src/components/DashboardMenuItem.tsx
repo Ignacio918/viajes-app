@@ -12,19 +12,10 @@ const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label, 
   return (
     <NavLink
       to={to}
-      end
       className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""} ${isDisabled ? "disabled" : ""}`}
     >
-      {({ isActive }) => (
-        <>
-          <img
-            src={icon || "/placeholder.svg"}
-            alt={`${label} icon`}
-            className={`menu-icon ${isActive ? "active" : ""}`}
-          />
-          <span className="menu-text">{label}</span>
-        </>
-      )}
+      <img src={icon || "/placeholder.svg"} alt={`${label} icon`} className="menu-icon" />
+      <span className="menu-text">{label}</span>
     </NavLink>
   )
 }
