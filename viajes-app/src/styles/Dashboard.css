@@ -1,23 +1,23 @@
-/* src/styles/Dashboard.css */
 .dashboard {
-  @apply flex min-h-screen bg-gray-100;
-}
-
-.dashboard-content {
-  @apply flex-grow p-8 overflow-y-auto md:ml-64;
-}
-
-@media (max-width: 768px) {
-  .dashboard-content {
-    @apply ml-0;
+    @apply flex flex-col md:flex-row min-h-screen bg-gray-100;
   }
-}
-
-.dashboard-content h1 {
-  @apply text-2xl font-bold mb-4;
-}
-
-.dashboard-content p {
-  @apply text-lg;
-}
-
+  
+  .dashboard-content {
+    @apply flex-grow p-4 md:p-8 overflow-y-auto w-full;
+  }
+  
+  @media (min-width: 768px) {
+    .dashboard-content {
+      @apply ml-64;
+    }
+  }
+  
+  .dashboard-content h1 {
+    @apply text-2xl font-bold mb-4;
+  }
+  
+  .dashboard-content p {
+    @apply text-lg;
+  }
+  
+  
