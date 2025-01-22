@@ -13,7 +13,7 @@
     height: auto;
     min-height: 420px;
     width: calc(100% - 32px);
-    max-width: 300px;
+    max-width: 239px;
     left: -100%;
     border-radius: 0 20px 20px 20px;
   }
@@ -63,12 +63,12 @@
   @apply text-[#E61C5D];
 }
 
-.dashboard-menu-item.active .menu-icon {
-  @apply invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
-}
-
 .menu-icon {
   @apply w-5 h-5 brightness-0;
+}
+
+.dashboard-menu-item.active .menu-icon {
+  @apply invert-[21%] sepia-[99%] saturate-[7414%] hue-rotate-[335deg] brightness-[94%] contrast-[97%];
 }
 
 .menu-text {

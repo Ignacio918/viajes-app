@@ -5,17 +5,21 @@ interface DashboardMenuItemProps {
   to: string
   icon: string
   label: string
-  isActive?: boolean
 }
 
-const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label, isActive }) => {
+const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label }) => {
   return (
-    <NavLink
-      to={to}
-      className={({ isActive: navActive }) => `dashboard-menu-item ${navActive || isActive ? "active" : ""}`}
-    >
-      <img src={icon || "/placeholder.svg"} alt={`${label} icon`} className="menu-icon" />
-      <span className="menu-text">{label}</span>
+    <NavLink to={to} className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`}>
+      {({ isActive }) => (
+        <>
+          <img
+            src={icon || "/placeholder.svg"}
+            alt={`${label} icon`}
+            className={`menu-icon ${isActive ? "active" : ""}`}
+          />
+          <span className="menu-text">{label}</span>
+        </>
+      )}
     </NavLink>
   )
 }
