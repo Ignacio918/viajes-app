@@ -1,0 +1,22 @@
+/* src/components/Sidebar.css */
+@apply bg-gray-800 text-white h-screen p-5;
+
+.sidebar nav ul {
+    @apply list-none p-0;
+}
+
+.sidebar nav ul li {
+    @apply mb-4;
+}
+
+.sidebar nav ul li a {
+    @apply no-underline text-white font-bold;
+}
+
+.sidebar nav ul li a.active {
+    @apply text-blue-500;
+}
+
+.sidebar nav ul li a.inactive {
+    @apply text-white;
+}
