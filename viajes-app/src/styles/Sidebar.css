@@ -63,17 +63,8 @@
   @apply text-[#E61C5D];
 }
 
-.dashboard-menu-item.active:hover {
-  @apply bg-transparent;
-}
-
 .menu-icon {
   @apply w-5 h-5;
-  filter: brightness(0) saturate(100%) invert(8%) sepia(10%) saturate(200%) hue-rotate(169deg) brightness(95%)
-    contrast(85%);
-}
-
-.dashboard-menu-item:hover .menu-icon {
   filter: brightness(0) saturate(100%) invert(8%) sepia(10%) saturate(200%) hue-rotate(169deg) brightness(95%)
     contrast(85%);
 }
