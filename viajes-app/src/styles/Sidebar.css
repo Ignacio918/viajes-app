@@ -78,6 +78,47 @@
   @apply text-base font-normal font-['Urbanist'];
 }
 
+.mobile-header {
+  @apply md:hidden flex justify-between items-center bg-white p-4 h-16 w-full;
+}
+
+.toggle-button {
+  @apply w-8 h-8 flex items-center justify-center rounded-full;
+}
+
+.toggle-button.open {
+  @apply bg-[#F3F4F6];
+}
+
+.close-icon,
+.menu-icon {
+  @apply w-6 h-6;
+}
+
+.close-icon path {
+  @apply stroke-[#161616] stroke-2;
+}
+
+.menu-icon path {
+  @apply fill-[#161616];
+}
+
+.logo-container-mobile {
+  @apply flex items-center gap-1 absolute left-1/2 transform -translate-x-1/2;
+}
+
+.logo-mobile {
+  @apply w-8 h-8;
+}
+
+.logo-name-mobile {
+  @apply text-2xl font-extrabold text-[#161616];
+}
+
+.logo-dot-mobile {
+  @apply w-1 h-1 bg-[#E61C5D] rounded-full;
+}
+
 @media (max-width: 767px) {
   .logo-container,
   .menu,
