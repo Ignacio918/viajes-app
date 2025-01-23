@@ -22,7 +22,7 @@
 
 /* Estilos para el navbar */
 .dashboard-navbar {
-  @apply h-[72px] px-11 py-6 bg-[#FDFDFD] border-b border-[#F3F4F6] flex justify-between items-center;
+  @apply h-[72px] px-11 bg-[#FDFDFD] border-b border-[#F3F4F6] flex justify-between items-center fixed top-0 right-0 left-0;
 }
 
 .dashboard-navbar__title {
@@ -43,6 +43,17 @@
 
 @media (min-width: 768px) {
   .dashboard-navbar {
-    @apply ml-64;
+    @apply left-64;
+  }
+}
+
+/* Ajuste para el contenido debajo del navbar */
+.dashboard-content {
+  @apply mt-[72px];
+}
+
+@media (min-width: 768px) {
+  .dashboard-content {
+    @apply ml-64 mt-[72px];
   }
 }
