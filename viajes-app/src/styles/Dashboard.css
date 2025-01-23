@@ -85,8 +85,3 @@
   @apply text-[#E61C5D] font-bold;
 }
 
-/* Ajuste para el contenido principal */
-.dashboard-content__main {
-  @apply p-0; /* Eliminamos el padding que pudiera estar causando el espacio adicional */
-}
-
