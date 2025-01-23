@@ -4,8 +4,9 @@ import Sidebar from "../components/Sidebar"
 import DashboardNavbar from "../components/DashboardNavbar"
 import "../styles/Dashboard.css"
 import { useEffect, useState } from "react"
+import { supabase } from "../supabaseClient"
 
-type Usuario = {
+type User = {
   name: string
   tripDate: Date
 }
@@ -13,31 +14,45 @@ type Usuario = {
 const Dashboard: React.FC = () => {
   const location = useLocation()
   const pageName = getPageName(location.pathname)
-  const [usuario, setUsuario] = useState<Usuario | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const obtenerInfoUsuarioViaje = async () => {
+    const getUserData = async () => {
       try {
-        const response = await fetch('/api/user-trip-info?userId=your-user-id') // Asegúrate de reemplazar 'your-user-id' con el ID del usuario correspondiente.
-        if (!response.ok) {
-          throw new Error('La respuesta de la red no fue satisfactoria')
+        // Obtener la sesión actual
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+        
+        if (sessionError) throw sessionError
+        
+        if (!session) {
+          throw new Error('No hay sesión activa')
         }
-        const data = await response.json()
-        setUsuario({
+
+        // Obtener datos del usuario desde la tabla users
+        const { data, error: userError } = await supabase
+          .from('users')
+          .select('name, trip_date')
+          .eq('id', session.user.id)
+          .single()
+
+        if (userError) throw userError
+
+        if (!data) {
+          throw new Error('No se encontraron datos del usuario')
+        }
+
+        setUser({
           name: data.name,
           tripDate: new Date(data.trip_date)
         })
       } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message)
-        } else {
-          setError('Error desconocido')
-        }
+        console.error('Error:', error)
+        setError(error instanceof Error ? error.message : 'Error desconocido')
       }
     }
 
-    obtenerInfoUsuarioViaje()
+    getUserData()
   }, [])
 
   const calculateDaysRemaining = (tripDate: Date): number => {
@@ -50,7 +65,7 @@ const Dashboard: React.FC = () => {
     return <div>Error: {error}</div>
   }
 
-  if (!usuario) {
+  if (!user) {
     return <div>Cargando...</div>
   }
 
@@ -58,15 +73,15 @@ const Dashboard: React.FC = () => {
     <div className="dashboard">
       <Sidebar />
       <div className="dashboard-content">
-        <DashboardNavbar pageName={pageName} userName={usuario.name || "Usuario"} />
+        <DashboardNavbar pageName={pageName} userName={user.name || "Usuario"} />
         <div className="dashboard-content__main">
-          {usuario && (
+          {user && (
             <div className="dashboard-header">
               <h1 className="dashboard-header__title">
-                ¡Hola, <span className="user-name">{usuario.name}</span>!
+                ¡Hola, <span className="user-name">{user.name}</span>!
               </h1>
               <p className="dashboard-header__subtitle">
-                Faltan <span className="days-remaining">{calculateDaysRemaining(usuario.tripDate)}</span> días para tu
+                Faltan <span className="days-remaining">{calculateDaysRemaining(user.tripDate)}</span> días para tu
                 viaje soñado.
               </p>
             </div>
