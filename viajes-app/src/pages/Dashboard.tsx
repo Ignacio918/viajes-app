@@ -5,7 +5,7 @@ import DashboardNavbar from "../components/DashboardNavbar"
 import "../styles/Dashboard.css"
 import { useEffect, useState } from "react"
 
-type User = {
+type Usuario = {
   name: string
   tripDate: Date
 }
@@ -13,15 +13,31 @@ type User = {
 const Dashboard: React.FC = () => {
   const location = useLocation()
   const pageName = getPageName(location.pathname)
-  const [user, setUser] = useState<User | null>(null)
+  const [usuario, setUsuario] = useState<Usuario | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Aquí normalmente harías una llamada a tu API para obtener los datos del usuario
-    // Por ahora, usaremos datos de ejemplo
-    setUser({
-      name: "Ignacio",
-      tripDate: new Date("2023-12-31"), // Fecha ejemplo del viaje
-    })
+    const obtenerInfoUsuarioViaje = async () => {
+      try {
+        const response = await fetch('/api/user-trip-info?userId=your-user-id') // Asegúrate de reemplazar 'your-user-id' con el ID del usuario correspondiente.
+        if (!response.ok) {
+          throw new Error('La respuesta de la red no fue satisfactoria')
+        }
+        const data = await response.json()
+        setUsuario({
+          name: data.name,
+          tripDate: new Date(data.trip_date)
+        })
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message)
+        } else {
+          setError('Error desconocido')
+        }
+      }
+    }
+
+    obtenerInfoUsuarioViaje()
   }, [])
 
   const calculateDaysRemaining = (tripDate: Date): number => {
@@ -30,19 +46,27 @@ const Dashboard: React.FC = () => {
     return Math.ceil(timeDiff / (1000 * 3600 * 24))
   }
 
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
+  if (!usuario) {
+    return <div>Cargando...</div>
+  }
+
   return (
     <div className="dashboard">
       <Sidebar />
       <div className="dashboard-content">
-        <DashboardNavbar pageName={pageName} userName={user?.name || "Usuario"} />
+        <DashboardNavbar pageName={pageName} userName={usuario.name || "Usuario"} />
         <div className="dashboard-content__main">
-          {user && (
+          {usuario && (
             <div className="dashboard-header">
               <h1 className="dashboard-header__title">
-                ¡Hola, <span className="user-name">{user.name}</span>!
+                ¡Hola, <span className="user-name">{usuario.name}</span>!
               </h1>
               <p className="dashboard-header__subtitle">
-                Faltan <span className="days-remaining">{calculateDaysRemaining(user.tripDate)}</span> días para tu
+                Faltan <span className="days-remaining">{calculateDaysRemaining(usuario.tripDate)}</span> días para tu
                 viaje soñado.
               </p>
             </div>
@@ -73,4 +97,3 @@ const getPageName = (pathname: string): string => {
 }
 
 export default Dashboard
-
