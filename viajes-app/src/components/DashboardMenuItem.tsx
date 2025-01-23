@@ -9,8 +9,7 @@ interface DashboardMenuItemProps {
 
 const DashboardMenuItem: React.FC<DashboardMenuItemProps> = ({ to, icon, label }) => {
   const location = useLocation()
-  const isActive =
-    to === "/dashboard" ? location.pathname === "/dashboard" : location.pathname.startsWith(to) && to !== "/dashboard"
+  const isActive = location.pathname === to
 
   return (
     <NavLink to={to} className={`dashboard-menu-item ${isActive ? "active" : ""}`}>
