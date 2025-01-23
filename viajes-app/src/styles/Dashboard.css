@@ -66,11 +66,11 @@
 
 /* Estilos para el header del dashboard */
 .dashboard-header {
-  @apply mb-8 ml-11 mt-8; /* Ajustado el margen izquierdo a 44px (11 * 4 = 44) y margen superior a 32px (8 * 4 = 32) */
+  @apply mb-8 mt-8 ml-11; /* Ajustado el margen izquierdo a 44px y margen superior a 32px */
 }
 
 .dashboard-header__title {
-  @apply text-[28px] font-bold text-[#161616] font-['Urbanist'] mb-3.5; /* Ajustado el margen inferior a 14px (3.5 * 4 = 14) */
+  @apply text-[28px] font-bold text-[#161616] font-['Urbanist'] mb-3.5; /* Ajustado el margen inferior a 14px */
 }
 
 .dashboard-header__subtitle {
@@ -83,5 +83,10 @@
 
 .days-remaining {
   @apply text-[#E61C5D] font-bold;
+}
+
+/* Ajuste para el contenido principal */
+.dashboard-content__main {
+  @apply p-0; /* Eliminamos el padding que pudiera estar causando el espacio adicional */
 }
 
