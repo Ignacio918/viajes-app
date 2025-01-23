@@ -9,7 +9,6 @@ import transportesIcon from "../assets/icons/icon-airplane.svg"
 import presupuestoIcon from "../assets/icons/icon-graph.svg"
 import lugaresIcon from "../assets/icons/icon-map-sidebar.svg"
 import cerrarSesionIcon from "../assets/icons/icon-logout.svg"
-import DashboardMenuItem from "./DashboardMenuItem"
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -60,14 +59,44 @@ const Sidebar: React.FC = () => {
           </NavLink>
         </div>
         <nav className="menu">
-          <DashboardMenuItem to="/dashboard" icon={miViajeIcon} label="Mi Viaje" />
-          <DashboardMenuItem to="/dashboard/itinerario" icon={itinerarioIcon} label="Itinerario" />
-          <DashboardMenuItem to="/dashboard/transportes" icon={transportesIcon} label="Transportes" />
-          <DashboardMenuItem to="/dashboard/presupuesto" icon={presupuestoIcon} label="Presupuesto y Gastos" />
-          <DashboardMenuItem to="/dashboard/lugares" icon={lugaresIcon} label="Lugares y Actividades" />
+          <NavLink to="/dashboard" className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`} end>
+            <img src={miViajeIcon || "/placeholder.svg"} alt="Mi Viaje icon" className="menu-icon" />
+            <span className="menu-text">Mi Viaje</span>
+          </NavLink>
+          <NavLink
+            to="/dashboard/itinerario"
+            className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`}
+          >
+            <img src={itinerarioIcon || "/placeholder.svg"} alt="Itinerario icon" className="menu-icon" />
+            <span className="menu-text">Itinerario</span>
+          </NavLink>
+          <NavLink
+            to="/dashboard/transportes"
+            className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`}
+          >
+            <img src={transportesIcon || "/placeholder.svg"} alt="Transportes icon" className="menu-icon" />
+            <span className="menu-text">Transportes</span>
+          </NavLink>
+          <NavLink
+            to="/dashboard/presupuesto"
+            className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`}
+          >
+            <img src={presupuestoIcon || "/placeholder.svg"} alt="Presupuesto icon" className="menu-icon" />
+            <span className="menu-text">Presupuesto y Gastos</span>
+          </NavLink>
+          <NavLink
+            to="/dashboard/lugares"
+            className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`}
+          >
+            <img src={lugaresIcon || "/placeholder.svg"} alt="Lugares icon" className="menu-icon" />
+            <span className="menu-text">Lugares y Actividades</span>
+          </NavLink>
         </nav>
         <div className="logout">
-          <DashboardMenuItem to="/logout" icon={cerrarSesionIcon} label="Cerrar Sesión" />
+          <NavLink to="/logout" className={({ isActive }) => `dashboard-menu-item ${isActive ? "active" : ""}`}>
+            <img src={cerrarSesionIcon || "/placeholder.svg"} alt="Cerrar Sesión icon" className="menu-icon" />
+            <span className="menu-text">Cerrar Sesión</span>
+          </NavLink>
         </div>
       </aside>
     </>
