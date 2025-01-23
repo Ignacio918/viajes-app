@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
       </div>
 
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
-        <div className="logo-container">
+        <div className="logo-container hidden md:flex">
           <NavLink to="/dashboard" className="logo-text">
             <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Logo" className="logo" />
             <span className="logo-name">zentrip</span>
