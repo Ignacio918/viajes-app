@@ -1,6 +1,6 @@
 import type React from "react"
 import "../styles/Dashboard.css"
-import notificationIcon from "../assets/icon-notification.svg"
+import notificationIcon from "../assets/icons/icon-notification.svg"
 
 interface DashboardNavbarProps {
   pageName: string
