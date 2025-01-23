@@ -33,13 +33,44 @@ const Dashboard: React.FC = () => {
           throw new Error('No hay sesión activa')
         }
 
-        console.log('ID del usuario:', sessionData.session.user.id) // Debug log
+        const userId = sessionData.session.user.id
+        console.log('ID del usuario:', userId)
+        console.log('Email del usuario:', sessionData.session.user.email)
 
-        // 2. Obtener datos del usuario
+        // Primero, verificar si existe el usuario en la tabla users
+        const { data: existingUser, error: checkError } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', userId)
+
+        console.log('Usuario existente:', existingUser)
+
+        if (!existingUser || existingUser.length === 0) {
+          // Si no existe el usuario, lo creamos
+          const { data: newUser, error: insertError } = await supabase
+            .from('users')
+            .insert([
+              {
+                id: userId,
+                name: sessionData.session.user.email?.split('@')[0] || 'Usuario',
+                trip_date: '2025-01-23' // Fecha por defecto, ajusta según necesites
+              }
+            ])
+            .select()
+
+          if (insertError) {
+            console.error('Error al crear usuario:', insertError)
+            throw new Error(`Error al crear usuario: ${insertError.message}`)
+          }
+
+          console.log('Nuevo usuario creado:', newUser)
+        }
+
+        // Intentar obtener los datos del usuario nuevamente
         const { data: userData, error: userError } = await supabase
           .from('users')
           .select('name, trip_date')
-          .eq('id', sessionData.session.user.id)
+          .eq('id', userId)
           .single()
 
         if (userError) {
@@ -48,11 +79,10 @@ const Dashboard: React.FC = () => {
         }
 
         if (!userData) {
-          console.error('No se encontraron datos del usuario')
           throw new Error('No se encontraron datos del usuario en la base de datos')
         }
 
-        console.log('Datos obtenidos:', userData) // Debug log
+        console.log('Datos obtenidos:', userData)
 
         setUser({
           name: userData.name,
