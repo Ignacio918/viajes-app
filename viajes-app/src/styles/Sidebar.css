@@ -27,16 +27,13 @@
   @apply p-6 flex items-center gap-1;
 }
 
-.logo {
-  @apply w-8 h-8;
+.logo,
+.logo-mobile {
+  @apply w-auto h-8;
 }
 
 .logo-text {
   @apply flex items-center gap-1;
-}
-
-.logo-name {
-  @apply text-2xl font-extrabold text-[#161616];
 }
 
 .logo-dot {
@@ -105,10 +102,6 @@
 
 .logo-container-mobile {
   @apply flex items-center gap-1 absolute left-1/2 transform -translate-x-1/2;
-}
-
-.logo-mobile {
-  @apply w-8 h-8;
 }
 
 .logo-name-mobile {
