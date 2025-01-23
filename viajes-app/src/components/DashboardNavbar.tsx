@@ -1,0 +1,25 @@
+import type React from "react"
+import { Bell } from "lucide-react"
+import "../styles/DashboardNavbar.css"
+
+interface DashboardNavbarProps {
+  pageName: string
+  userName?: string
+}
+
+const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ pageName, userName = "U" }) => {
+  return (
+    <nav className="dashboard-navbar">
+      <div className="dashboard-navbar__title">{pageName}</div>
+      <div className="dashboard-navbar__actions">
+        <button className="dashboard-navbar__notification-btn" aria-label="Notificaciones">
+          <Bell className="w-6 h-6 text-[#292D32]" />
+        </button>
+        <div className="dashboard-navbar__avatar">{userName.charAt(0).toUpperCase()}</div>
+      </div>
+    </nav>
+  )
+}
+
+export default DashboardNavbar
+
