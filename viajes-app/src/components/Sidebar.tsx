@@ -2,7 +2,8 @@ import type React from "react"
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import "../styles/Sidebar.css"
-import logoIcon from "../assets/logo_small.svg"
+import logoIcon from "../assets/zentrip-logo-navegador.svg"
+import logoText from "../assets/logo_small.svg"
 import miViajeIcon from "../assets/icons/mi-viaje.svg"
 import itinerarioIcon from "../assets/icons/icon-calendar.svg"
 import transportesIcon from "../assets/icons/icon-airplane.svg"
@@ -32,14 +33,18 @@ const Sidebar: React.FC = () => {
           )}
         </button>
         <div className="logo-container-mobile">
-          <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Logo" className="logo-mobile" />
+          <div className="logo-wrapper">
+            <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Icon" className="logo-icon" />
+            <img src={logoText || "/placeholder.svg"} alt="Zentrip" className="logo-text-img" />
+          </div>
         </div>
       </div>
 
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="logo-container hidden md:flex">
-          <NavLink to="/dashboard" className="logo-text">
-            <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Logo" className="logo" />
+          <NavLink to="/dashboard" className="logo-wrapper">
+            <img src={logoIcon || "/placeholder.svg"} alt="Zentrip Icon" className="logo-icon" />
+            <img src={logoText || "/placeholder.svg"} alt="Zentrip" className="logo-text-img" />
           </NavLink>
         </div>
         <nav className="menu">
