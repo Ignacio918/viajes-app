@@ -20,34 +20,46 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        // Obtener la sesión actual
-        const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+        // 1. Verificar sesión
+        const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
         
-        if (sessionError) throw sessionError
+        if (sessionError) {
+          console.error('Error de sesión:', sessionError)
+          throw new Error(`Error de sesión: ${sessionError.message}`)
+        }
         
-        if (!session) {
+        if (!sessionData.session) {
+          console.error('No hay sesión activa')
           throw new Error('No hay sesión activa')
         }
 
-        // Obtener datos del usuario desde la tabla users
-        const { data, error: userError } = await supabase
+        console.log('ID del usuario:', sessionData.session.user.id) // Debug log
+
+        // 2. Obtener datos del usuario
+        const { data: userData, error: userError } = await supabase
           .from('users')
           .select('name, trip_date')
-          .eq('id', session.user.id)
+          .eq('id', sessionData.session.user.id)
           .single()
 
-        if (userError) throw userError
-
-        if (!data) {
-          throw new Error('No se encontraron datos del usuario')
+        if (userError) {
+          console.error('Error al obtener datos del usuario:', userError)
+          throw new Error(`Error al obtener datos del usuario: ${userError.message}`)
         }
 
+        if (!userData) {
+          console.error('No se encontraron datos del usuario')
+          throw new Error('No se encontraron datos del usuario en la base de datos')
+        }
+
+        console.log('Datos obtenidos:', userData) // Debug log
+
         setUser({
-          name: data.name,
-          tripDate: new Date(data.trip_date)
+          name: userData.name,
+          tripDate: new Date(userData.trip_date)
         })
       } catch (error) {
-        console.error('Error:', error)
+        console.error('Error completo:', error)
         setError(error instanceof Error ? error.message : 'Error desconocido')
       }
     }
@@ -62,11 +74,48 @@ const Dashboard: React.FC = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>
+    return (
+      <div className="error-container" style={{ 
+        padding: '20px', 
+        color: 'red',
+        maxWidth: '600px',
+        margin: '20px auto',
+        textAlign: 'center',
+        backgroundColor: '#fff3f3',
+        borderRadius: '8px',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+      }}>
+        <h2>Error en el Dashboard:</h2>
+        <p>{error}</p>
+        <button 
+          onClick={() => window.location.reload()}
+          style={{ 
+            padding: '8px 16px', 
+            marginTop: '10px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          Reintentar
+        </button>
+      </div>
+    )
   }
 
   if (!user) {
-    return <div>Cargando...</div>
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        Cargando...
+      </div>
+    )
   }
 
   return (
