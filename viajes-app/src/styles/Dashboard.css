@@ -64,3 +64,24 @@
   }
 }
 
+/* Estilos para el header del dashboard */
+.dashboard-header {
+  @apply mb-8;
+}
+
+.dashboard-header__title {
+  @apply text-[28px] font-bold text-[#161616] font-['Urbanist'];
+}
+
+.dashboard-header__subtitle {
+  @apply text-lg font-medium text-[#3E3E3E] font-['Urbanist'] mt-3;
+}
+
+.user-name {
+  @apply text-[#161616];
+}
+
+.days-remaining {
+  @apply text-[#E61C5D] font-bold;
+}
+
