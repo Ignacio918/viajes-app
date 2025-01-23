@@ -1,14 +1,10 @@
-import { createServer, IncomingMessage, ServerResponse } from 'http';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import { supabase } from '../supabaseClient'; // Asegúrate de tener tu cliente Supabase configurado aquí.
-import { parse } from 'url';
 
-const server = createServer(async (req: IncomingMessage, res: ServerResponse) => {
-  const parsedUrl = parse(req.url || '', true);
-  const { pathname, query } = parsedUrl;
-
-  if (pathname === '/api/user-trip-info' && req.method === 'GET') {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method === 'GET') {
     try {
-      const userId = query.userId as string;
+      const userId = req.query.userId as string; // Obtén el userId de los parámetros de la consulta
       const { data, error } = await supabase
         .from('users')
         .select('name, trip_date')
@@ -22,19 +18,14 @@ const server = createServer(async (req: IncomingMessage, res: ServerResponse) =>
       const timeDiff = tripDate.getTime() - today.getTime();
       const daysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({
+      res.status(200).json({
         name: data.name,
         daysRemaining: daysRemaining,
-      }));
+      });
     } catch (error) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: (error as Error).message }));
+      res.status(500).json({ error: (error as Error).message });
     }
   } else {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: 'Not Found' }));
+    res.status(405).json({ message: 'Method not allowed' });
   }
-});
-
-export default server;
+}
