@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
     // Aquí normalmente harías una llamada a tu API para obtener los datos del usuario
     // Por ahora, usaremos datos de ejemplo
     setUser({
-      name: "Juan",
+      name: "Ignacio",
       tripDate: new Date("2023-12-31"), // Fecha ejemplo del viaje
     })
   }, [])

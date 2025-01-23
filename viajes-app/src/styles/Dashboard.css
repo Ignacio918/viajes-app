@@ -66,15 +66,15 @@
 
 /* Estilos para el header del dashboard */
 .dashboard-header {
-  @apply mb-8;
+  @apply mb-8 ml-11 mt-8; /* Ajustado el margen izquierdo a 44px (11 * 4 = 44) y margen superior a 32px (8 * 4 = 32) */
 }
 
 .dashboard-header__title {
-  @apply text-[28px] font-bold text-[#161616] font-['Urbanist'];
+  @apply text-[28px] font-bold text-[#161616] font-['Urbanist'] mb-3.5; /* Ajustado el margen inferior a 14px (3.5 * 4 = 14) */
 }
 
 .dashboard-header__subtitle {
-  @apply text-lg font-medium text-[#3E3E3E] font-['Urbanist'] mt-3;
+  @apply text-lg font-medium text-[#3E3E3E] font-['Urbanist'];
 }
 
 .user-name {
