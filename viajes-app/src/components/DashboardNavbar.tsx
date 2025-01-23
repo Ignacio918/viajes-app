@@ -1,6 +1,6 @@
 import type React from "react"
 import { Bell } from "lucide-react"
-import "../styles/DashboardNavbar.css"
+import "../styles/Dashboard.css"
 
 interface DashboardNavbarProps {
   pageName: string
@@ -13,7 +13,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ pageName, userName = 
       <div className="dashboard-navbar__title">{pageName}</div>
       <div className="dashboard-navbar__actions">
         <button className="dashboard-navbar__notification-btn" aria-label="Notificaciones">
-          <Bell className="w-6 h-6 text-[#292D32]" />
+          <Bell className="dashboard-navbar__notification-icon" />
         </button>
         <div className="dashboard-navbar__avatar">{userName.charAt(0).toUpperCase()}</div>
       </div>
@@ -22,4 +22,5 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ pageName, userName = 
 }
 
 export default DashboardNavbar
+
 
