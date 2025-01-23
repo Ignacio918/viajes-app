@@ -60,7 +60,12 @@
 }
 
 .dashboard-menu-item.active {
-  @apply text-[#E61C5D];
+  @apply text-[#E61C5D] bg-[#F3F4F6];
+}
+
+.dashboard-menu-item.active .menu-icon {
+  filter: brightness(0) saturate(100%) invert(21%) sepia(99%) saturate(7414%) hue-rotate(335deg) brightness(94%)
+    contrast(97%);
 }
 
 .menu-icon {

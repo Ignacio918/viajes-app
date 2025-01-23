@@ -1,6 +1,6 @@
 import type React from "react"
 import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import "../styles/Sidebar.css"
 import logoIcon from "../assets/zentrip-logo-navegador.svg"
 import miViajeIcon from "../assets/icons/mi-viaje.svg"
@@ -13,6 +13,7 @@ import DashboardMenuItem from "./DashboardMenuItem"
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
