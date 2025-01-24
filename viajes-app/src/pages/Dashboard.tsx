@@ -89,8 +89,6 @@ const Dashboard: React.FC = () => {
           throw new Error('No se encontraron datos del usuario en la base de datos')
         }
 
-        console.log('Datos del usuario obtenidos:', userData)
-
         setUser({
           name: userData.name,
           tripDate: userData.trip_date ? new Date(userData.trip_date) : null
