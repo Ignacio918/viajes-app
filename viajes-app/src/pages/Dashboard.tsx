@@ -34,26 +34,33 @@ const Dashboard: React.FC = () => {
         }
 
         const userId = sessionData.session.user.id
+        const userEmail = sessionData.session.user.email
         console.log('ID del usuario:', userId)
-        console.log('Email del usuario:', sessionData.session.user.email)
+        console.log('Email del usuario:', userEmail)
 
-        // Primero, verificar si existe el usuario en la tabla users
+        // Primero, verificar si existe el usuario
         const { data: existingUser, error: checkError } = await supabase
           .from('users')
           .select('*')
           .eq('id', userId)
+          .single()
 
-        console.log('Usuario existente:', existingUser)
+        if (checkError && checkError.code !== 'PGRST116') { // PGRST116 es el código cuando no se encuentra el registro
+          console.error('Error al verificar usuario:', checkError)
+          throw new Error(`Error al verificar usuario: ${checkError.message}`)
+        }
 
-        if (!existingUser || existingUser.length === 0) {
+        if (!existingUser) {
           // Si no existe el usuario, lo creamos
           const { data: newUser, error: insertError } = await supabase
             .from('users')
             .insert([
               {
                 id: userId,
-                name: sessionData.session.user.email?.split('@')[0] || 'Usuario',
-                trip_date: '2025-01-23' // Fecha por defecto, ajusta según necesites
+                email: userEmail,
+                name: userEmail?.split('@')[0] || 'Usuario',
+                preferencias: {},
+                trip_date: new Date().toISOString().split('T')[0]
               }
             ])
             .select()
@@ -66,7 +73,7 @@ const Dashboard: React.FC = () => {
           console.log('Nuevo usuario creado:', newUser)
         }
 
-        // Intentar obtener los datos del usuario nuevamente
+        // Obtener datos actualizados del usuario
         const { data: userData, error: userError } = await supabase
           .from('users')
           .select('name, trip_date')
@@ -82,7 +89,7 @@ const Dashboard: React.FC = () => {
           throw new Error('No se encontraron datos del usuario en la base de datos')
         }
 
-        console.log('Datos obtenidos:', userData)
+        console.log('Datos del usuario obtenidos:', userData)
 
         setUser({
           name: userData.name,
