@@ -22,6 +22,7 @@ import Footer from "./pages/Footer";
 import HeroSection from "./pages/HeroSection";
 import Benefits from "./pages/Benefits";
 import HowItWorks from "./pages/HowItWorks";
+import 'leaflet/dist/leaflet.css';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
