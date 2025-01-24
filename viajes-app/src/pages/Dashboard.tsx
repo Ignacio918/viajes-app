@@ -194,7 +194,7 @@ const Dashboard: React.FC = () => {
       <div className="dashboard-content">
         <DashboardNavbar pageName={pageName} userName={user.name || "Usuario"} />
         <div className="dashboard-content__main">
-          {user && (
+          {user && location.pathname === '/dashboard' && (
             <>
               <div className="dashboard-header">
                 <h1 className="dashboard-header__title">
@@ -206,18 +206,17 @@ const Dashboard: React.FC = () => {
                 </p>
               </div>
 
-              {/* Sección del Mapa */}
-              <div className="trip-section mt-8">
+              <div className="trip-section mt-8 px-6">
                 <h2 className="text-2xl font-bold mb-6 text-[#E61C5D]">Mi Itinerario</h2>
                 
                 {/* Filtros de días */}
-                <div className="days-filter mb-4">
-                  <div className="flex gap-2">
+                <div className="days-filter mb-6">
+                  <div className="flex gap-3 flex-wrap">
                     {uniqueDays.map(day => (
                       <button
                         key={day}
                         onClick={() => setSelectedDay(selectedDay === day ? undefined : day)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 min-w-[80px]
                           ${selectedDay === day 
                             ? 'bg-[#E61C5D] text-white' 
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
@@ -229,9 +228,9 @@ const Dashboard: React.FC = () => {
                 </div>
 
                 {/* Grid para mapa y lista de ubicaciones */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                   {/* Mapa */}
-                  <div className="lg:col-span-2">
+                  <div className="lg:col-span-3">
                     <TripMap 
                       locations={locations}
                       selectedDay={selectedDay}
@@ -243,7 +242,7 @@ const Dashboard: React.FC = () => {
 
                   {/* Lista de ubicaciones */}
                   <div className="locations-list">
-                    <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200">
+                    <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200 sticky top-4">
                       <h3 className="text-lg font-semibold mb-4">
                         {selectedDay ? `Día ${selectedDay}` : 'Todos los días'}
                       </h3>
@@ -252,15 +251,16 @@ const Dashboard: React.FC = () => {
                         .map(location => (
                           <div 
                             key={location.id}
-                            className="location-item p-3 mb-2 rounded-lg hover:bg-gray-50 cursor-pointer
-                                      border-l-4 border-[#E61C5D] bg-gray-50"
+                            className="location-item"
                           >
-                            <h4 className="font-medium">{location.name}</h4>
+                            <h4 className="font-medium text-gray-800">{location.name}</h4>
                             {location.time && (
-                              <p className="text-sm text-gray-600">{location.time}</p>
+                              <p className="text-sm text-gray-600 mt-1">
+                                <span className="font-medium">Hora:</span> {location.time}
+                              </p>
                             )}
                             {location.description && (
-                              <p className="text-sm text-gray-500 mt-1">{location.description}</p>
+                              <p className="text-sm text-gray-500 mt-2">{location.description}</p>
                             )}
                           </div>
                         ))}
