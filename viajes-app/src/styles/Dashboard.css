@@ -91,5 +91,5 @@
 }
 
 .highlight {
-  @apply text-blue-500 font-medium;
+  @apply text-[#E61C5D]  font-medium;
 }
