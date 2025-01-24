@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "./styles/Sidebar.css";
+@import 'leaflet/dist/leaflet.css';
 
 @layer base {
   /* Ocultar scrollbar pero mantener funcionalidad */

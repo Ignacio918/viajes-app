@@ -1,0 +1,26 @@
+/* src/styles/TripMap.css */
+.trip-map-container {
+  @apply w-full h-[500px] rounded-xl overflow-hidden shadow-lg border border-gray-200;
+}
+
+.trip-map {
+  @apply w-full h-full;
+}
+
+.custom-marker {
+  @apply cursor-pointer;
+}
+
+.marker-content {
+  @apply w-[30px] h-[30px] bg-[#E61C5D] rounded-full 
+         flex items-center justify-center text-white font-bold
+         border-2 border-white shadow-md;
+}
+
+.marker-popup h3 {
+  @apply font-bold text-lg mb-2 text-[#E61C5D];
+}
+
+.marker-popup p {
+  @apply text-sm text-gray-600 mb-1;
+}

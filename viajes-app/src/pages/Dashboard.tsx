@@ -2,13 +2,14 @@ import type React from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
 import DashboardNavbar from "../components/DashboardNavbar"
+import TripMap, { Location } from "../components/TripMap"
 import "../styles/Dashboard.css"
 import { useEffect, useState } from "react"
 import { supabase } from "../supabaseClient"
 
 type User = {
   name: string
-  tripDate: Date | null
+  tripDate: Date
 }
 
 const Dashboard: React.FC = () => {
@@ -16,6 +17,38 @@ const Dashboard: React.FC = () => {
   const pageName = getPageName(location.pathname)
   const [user, setUser] = useState<User | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [selectedDay, setSelectedDay] = useState<number | undefined>()
+
+  // Estado para las ubicaciones del mapa
+  const [locations] = useState<Location[]>([
+    {
+      id: '1',
+      name: 'Hotel Central',
+      coordinates: [-34.6037, -58.3816], // Buenos Aires
+      day: 1,
+      time: '09:00',
+      description: 'Check-in en el hotel'
+    },
+    {
+      id: '2',
+      name: 'Plaza de Mayo',
+      coordinates: [-34.6083, -58.3712],
+      day: 1,
+      time: '11:00',
+      description: 'Visita al centro histórico'
+    },
+    {
+      id: '3',
+      name: 'Puerto Madero',
+      coordinates: [-34.6037, -58.3632],
+      day: 1,
+      time: '14:00',
+      description: 'Almuerzo y paseo'
+    }
+  ])
+
+  // Obtener días únicos de las ubicaciones
+  const uniqueDays = [...new Set(locations.map(loc => loc.day))].sort((a, b) => a - b)
 
   useEffect(() => {
     const getUserData = async () => {
@@ -45,7 +78,7 @@ const Dashboard: React.FC = () => {
           .eq('id', userId)
           .single()
 
-        if (checkError && checkError.code !== 'PGRST116') { // PGRST116 es el código cuando no se encuentra el registro
+        if (checkError && checkError.code !== 'PGRST116') {
           console.error('Error al verificar usuario:', checkError)
           throw new Error(`Error al verificar usuario: ${checkError.message}`)
         }
@@ -60,7 +93,7 @@ const Dashboard: React.FC = () => {
                 email: userEmail,
                 name: userEmail?.split('@')[0] || 'Usuario',
                 preferencias: {},
-                trip_date: null // Iniciamos sin fecha de viaje
+                trip_date: new Date().toISOString().split('T')[0]
               }
             ])
             .select()
@@ -89,9 +122,11 @@ const Dashboard: React.FC = () => {
           throw new Error('No se encontraron datos del usuario en la base de datos')
         }
 
+        console.log('Datos del usuario obtenidos:', userData)
+
         setUser({
           name: userData.name,
-          tripDate: userData.trip_date ? new Date(userData.trip_date) : null
+          tripDate: new Date(userData.trip_date)
         })
       } catch (error) {
         console.error('Error completo:', error)
@@ -102,28 +137,10 @@ const Dashboard: React.FC = () => {
     getUserData()
   }, [])
 
-  const calculateDaysRemaining = (tripDate: Date | null): number | null => {
-    if (!tripDate) return null
+  const calculateDaysRemaining = (tripDate: Date): number => {
     const today = new Date()
     const timeDiff = tripDate.getTime() - today.getTime()
     return Math.ceil(timeDiff / (1000 * 3600 * 24))
-  }
-
-  const renderTripMessage = (): React.ReactNode => {
-    if (!user?.tripDate) {
-      return (
-        <p className="dashboard-header__subtitle">
-          ¡Planea tu próxima aventura! <span className="highlight">Configura la fecha de tu viaje</span>
-        </p>
-      )
-    }
-
-    const daysRemaining = calculateDaysRemaining(user.tripDate)
-    return (
-      <p className="dashboard-header__subtitle">
-        Faltan <span className="days-remaining">{daysRemaining}</span> días para tu viaje soñado.
-      </p>
-    )
   }
 
   if (error) {
@@ -178,12 +195,80 @@ const Dashboard: React.FC = () => {
         <DashboardNavbar pageName={pageName} userName={user.name || "Usuario"} />
         <div className="dashboard-content__main">
           {user && (
-            <div className="dashboard-header">
-              <h1 className="dashboard-header__title">
-                ¡Hola, <span className="user-name">{user.name}</span>!
-              </h1>
-              {renderTripMessage()}
-            </div>
+            <>
+              <div className="dashboard-header">
+                <h1 className="dashboard-header__title">
+                  ¡Hola, <span className="user-name">{user.name}</span>!
+                </h1>
+                <p className="dashboard-header__subtitle">
+                  Faltan <span className="days-remaining">{calculateDaysRemaining(user.tripDate)}</span> días para tu
+                  viaje soñado.
+                </p>
+              </div>
+
+              {/* Sección del Mapa */}
+              <div className="trip-section mt-8">
+                <h2 className="text-2xl font-bold mb-6 text-[#E61C5D]">Mi Itinerario</h2>
+                
+                {/* Filtros de días */}
+                <div className="days-filter mb-4">
+                  <div className="flex gap-2">
+                    {uniqueDays.map(day => (
+                      <button
+                        key={day}
+                        onClick={() => setSelectedDay(selectedDay === day ? undefined : day)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all
+                          ${selectedDay === day 
+                            ? 'bg-[#E61C5D] text-white' 
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                      >
+                        Día {day}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Grid para mapa y lista de ubicaciones */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {/* Mapa */}
+                  <div className="lg:col-span-2">
+                    <TripMap 
+                      locations={locations}
+                      selectedDay={selectedDay}
+                      onLocationClick={(location) => {
+                        console.log('Ubicación seleccionada:', location);
+                      }}
+                    />
+                  </div>
+
+                  {/* Lista de ubicaciones */}
+                  <div className="locations-list">
+                    <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200">
+                      <h3 className="text-lg font-semibold mb-4">
+                        {selectedDay ? `Día ${selectedDay}` : 'Todos los días'}
+                      </h3>
+                      
+                      {(selectedDay ? locations.filter(loc => loc.day === selectedDay) : locations)
+                        .map(location => (
+                          <div 
+                            key={location.id}
+                            className="location-item p-3 mb-2 rounded-lg hover:bg-gray-50 cursor-pointer
+                                      border-l-4 border-[#E61C5D] bg-gray-50"
+                          >
+                            <h4 className="font-medium">{location.name}</h4>
+                            {location.time && (
+                              <p className="text-sm text-gray-600">{location.time}</p>
+                            )}
+                            {location.description && (
+                              <p className="text-sm text-gray-500 mt-1">{location.description}</p>
+                            )}
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
           <Outlet />
         </div>
