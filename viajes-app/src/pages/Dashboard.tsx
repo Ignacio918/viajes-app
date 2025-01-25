@@ -9,7 +9,7 @@ import { supabase } from "../supabaseClient"
 
 type User = {
   name: string
-  tripDate: Date
+  tripDate: Date | null
 }
 
 const Dashboard: React.FC = () => {
@@ -68,8 +68,6 @@ const Dashboard: React.FC = () => {
 
         const userId = sessionData.session.user.id
         const userEmail = sessionData.session.user.email
-        console.log('ID del usuario:', userId)
-        console.log('Email del usuario:', userEmail)
 
         // Primero, verificar si existe el usuario
         const { data: existingUser, error: checkError } = await supabase
@@ -93,7 +91,7 @@ const Dashboard: React.FC = () => {
                 email: userEmail,
                 name: userEmail?.split('@')[0] || 'Usuario',
                 preferencias: {},
-                trip_date: new Date().toISOString().split('T')[0]
+                trip_date: null
               }
             ])
             .select()
@@ -102,8 +100,6 @@ const Dashboard: React.FC = () => {
             console.error('Error al crear usuario:', insertError)
             throw new Error(`Error al crear usuario: ${insertError.message}`)
           }
-
-          console.log('Nuevo usuario creado:', newUser)
         }
 
         // Obtener datos actualizados del usuario
@@ -122,11 +118,9 @@ const Dashboard: React.FC = () => {
           throw new Error('No se encontraron datos del usuario en la base de datos')
         }
 
-        console.log('Datos del usuario obtenidos:', userData)
-
         setUser({
           name: userData.name,
-          tripDate: new Date(userData.trip_date)
+          tripDate: userData.trip_date ? new Date(userData.trip_date) : null
         })
       } catch (error) {
         console.error('Error completo:', error)
@@ -141,6 +135,23 @@ const Dashboard: React.FC = () => {
     const today = new Date()
     const timeDiff = tripDate.getTime() - today.getTime()
     return Math.ceil(timeDiff / (1000 * 3600 * 24))
+  }
+
+  const renderTripMessage = (): React.ReactNode => {
+    if (!user?.tripDate) {
+      return (
+        <p className="dashboard-header__subtitle">
+          ¡Planea tu próxima aventura! <span className="text-[#E61C5D] font-medium">Configura la fecha de tu viaje</span>
+        </p>
+      )
+    }
+
+    const daysRemaining = calculateDaysRemaining(user.tripDate)
+    return (
+      <p className="dashboard-header__subtitle">
+        Faltan <span className="days-remaining">{daysRemaining}</span> días para tu viaje soñado.
+      </p>
+    )
   }
 
   if (error) {
@@ -200,10 +211,7 @@ const Dashboard: React.FC = () => {
                 <h1 className="dashboard-header__title">
                   ¡Hola, <span className="user-name">{user.name}</span>!
                 </h1>
-                <p className="dashboard-header__subtitle">
-                  Faltan <span className="days-remaining">{calculateDaysRemaining(user.tripDate)}</span> días para tu
-                  viaje soñado.
-                </p>
+                {renderTripMessage()}
               </div>
 
               <div className="trip-section mt-8 px-6">
