@@ -1,90 +1,86 @@
-// src/pages/Landing.tsx
-import { FC, useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
-import { BackgroundGradientAnimation } from '../components/ui/BackgroundGradientAnimation';
+import HeroSection from '../pages/HeroSection';
+import { TypewriterEffectSmooth } from '../components/ui/typewriter-effect';
 import Tours from '../components/Tours';
-import Places from '../components/Places';
 import Flights from '../components/Flights';
+import Places from '../components/Places';
 import Packages from '../components/Packages';
 import Chatbot from '../components/Chatbot';
+import '../styles/Landing.css';
 
-const Landing: FC = () => {
-  const [activeTab, setActiveTab] = useState<'tours' | 'places' | 'flights' | 'packages'>('tours');
+const Landing: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'search' | 'tours' | 'flights' | 'places'>('search');
+  
+  const words = [
+    {
+      text: "¿Buscas un viaje a medida?",
+      className: "typewriter-primary",
+    },
+    {
+      text: "Dime a dónde quieres ir...",
+      className: "typewriter-secondary",
+    },
+  ];
 
   return (
-    <div className="min-h-screen">
+    <div className="landing-container">
       <Navbar />
-      
-      {/* Hero Section con Búsqueda Principal */}
-      <section className="relative h-[70vh] flex items-center justify-center">
-        <BackgroundGradientAnimation>
-          <div className="text-center space-y-6 relative z-10">
-            <h1 className="text-4xl md:text-6xl font-bold text-white">
-              Descubre tu próximo destino
-            </h1>
-            
-            {/* Tabs de Búsqueda Principal */}
-            <div className="bg-white/90 p-6 rounded-xl max-w-4xl mx-auto mt-8">
-              <div className="flex gap-4 mb-4">
-                <button
-                  onClick={() => setActiveTab('tours')}
-                  className={`px-4 py-2 rounded-full ${
-                    activeTab === 'tours' ? 'bg-pink-600 text-white' : 'text-gray-600'
-                  }`}
-                >
-                  Tours
-                </button>
-                {/* Similares botones para Places, Flights, Packages */}
-              </div>
+      <HeroSection />
 
-              {/* Contenido según tab activo */}
-              <div className="mt-4">
-                {activeTab === 'tours' && <Tours />}
-                {activeTab === 'places' && <Places />}
-                {activeTab === 'flights' && <Flights />}
-                {activeTab === 'packages' && <Packages />}
-              </div>
-            </div>
+      <section className="chat-section">
+        <div className="chat-container">
+          <TypewriterEffectSmooth words={words} />
+          <div className="chat-input-wrapper">
+            <input
+              type="text"
+              placeholder="Describe tu viaje ideal..."
+              className="chat-input"
+            />
+            <button className="chat-button">
+              <svg className="send-icon" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </button>
           </div>
-        </BackgroundGradientAnimation>
-      </section>
-
-      {/* Sección de Destinos Populares */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Destinos Populares</h2>
-          <Places />
         </div>
       </section>
 
-      {/* Sección de Tours Destacados */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Tours Destacados</h2>
-          <Tours />
-        </div>
-      </section>
+      <section className="tabs-section">
+        <div className="tabs-container">
+          <div className="tabs-navigation">
+            {['search', 'tours', 'flights', 'places'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab as any)}
+                className={`tab-button ${activeTab === tab ? 'active' : ''}`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
 
-      {/* Chatbot flotante */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <Chatbot />
-      </div>
-
-      {/* CTA para registro */}
-      <section className="py-16 bg-gradient-to-r from-pink-600 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            ¿Listo para planear tu viaje completo?
-          </h2>
-          <p className="mb-8">
-            Registrate para acceder a todas las funcionalidades de planificación
-          </p>
-          <button
-            onClick={() => window.location.href = '/register'}
-            className="bg-white text-pink-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition"
-          >
-            Crear mi itinerario completo
-          </button>
+          <div className="tabs-content">
+            {activeTab === 'search' && (
+              <div className="search-form">
+                <input
+                  type="text"
+                  placeholder="¿A dónde vas?"
+                  className="destination-input"
+                />
+                <input
+                  type="date"
+                  className="date-input"
+                />
+                <button className="search-button">
+                  Buscar
+                </button>
+              </div>
+            )}
+            {activeTab === 'tours' && <Tours />}
+            {activeTab === 'flights' && <Flights />}
+            {activeTab === 'places' && <Places />}
+          </div>
         </div>
       </section>
     </div>

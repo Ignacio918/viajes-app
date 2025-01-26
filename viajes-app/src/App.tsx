@@ -17,11 +17,8 @@ import RegisterPage from "./pages/RegisterPage";
 import UserProfile from "./pages/UserProfile";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import Navbar from "./components/Navbar";
 import Footer from "./pages/Footer";
-import HeroSection from "./pages/HeroSection";
-import Benefits from "./pages/Benefits";
-import HowItWorks from "./pages/HowItWorks";
+import Landing from "./pages/Landing"; // Importamos la nueva Landing
 import 'leaflet/dist/leaflet.css';
 
 const App: React.FC = () => {
@@ -67,9 +64,8 @@ const App: React.FC = () => {
 
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-        {!hideNavbar && <Navbar />}
         <Routes>
-          {/* Rutas de autenticación sin Navbar ni Footer */}
+          {/* Rutas de autenticación */}
           <Route
             path="/login"
             element={
@@ -92,34 +88,30 @@ const App: React.FC = () => {
           <Route path="/reset-password" element={<PasswordResetForm />} />
           <Route path="/set-new-password" element={<SetNewPassword />} />
 
-          {/* Rutas del dashboard */}
+          {/* Dashboard (requiere autenticación) */}
           <Route
             path="/dashboard/*"
             element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
           />
 
-          {/* Rutas con Navbar y Footer */}
+          {/* Nueva Landing Page como ruta principal */}
           <Route
             path="/"
             element={
               <>
-                <div className="flex-grow">
-                  <HeroSection />
-                  <HowItWorks />
-                  <Benefits />
-                </div>
+                <Landing />
                 <Footer />
               </>
             }
           />
+
+          {/* Otras rutas */}
           <Route
             path="/profile"
             element={
               isLoggedIn ? (
                 <>
-                  <div className="flex-grow">
-                    <UserProfile />
-                  </div>
+                  <UserProfile />
                   <Footer />
                 </>
               ) : (
@@ -131,9 +123,7 @@ const App: React.FC = () => {
             path="/privacy-policy"
             element={
               <>
-                <div className="flex-grow">
-                  <PrivacyPolicy />
-                </div>
+                <PrivacyPolicy />
                 <Footer />
               </>
             }
@@ -142,9 +132,7 @@ const App: React.FC = () => {
             path="/terms-of-service"
             element={
               <>
-                <div className="flex-grow">
-                  <TermsOfService />
-                </div>
+                <TermsOfService />
                 <Footer />
               </>
             }
