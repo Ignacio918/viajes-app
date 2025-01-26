@@ -3,7 +3,6 @@ import '../styles/Tours.css';
 
 const Tours: React.FC = () => {
   useEffect(() => {
-    // Cargar el script de GetYourGuide
     const script = document.createElement('script');
     script.src = 'https://widget.getyourguide.com/dist/pa.umd.production.min.js';
     script.async = true;
@@ -20,43 +19,42 @@ const Tours: React.FC = () => {
 
   return (
     <div className="tours-widget-container">
-      <div className="tours-widget-search">
+      {/* Buscador de Tours */}
+      <div className="tours-search-section">
         <h2>Busca tu próxima aventura</h2>
         <div 
-          data-gyg-widget="activities"
-          data-gyg-partner-id="FRGBT5F"
-          data-gyg-number-of-items="3"
+          data-gyg-href="https://widget.getyourguide.com/default/activitiesSearch.frame"
           data-gyg-locale-code="es-ES"
-          data-gyg-currency="EUR"
-          data-gyg-layout="horizontal"
+          data-gyg-widget="activities-search"
+          data-gyg-partner-id="FRGBT5F"
         ></div>
       </div>
 
-      <div className="tours-widget-grid">
-        <div className="tours-widget-city">
-          <h2>Barcelona</h2>
-          <div 
-            data-gyg-widget="activities"
-            data-gyg-partner-id="FRGBT5F"
-            data-gyg-city-id="60"
-            data-gyg-number-of-items="4"
-            data-gyg-locale-code="es-ES"
-            data-gyg-currency="EUR"
-            data-gyg-layout="vertical"
-          ></div>
-        </div>
+      {/* Sección de ciudades populares */}
+      <div className="tours-popular-section">
+        <h3>Destinos Populares</h3>
+        <div className="tours-grid">
+          <div className="tour-city-card">
+            <h4>Barcelona</h4>
+            <div 
+              data-gyg-href="https://widget.getyourguide.com/default/city.frame"
+              data-gyg-location-id="60"
+              data-gyg-widget="city"
+              data-gyg-partner-id="FRGBT5F"
+              data-gyg-locale-code="es-ES"
+            ></div>
+          </div>
 
-        <div className="tours-widget-city">
-          <h2>Madrid</h2>
-          <div 
-            data-gyg-widget="activities"
-            data-gyg-partner-id="FRGBT5F"
-            data-gyg-city-id="62"
-            data-gyg-number-of-items="4"
-            data-gyg-locale-code="es-ES"
-            data-gyg-currency="EUR"
-            data-gyg-layout="vertical"
-          ></div>
+          <div className="tour-city-card">
+            <h4>Madrid</h4>
+            <div 
+              data-gyg-href="https://widget.getyourguide.com/default/city.frame"
+              data-gyg-location-id="62"
+              data-gyg-widget="city"
+              data-gyg-partner-id="FRGBT5F"
+              data-gyg-locale-code="es-ES"
+            ></div>
+          </div>
         </div>
       </div>
     </div>
