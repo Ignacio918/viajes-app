@@ -3,9 +3,11 @@ import '../styles/Tours.css';
 
 const Tours: React.FC = () => {
   useEffect(() => {
+    // Cargar el script de GetYourGuide
     const script = document.createElement('script');
     script.src = 'https://widget.getyourguide.com/dist/pa.umd.production.min.js';
     script.async = true;
+    script.setAttribute('data-gyg-partner-id', 'FRGBT5F');
     document.head.appendChild(script);
 
     return () => {
@@ -21,34 +23,40 @@ const Tours: React.FC = () => {
       <div className="tours-widget-search">
         <h2>Busca tu próxima aventura</h2>
         <div 
-          data-gyg-href="https://widget.getyourguide.com/default/searchbox.frame"
-          data-gyg-locale-code="es-ES" 
-          data-gyg-widget="searchbox"
-          data-gyg-partner-id="FRGBT5F">
-        </div>
+          data-gyg-widget="activities"
+          data-gyg-partner-id="FRGBT5F"
+          data-gyg-number-of-items="3"
+          data-gyg-locale-code="es-ES"
+          data-gyg-currency="EUR"
+          data-gyg-layout="horizontal"
+        ></div>
       </div>
 
       <div className="tours-widget-grid">
         <div className="tours-widget-city">
           <h2>Barcelona</h2>
           <div 
-            data-gyg-href="https://widget.getyourguide.com/default/city.frame"
-            data-gyg-location-id="60"
+            data-gyg-widget="activities"
+            data-gyg-partner-id="FRGBT5F"
+            data-gyg-city-id="60"
+            data-gyg-number-of-items="4"
             data-gyg-locale-code="es-ES"
-            data-gyg-widget="city"
-            data-gyg-partner-id="FRGBT5F">
-          </div>
+            data-gyg-currency="EUR"
+            data-gyg-layout="vertical"
+          ></div>
         </div>
 
         <div className="tours-widget-city">
           <h2>Madrid</h2>
           <div 
-            data-gyg-href="https://widget.getyourguide.com/default/city.frame"
-            data-gyg-location-id="62"
+            data-gyg-widget="activities"
+            data-gyg-partner-id="FRGBT5F"
+            data-gyg-city-id="62"
+            data-gyg-number-of-items="4"
             data-gyg-locale-code="es-ES"
-            data-gyg-widget="city"
-            data-gyg-partner-id="FRGBT5F">
-          </div>
+            data-gyg-currency="EUR"
+            data-gyg-layout="vertical"
+          ></div>
         </div>
       </div>
     </div>

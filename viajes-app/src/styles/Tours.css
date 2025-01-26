@@ -1,20 +1,28 @@
 .tours-widget-container {
-    @apply w-full max-w-7xl mx-auto px-4;
+    @apply w-full max-w-7xl mx-auto p-6;
   }
   
   .tours-widget-search {
-    @apply mb-8 bg-white rounded-xl shadow-lg p-6;
+    @apply mb-12 bg-white rounded-xl shadow-lg p-6;
+  }
+  
+  .tours-widget-search h2 {
+    @apply text-2xl font-semibold mb-6 text-gray-800;
   }
   
   .tours-widget-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
   }
   
   .tours-widget-city {
     @apply bg-white rounded-xl shadow-lg p-6;
   }
   
-  .tours-widget-search h2,
   .tours-widget-city h2 {
-    @apply text-2xl font-semibold mb-4 text-gray-800;
+    @apply text-xl font-semibold mb-6 text-gray-800;
+  }
+  
+  /* Estilos para los widgets de GetYourGuide */
+  [data-gyg-widget] {
+    @apply w-full min-h-[400px];
   }
