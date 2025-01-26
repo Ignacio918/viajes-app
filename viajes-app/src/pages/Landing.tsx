@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../pages/HeroSection';
 import { TypewriterEffectSmooth } from '../components/ui/typewriter-effect';
@@ -34,6 +34,14 @@ const Landing: React.FC = () => {
     },
   ];
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted');
@@ -52,7 +60,6 @@ const Landing: React.FC = () => {
     setIsTyping(true);
 
     try {
-      console.log('API Key:', import.meta.env.VITE_GOOGLE_API_KEY);
       const model = genAI.getGenerativeModel(travelAIConfig);
       console.log('Model created');
       
@@ -68,10 +75,8 @@ const Landing: React.FC = () => {
           }
         ],
       });
-      console.log('Chat started');
 
       const result = await chat.sendMessage([{ text: inputMessage }]);
-      console.log('Message sent, waiting for response');
       const response = await result.response.text();
       console.log('Response received:', response);
 
@@ -95,85 +100,87 @@ const Landing: React.FC = () => {
       <Navbar />
       <HeroSection />
 
-      <section className="chat-section">
-        <div className="chat-container">
-          <TypewriterEffectSmooth words={words} />
-          
-          {/* Chat Messages */}
-          <div className="messages-container">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`message ${message.isUser ? 'user-message' : 'bot-message'}`}
-              >
-                {message.content}
+      <div className="main-content">
+        <section className="chat-section">
+          <div className="chat-container">
+            <TypewriterEffectSmooth words={words} />
+            
+            <div className="chat-interface">
+              <div className="messages-container">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`message ${message.isUser ? 'user-message' : 'bot-message'}`}
+                  >
+                    {message.content}
+                  </div>
+                ))}
+                {isTyping && (
+                  <div className="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
               </div>
-            ))}
-            {isTyping && (
-              <div className="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
 
-          {/* Chat Input */}
-          <form onSubmit={handleSendMessage} className="chat-input-wrapper">
-            <input
-              type="text"
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Describe tu viaje ideal..."
-              className="chat-input"
-            />
-            <button type="submit" className="chat-button">
-              <svg className="send-icon" viewBox="0 0 24 24">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <section className="tabs-section">
-        <div className="tabs-container">
-          <div className="tabs-navigation">
-            {['search', 'tours', 'flights', 'places'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab as any)}
-                className={`tab-button ${activeTab === tab ? 'active' : ''}`}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
-          </div>
-
-          <div className="tabs-content">
-            {activeTab === 'search' && (
-              <div className="search-form">
+              <form onSubmit={handleSendMessage} className="chat-input-wrapper">
                 <input
                   type="text"
-                  placeholder="¿A dónde vas?"
-                  className="destination-input"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  placeholder="Describe tu viaje ideal..."
+                  className="chat-input"
                 />
-                <input
-                  type="date"
-                  className="date-input"
-                />
-                <button className="search-button">
-                  Buscar
+                <button type="submit" className="chat-button">
+                  <svg className="send-icon" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </button>
-              </div>
-            )}
-            {activeTab === 'tours' && <Tours />}
-            {activeTab === 'flights' && <Flights />}
-            {activeTab === 'places' && <Places />}
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="tabs-section">
+          <div className="tabs-container">
+            <div className="tabs-navigation">
+              {['search', 'tours', 'flights', 'places'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab as any)}
+                  className={`tab-button ${activeTab === tab ? 'active' : ''}`}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            <div className="tabs-content">
+              {activeTab === 'search' && (
+                <div className="search-form">
+                  <input
+                    type="text"
+                    placeholder="¿A dónde vas?"
+                    className="destination-input"
+                  />
+                  <input
+                    type="date"
+                    className="date-input"
+                  />
+                  <button className="search-button">
+                    Buscar
+                  </button>
+                </div>
+              )}
+              {activeTab === 'tours' && <Tours />}
+              {activeTab === 'flights' && <Flights />}
+              {activeTab === 'places' && <Places />}
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
