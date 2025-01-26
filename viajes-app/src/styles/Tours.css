@@ -2,32 +2,30 @@
     @apply w-full max-w-7xl mx-auto p-6 space-y-8;
   }
   
-  .search-main {
+  .custom-search {
     @apply w-full bg-white rounded-lg shadow-lg p-6 mb-8;
   }
   
-  .search-main h2 {
+  .custom-search h2 {
     @apply text-2xl font-bold text-gray-800 mb-6 text-center;
   }
   
-  .popular-destinations {
-    @apply w-full;
+  .search-form {
+    @apply flex gap-4 justify-center;
   }
   
-  .popular-destinations h3 {
-    @apply text-xl font-semibold text-gray-800 mb-6;
+  .search-input {
+    @apply px-4 py-2 border rounded-lg w-full max-w-md
+    focus:border-pink-500 focus:ring-2 focus:ring-pink-200
+    transition-all duration-200;
   }
   
-  .destinations-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+  .search-button {
+    @apply px-6 py-2 bg-pink-600 text-white rounded-lg
+    hover:bg-pink-700 transition-colors duration-200;
   }
   
-  .destination-widget {
+  .selected-city-tours {
     @apply bg-white rounded-lg shadow-lg p-4;
     min-height: 600px;
-  }
-  
-  /* Asegurar que el widget de búsqueda sea visible y usable */
-  [data-gyg-widget="searchbox"] {
-    @apply w-full min-h-[100px];
   }
