@@ -25,6 +25,7 @@ const Chatbot: React.FC = () => {
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submitted');
     if (!inputMessage.trim()) return;
 
     const userMessage: Message = {
@@ -33,13 +34,17 @@ const Chatbot: React.FC = () => {
       isUser: true,
       timestamp: new Date(),
     };
+    console.log('User message:', userMessage);
 
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsTyping(true);
 
     try {
+      console.log('API Key:', import.meta.env.VITE_GOOGLE_API_KEY); // Esto mostrará si la API key está disponible
       const model = genAI.getGenerativeModel(travelAIConfig);
+      console.log('Model created');
+      
       const chat = model.startChat({
         history: [
           {
@@ -52,9 +57,12 @@ const Chatbot: React.FC = () => {
           }
         ],
       });
+      console.log('Chat started');
 
       const result = await chat.sendMessage([{ text: inputMessage }]);
+      console.log('Message sent, waiting for response');
       const response = await result.response.text();
+      console.log('Response received:', response);
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -65,7 +73,7 @@ const Chatbot: React.FC = () => {
 
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Detailed error:', error);
     } finally {
       setIsTyping(false);
     }
