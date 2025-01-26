@@ -1,0 +1,52 @@
+.chatbot-container {
+    @apply fixed bottom-4 right-4 w-96 bg-white rounded-lg shadow-xl overflow-hidden;
+    @apply border border-gray-200;
+    height: 500px;
+  }
+  
+  .chat-messages {
+    @apply p-4 space-y-4 overflow-y-auto;
+    height: calc(100% - 60px);
+  }
+  
+  .message {
+    @apply p-3 rounded-lg max-w-[80%];
+  }
+  
+  .user-message {
+    @apply bg-pink-600 text-white ml-auto;
+  }
+  
+  .bot-message {
+    @apply bg-gray-100 text-gray-800;
+  }
+  
+  .typing-indicator {
+    @apply flex space-x-1 p-3 bg-gray-100 rounded-lg w-16;
+  }
+  
+  .typing-indicator span {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-bounce;
+  }
+  
+  .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  .chat-input-form {
+    @apply p-4 border-t border-gray-200 flex gap-2;
+  }
+  
+  .chat-input {
+    @apply flex-1 p-2 border border-gray-300 rounded-lg;
+    @apply focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200;
+  }
+  
+  .send-button {
+    @apply px-4 py-2 bg-pink-600 text-white rounded-lg;
+    @apply hover:bg-pink-700 transition-colors duration-200;
+  }
