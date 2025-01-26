@@ -20,13 +20,13 @@ const Tours: React.FC = () => {
 
   return (
     <div className="tours-container">
-      {/* Buscador Principal */}
+      {/* Buscador Principal - usando el formato correcto */}
       <div className="search-main">
         <h2>Busca tours y actividades en cualquier destino</h2>
         <div 
-          data-gyg-href="https://widget.getyourguide.com/default/searchbox.frame"
+          data-gyg-href="https://widget.getyourguide.com/default/activitiesSearch.frame"
           data-gyg-locale-code="es-ES"
-          data-gyg-widget="searchbox"
+          data-gyg-widget="activities-search"
           data-gyg-partner-id="FRGBT5F">
         </div>
       </div>
