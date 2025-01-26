@@ -42,9 +42,15 @@ const Landing: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    console.log('Environment check:', {
+      hasApiKey: !!import.meta.env.VITE_GOOGLE_API_KEY,
+      apiKeyLength: import.meta.env.VITE_GOOGLE_API_KEY?.length
+    });
+  }, []);
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted');
     if (!inputMessage.trim()) return;
 
     const userMessage: Message = {
@@ -53,7 +59,6 @@ const Landing: React.FC = () => {
       isUser: true,
       timestamp: new Date(),
     };
-    console.log('User message:', userMessage);
 
     setMessages(prev => [...prev, userMessage]);
     const currentInput = inputMessage;
@@ -61,13 +66,9 @@ const Landing: React.FC = () => {
     setIsTyping(true);
 
     try {
-      if (!import.meta.env.VITE_GOOGLE_API_KEY) {
-        throw new Error('API key no encontrada');
-      }
-      console.log('API Key disponible:', !!import.meta.env.VITE_GOOGLE_API_KEY);
-
-      const model = genAI.getGenerativeModel(travelAIConfig);
-      console.log('Modelo creado exitosamente');
+      const model = genAI.getGenerativeModel({
+        ...travelAIConfig,
+      });
 
       const chat = model.startChat({
         history: [
@@ -81,18 +82,9 @@ const Landing: React.FC = () => {
           }
         ],
       });
-      console.log('Chat iniciado');
 
-      console.log('Enviando mensaje:', currentInput);
       const result = await chat.sendMessage([{ text: currentInput }]);
-      console.log('Mensaje enviado, esperando respuesta...');
-      
       const response = await result.response.text();
-      console.log('Respuesta recibida:', response);
-
-      if (!response) {
-        throw new Error('Respuesta vacía del modelo');
-      }
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -103,11 +95,11 @@ const Landing: React.FC = () => {
 
       setMessages(prev => [...prev, botMessage]);
     } catch (error: any) {
-      console.error('Error detallado:', error);
+      console.error('Error:', error);
       
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: `Lo siento, hubo un error: ${error.message || 'Error desconocido'}`,
+        content: `Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.`,
         isUser: false,
         timestamp: new Date(),
       };

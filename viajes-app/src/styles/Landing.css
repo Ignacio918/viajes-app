@@ -112,3 +112,12 @@
   @apply p-3 bg-pink-600 text-white rounded-lg;
   @apply hover:bg-pink-700 transition-colors duration-200;
 }
+
+/* Estilos del typewriter */
+.typewriter-primary {
+  @apply text-pink-600;
+}
+
+.typewriter-secondary {
+  @apply text-blue-500;
+}
