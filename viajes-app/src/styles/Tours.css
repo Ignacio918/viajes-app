@@ -1,0 +1,38 @@
+/* src/styles/Tours.css */
+
+.tours-container {
+  @apply container mx-auto px-4 py-8 max-w-7xl;
+}
+
+.tours-header {
+  @apply text-center mb-8;
+}
+
+.tours-header h2 {
+  @apply text-4xl font-bold text-gray-800 mb-2;
+}
+
+.tours-header p {
+  @apply text-lg text-gray-600;
+}
+
+.tours-filters {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 mb-8;
+}
+
+.tours-filters input,
+.tours-filters select {
+  @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+.tours-providers {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
+}
+
+.provider-section {
+  @apply bg-white rounded-xl shadow-lg p-6;
+}
+
+.provider-section h3 {
+  @apply text-xl font-semibold text-gray-800 mb-4;
+}
