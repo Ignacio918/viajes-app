@@ -44,16 +44,28 @@ const Landing: React.FC = () => {
   }, [messages]);
 
   useEffect(() => {
-    const checkApiKey = () => {
-      const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-      setIsApiKeyAvailable(!!apiKey);
+    const checkApiKey = async () => {
+      const hasKey = !!import.meta.env.VITE_GOOGLE_API_KEY;
+      console.log('API Key disponible:', hasKey);
+      setIsApiKeyAvailable(hasKey);
     };
     checkApiKey();
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputMessage(e.target.value);
+  };
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
+    console.log('Formulario enviado');
+
+    if (!inputMessage.trim()) {
+      console.log('Mensaje vacío, ignorando');
+      return;
+    }
+
+    console.log('Procesando mensaje:', inputMessage);
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -68,10 +80,11 @@ const Landing: React.FC = () => {
     setIsTyping(true);
 
     try {
-      if (!isApiKeyAvailable) {
-        throw new Error('API key no disponible. Por favor, configura la API key en las variables de entorno.');
+      if (!import.meta.env.VITE_GOOGLE_API_KEY) {
+        throw new Error('API key no configurada');
       }
 
+      console.log('Inicializando chat...');
       const model = genAI.getGenerativeModel({
         ...travelAIConfig,
       });
@@ -84,13 +97,19 @@ const Landing: React.FC = () => {
           },
           {
             role: "model",
-            parts: [{ text: "¡Hola! Soy tu asistente de viajes personal. Estoy aquí para ayudarte a planificar el viaje perfecto, desde elegir destinos hasta crear itinerarios detallados. ¿A dónde te gustaría viajar?" }]
+            parts: [{ text: "¡Hola! Soy tu asistente de viajes personal. Estoy aquí para ayudarte a planificar el viaje perfecto. ¿En qué puedo ayudarte?" }]
           }
         ],
       });
 
+      console.log('Enviando mensaje a la API...');
       const result = await chat.sendMessage([{ text: currentInput }]);
       const response = await result.response.text();
+      console.log('Respuesta recibida:', response);
+
+      if (!response) {
+        throw new Error('Respuesta vacía del modelo');
+      }
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -101,11 +120,11 @@ const Landing: React.FC = () => {
 
       setMessages(prev => [...prev, botMessage]);
     } catch (error: any) {
-      console.error('Error:', error);
+      console.error('Error en el chat:', error);
       
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: error.message || 'Hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.',
+        content: `Error: ${error.message || 'Error desconocido al procesar el mensaje'}`,
         isUser: false,
         timestamp: new Date(),
       };
@@ -146,18 +165,21 @@ const Landing: React.FC = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              <form onSubmit={handleSendMessage} className="chat-input-wrapper">
+              <form 
+                onSubmit={handleSendMessage} 
+                className="chat-input-wrapper"
+              >
                 <input
                   type="text"
                   value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
+                  onChange={handleInputChange}
                   placeholder="Describe tu viaje ideal..."
                   className="chat-input"
                 />
                 <button 
                   type="submit" 
                   className="chat-button"
-                  disabled={!isApiKeyAvailable}
+                  disabled={!isApiKeyAvailable || isTyping}
                 >
                   <svg className="send-icon" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z" />
