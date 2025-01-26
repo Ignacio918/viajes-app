@@ -18,7 +18,8 @@ import UserProfile from "./pages/UserProfile";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Footer from "./pages/Footer";
-import Landing from "./pages/Landing"; // Importamos la nueva Landing
+import Landing from "./pages/Landing";
+import Tours from "./components/Tours";
 import 'leaflet/dist/leaflet.css';
 
 const App: React.FC = () => {
@@ -100,6 +101,17 @@ const App: React.FC = () => {
             element={
               <>
                 <Landing />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* Ruta de Tours */}
+          <Route
+            path="/tours"
+            element={
+              <>
+                <Tours />
                 <Footer />
               </>
             }

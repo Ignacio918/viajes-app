@@ -1,113 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/Tours.css';
+import React, { useEffect } from 'react';
+import './Tours.css';
 
-interface GYGProvider {
-  partnerId: string;
-  cityId?: string;
-}
-
-interface CivitatisProvider {
-  partnerId: string;
-}
-
-interface ToursProps {
-  providers?: {
-    getyourguide?: GYGProvider;
-    civitatis?: CivitatisProvider;
-  };
-}
-
-const defaultProviders: Required<ToursProps>['providers'] = {
-  getyourguide: {
-    partnerId: import.meta.env.VITE_GYG_PARTNER_ID || ''
-  },
-  civitatis: {
-    partnerId: import.meta.env.VITE_CIVITATIS_PARTNER_ID || ''
-  }
-};
-
-const Tours: React.FC<ToursProps> = ({ providers = defaultProviders }) => {
-  const [selectedDestination, setSelectedDestination] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-  const [travelers, setTravelers] = useState('');
-
+const Tours: React.FC = () => {
   useEffect(() => {
-    if (providers.getyourguide) {
-      const script = document.createElement('script');
-      script.src = 'https://widget.getyourguide.com/dist/pa.umd.production.min.js';
-      script.async = true;
-      document.body.appendChild(script);
+    const script = document.createElement('script');
+    script.src = 'https://widget.getyourguide.com/dist/pa.umd.production.min.js';
+    script.async = true;
+    document.head.appendChild(script);
 
-      return () => {
-        const existingScript = document.querySelector(
-          'script[src="https://widget.getyourguide.com/dist/pa.umd.production.min.js"]'
-        );
-        if (existingScript?.parentNode) {
-          existingScript.parentNode.removeChild(existingScript);
-        }
-      };
-    }
-  }, [providers]);
+    return () => {
+      const existingScript = document.querySelector('script[src="https://widget.getyourguide.com/dist/pa.umd.production.min.js"]');
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   return (
     <div className="tours-container">
       <div className="tours-header">
-        <h2>Descubre los mejores tours y actividades</h2>
-        <p>Explora experiencias únicas en tu destino</p>
+        <h1>Descubre Experiencias Únicas</h1>
+        <p>Encuentra los mejores tours y actividades</p>
       </div>
 
-      <div className="tours-filters">
-        <input
-          type="text"
-          value={selectedDestination}
-          onChange={(e) => setSelectedDestination(e.target.value)}
-          placeholder="¿A dónde quieres ir?"
-        />
-        <input
-          type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
-        <select
-          value={travelers}
-          onChange={(e) => setTravelers(e.target.value)}
-        >
-          <option value="">Número de viajeros</option>
-          <option value="1">1 persona</option>
-          <option value="2">2 personas</option>
-          <option value="3">3 personas</option>
-          <option value="4">4+ personas</option>
-        </select>
-      </div>
-
-      <div className="tours-providers">
-        {providers.getyourguide && (
-          <div className="provider-section">
-            <h3>Tours populares en Barcelona</h3>
-            <div
-              data-gyg-widget="activities"
-              data-gyg-partner-id={providers.getyourguide.partnerId}
-              data-gyg-locale-code="es-ES"
-              data-gyg-currency="EUR"
-              data-gyg-city-id="60"
-              data-gyg-max-results="6"
-            ></div>
+      <div className="tours-grid">
+        <div className="tours-search">
+          <h2>Busca tu próxima aventura</h2>
+          <div 
+            data-gyg-href="https://widget.getyourguide.com/default/searchbox.frame"
+            data-gyg-locale-code="es-ES" 
+            data-gyg-widget="searchbox"
+            data-gyg-partner-id="FRGBT5F">
           </div>
-        )}
+        </div>
 
-        {providers.getyourguide && (
-          <div className="provider-section">
-            <h3>Tours populares en Madrid</h3>
-            <div
-              data-gyg-widget="activities"
-              data-gyg-partner-id={providers.getyourguide.partnerId}
-              data-gyg-locale-code="es-ES"
-              data-gyg-currency="EUR"
-              data-gyg-city-id="62"
-              data-gyg-max-results="6"
-            ></div>
+        <div className="tours-city">
+          <h2>Barcelona</h2>
+          <div 
+            data-gyg-href="https://widget.getyourguide.com/default/city.frame"
+            data-gyg-location-id="60"
+            data-gyg-locale-code="es-ES"
+            data-gyg-widget="city"
+            data-gyg-partner-id="FRGBT5F">
           </div>
-        )}
+        </div>
+
+        <div className="tours-city">
+          <h2>Madrid</h2>
+          <div 
+            data-gyg-href="https://widget.getyourguide.com/default/city.frame"
+            data-gyg-location-id="62"
+            data-gyg-locale-code="es-ES"
+            data-gyg-widget="city"
+            data-gyg-partner-id="FRGBT5F">
+          </div>
+        </div>
       </div>
     </div>
   );
