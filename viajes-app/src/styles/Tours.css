@@ -1,39 +1,23 @@
-.tours-widget-container {
-    @apply w-full max-w-7xl mx-auto p-4;
+.tours-container {
+    @apply container mx-auto p-6;
   }
   
-  .tours-search-section {
-    @apply mb-12;
+  .search-section {
+    @apply mb-8;
   }
   
-  .tours-search-section h2 {
-    @apply text-3xl font-bold text-gray-800 mb-6 text-center;
+  .search-section h2 {
+    @apply text-2xl font-bold mb-4;
   }
   
-  .tours-popular-section {
-    @apply mt-16;
+  .cities-section {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
   }
   
-  .tours-popular-section h3 {
-    @apply text-2xl font-semibold text-gray-800 mb-8 text-center;
+  .city-widget {
+    @apply mb-6;
   }
   
-  .tours-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
-  }
-  
-  .tour-city-card {
-    @apply bg-white rounded-xl shadow-lg overflow-hidden;
-  }
-  
-  .tour-city-card h4 {
-    @apply text-xl font-semibold p-4 bg-gray-50 border-b;
-  }
-  
-  [data-gyg-widget="activities-search"] {
-    @apply w-full min-h-[200px] bg-white rounded-xl shadow-lg p-4;
-  }
-  
-  [data-gyg-widget="city"] {
-    @apply w-full min-h-[500px];
+  .city-widget h3 {
+    @apply text-xl font-semibold mb-3;
   }
