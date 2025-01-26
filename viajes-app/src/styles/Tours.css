@@ -1,32 +1,20 @@
-.tours-container {
-    @apply container mx-auto px-4 py-8 max-w-7xl;
+.tours-widget-container {
+    @apply w-full max-w-7xl mx-auto px-4;
   }
   
-  .tours-header {
-    @apply text-center mb-8;
+  .tours-widget-search {
+    @apply mb-8 bg-white rounded-xl shadow-lg p-6;
   }
   
-  .tours-header h1 {
-    @apply text-4xl font-bold text-gray-900 mb-4;
-  }
-  
-  .tours-header p {
-    @apply text-xl text-gray-600;
-  }
-  
-  .tours-grid {
+  .tours-widget-grid {
     @apply grid grid-cols-1 md:grid-cols-2 gap-8;
   }
   
-  .tours-search {
-    @apply col-span-1 md:col-span-2 bg-white rounded-xl shadow-lg p-6;
-  }
-  
-  .tours-city {
+  .tours-widget-city {
     @apply bg-white rounded-xl shadow-lg p-6;
   }
   
-  .tours-search h2,
-  .tours-city h2 {
-    @apply text-2xl font-semibold mb-4;
+  .tours-widget-search h2,
+  .tours-widget-city h2 {
+    @apply text-2xl font-semibold mb-4 text-gray-800;
   }

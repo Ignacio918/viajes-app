@@ -19,7 +19,6 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Footer from "./pages/Footer";
 import Landing from "./pages/Landing";
-import Tours from "./components/Tours";
 import 'leaflet/dist/leaflet.css';
 
 const App: React.FC = () => {
@@ -66,7 +65,6 @@ const App: React.FC = () => {
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
         <Routes>
-          {/* Rutas de autenticación */}
           <Route
             path="/login"
             element={
@@ -86,16 +84,18 @@ const App: React.FC = () => {
               </div>
             }
           />
-          <Route path="/reset-password" element={<PasswordResetForm />} />
-          <Route path="/set-new-password" element={<SetNewPassword />} />
-
-          {/* Dashboard (requiere autenticación) */}
+          <Route 
+            path="/reset-password" 
+            element={<PasswordResetForm />} 
+          />
+          <Route 
+            path="/set-new-password" 
+            element={<SetNewPassword />} 
+          />
           <Route
             path="/dashboard/*"
             element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
           />
-
-          {/* Nueva Landing Page como ruta principal */}
           <Route
             path="/"
             element={
@@ -105,19 +105,6 @@ const App: React.FC = () => {
               </>
             }
           />
-
-          {/* Ruta de Tours */}
-          <Route
-            path="/tours"
-            element={
-              <>
-                <Tours />
-                <Footer />
-              </>
-            }
-          />
-
-          {/* Otras rutas */}
           <Route
             path="/profile"
             element={
@@ -149,7 +136,10 @@ const App: React.FC = () => {
               </>
             }
           />
-          <Route path="/logout" element={<Navigate to="/" replace />} />
+          <Route 
+            path="/logout" 
+            element={<Navigate to="/" replace />} 
+          />
         </Routes>
       </div>
     );
