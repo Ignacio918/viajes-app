@@ -1,12 +1,15 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+let genAI: GoogleGenerativeAI;
 
-if (!API_KEY) {
-  throw new Error('La API key de Google no está configurada en las variables de entorno.');
+try {
+  const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+  genAI = new GoogleGenerativeAI(API_KEY);
+} catch (error) {
+  console.warn('Warning: API key not configured yet');
+  // Crear una instancia temporal para evitar errores
+  genAI = new GoogleGenerativeAI('temp-key');
 }
-
-export const genAI = new GoogleGenerativeAI(API_KEY);
 
 export const travelAIConfig = {
   model: "gemini-pro",
@@ -14,3 +17,5 @@ export const travelAIConfig = {
   topK: 1,
   topP: 1,
 };
+
+export { genAI };

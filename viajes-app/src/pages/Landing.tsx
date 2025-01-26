@@ -21,6 +21,7 @@ const Landing: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isApiKeyAvailable, setIsApiKeyAvailable] = useState(false);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
   
   const words = [
@@ -43,10 +44,11 @@ const Landing: React.FC = () => {
   }, [messages]);
 
   useEffect(() => {
-    console.log('Environment check:', {
-      hasApiKey: !!import.meta.env.VITE_GOOGLE_API_KEY,
-      apiKeyLength: import.meta.env.VITE_GOOGLE_API_KEY?.length
-    });
+    const checkApiKey = () => {
+      const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+      setIsApiKeyAvailable(!!apiKey);
+    };
+    checkApiKey();
   }, []);
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -66,6 +68,10 @@ const Landing: React.FC = () => {
     setIsTyping(true);
 
     try {
+      if (!isApiKeyAvailable) {
+        throw new Error('API key no disponible. Por favor, configura la API key en las variables de entorno.');
+      }
+
       const model = genAI.getGenerativeModel({
         ...travelAIConfig,
       });
@@ -74,11 +80,11 @@ const Landing: React.FC = () => {
         history: [
           {
             role: "user",
-            parts: [{ text: "Actúa como un experto asistente de viajes que ayuda a planificar itinerarios y dar recomendaciones de viaje." }]
+            parts: [{ text: "Actúa como un experto asistente de viajes que ayuda a planificar itinerarios y dar recomendaciones de viaje. Responde en español." }]
           },
           {
             role: "model",
-            parts: [{ text: "Entendido. Soy un asistente especializado en viajes, listo para ayudar con planificación de itinerarios, recomendaciones de destinos, consejos de viaje y más." }]
+            parts: [{ text: "¡Hola! Soy tu asistente de viajes personal. Estoy aquí para ayudarte a planificar el viaje perfecto, desde elegir destinos hasta crear itinerarios detallados. ¿A dónde te gustaría viajar?" }]
           }
         ],
       });
@@ -99,7 +105,7 @@ const Landing: React.FC = () => {
       
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: `Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.`,
+        content: error.message || 'Hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.',
         isUser: false,
         timestamp: new Date(),
       };
@@ -148,7 +154,11 @@ const Landing: React.FC = () => {
                   placeholder="Describe tu viaje ideal..."
                   className="chat-input"
                 />
-                <button type="submit" className="chat-button">
+                <button 
+                  type="submit" 
+                  className="chat-button"
+                  disabled={!isApiKeyAvailable}
+                >
                   <svg className="send-icon" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
