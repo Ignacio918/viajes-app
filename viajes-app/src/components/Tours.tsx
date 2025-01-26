@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/Tours.css';
+import '../styles/Tours.css';
 
 interface GYGProvider {
   partnerId: string;
