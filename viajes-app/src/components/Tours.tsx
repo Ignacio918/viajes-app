@@ -20,37 +20,41 @@ const Tours: React.FC = () => {
 
   return (
     <div className="tours-container">
-      <div className="search-section">
-        <h2>Encuentra tu próxima aventura</h2>
+      {/* Buscador Principal */}
+      <div className="search-main">
+        <h2>Busca tours y actividades en cualquier destino</h2>
         <div 
-          data-gyg-href="https://widget.getyourguide.com/default/city.frame" 
-          data-gyg-location-id="200" 
-          data-gyg-locale-code="es-ES" 
-          data-gyg-widget="city" 
+          data-gyg-href="https://widget.getyourguide.com/default/searchbox.frame"
+          data-gyg-locale-code="es-ES"
+          data-gyg-widget="searchbox"
           data-gyg-partner-id="FRGBT5F">
         </div>
       </div>
 
-      <div className="cities-section">
-        <div className="city-widget">
-          <h3>Barcelona</h3>
-          <div 
-            data-gyg-href="https://widget.getyourguide.com/default/city.frame" 
-            data-gyg-location-id="60" 
-            data-gyg-locale-code="es-ES" 
-            data-gyg-widget="city" 
-            data-gyg-partner-id="FRGBT5F">
+      {/* Destinos Populares */}
+      <div className="popular-destinations">
+        <h3>Destinos Populares</h3>
+        <div className="destinations-grid">
+          {/* Barcelona */}
+          <div className="destination-widget">
+            <div 
+              data-gyg-href="https://widget.getyourguide.com/default/city.frame"
+              data-gyg-location-id="60"
+              data-gyg-locale-code="es-ES"
+              data-gyg-widget="city"
+              data-gyg-partner-id="FRGBT5F">
+            </div>
           </div>
-        </div>
 
-        <div className="city-widget">
-          <h3>Madrid</h3>
-          <div 
-            data-gyg-href="https://widget.getyourguide.com/default/city.frame" 
-            data-gyg-location-id="62" 
-            data-gyg-locale-code="es-ES" 
-            data-gyg-widget="city" 
-            data-gyg-partner-id="FRGBT5F">
+          {/* Madrid */}
+          <div className="destination-widget">
+            <div 
+              data-gyg-href="https://widget.getyourguide.com/default/city.frame"
+              data-gyg-location-id="62"
+              data-gyg-locale-code="es-ES"
+              data-gyg-widget="city"
+              data-gyg-partner-id="FRGBT5F">
+            </div>
           </div>
         </div>
       </div>
