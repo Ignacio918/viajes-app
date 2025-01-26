@@ -1,24 +1,17 @@
-import { genAI, travelAIConfig } from '../../config/ai-config';
 import { createClient } from '@supabase/supabase-js';
+import { genAI, travelAIConfig } from 'src/config/ai-config';
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  import.meta.env.VITE_SUPABASE_URL!,
+  import.meta.env.VITE_SUPABASE_ANON_KEY!
 );
 
-export default async function handler(req: any, res: any) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
+export const sendChatMessage = async (message: string) => {
   try {
-    const { message } = req.body;
     const { data: { session } } = await supabase.auth.getSession();
-
-    // Crear el modelo con la configuración
+    
     const model = genAI.getGenerativeModel(travelAIConfig);
-
-    // Crear el chat con la historia correctamente formateada
+    
     const chat = model.startChat({
       history: [
         {
@@ -32,11 +25,9 @@ export default async function handler(req: any, res: any) {
       ],
     });
 
-    // Obtener respuesta
     const result = await chat.sendMessage([{ text: message }]);
-    const response = result.response.text();
+    const response = await result.response.text();
 
-    // Guardar en Supabase si el usuario está autenticado
     if (session?.user) {
       await supabase.from('conversations').insert({
         user_id: session.user.id,
@@ -46,9 +37,9 @@ export default async function handler(req: any, res: any) {
       });
     }
 
-    return res.status(200).json({ response });
+    return { response };
   } catch (error) {
     console.error('Error:', error);
-    return res.status(500).json({ error: 'Error processing your request' });
+    throw error;
   }
-}
+};

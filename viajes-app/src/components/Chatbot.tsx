@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { genAI, travelAIConfig } from '../config/ai-config';
 import '../styles/Chatbot.css';
 
 interface Message {
@@ -26,7 +27,6 @@ const Chatbot: React.FC = () => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    // Añadir mensaje del usuario
     const userMessage: Message = {
       id: Date.now().toString(),
       content: inputMessage,
@@ -39,21 +39,26 @@ const Chatbot: React.FC = () => {
     setIsTyping(true);
 
     try {
-      // Aquí llamaremos a la API del backend
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: inputMessage }),
+      const model = genAI.getGenerativeModel(travelAIConfig);
+      const chat = model.startChat({
+        history: [
+          {
+            role: "user",
+            parts: [{ text: "Actúa como un experto asistente de viajes que ayuda a planificar itinerarios y dar recomendaciones de viaje." }]
+          },
+          {
+            role: "model",
+            parts: [{ text: "Entendido. Soy un asistente especializado en viajes, listo para ayudar con planificación de itinerarios, recomendaciones de destinos, consejos de viaje y más." }]
+          }
+        ],
       });
 
-      const data = await response.json();
+      const result = await chat.sendMessage([{ text: inputMessage }]);
+      const response = await result.response.text();
 
-      // Añadir respuesta del bot
       const botMessage: Message = {
-        id: Date.now().toString(),
-        content: data.response,
+        id: (Date.now() + 1).toString(),
+        content: response,
         isUser: false,
         timestamp: new Date(),
       };
