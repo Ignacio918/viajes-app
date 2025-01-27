@@ -20,13 +20,12 @@ const Dashboard: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState<number | undefined>()
 
   // Estado para las ubicaciones del mapa
-  const [locations] = useState<Location[]>([
+  const locations: Location[] = [
     {
       id: '1',
       name: 'Hotel Central',
       coordinates: [-34.6037, -58.3816], // Buenos Aires
       day: 1,
-      time: '09:00',
       description: 'Check-in en el hotel'
     },
     {
@@ -34,7 +33,6 @@ const Dashboard: React.FC = () => {
       name: 'Plaza de Mayo',
       coordinates: [-34.6083, -58.3712],
       day: 1,
-      time: '11:00',
       description: 'Visita al centro histórico'
     },
     {
@@ -42,10 +40,9 @@ const Dashboard: React.FC = () => {
       name: 'Puerto Madero',
       coordinates: [-34.6037, -58.3632],
       day: 1,
-      time: '14:00',
       description: 'Almuerzo y paseo'
     }
-  ])
+  ]
 
   // Obtener días únicos de las ubicaciones
   const uniqueDays = [...new Set(locations.map(loc => loc.day))].sort((a, b) => a - b)
@@ -262,10 +259,12 @@ const Dashboard: React.FC = () => {
                             className="location-item"
                           >
                             <h4 className="font-medium text-gray-800">{location.name}</h4>
-                            {location.time && (
+                            {location.time ? (
                               <p className="text-sm text-gray-600 mt-1">
                                 <span className="font-medium">Hora:</span> {location.time}
                               </p>
+                            ) : (
+                              <p className="text-sm text-gray-500 mt-2">Hora no especificada</p>
                             )}
                             {location.description && (
                               <p className="text-sm text-gray-500 mt-2">{location.description}</p>

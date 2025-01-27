@@ -9,6 +9,7 @@ export interface Location {
   coordinates: [number, number];
   day: number;
   description?: string;
+  time?: string;
 }
 
 interface TripMapProps {
