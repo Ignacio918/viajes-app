@@ -63,7 +63,7 @@ export default async function handler(
       case 'POST':
         if (req.query.type === 'booking') {
           return handleBooking(req, res);
-        } else if (req.url?.includes('notify-availability')) {
+        } else if (req.url?.includes('notify-availability-update')) {
           return handleNotifyAvailability(req, res);
         }
         break;
@@ -192,10 +192,29 @@ async function handleNotifyAvailability(
   try {
     console.log('Recibida notificación de disponibilidad:', req.body);
     
-    return res.status(200).json({
-      status: 'success',
-      message: 'Availability update received'
-    });
+    // Formato de respuesta esperado por GetYourGuide
+    const response = {
+      "data": {
+        "availabilities": [
+          {
+            "productId": "12345",
+            "startTime": "2024-02-01T10:00:00+00:00",
+            "endTime": "2024-02-01T12:00:00+00:00",
+            "pricing": {
+              "retail": {
+                "value": 29.99,
+                "currency": "USD"
+              }
+            },
+            "vacancies": 10,
+            "minimumPeople": 1,
+            "maximumPeople": 10
+          }
+        ]
+      }
+    };
+
+    return res.status(200).json(response);
   } catch (error) {
     console.error('Notify availability error:', error);
     return res.status(500).json({
