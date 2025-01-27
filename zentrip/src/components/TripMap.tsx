@@ -8,7 +8,6 @@ export interface Location {
   name: string;
   coordinates: [number, number];
   day: number;
-  time?: string;
   description?: string;
 }
 
@@ -64,7 +63,6 @@ const TripMap = ({ locations, selectedDay, onLocationClick }: TripMapProps) => {
         <div class="marker-popup">
           <h3>${location.name}</h3>
           <p>Día ${location.day}</p>
-          ${location.time ? `<p>Hora: ${location.time}</p>` : ''}
           ${location.description ? `<p>${location.description}</p>` : ''}
         </div>
       `);

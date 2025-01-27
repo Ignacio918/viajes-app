@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import TripMap, { Location } from '../components/TripMap';
+import TripMap, { Location } from './TripMap';
 
 const Places: React.FC = () => {
+  console.log('Places component rendering'); // Agregamos este log para debug
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<any[]>([]);
-  const [center, setCenter] = useState<[number, number]>([-34.6037, -58.3816]); // Coordenadas iniciales (por ejemplo, Buenos Aires)
   const [recommendedPlaces, setRecommendedPlaces] = useState<Location[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const searchPlaces = async (query: string) => {
-    setError(null);
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Searching for:', query); // Log para debug
+
+    if (!query.trim()) {
+      setError('Por favor ingresa un destino');
+      return;
+    }
+
     try {
       const response = await axios.get('/api/search', {
         params: {
@@ -25,13 +31,13 @@ const Places: React.FC = () => {
         },
       });
 
+      console.log('API response:', response.data); // Log para debug
+
       if (response.data.length > 0) {
         const place = response.data[0];
         const lat = parseFloat(place.lat);
         const lng = parseFloat(place.lon);
-        setCenter([lat, lng]);
 
-        // Generar lugares recomendados alrededor del punto central
         const recommended: Location[] = [
           {
             id: '1',
@@ -57,78 +63,76 @@ const Places: React.FC = () => {
         ];
 
         setRecommendedPlaces(recommended);
+        setError(null);
       } else {
-        setError('No se encontraron resultados para la búsqueda.');
+        setError('No se encontraron resultados');
         setRecommendedPlaces([]);
       }
-    } catch (error: any) {
-      console.error('Error al buscar lugares:', error);
+    } catch (error) {
+      console.error('Error searching places:', error);
       setError('Error al buscar lugares. Por favor, intente nuevamente.');
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim()) {
-      setError('Por favor, ingrese un término de búsqueda.'); // Validación del término de búsqueda
-      return;
-    }
-    searchPlaces(query);
-  };
-
   return (
-    <div className="places-container">
+    <div className="places-container p-4">
       <h2 className="text-2xl font-bold mb-6">Buscar lugares</h2>
-      <form onSubmit={handleSearch} className="search-form mb-6">
-        <input
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Ingresa un destino..."
-          className="destination-input"
-        />
-        <button type="submit" className="search-button">
-          Buscar
-        </button>
-      </form>
       
+      <form onSubmit={handleSearch} className="mb-6">
+        <div className="flex gap-4">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Ingresa un destino..."
+            className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
+          />
+          <button 
+            type="submit"
+            className="px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+          >
+            Buscar
+          </button>
+        </div>
+      </form>
+
       {error && (
-        <div className="error-message bg-red-100 text-red-700 p-3 rounded-lg mb-4">
+        <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
           {error}
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <div className="lg:col-span-3 h-[500px]">
+        <div className="lg:col-span-3">
           {recommendedPlaces.length > 0 ? (
-            <TripMap
-              locations={recommendedPlaces}
-              selectedDay={1}
-              onLocationClick={(location) => {
-                console.log('Ubicación seleccionada:', location);
-              }}
-            />
+            <div className="h-[500px]">
+              <TripMap
+                locations={recommendedPlaces}
+                selectedDay={1}
+                onLocationClick={(location) => {
+                  console.log('Location clicked:', location);
+                }}
+              />
+            </div>
           ) : (
-            <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+            <div className="h-[500px] flex items-center justify-center bg-gray-100 rounded-lg">
               <p className="text-gray-500">Busca un destino para ver recomendaciones</p>
             </div>
           )}
         </div>
 
-        <div className="locations-list">
+        <div>
           <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200">
             <h3 className="text-lg font-semibold mb-4">Lugares recomendados</h3>
             {recommendedPlaces.length > 0 ? (
-              recommendedPlaces.map((place) => (
-                <div key={place.id} className="mb-4 p-3 border-b last:border-b-0">
-                  <h4 className="font-medium text-gray-800">{place.name}</h4>
-                  <p className="text-sm text-gray-600 mt-1">{place.description}</p>
-                </div>
-              ))
+              <div className="space-y-4">
+                {recommendedPlaces.map((place) => (
+                  <div key={place.id} className="p-3 border-b last:border-b-0">
+                    <h4 className="font-medium text-gray-800">{place.name}</h4>
+                    <p className="text-sm text-gray-600 mt-1">{place.description}</p>
+                  </div>
+                ))}
+              </div>
             ) : (
               <p className="text-gray-500">No hay recomendaciones disponibles</p>
             )}
