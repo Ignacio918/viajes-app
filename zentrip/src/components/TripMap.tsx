@@ -25,9 +25,9 @@ const TripMap = ({ locations, selectedDay, onLocationClick }: TripMapProps) => {
   useEffect(() => {
     if (!mapRef.current) {
       mapRef.current = L.map('trip-map').setView([0, 0], 2);
-
+      
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
+        attribution: '© OpenStreetMap contributors'
       }).addTo(mapRef.current);
 
       markersRef.current = L.layerGroup().addTo(mapRef.current);
@@ -45,8 +45,8 @@ const TripMap = ({ locations, selectedDay, onLocationClick }: TripMapProps) => {
     const bounds = L.latLngBounds([]);
 
     // Filtrar ubicaciones por día si hay uno seleccionado
-    const filteredLocations = selectedDay
-      ? locations.filter((loc) => loc.day === selectedDay)
+    const filteredLocations = selectedDay 
+      ? locations.filter(loc => loc.day === selectedDay)
       : locations;
 
     filteredLocations.forEach((location, index) => {
@@ -55,8 +55,8 @@ const TripMap = ({ locations, selectedDay, onLocationClick }: TripMapProps) => {
         icon: L.divIcon({
           className: 'custom-marker',
           html: `<div class="marker-content">${index + 1}</div>`,
-          iconSize: [30, 30],
-        }),
+          iconSize: [30, 30]
+        })
       });
 
       // Agregar popup
@@ -77,11 +77,11 @@ const TripMap = ({ locations, selectedDay, onLocationClick }: TripMapProps) => {
     // Dibujar ruta
     if (filteredLocations.length > 1) {
       const route = L.polyline(
-        filteredLocations.map((loc) => loc.coordinates),
-        {
+        filteredLocations.map(loc => loc.coordinates),
+        { 
           color: '#E61C5D',
           weight: 3,
-          opacity: 0.8,
+          opacity: 0.8
         }
       ).addTo(markersRef.current);
     }

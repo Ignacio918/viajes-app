@@ -7,11 +7,14 @@ const Places: React.FC = () => {
   const [results, setResults] = useState<any[]>([]);
   const [center, setCenter] = useState<[number, number]>([0, 0]); // Centro del mapa
   const [recommendedPlaces, setRecommendedPlaces] = useState<Location[]>([]); // Lugares recomendados
+  const [error, setError] = useState<string | null>(null); // Estado de error
 
   const searchPlaces = async (query: string) => {
+    console.log('Buscando lugares para:', query); // Debug
+    setError(null); // Reset error state
     try {
       // Buscar la ubicación principal
-      const response = await axios.get('/api/search', {
+      const response = await axios.get('https://nominatim.openstreetmap.org/search', {
         params: {
           q: query,
           format: 'json',
@@ -20,7 +23,7 @@ const Places: React.FC = () => {
           limit: 1, // Solo necesitamos el primer resultado para el centro del mapa
         },
       });
-
+      
       console.log('Respuesta de la API:', response.data); // Verifica la respuesta
 
       if (response.data.length > 0) {
@@ -51,9 +54,11 @@ const Places: React.FC = () => {
       } else {
         console.log('No se encontraron resultados para la búsqueda.');
         setRecommendedPlaces([]); // Limpiar lugares recomendados si no hay resultados
+        setError('No se encontraron resultados para la búsqueda.'); // Establecer el mensaje de error
       }
     } catch (error: any) {
       console.error('Error al buscar lugares:', error.message);
+      setError('Error al buscar lugares.'); // Establecer el mensaje de error
     }
   };
 
@@ -63,12 +68,16 @@ const Places: React.FC = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!query.trim()) {
+      setError('Por favor, ingrese un término de búsqueda.'); // Validación del término de búsqueda
+      return;
+    }
     searchPlaces(query);
   };
 
   return (
     <div className="places-container">
-      <h2>Places</h2>
+      <h2>Buscar lugares</h2>
       <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
@@ -79,7 +88,8 @@ const Places: React.FC = () => {
         />
         <button type="submit" className="search-button">Buscar</button>
       </form>
-
+      {error && <div className="error-message">{error}</div>}
+      
       {/* Mostrar el mapa con TripMap */}
       <div style={{ height: '400px', marginTop: '20px' }}>
         {recommendedPlaces.length > 0 ? (
@@ -94,7 +104,7 @@ const Places: React.FC = () => {
           <p>No se encontraron lugares recomendados.</p>
         )}
       </div>
-
+      
       {/* Lista de lugares recomendados */}
       <ul className="places-list">
         {recommendedPlaces.map((place) => (
