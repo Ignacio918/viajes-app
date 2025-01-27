@@ -121,3 +121,29 @@
 .typewriter-secondary {
   @apply text-blue-500;
 }
+
+/* Estilos para Places */
+.places-container {
+  @apply p-8;
+}
+
+.places-list {
+  @apply list-disc pl-5 mt-4;
+}
+
+.places-list li {
+  @apply mb-2;
+}
+
+.search-form {
+  @apply flex flex-col md:flex-row gap-4;
+}
+
+.destination-input {
+  @apply flex-1 p-2 border border-gray-300 rounded-lg;
+}
+
+.search-button {
+  @apply p-2 bg-pink-600 text-white rounded-lg;
+  @apply hover:bg-pink-700 transition-colors duration-200;
+}
