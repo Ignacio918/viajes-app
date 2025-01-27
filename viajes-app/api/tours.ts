@@ -1,108 +1,257 @@
 // src/pages/api/tours.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import cors from 'cors';
 
+// Tipos
+interface APIResponse<T> {
+  data?: T;
+  error?: string;
+  status: number;
+}
+
+interface Availability {
+  startTime: string;
+  endTime: string;
+  vacancy: number;
+  pricing: {
+    retail: {
+      amount: number;
+      currency: string;
+    }
+  }
+}
+
+interface Booking {
+  bookingReference: string;
+  status: 'CONFIRMED' | 'CANCELLED' | 'PENDING';
+}
+
+interface Tour {
+  id: string;
+  title: string;
+  price: {
+    amount: number;
+    currency: string;
+  };
+  startTime: string;
+  endTime: string;
+  vacancy: number;
+  image: string;
+  description: string;
+}
+
+// Handler principal
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  await new Promise((resolve, reject) => {
-    cors()(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
+  // Verificar autenticación
+  if (!checkAuth(req)) {
+    return res.status(401).json({
+      error: 'Unauthorized',
+      status: 401
     });
-  });
-
-  if (req.method === 'GET' && req.query.type === 'availability') {
-    try {
-      if (!process.env.GYG_API_USERNAME || !process.env.GYG_API_PASSWORD) {
-        throw new Error('Credenciales de API faltantes');
-      }
-
-      // Cambio importante: URL según la documentación oficial de Partner API
-      const GYG_API_URL = 'https://partner.getyourguide.com/v1/activities';
-
-      // Parámetros según la documentación de Partner API
-      const params = new URLSearchParams({
-        'limit': '10',
-        'currency': 'USD',
-        'language': 'es',
-        'from': new Date().toISOString().split('T')[0],
-        'to': new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-      });
-
-      console.log('Intentando conectar a GetYourGuide Partner API...');
-      console.log('URL:', `${GYG_API_URL}?${params}`);
-      console.log('Usando credenciales:', process.env.GYG_API_USERNAME);
-
-      const response = await fetch(`${GYG_API_URL}?${params}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Basic ${Buffer.from(
-            `${process.env.GYG_API_USERNAME}:${process.env.GYG_API_PASSWORD}`
-          ).toString('base64')}`,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
-
-      console.log('Respuesta de GYG:', {
-        status: response.status,
-        statusText: response.statusText
-      });
-
-      const responseText = await response.text();
-      console.log('Respuesta raw:', responseText.substring(0, 200));
-
-      if (!response.ok) {
-        throw new Error(`Error de API: ${response.status} - ${responseText}`);
-      }
-
-      let data;
-      try {
-        data = JSON.parse(responseText);
-        console.log('Datos parseados:', data);
-
-        // Transformar los datos según el formato de Partner API
-        const tours = data.items?.map((item: any) => ({
-          id: item.id,
-          title: item.title,
-          price: {
-            amount: item.pricing?.retail?.value || 0,
-            currency: item.pricing?.retail?.currency || 'USD'
-          },
-          startTime: item.availability?.firstAvailableDate || new Date().toISOString(),
-          endTime: item.availability?.lastAvailableDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-          vacancy: item.availability?.vacancies || 0,
-          image: item.images?.[0]?.urls?.original || '',
-          description: item.abstract || item.description || ''
-        })) || [];
-
-        console.log('Tours procesados:', tours);
-
-        return res.status(200).json({
-          data: { tours },
-          status: 200
-        });
-      } catch (e) {
-        console.error('Error parseando respuesta:', e);
-        throw new Error('Error parseando respuesta de GetYourGuide');
-      }
-
-    } catch (error) {
-      console.error('Error completo:', error);
-      return res.status(500).json({
-        error: 'Error al cargar tours desde GetYourGuide',
-        status: 500,
-        details: error instanceof Error ? error.message : 'Error desconocido'
-      });
-    }
   }
 
-  return res.status(405).json({
-    error: 'Method not allowed',
-    status: 405
-  });
+  // Router basado en método
+  try {
+    switch(req.method) {
+      case 'GET':
+        if (req.query.type === 'availability') {
+          return handleAvailability(req, res);
+        }
+        break;
+      case 'POST':
+        if (req.query.type === 'booking') {
+          return handleBooking(req, res);
+        } else if (req.url?.includes('notify-availability')) {
+          return handleNotifyAvailability(req, res);
+        }
+        break;
+      default:
+        return res.status(405).json({
+          error: 'Method not allowed',
+          status: 405
+        });
+    }
+  } catch (error) {
+    console.error('Handler error:', error);
+    return res.status(500).json({
+      error: 'Internal server error',
+      status: 500,
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+}
+
+function checkAuth(req: VercelRequest): boolean {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader || !authHeader.startsWith('Basic ')) {
+    return false;
+  }
+
+  try {
+    const [username, password] = Buffer.from(authHeader.split(' ')[1], 'base64')
+      .toString()
+      .split(':');
+    
+    return username === process.env.GYG_API_USERNAME && 
+           password === process.env.GYG_API_PASSWORD;
+  } catch {
+    return false;
+  }
+}
+
+async function handleAvailability(
+  req: VercelRequest,
+  res: VercelResponse
+): Promise<void | VercelResponse> {
+  try {
+    console.log('Iniciando búsqueda de disponibilidad...');
+
+    // Intentar obtener tours de GetYourGuide
+    const gygTours = await fetchGYGTours();
+    
+    if (gygTours && gygTours.length > 0) {
+      return res.status(200).json({
+        data: { tours: gygTours },
+        status: 200
+      });
+    }
+
+    // Si no hay tours de GYG, usar datos de ejemplo
+    const availabilities = [
+      {
+        startTime: "2024-02-01T10:00:00+01:00",
+        endTime: "2024-02-01T12:00:00+01:00",
+        vacancy: 10,
+        pricing: {
+          retail: {
+            amount: 50,
+            currency: "EUR"
+          }
+        }
+      }
+    ];
+
+    // Convertir disponibilidades a formato de tours
+    const tours: Tour[] = availabilities.map((avail, index) => ({
+      id: `tour-${index + 1}`,
+      title: `Tour de Ejemplo ${index + 1}`,
+      price: {
+        amount: avail.pricing.retail.amount,
+        currency: avail.pricing.retail.currency
+      },
+      startTime: avail.startTime,
+      endTime: avail.endTime,
+      vacancy: avail.vacancy,
+      image: "https://via.placeholder.com/300",
+      description: "Tour de ejemplo para testing"
+    }));
+
+    return res.status(200).json({
+      data: { tours },
+      status: 200
+    });
+  } catch (error) {
+    console.error('Availability error:', error);
+    return res.status(500).json({
+      error: 'Internal server error',
+      status: 500
+    });
+  }
+}
+
+async function handleBooking(
+  req: VercelRequest,
+  res: VercelResponse
+): Promise<void | VercelResponse> {
+  try {
+    const booking = {
+      bookingReference: `BOOKING_${Date.now()}`,
+      status: 'CONFIRMED' as const
+    };
+
+    return res.status(200).json({
+      data: booking,
+      status: 200
+    });
+  } catch (error) {
+    console.error('Booking error:', error);
+    return res.status(500).json({
+      error: 'Internal server error',
+      status: 500
+    });
+  }
+}
+
+async function handleNotifyAvailability(
+  req: VercelRequest,
+  res: VercelResponse
+): Promise<void | VercelResponse> {
+  try {
+    console.log('Recibida notificación de disponibilidad:', req.body);
+    
+    return res.status(200).json({
+      status: 'success',
+      message: 'Availability update received'
+    });
+  } catch (error) {
+    console.error('Notify availability error:', error);
+    return res.status(500).json({
+      error: 'Error processing availability notification',
+      status: 500
+    });
+  }
+}
+
+async function fetchGYGTours(): Promise<Tour[] | null> {
+  try {
+    if (!process.env.GYG_API_USERNAME || !process.env.GYG_API_PASSWORD) {
+      console.error('Faltan credenciales de GYG');
+      return null;
+    }
+
+    const GYG_API_URL = 'https://supplier-api.getyourguide.com/1/products';
+    
+    console.log('Conectando con GetYourGuide API...');
+    
+    const response = await fetch(GYG_API_URL, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Basic ${Buffer.from(
+          `${process.env.GYG_API_USERNAME}:${process.env.GYG_API_PASSWORD}`
+        ).toString('base64')}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      console.error('Error en respuesta de GYG:', response.status);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('Datos recibidos de GYG:', data);
+
+    // Transformar datos de GYG al formato de Tour
+    return data.items?.map((item: any) => ({
+      id: item.id,
+      title: item.title,
+      price: {
+        amount: item.pricing?.retail?.value || 0,
+        currency: item.pricing?.retail?.currency || 'USD'
+      },
+      startTime: item.availabilityStart || new Date().toISOString(),
+      endTime: item.availabilityEnd || new Date(Date.now() + 86400000).toISOString(),
+      vacancy: item.vacancies || 0,
+      image: item.images?.[0]?.url || 'https://via.placeholder.com/300',
+      description: item.description || ''
+    })) || null;
+
+  } catch (error) {
+    console.error('Error fetching GYG tours:', error);
+    return null;
+  }
 }
