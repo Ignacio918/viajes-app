@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
-import { genAI, travelAIConfig } from 'src/config/ai-config';
+import { genAI, travelAIConfig } from '../src/config/ai-config';
 
 const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL!,
-  import.meta.env.VITE_SUPABASE_ANON_KEY!
+  process.env.VITE_SUPABASE_URL!,
+  process.env.VITE_SUPABASE_ANON_KEY!
 );
 
 export const sendChatMessage = async (message: string) => {
