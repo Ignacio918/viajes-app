@@ -188,29 +188,35 @@ const Landing: React.FC = () => {
         </section>
 
         <section className="tabs-section">
-          <div className="tabs-container">
-            <div className="tabs-navigation">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex gap-4 border-b border-gray-200">
               {['search', 'tours', 'flights', 'places'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as any)}
-                  className={`tab-button ${activeTab === tab ? 'active' : ''}`}
+                  className={`px-4 py-2 ${
+                    activeTab === tab 
+                      ? 'text-pink-600 border-b-2 border-pink-600' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
                 </button>
               ))}
             </div>
 
-            <div className="tabs-content">
+            <div className="py-6">
               {activeTab === 'search' && (
                 <div className="search-form">
                   <input
                     type="text"
                     placeholder="¿A dónde vas?"
-                    className="destination-input"
+                    className="p-3 border rounded-lg"
                   />
-                  <input type="date" className="date-input" />
-                  <button className="search-button">Buscar</button>
+                  <input type="date" className="p-3 border rounded-lg" />
+                  <button className="p-3 bg-pink-600 text-white rounded-lg">
+                    Buscar
+                  </button>
                 </div>
               )}
               {activeTab === 'tours' && <Tours />}
