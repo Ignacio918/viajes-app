@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Places from './Places';
 
 const TabsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('search');
-
-  console.log('TabsSection rendering, activeTab:', activeTab); // Debug log
 
   return (
     <section className="py-8 bg-white">
@@ -14,7 +11,10 @@ const TabsSection: React.FC = () => {
           {['search', 'tours', 'flights', 'places'].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => {
+                console.log('Tab clicked:', tab);
+                setActiveTab(tab);
+              }}
               className={`
                 px-4 py-2 text-sm font-medium transition-colors
                 ${activeTab === tab 
@@ -46,7 +46,23 @@ const TabsSection: React.FC = () => {
             </div>
           )}
           
-          {activeTab === 'places' && <Places />}
+          {activeTab === 'places' && (
+            <div className="places-search-container">
+              <h2 className="text-2xl font-bold mb-6">Buscar Destinos</h2>
+              <div className="flex gap-4">
+                <input
+                  type="text"
+                  placeholder="¿A dónde quieres ir?"
+                  className="flex-1 p-3 border rounded-lg"
+                />
+                <button 
+                  className="px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+                >
+                  Buscar
+                </button>
+              </div>
+            </div>
+          )}
           
           {activeTab === 'tours' && (
             <div className="text-center py-8 text-gray-500">
