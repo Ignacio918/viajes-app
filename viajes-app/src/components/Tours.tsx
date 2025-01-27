@@ -1,132 +1,117 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/Tours.css';
+import React, { useState } from 'react';
 
-interface City {
-  id: string;
-  name: string;
-  displayName: string; // Nombre para mostrar
+interface Availability {
+  startTime: string;
+  endTime: string;
+  vacancy: number;
+  pricing: {
+    retail: {
+      amount: number;
+      currency: string;
+    }
+  }
+}
+
+interface Booking {
+  bookingReference: string;
+  status: 'CONFIRMED' | 'CANCELLED' | 'PENDING';
 }
 
 const Tours: React.FC = () => {
-  const [selectedCity, setSelectedCity] = useState<string>('');
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [showResults, setShowResults] = useState<boolean>(false);
+  const [availabilities, setAvailabilities] = useState<Availability[]>([]);
+  const [bookingRef, setBookingRef] = useState('');
+  const [error, setError] = useState('');
 
-  // Mapeo correcto de ciudades con sus IDs exactos de GetYourGuide
-  const cities: { [key: string]: City } = {
-    'barcelona': { 
-      id: '60', 
-      name: 'barcelona',
-      displayName: 'Barcelona'
-    },
-    'madrid': { 
-      id: '62', 
-      name: 'madrid',
-      displayName: 'Madrid'
-    }
-    // Agregar más ciudades solo cuando tengamos sus IDs exactos verificados
-  };
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.async = true;
-    script.defer = true;
-    script.src = 'https://widget.getyourguide.com/dist/pa.umd.production.min.js';
-    script.setAttribute('data-gyg-partner-id', 'FRGBT5F');
-    document.head.appendChild(script);
-
-    return () => {
-      const existingScript = document.querySelector('script[src="https://widget.getyourguide.com/dist/pa.umd.production.min.js"]');
-      if (existingScript && existingScript.parentNode) {
-        existingScript.parentNode.removeChild(existingScript);
-      }
-    };
-  }, []);
-
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const searchValue = searchTerm.toLowerCase().trim();
-    
-    // Buscar la ciudad exacta
-    const cityFound = cities[searchValue];
-    
-    if (cityFound) {
-      setSelectedCity(cityFound.id);
-      setShowResults(true);
-      console.log(`Mostrando resultados para ${cityFound.displayName} con ID: ${cityFound.id}`);
-    } else {
-      alert('Por favor, selecciona una ciudad de la lista sugerida');
-      setShowResults(false);
+  const checkAvailability = async () => {
+    try {
+      const response = await fetch('/api/tours?type=availability', {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_GYG_USERNAME}:${import.meta.env.VITE_GYG_PASSWORD}`)
+        }
+      });
+      const { data } = await response.json();
+      setAvailabilities(data.availabilities);
+      setError('');
+    } catch (error) {
+      console.error('Error checking availability:', error);
+      setError('Error al cargar disponibilidad');
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    if (!e.target.value) {
-      setShowResults(false);
+  const makeBooking = async () => {
+    try {
+      const response = await fetch('/api/tours?type=booking', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Basic ' + btoa(`${import.meta.env.VITE_GYG_USERNAME}:${import.meta.env.VITE_GYG_PASSWORD}`),
+          'Content-Type': 'application/json'
+        }
+      });
+      const { data } = await response.json();
+      setBookingRef(data.bookingReference);
+      setError('');
+    } catch (error) {
+      console.error('Error making booking:', error);
+      setError('Error al realizar la reserva');
     }
   };
 
   return (
-    <div className="tours-container">
-      <div className="search-section">
-        <h2>Encuentra las mejores experiencias</h2>
-        <form onSubmit={handleSearch} className="search-form">
-          <input 
-            type="text" 
-            value={searchTerm}
-            onChange={handleInputChange}
-            placeholder="Buscar ciudad..." 
-            className="search-input"
-            list="cities-list"
-          />
-          <button type="submit" className="search-button">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-            </svg>
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Tours Disponibles</h2>
+      
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
+
+      <div className="space-y-6">
+        <div>
+          <button
+            onClick={checkAvailability}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Buscar Disponibilidad
           </button>
-          <datalist id="cities-list">
-            {Object.values(cities).map(city => (
-              <option key={city.id} value={city.displayName} />
-            ))}
-          </datalist>
-        </form>
-      </div>
 
-      {/* Resultados de búsqueda */}
-      {showResults && selectedCity && (
-        <div className="search-results">
-          <div className="widget-container">
-            <div 
-              data-gyg-href="https://widget.getyourguide.com/default/city.frame"
-              data-gyg-location-id={selectedCity}
-              data-gyg-locale-code="es-ES"
-              data-gyg-widget="city"
-              data-gyg-partner-id="FRGBT5F">
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Destinos Populares - Solo mostramos cuando no hay resultados de búsqueda */}
-      {!showResults && (
-        <div className="popular-destinations">
-          <h3>Destinos Populares</h3>
-          <div className="destinations-grid">
-            {Object.values(cities).slice(0, 2).map(city => (
-              <div key={city.id} className="destination-widget">
-                <div 
-                  data-gyg-href="https://widget.getyourguide.com/default/city.frame"
-                  data-gyg-location-id={city.id}
-                  data-gyg-locale-code="es-ES"
-                  data-gyg-widget="city"
-                  data-gyg-partner-id="FRGBT5F">
-                </div>
+          {availabilities.length > 0 && (
+            <div className="mt-4">
+              <h3 className="font-bold text-lg mb-2">Horarios Disponibles:</h3>
+              <div className="grid gap-4">
+                {availabilities.map((avail, index) => (
+                  <div key={index} className="border rounded-lg p-4 shadow">
+                    <p className="font-medium">
+                      Inicio: {new Date(avail.startTime).toLocaleString()}
+                    </p>
+                    <p className="font-medium">
+                      Fin: {new Date(avail.endTime).toLocaleString()}
+                    </p>
+                    <p>Lugares disponibles: {avail.vacancy}</p>
+                    <p className="font-bold text-lg mt-2">
+                      Precio: {avail.pricing.retail.amount} {avail.pricing.retail.currency}
+                    </p>
+                    <button
+                      onClick={makeBooking}
+                      className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Reservar
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
-      )}
+
+        {bookingRef && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+            <p className="font-bold">¡Reserva exitosa!</p>
+            <p>Número de referencia: {bookingRef}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
