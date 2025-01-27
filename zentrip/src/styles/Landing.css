@@ -176,3 +176,24 @@
 .trip-map {
   @apply w-full h-full rounded-lg;
 }
+
+.places-content {
+  @apply w-full;
+}
+
+.map-container {
+  @apply w-full border border-gray-200 shadow-lg;
+}
+
+/* Ajustes para el formulario de búsqueda en Places */
+.places-content .search-form {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+}
+
+.places-content .destination-input {
+  @apply md:col-span-3;
+}
+
+.places-content .search-button {
+  @apply md:col-span-1;
+}

@@ -1,9 +1,27 @@
 import React, { useState } from 'react';
 import Tours from './Tours';
 import Flights from './Flights';
+import TripMap from './TripMap';
 
 const TabsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('search');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [locations, setLocations] = useState<any[]>([]);
+
+  const handlePlacesSearch = () => {
+    console.log('Buscando:', searchQuery);
+    // Aquí agregaremos la lógica de búsqueda más adelante
+    // Por ahora solo para testing
+    setLocations([
+      {
+        id: '1',
+        name: 'Lugar de prueba',
+        coordinates: [-34.6037, -58.3816],
+        day: 1,
+        description: 'Descripción de prueba'
+      }
+    ]);
+  };
 
   return (
     <div className="tabs-container">
@@ -33,13 +51,31 @@ const TabsSection: React.FC = () => {
         )}
 
         {activeTab === 'places' && (
-          <div className="search-form">
-            <input
-              type="text"
-              className="destination-input"
-              placeholder="¿A dónde quieres ir?"
-            />
-            <button className="search-button">Buscar</button>
+          <div className="places-content">
+            <div className="search-form mb-6">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="destination-input"
+                placeholder="¿A dónde quieres ir?"
+              />
+              <button 
+                onClick={handlePlacesSearch}
+                className="search-button"
+              >
+                Buscar
+              </button>
+            </div>
+            
+            {/* Contenedor del mapa */}
+            <div className="map-container h-[400px] rounded-lg overflow-hidden">
+              <TripMap 
+                locations={locations}
+                selectedDay={1}
+                onLocationClick={(location) => console.log('Location clicked:', location)}
+              />
+            </div>
           </div>
         )}
 
