@@ -147,3 +147,21 @@
   @apply p-2 bg-pink-600 text-white rounded-lg;
   @apply hover:bg-pink-700 transition-colors duration-200;
 }
+
+/* Estilos para el contenido de las pestañas */
+.tabs-content {
+  @apply w-full;
+}
+
+.places-tab-content {
+  @apply w-full max-w-7xl mx-auto px-4;
+}
+
+/* Asegurarse que el mapa tenga altura */
+.trip-map-container {
+  @apply w-full h-[500px];
+}
+
+.trip-map {
+  @apply w-full h-full rounded-lg;
+}
