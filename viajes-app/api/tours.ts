@@ -63,16 +63,28 @@ async function handleTours(
   res: VercelResponse
 ) {
   try {
+    if (!process.env.VITE_GYG_USERNAME || !process.env.VITE_GYG_PASSWORD) {
+      throw new Error('Credenciales de GetYourGuide no configuradas');
+    }
+
     // URL base para la API pública de GetYourGuide
-    const GYG_API_URL = 'https://api.getyourguide.com/1/tours';
+    const GYG_API_URL = 'https://api.getyourguide.com/1/activities';
     
+    // Obtener fecha actual y fecha en 30 días
+    const today = new Date();
+    const thirtyDaysFromNow = new Date(today);
+    thirtyDaysFromNow.setDate(today.getDate() + 30);
+
     const params = new URLSearchParams({
-      cnt: '10',
+      limit: '10',
       currency: 'USD',
-      language: 'es'
+      lang: 'es',
+      date_from: today.toISOString().split('T')[0],
+      date_to: thirtyDaysFromNow.toISOString().split('T')[0],
+      q: 'tours'  // Búsqueda general de tours
     });
 
-    console.log('Fetching tours...');
+    console.log('Fetching tours with params:', params.toString());
 
     const response = await fetch(`${GYG_API_URL}?${params}`, {
       method: 'GET',
@@ -81,7 +93,8 @@ async function handleTours(
           `${process.env.VITE_GYG_USERNAME}:${process.env.VITE_GYG_PASSWORD}`
         ).toString('base64')}`,
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'ZenTrip/1.0'
       }
     });
 
@@ -90,28 +103,38 @@ async function handleTours(
       console.error('GetYourGuide API error:', {
         status: response.status,
         statusText: response.statusText,
-        error: errorText
+        error: errorText,
+        url: GYG_API_URL,
+        params: params.toString()
       });
-      throw new Error(`GetYourGuide API responded with status: ${response.status}`);
+      throw new Error(`GetYourGuide API responded with status: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
-    console.log('GetYourGuide API response received');
+    console.log('GetYourGuide API response:', data);
+
+    // Si no hay datos, devolver array vacío
+    if (!data || !Array.isArray(data.data)) {
+      return res.status(200).json({
+        data: { tours: [] },
+        status: 200
+      });
+    }
 
     // Transformar los datos
-    const tours = Array.isArray(data) ? data.map((tour: any) => ({
+    const tours = data.data.map((tour: any) => ({
       id: tour.id || '',
-      title: tour.title || '',
+      title: tour.title || 'Tour sin título',
       price: {
-        amount: tour.price || 0,
-        currency: tour.currency || 'USD'
+        amount: parseFloat(tour.price_from || '0'),
+        currency: tour.price_currency || 'USD'
       },
-      startTime: tour.startTime || new Date().toISOString(),
-      endTime: tour.endTime || new Date(Date.now() + 7200000).toISOString(),
-      vacancy: tour.vacancy || 10,
-      image: tour.primaryImage || tour.image || '',
-      description: tour.description || ''
-    })) : [];
+      startTime: tour.available_from || today.toISOString(),
+      endTime: tour.available_to || thirtyDaysFromNow.toISOString(),
+      vacancy: parseInt(tour.availability || '10'),
+      image: tour.photos?.[0]?.url || '',
+      description: tour.abstract || tour.description || 'Sin descripción'
+    }));
 
     return res.status(200).json({
       data: { tours },
@@ -141,7 +164,7 @@ async function handleBooking(
       });
     }
 
-    const GYG_API_URL = `https://api.getyourguide.com/1/tours/${tourId}/book`;
+    const GYG_API_URL = `https://api.getyourguide.com/1/activities/${tourId}/bookings`;
 
     const bookingResponse = await fetch(GYG_API_URL, {
       method: 'POST',
@@ -150,13 +173,16 @@ async function handleBooking(
           `${process.env.VITE_GYG_USERNAME}:${process.env.VITE_GYG_PASSWORD}`
         ).toString('base64')}`,
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'ZenTrip/1.0'
       },
       body: JSON.stringify({
         date,
         participants: {
           adults: participants
-        }
+        },
+        currency: 'USD',
+        lang: 'es'
       })
     });
 
