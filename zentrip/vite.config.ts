@@ -11,5 +11,14 @@ export default defineConfig({
   },
   css: {
     modules: false,
-  }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://nominatim.openstreetmap.org',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });
