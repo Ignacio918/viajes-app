@@ -27,7 +27,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const auth = Buffer.from(`${username}:${password}`).toString('base64');
 
-    // Construir la URL y hacer la solicitud
+    // Log para verificar credenciales y URL
+    console.log('Credenciales configuradas:', !!username, !!password);
+    console.log('URL solicitada:', `${GYG_API_BASE_URL}/v2/tours?type=${type}`);
+
+    // Construir la solicitud a la API
     const response = await fetch(`${GYG_API_BASE_URL}/v2/tours?type=${type}`, {
       method: 'GET',
       headers: {
@@ -36,12 +40,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     });
 
+    // Log para verificar el estado de la respuesta
+    console.log('Estado de la respuesta:', response.status);
+
     if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Error en la API de GetYourGuide: ${response.status} - ${errorText}`);
+      const errorText = await response.text(); // Capturar la respuesta en texto si hay error
+      console.error('Error en la respuesta de la API:', errorText);
+      throw new Error(`Error en la API: ${response.status} - ${errorText}`);
     }
 
+    // Procesar y enviar los datos JSON
     const data = await response.json();
+    console.log('Datos recibidos de la API:', data);
+
     res.status(200).json(data); // Enviar los datos al cliente
   } catch (error: any) {
     console.error('Error al obtener los tours:', error.message);
