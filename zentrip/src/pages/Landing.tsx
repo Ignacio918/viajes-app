@@ -9,8 +9,8 @@ const Landing: React.FC = () => {
   return (
     <div className="landing-container">
       <Navbar />
-      <HeroSection />
-      <TravelTabs />
+
+
     </div>
   );
 };
