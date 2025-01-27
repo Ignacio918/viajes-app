@@ -124,7 +124,15 @@
 
 /* Estilos para Places */
 .places-container {
-  @apply p-8;
+  @apply w-full max-w-4xl mx-auto;
+}
+
+.places-container input {
+  @apply focus:ring-2 focus:ring-pink-200 focus:border-pink-500;
+}
+
+.places-container button {
+  @apply hover:bg-pink-700 transition-colors;
 }
 
 .places-list {
