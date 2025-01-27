@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./styles/Sidebar.css";
+@import 'leaflet/dist/leaflet.css';
+
+@layer base {
+  /* Ocultar scrollbar pero mantener funcionalidad */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /* Desactivar la selección de texto */
+  body,
+  div,
+  img,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span {
+    user-select: none;
+    cursor: default;
+  }
+
+  /* Permitir selección en inputs */
+  input,
+  textarea {
+    user-select: text;
+    cursor: text;
+  }
+}
+
+/* Fuente Urbanist */
+@font-face {
+  font-family: "Urbanist";
+  src: url("../assets/fonts/Urbanist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("../assets/fonts/Urbanist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

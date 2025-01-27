@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS", // Cambiado para garantizar compatibilidad con ts-node
+    "moduleResolution": "node", // Resolución más compatible con entornos Node.js
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false, // Cambiado para permitir compilación a JavaScript si es necesario
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "api/chat.ts", "api/tours.ts", "tests/**/*"], // Incluye todos los tests
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "esm": false, // Cambiado a false para evitar conflictos con módulos ESM
+    "compilerOptions": {
+      "module": "commonjs" // Forzar CommonJS para ts-node
+    }
+  }
+}

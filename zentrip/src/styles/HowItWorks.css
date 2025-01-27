@@ -1,0 +1,235 @@
+/* src/styles/HowItWorks.css */
+.how-it-works {
+  @apply w-full bg-[#FDFDFD] dark:bg-gray-900 transition-colors duration-300;
+  padding: 64px 0 128px 0;
+}
+
+.how-it-works__container {
+  @apply max-w-[1440px] mx-auto flex items-start gap-[160px];
+  padding: 0 112px;
+}
+
+.how-it-works__image-container {
+  @apply relative;
+  width: 550px;
+}
+
+.how-it-works__image {
+  @apply w-full h-[800px] rounded-[20px] dark:brightness-90 transition-all duration-300;
+  object-fit: cover;
+  box-shadow: 
+    0 4px 44px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.how-it-works__right {
+  @apply w-[554px] flex flex-col gap-8;
+  padding-top: 67px;
+}
+
+.SectionBadge {
+  @apply flex items-center justify-center bg-[#FFE8EF] dark:bg-pink-900/20 rounded-[36px] transition-colors duration-300;
+  width: fit-content;
+  min-width: 69px;
+  max-width: 200px;
+  height: 22px;
+  padding: 0 16px;
+  animation: slideIn 0.6s ease-out;
+}
+
+.SectionBadge__text {
+  @apply text-[#E61C5D] dark:text-pink-500 font-urbanist font-medium transition-colors duration-300;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.how-it-works__title {
+  @apply w-[554px] text-[48px] text-[#161616] dark:text-white font-urbanist font-bold leading-[60px] transition-colors duration-300;
+  animation: slideIn 0.6s ease-out 0.2s backwards;
+}
+
+.how-it-works__features {
+  @apply grid grid-cols-2 gap-8;
+}
+
+.how-it-works__feature {
+  @apply w-[261px] flex flex-col gap-4;
+  animation: fadeUp 0.6s ease-out backwards;
+}
+
+/* Aplicando delays a cada feature */
+.how-it-works__feature:nth-child(1) { animation-delay: 0.3s; }
+.how-it-works__feature:nth-child(2) { animation-delay: 0.4s; }
+.how-it-works__feature:nth-child(3) { animation-delay: 0.5s; }
+.how-it-works__feature:nth-child(4) { animation-delay: 0.6s; }
+
+.how-it-works__feature-icon {
+  @apply w-12 h-12 p-3 bg-[#E61C5D] dark:bg-pink-600 rounded-full flex items-center justify-center transition-all duration-300;
+}
+
+.how-it-works__feature:hover .how-it-works__feature-icon {
+  transform: scale(1.1);
+}
+
+.how-it-works__icon-image {
+  @apply w-full h-full dark:filter dark:invert transition-all duration-300;
+}
+
+.how-it-works__feature-content {
+  @apply flex flex-col gap-2.5;
+}
+
+.how-it-works__feature-title {
+  @apply text-xl text-[#161616] dark:text-white font-urbanist font-bold leading-[30px] transition-colors duration-300;
+}
+
+.how-it-works__feature-text {
+  @apply text-base text-[#3E3E3E] dark:text-gray-400 font-urbanist font-medium leading-6 transition-colors duration-300;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media queries */
+@media (min-width: 1440px) {
+  .SectionBadge {
+    width: fit-content;
+    max-width: 200px;
+    height: auto;
+    padding: 4px 16px;
+  }
+  
+  .SectionBadge__text {
+    font-size: 18px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1439px) {
+  .how-it-works__container {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .how-it-works__container {
+    @apply flex-col items-center px-8;
+  }
+  
+  .how-it-works__right {
+    @apply mt-8;
+  }
+
+  .how-it-works__title {
+    @apply text-center;
+  }
+
+  .SectionBadge {
+    @apply mx-auto;
+    width: fit-content;
+    max-width: 200px;
+    padding: 4px 16px;
+  }
+  
+  .SectionBadge__text {
+    font-size: 16px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  
+  .how-it-works__image-container {
+    width: 100%;
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .how-it-works {
+    padding: 32px 0 64px 0;
+  }
+  
+  .how-it-works__container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .how-it-works__container {
+    padding: 0 24px;
+  }
+
+  .SectionBadge {
+    width: fit-content;
+    max-width: 200px;
+    padding: 4px 16px;
+  }
+
+  .SectionBadge__text {
+    font-size: 16px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  
+  .how-it-works__image {
+    height: auto;
+    aspect-ratio: 550/800;
+  }
+  
+  .how-it-works__right {
+    @apply w-full;
+  }
+  
+  .how-it-works__title {
+    @apply w-full text-3xl;
+  }
+  
+  .how-it-works__features {
+    @apply grid-cols-1;
+  }
+  
+  .how-it-works__feature {
+    @apply w-full;
+  }
+}
+
+@media (max-width: 480px) {
+  .how-it-works__container {
+    padding: 0 16px;
+  }
+
+  .how-it-works__feature-icon {
+    @apply w-10 h-10 p-2;
+  }
+}
