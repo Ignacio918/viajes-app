@@ -17,26 +17,25 @@ export default async function handler(
 
   if (req.method === 'GET' && req.query.type === 'availability') {
     try {
-      console.log('Variables de entorno disponibles:', {
-        hasUsername: !!process.env.GYG_API_USERNAME,
-        hasPassword: !!process.env.GYG_API_PASSWORD
-      });
-
       if (!process.env.GYG_API_USERNAME || !process.env.GYG_API_PASSWORD) {
         throw new Error('Credenciales de API faltantes');
       }
 
-      const GYG_API_URL = 'https://api.getyourguide.com/1/tours';
-      
+      // Cambio importante: URL según la documentación oficial de Partner API
+      const GYG_API_URL = 'https://partner.getyourguide.com/v1/activities';
+
+      // Parámetros según la documentación de Partner API
       const params = new URLSearchParams({
-        cnt: '10',
-        currency: 'USD',
-        date_from: new Date().toISOString().split('T')[0],
-        date_to: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-        lang: 'es'
+        'limit': '10',
+        'currency': 'USD',
+        'language': 'es',
+        'from': new Date().toISOString().split('T')[0],
+        'to': new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
       });
 
-      console.log('URL de la petición:', `${GYG_API_URL}?${params}`);
+      console.log('Intentando conectar a GetYourGuide Partner API...');
+      console.log('URL:', `${GYG_API_URL}?${params}`);
+      console.log('Usando credenciales:', process.env.GYG_API_USERNAME);
 
       const response = await fetch(`${GYG_API_URL}?${params}`, {
         method: 'GET',
@@ -49,16 +48,40 @@ export default async function handler(
         }
       });
 
-      console.log('Estado de la respuesta:', response.status);
+      console.log('Respuesta de GYG:', {
+        status: response.status,
+        statusText: response.statusText
+      });
+
       const responseText = await response.text();
-      console.log('Respuesta:', responseText.substring(0, 200));
+      console.log('Respuesta raw:', responseText.substring(0, 200));
+
+      if (!response.ok) {
+        throw new Error(`Error de API: ${response.status} - ${responseText}`);
+      }
 
       let data;
       try {
         data = JSON.parse(responseText);
         console.log('Datos parseados:', data);
 
-        const tours = Array.isArray(data) ? data : (data.data || []);
+        // Transformar los datos según el formato de Partner API
+        const tours = data.items?.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          price: {
+            amount: item.pricing?.retail?.value || 0,
+            currency: item.pricing?.retail?.currency || 'USD'
+          },
+          startTime: item.availability?.firstAvailableDate || new Date().toISOString(),
+          endTime: item.availability?.lastAvailableDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+          vacancy: item.availability?.vacancies || 0,
+          image: item.images?.[0]?.urls?.original || '',
+          description: item.abstract || item.description || ''
+        })) || [];
+
+        console.log('Tours procesados:', tours);
+
         return res.status(200).json({
           data: { tours },
           status: 200
