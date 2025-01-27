@@ -135,6 +135,8 @@ const Landing: React.FC = () => {
     }
   };
 
+  console.log('Active tab:', activeTab);
+
   return (
     <div className="landing-container">
       <Navbar />
@@ -187,13 +189,16 @@ const Landing: React.FC = () => {
           </div>
         </section>
 
-        <section className="tabs-section">
+        <section className="tabs-section py-8">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex gap-4 border-b border-gray-200">
+            <div className="flex gap-4 border-b border-gray-200 mb-6">
               {['search', 'tours', 'flights', 'places'].map((tab) => (
                 <button
                   key={tab}
-                  onClick={() => setActiveTab(tab as any)}
+                  onClick={() => {
+                    console.log('Clicking tab:', tab);
+                    setActiveTab(tab as any);
+                  }}
                   className={`px-4 py-2 ${
                     activeTab === tab 
                       ? 'text-pink-600 border-b-2 border-pink-600' 
@@ -205,15 +210,18 @@ const Landing: React.FC = () => {
               ))}
             </div>
 
-            <div className="py-6">
+            <div className="tab-content">
               {activeTab === 'search' && (
-                <div className="search-form">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <input
                     type="text"
                     placeholder="¿A dónde vas?"
                     className="p-3 border rounded-lg"
                   />
-                  <input type="date" className="p-3 border rounded-lg" />
+                  <input 
+                    type="date" 
+                    className="p-3 border rounded-lg"
+                  />
                   <button className="p-3 bg-pink-600 text-white rounded-lg">
                     Buscar
                   </button>
@@ -221,7 +229,11 @@ const Landing: React.FC = () => {
               )}
               {activeTab === 'tours' && <Tours />}
               {activeTab === 'flights' && <Flights />}
-              {activeTab === 'places' && <Places />}
+              {activeTab === 'places' && (
+                <div className="places-content">
+                  <Places />
+                </div>
+              )}
             </div>
           </div>
         </section>
