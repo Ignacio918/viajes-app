@@ -1,5 +1,6 @@
 // src/pages/api/tours.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import cors from 'cors';
 
 // Tipos
 interface APIResponse<T> {
@@ -30,6 +31,16 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
+  // Habilitar CORS
+  await new Promise((resolve, reject) => {
+    cors()(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+
   // Verificar autenticación
   if (!checkAuth(req)) {
     return res.status(401).json({
@@ -82,19 +93,37 @@ async function handleAvailability(
   res: VercelResponse
 ) {
   try {
-    const availabilities = [
-      {
-        startTime: "2024-02-01T10:00:00+01:00",
-        endTime: "2024-02-01T12:00:00+01:00",
-        vacancy: 10,
-        pricing: {
-          retail: {
-            amount: 50,
-            currency: "EUR"
-          }
+    const GYG_API_URL = 'https://api.getyourguide.com/1/tours';
+    
+    const response = await fetch(GYG_API_URL, {
+      headers: {
+        'Authorization': `Basic ${Buffer.from(
+          `${process.env.VITE_GYG_USERNAME}:${process.env.VITE_GYG_PASSWORD}`
+        ).toString('base64')}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      console.error('GetYourGuide API error:', await response.text());
+      throw new Error(`GetYourGuide API responded with status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    // Transformar la respuesta al formato esperado
+    const availabilities = data.data?.map((tour: any) => ({
+      startTime: tour.startTime || new Date().toISOString(),
+      endTime: tour.endTime || new Date(Date.now() + 7200000).toISOString(), // +2 horas
+      vacancy: tour.vacancy || 10,
+      pricing: {
+        retail: {
+          amount: tour.price?.amount || 50,
+          currency: tour.price?.currency || "EUR"
         }
       }
-    ];
+    })) || [];
 
     return res.status(200).json({
       data: { availabilities },
@@ -103,7 +132,7 @@ async function handleAvailability(
   } catch (error) {
     console.error('Availability error:', error);
     return res.status(500).json({
-      error: 'Internal server error',
+      error: 'Error al cargar disponibilidad desde GetYourGuide',
       status: 500
     });
   }
@@ -114,9 +143,43 @@ async function handleBooking(
   res: VercelResponse
 ) {
   try {
+    const { tourId, date, participants } = req.body;
+
+    // Validar datos requeridos
+    if (!tourId || !date || !participants) {
+      return res.status(400).json({
+        error: 'Faltan datos requeridos para la reserva',
+        status: 400
+      });
+    }
+
+    const GYG_API_URL = `https://api.getyourguide.com/1/tours/${tourId}/bookings`;
+    
+    const bookingResponse = await fetch(GYG_API_URL, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${Buffer.from(
+          `${process.env.VITE_GYG_USERNAME}:${process.env.VITE_GYG_PASSWORD}`
+        ).toString('base64')}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        date,
+        participants
+      })
+    });
+
+    if (!bookingResponse.ok) {
+      console.error('Booking error response:', await bookingResponse.text());
+      throw new Error(`Error en la reserva: ${bookingResponse.status}`);
+    }
+
+    const bookingData = await bookingResponse.json();
+
     const booking = {
-      bookingReference: `BOOKING_${Date.now()}`,
-      status: 'CONFIRMED' as const
+      bookingReference: bookingData.reference || `BOOKING_${Date.now()}`,
+      status: bookingData.status || 'CONFIRMED' as const
     };
 
     return res.status(200).json({
@@ -126,7 +189,7 @@ async function handleBooking(
   } catch (error) {
     console.error('Booking error:', error);
     return res.status(500).json({
-      error: 'Internal server error',
+      error: 'Error al procesar la reserva',
       status: 500
     });
   }
