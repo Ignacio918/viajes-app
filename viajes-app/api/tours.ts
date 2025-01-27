@@ -10,6 +10,8 @@ interface APIResponse<T> {
 }
 
 interface Availability {
+  id: string;
+  title: string;
   startTime: string;
   endTime: string;
   vacancy: number;
@@ -18,7 +20,9 @@ interface Availability {
       amount: number;
       currency: string;
     }
-  }
+  };
+  image: string;
+  description: string;
 }
 
 interface Booking {
@@ -41,14 +45,6 @@ export default async function handler(
     });
   });
 
-  // Verificar autenticación
-  if (!checkAuth(req)) {
-    return res.status(401).json({
-      error: 'Unauthorized',
-      status: 401
-    });
-  }
-
   // Router basado en método
   switch(req.method) {
     case 'GET':
@@ -69,44 +65,40 @@ export default async function handler(
   }
 }
 
-function checkAuth(req: VercelRequest): boolean {
-  const authHeader = req.headers.authorization;
-  
-  if (!authHeader || !authHeader.startsWith('Basic ')) {
-    return false;
-  }
-
-  try {
-    const [username, password] = Buffer.from(authHeader.split(' ')[1], 'base64')
-      .toString()
-      .split(':');
-    
-    return username === process.env.VITE_GYG_USERNAME && 
-           password === process.env.VITE_GYG_PASSWORD;
-  } catch {
-    return false;
-  }
-}
-
 async function handleAvailability(
   req: VercelRequest,
   res: VercelResponse
 ) {
   try {
-    const GYG_API_URL = 'https://api.getyourguide.com/1/tours';
+    // La URL base de GetYourGuide
+    const GYG_API_URL = 'https://api.getyourguide.com/1/tours/availability';
     
-    const response = await fetch(GYG_API_URL, {
+    // Parámetros de búsqueda
+    const params = new URLSearchParams({
+      cnt: '10', // número de resultados
+      currency: 'USD',
+      date_from: new Date().toISOString().split('T')[0],
+      date_to: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // +30 días
+      lang: 'es', // idioma español
+    });
+
+    // Realizar la petición a GetYourGuide
+    const response = await fetch(`${GYG_API_URL}?${params}`, {
+      method: 'GET',
       headers: {
         'Authorization': `Basic ${Buffer.from(
           `${process.env.VITE_GYG_USERNAME}:${process.env.VITE_GYG_PASSWORD}`
         ).toString('base64')}`,
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-API-Version': '2023-09-01',
+        'User-Agent': 'ZenTrip/1.0'
       }
     });
 
     if (!response.ok) {
-      console.error('GetYourGuide API error:', await response.text());
+      const errorText = await response.text();
+      console.error('GetYourGuide API error:', errorText);
       throw new Error(`GetYourGuide API responded with status: ${response.status}`);
     }
 
@@ -114,15 +106,19 @@ async function handleAvailability(
     
     // Transformar la respuesta al formato esperado
     const availabilities = data.data?.map((tour: any) => ({
-      startTime: tour.startTime || new Date().toISOString(),
-      endTime: tour.endTime || new Date(Date.now() + 7200000).toISOString(), // +2 horas
-      vacancy: tour.vacancy || 10,
+      id: tour.tour_id || '',
+      title: tour.title || '',
+      startTime: tour.available_from || new Date().toISOString(),
+      endTime: tour.available_to || new Date(Date.now() + 7200000).toISOString(),
+      vacancy: tour.availability || 0,
       pricing: {
         retail: {
-          amount: tour.price?.amount || 50,
-          currency: tour.price?.currency || "EUR"
+          amount: tour.price_from || 0,
+          currency: tour.currency || "USD"
         }
-      }
+      },
+      image: tour.image_url || '',
+      description: tour.description || ''
     })) || [];
 
     return res.status(200).json({
@@ -133,7 +129,8 @@ async function handleAvailability(
     console.error('Availability error:', error);
     return res.status(500).json({
       error: 'Error al cargar disponibilidad desde GetYourGuide',
-      status: 500
+      status: 500,
+      details: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 }
@@ -153,8 +150,10 @@ async function handleBooking(
       });
     }
 
+    // URL para realizar la reserva
     const GYG_API_URL = `https://api.getyourguide.com/1/tours/${tourId}/bookings`;
     
+    // Realizar la petición de reserva a GetYourGuide
     const bookingResponse = await fetch(GYG_API_URL, {
       method: 'POST',
       headers: {
@@ -162,16 +161,23 @@ async function handleBooking(
           `${process.env.VITE_GYG_USERNAME}:${process.env.VITE_GYG_PASSWORD}`
         ).toString('base64')}`,
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-API-Version': '2023-09-01',
+        'User-Agent': 'ZenTrip/1.0'
       },
       body: JSON.stringify({
         date,
-        participants
+        participants: {
+          adults: participants
+        },
+        currency: 'USD',
+        lang: 'es'
       })
     });
 
     if (!bookingResponse.ok) {
-      console.error('Booking error response:', await bookingResponse.text());
+      const errorText = await bookingResponse.text();
+      console.error('Booking error response:', errorText);
       throw new Error(`Error en la reserva: ${bookingResponse.status}`);
     }
 
@@ -179,7 +185,8 @@ async function handleBooking(
 
     const booking = {
       bookingReference: bookingData.reference || `BOOKING_${Date.now()}`,
-      status: bookingData.status || 'CONFIRMED' as const
+      status: bookingData.status || 'CONFIRMED' as const,
+      details: bookingData
     };
 
     return res.status(200).json({
@@ -190,7 +197,8 @@ async function handleBooking(
     console.error('Booking error:', error);
     return res.status(500).json({
       error: 'Error al procesar la reserva',
-      status: 500
+      status: 500,
+      details: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 }
