@@ -8,7 +8,6 @@ import Places from '../components/Places';
 import Packages from '../components/Packages';
 import '../styles/Landing.css';
 
-// Interface for the message structure
 interface Message {
   id: string;
   content: string;
@@ -34,22 +33,18 @@ const Landing: React.FC = () => {
     },
   ];
 
-  // Function to scroll to the bottom of the messages container
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Use effect to scroll to bottom whenever messages change
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  // Handle input change for the chat input
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputMessage(e.target.value);
   };
 
-  // Handle sending message
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
@@ -67,7 +62,6 @@ const Landing: React.FC = () => {
     setIsTyping(true);
 
     try {
-      // Simulate sending message and receiving a response
       const response = "Simulated response for the input: " + currentInput;
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
