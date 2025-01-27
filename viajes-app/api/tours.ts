@@ -145,7 +145,7 @@ async function handleAvailability(
       startTime: avail.startTime,
       endTime: avail.endTime,
       vacancy: avail.vacancy,
-      image: "https://via.placeholder.com/300",
+      image: "https://picsum.photos/300/200",
       description: "Tour de ejemplo para testing"
     }));
 
