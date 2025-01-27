@@ -6,6 +6,14 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
+  // Agregar logs iniciales
+  console.log('Environment variables check:');
+  console.log('GYG_API_USERNAME exists:', !!process.env.GYG_API_USERNAME);
+  console.log('GYG_API_PASSWORD exists:', !!process.env.GYG_API_PASSWORD);
+  
+  // También verificar todas las variables de entorno disponibles (sin mostrar valores)
+  console.log('Available environment variables:', Object.keys(process.env));
+
   // Habilitar CORS
   await new Promise((resolve, reject) => {
     cors()(req, res, (result) => {
@@ -18,36 +26,42 @@ export default async function handler(
 
   if (req.method === 'GET' && req.query.type === 'availability') {
     try {
-      // Verificar credenciales de GYG (no las de tu cuenta)
+      // Verificar credenciales
       if (!process.env.GYG_API_USERNAME || !process.env.GYG_API_PASSWORD) {
+        console.error('Missing credentials:', {
+          username: !process.env.GYG_API_USERNAME ? 'missing' : 'present',
+          password: !process.env.GYG_API_PASSWORD ? 'missing' : 'present'
+        });
         throw new Error('Credenciales de API de GetYourGuide no configuradas');
       }
 
-      // URL correcta según la documentación
+      // URL de la API
       const GYG_API_URL = 'https://api.getyourguide.com/1/tours';
 
-      console.log('Conectando a GetYourGuide...');
+      console.log('Iniciando petición a GetYourGuide');
+      console.log('URL:', GYG_API_URL);
+
+      // Crear las credenciales
+      const credentials = Buffer.from(
+        `${process.env.GYG_API_USERNAME}:${process.env.GYG_API_PASSWORD}`
+      ).toString('base64');
+      
+      console.log('Credentials created (not showing actual value)');
 
       const response = await fetch(GYG_API_URL, {
         method: 'GET',
         headers: {
-          'Authorization': `Basic ${Buffer.from(
-            `${process.env.GYG_API_USERNAME}:${process.env.GYG_API_PASSWORD}`
-          ).toString('base64')}`,
+          'Authorization': `Basic ${credentials}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
       });
 
-      console.log('Status:', response.status);
+      console.log('Response status:', response.status);
       const responseText = await response.text();
-      console.log('Respuesta:', responseText.substring(0, 200)); // Primeros 200 caracteres para debugging
+      console.log('Response text:', responseText.substring(0, 200));
 
-      if (!response.ok) {
-        throw new Error(`GetYourGuide API responded with status: ${response.status} - ${responseText}`);
-      }
-
-      // Para testing, si no hay respuesta válida, devolver datos de ejemplo
+      // Devolver datos de ejemplo por ahora
       const mockTours = [{
         id: "mock1",
         title: "Tour de Ejemplo",
@@ -62,28 +76,27 @@ export default async function handler(
         description: "Tour de ejemplo para testing"
       }];
 
-      try {
-        const data = JSON.parse(responseText);
-        const tours = data.data || mockTours;
-        return res.status(200).json({
-          data: { tours },
-          status: 200
-        });
-      } catch (e) {
-        console.error('Error parseando JSON:', e);
-        // Devolver datos de ejemplo si hay error
-        return res.status(200).json({
-          data: { tours: mockTours },
-          status: 200
-        });
-      }
+      return res.status(200).json({
+        data: { tours: mockTours },
+        status: 200,
+        debug: {
+          hasUsername: !!process.env.GYG_API_USERNAME,
+          hasPassword: !!process.env.GYG_API_PASSWORD,
+          apiUrl: GYG_API_URL
+        }
+      });
 
     } catch (error) {
-      console.error('Error detallado:', error);
+      console.error('Error completo:', error);
       return res.status(500).json({
         error: 'Error al cargar tours desde GetYourGuide',
         status: 500,
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
+        debug: {
+          hasUsername: !!process.env.GYG_API_USERNAME,
+          hasPassword: !!process.env.GYG_API_PASSWORD,
+          envVars: Object.keys(process.env)
+        }
       });
     }
   }
