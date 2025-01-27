@@ -215,11 +215,7 @@ const Landing: React.FC = () => {
               )}
               {activeTab === 'tours' && <Tours />}
               {activeTab === 'flights' && <Flights />}
-              {activeTab === 'places' && (
-                <div className="places-tab-content">
-                  <Places />
-                </div>
-              )}
+              {activeTab === 'places' && <Places />}
             </div>
           </div>
         </section>
