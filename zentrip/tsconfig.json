@@ -2,10 +2,12 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
+    "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "jsx": "react"
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src"],
-  "references": []
+  "exclude": ["node_modules"]
 }
