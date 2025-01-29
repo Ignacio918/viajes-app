@@ -1,4 +1,4 @@
-import type React from "react"
+import React from 'react';
 import { Outlet, useLocation } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
 import DashboardNavbar from "../components/DashboardNavbar"

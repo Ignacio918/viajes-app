@@ -1,3 +1,4 @@
+import React from 'react';
 // src/pages/HowItWorks.tsx
 import { useTheme } from '../context/ThemeContext';
 import fotoRandom3 from '../assets/photos/foto_random3.png';

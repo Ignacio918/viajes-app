@@ -126,7 +126,7 @@ DELETE http://localhost:3000/api/gyg/deals/DEAL-1738098380877
 Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
 
 ### Notify Availability Update
-POST https://supplier-api.getyourguide.com/sandbox/api/gyg/notify-availability-update
+POST http://localhost:3000/api/gyg/deals
 Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
 Content-Type: application/json
 
@@ -144,7 +144,7 @@ Content-Type: application/json
 }
 
 ### Create Deal
-POST https://supplier-api.getyourguide.com/sandbox/api/gyg/deals
+POST https://zentrip.vercel.app/api/gyg/deals
 Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
 Content-Type: application/json
 
@@ -152,6 +152,6 @@ Content-Type: application/json
     "productId": "ZT-TOUR-001",
     "dealType": "EARLY_BIRD",
     "discount": 15,
-    "validFrom": "01/02/2025 00:00:00",
-    "validTo": "01/03/2025 23:59:59"
+    "validFrom": "01-02-2025 00:00:00",
+    "validTo": "01-03-2025 23:59:59"
 }

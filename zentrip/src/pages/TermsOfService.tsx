@@ -1,3 +1,4 @@
+import React from 'react';
 const TermsOfService = () => {
     return (
       <div className="container-spacing py-8">

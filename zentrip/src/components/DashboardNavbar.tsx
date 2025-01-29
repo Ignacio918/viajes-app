@@ -1,4 +1,4 @@
-import type React from "react"
+import React from 'react';
 import "../styles/Dashboard.css"
 import notificationIcon from "../assets/icons/icon-notification.svg"
 

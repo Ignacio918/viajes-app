@@ -1,3 +1,4 @@
+import React from 'react';
 import { FC, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Twitter, Send, Moon, Sun } from 'lucide-react';
