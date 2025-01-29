@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
 
         if (!existingUser) {
           // Si no existe el usuario, lo creamos
-          const { data: newUser, error: insertError } = await supabase
+          const { data: _newUser, error: insertError } = await supabase
             .from('users')
             .insert([
               {

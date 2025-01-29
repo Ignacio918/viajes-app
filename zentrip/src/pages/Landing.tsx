@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from './HeroSection';
-import TravelTabs from '../components/TravelTabs';
+import TabsSection from '../components/TabsSection';
 
 const Landing: React.FC = () => {
   console.log('🔵 Landing RENDERED 🔵');
@@ -9,8 +9,9 @@ const Landing: React.FC = () => {
   return (
     <div className="landing-container">
       <Navbar />
-
-
+      <HeroSection />
+      <TabsSection />
+      
     </div>
   );
 };

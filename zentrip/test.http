@@ -1,0 +1,157 @@
+### Test raíz del servidor
+GET http://localhost:3000/
+
+### Test endpoint de productos
+GET http://localhost:3000/api/gyg/products
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+
+### Test endpoint de disponibilidad
+POST http://localhost:3000/api/gyg/availability
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+  "productId": "ZT-TOUR-001",
+  "dateFrom": "2024-02-01",
+  "dateTo": "2024-02-02"
+}
+
+### Test endpoint de reserva
+POST http://localhost:3000/api/gyg/booking
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+  "productId": "ZT-TOUR-001",
+  "dateTime": "2025-02-01T20:10:47+00:00",
+  "travelers": 2
+}
+
+### Probar productos
+GET http://localhost:3000/api/gyg/products
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+
+### Probar disponibilidad
+POST http://localhost:3000/api/gyg/availability
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+  "productId": "ZT-TOUR-001",
+  "dateFrom": "2024-02-01",
+  "dateTo": "2024-02-02"
+}
+
+### Buscar tours en Barcelona
+GET https://api.getyourguide.com/1/tours
+?q=Barcelona
+&cnt=10
+&partner_id=FRGBT5F
+Accept: application/json
+
+### Buscar tours específicos
+GET https://api.getyourguide.com/1/activities/search
+?q=Coliseo Roma
+&limit=5
+&currency=EUR
+&partner_id=FRGBT5F
+Accept: application/json
+
+### Obtener detalles de una actividad específica
+GET https://api.getyourguide.com/1/activities/123
+?partner_id=FRGBT5F
+Accept: application/json
+
+### Tour específico de Beatles en Londres
+GET https://www.getyourguide.com/london-l57/london-beatles-and-abbey-road-tour-with-richard-porter-t445767/?partner_id=FRGBT5F
+
+### Búsqueda de tours en Londres
+GET https://www.getyourguide.com/london-l57/?partner_id=FRGBT5F
+
+### Búsqueda específica de tours de Beatles
+GET https://www.getyourguide.com/london-l57/s/?q=beatles&partner_id=FRGBT5F
+
+### Tour directo sin parámetros adicionales
+GET https://www.getyourguide.com/london-l57/london-beatles-and-abbey-road-tour-with-richard-porter-t445767
+
+### Test notify availability update
+POST http://localhost:3000/api/gyg/notify-availability-update
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+  "productId": "ZT-TOUR-001",
+  "availability": {
+    "dateTime": "2025-02-01T09:00:00+01:00",
+    "available": true,
+    "vacancies": 10,
+    "pricing": {
+      "retail": 25.00,
+      "currency": "EUR"
+    }
+  }
+}
+
+### Test deals create
+POST http://localhost:3000/api/gyg/deals
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+  "productId": "ZT-TOUR-001",
+  "dealType": "EARLY_BIRD",
+  "discount": 10,
+  "validFrom": "2025-01-01T00:00:00Z",
+  "validTo": "2025-01-31T23:59:59Z"
+}
+
+### Test supplier registration
+POST http://localhost:3000/api/gyg/suppliers
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+  "supplierId": "SUP-001",
+  "name": "Zentrip Tours",
+  "email": "contact@zentrip.com",
+  "phone": "+1234567890"
+}
+
+### Test get deals list
+GET http://localhost:3000/api/gyg/deals
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+
+### Test delete deal
+DELETE http://localhost:3000/api/gyg/deals/DEAL-1738098380877
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+
+### Notify Availability Update
+POST https://supplier-api.getyourguide.com/sandbox/api/gyg/notify-availability-update
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+    "product_id": "ZT-TOUR-001",
+    "availability": {
+        "dateTime": "2025-02-01T09:00:00Z",
+        "available": true,
+        "vacancies": 10,
+        "pricing": {
+            "retail": 25,
+            "currency": "EUR"
+        }
+    }
+}
+
+### Create Deal
+POST https://supplier-api.getyourguide.com/sandbox/api/gyg/deals
+Authorization: Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec
+Content-Type: application/json
+
+{
+    "productId": "ZT-TOUR-001",
+    "dealType": "EARLY_BIRD",
+    "discount": 15,
+    "validFrom": "01/02/2025 00:00:00",
+    "validTo": "01/03/2025 23:59:59"
+}

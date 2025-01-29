@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../styles/TripMap.css';
@@ -8,94 +8,42 @@ export interface Location {
   name: string;
   coordinates: [number, number];
   day: number;
-  description?: string;
+  description: string;
   time?: string;
 }
 
 interface TripMapProps {
   locations: Location[];
   selectedDay?: number;
-  onLocationClick?: (location: Location) => void;
+  onLocationClick: (location: Location) => void;
 }
 
-const TripMap = ({ locations, selectedDay, onLocationClick }: TripMapProps) => {
-  const mapRef = useRef<L.Map | null>(null);
-  const markersRef = useRef<L.LayerGroup>();
-
+const TripMap: React.FC<TripMapProps> = ({ locations, selectedDay, onLocationClick }) => {
   useEffect(() => {
-    if (!mapRef.current) {
-      mapRef.current = L.map('trip-map').setView([0, 0], 2);
-      
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(mapRef.current);
+    // Inicializar el mapa
+    const map = L.map('map').setView([-34.6037, -58.3816], 13);
 
-      markersRef.current = L.layerGroup().addTo(mapRef.current);
-    }
+    // Agregar el tile layer de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
-    return () => {
-      mapRef.current?.remove();
-    };
-  }, []);
+    // Agregar marcadores para cada ubicación
+    locations.forEach(location => {
+      const marker = L.marker(location.coordinates)
+        .addTo(map)
+        .bindPopup(location.name);
 
-  useEffect(() => {
-    if (!mapRef.current || !markersRef.current) return;
-
-    markersRef.current.clearLayers();
-    const bounds = L.latLngBounds([]);
-
-    // Filtrar ubicaciones por día si hay uno seleccionado
-    const filteredLocations = selectedDay 
-      ? locations.filter(loc => loc.day === selectedDay)
-      : locations;
-
-    filteredLocations.forEach((location, index) => {
-      // Crear marcador
-      const marker = L.marker(location.coordinates, {
-        icon: L.divIcon({
-          className: 'custom-marker',
-          html: `<div class="marker-content">${index + 1}</div>`,
-          iconSize: [30, 30]
-        })
-      });
-
-      // Agregar popup
-      marker.bindPopup(`
-        <div class="marker-popup">
-          <h3>${location.name}</h3>
-          <p>Día ${location.day}</p>
-          ${location.description ? `<p>${location.description}</p>` : ''}
-        </div>
-      `);
-
-      marker.on('click', () => onLocationClick?.(location));
-      marker.addTo(markersRef.current!);
-      bounds.extend(location.coordinates);
+      marker.on('click', () => onLocationClick(location));
     });
 
-    // Dibujar ruta
-    if (filteredLocations.length > 1) {
-      const route = L.polyline(
-        filteredLocations.map(loc => loc.coordinates),
-        { 
-          color: '#E61C5D',
-          weight: 3,
-          opacity: 0.8
-        }
-      ).addTo(markersRef.current);
-    }
+    // Limpiar el mapa cuando el componente se desmonte
+    return () => {
+      map.remove();
+    };
+  }, [locations, selectedDay, onLocationClick]);
 
-    // Ajustar vista
-    if (bounds.isValid()) {
-      mapRef.current.fitBounds(bounds, { padding: [50, 50] });
-    }
-  }, [locations, selectedDay]);
-
-  return (
-    <div className="trip-map-container">
-      <div id="trip-map" className="trip-map" />
-    </div>
-  );
+  return <div id="map" className="h-full w-full" />;
 };
 
 export default TripMap;

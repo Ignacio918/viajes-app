@@ -5,7 +5,6 @@ import {
   Route,
   Routes,
   Navigate,
-  useLocation,
 } from "react-router-dom";
 import { supabase } from "./supabaseClient";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -56,12 +55,6 @@ const App: React.FC = () => {
   }
 
   const AppContent = () => {
-    const location = useLocation();
-    const hideNavbar =
-      location.pathname.startsWith("/dashboard") ||
-      location.pathname === "/login" ||
-      location.pathname === "/register";
-
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
         <Routes>
