@@ -1,5 +1,5 @@
 // src/components/Tours.tsx
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Tours.css';
 
 interface Tour {
@@ -16,8 +16,14 @@ interface Tour {
   description: string;
 }
 
+interface Deal {
+  id: string;
+  title: string;
+}
+
 const Tours = () => {
   const [tours, setTours] = useState<Tour[]>([]);
+  const [deals, setDeals] = useState<Deal[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,6 +52,39 @@ const Tours = () => {
       setLoading(false);
     }
   };
+
+  const fetchDeals = async () => {
+    try {
+      const response = await fetch('https://zentrip.vercel.app/api/gyg/deals', {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic zentrip:4392d51687c605b11df5c2a9f0acb5ec',
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      setDeals(data);
+    } catch (err) {
+      console.error('Error fetching deals:', err);
+      setError('Error al cargar los deals');
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await fetchDeals();
+        await checkAvailability();
+      } catch (err) {
+        setError('Error al cargar los datos');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="container mx-auto p-4">
@@ -110,6 +149,15 @@ const Tours = () => {
           <p>No hay tours disponibles en este momento.</p>
         </div>
       )}
+
+      <h2 className="text-2xl font-bold mb-4">Deals Disponibles</h2>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {deals.map((deal) => (
+          <div key={deal.id} className="border rounded-lg overflow-hidden shadow-lg">
+            <h3 className="font-bold text-lg mb-2">{deal.title}</h3>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
