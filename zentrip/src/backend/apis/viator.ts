@@ -39,7 +39,7 @@ export interface ViatorDestination {
 }
 
 const viatorApi = axios.create({
-  baseURL: '/viator',
+  baseURL: 'https://api.viator.com/partner',
   headers: {
     'Accept-Language': 'es-ES',
     'Content-Type': 'application/json',
@@ -75,7 +75,8 @@ viatorApi.interceptors.response.use(
       statusText: error.response?.statusText,
       data: error.response?.data,
       message: error.message,
-      code: error.code
+      code: error.code,
+      config: error.config
     });
     return Promise.reject(error);
   }
@@ -90,6 +91,7 @@ export const useViator = () => {
     
     setLoading(true);
     try {
+      console.log('Buscando destinos con query:', query);
       const response = await viatorApi.post('/search/freetext', {
         searchTerm: query,
         searchTypes: [
@@ -100,12 +102,10 @@ export const useViator = () => {
               count: 5
             }
           }
-        ],
-        currency: "USD",
-        includeAutomaticTranslations: true
+        ]
       });
       
-      console.log('📍 Respuesta de búsqueda de destinos:', response.data);
+      console.log('📍 Respuesta completa de búsqueda:', response);
       
       if (response.data?.destinations?.results) {
         return response.data.destinations.results.map((dest: any) => ({
@@ -118,7 +118,12 @@ export const useViator = () => {
       
       return [];
     } catch (err: any) {
-      console.error('🚫 Error buscando destinos:', err);
+      console.error('🚫 Error detallado:', {
+        message: err.message,
+        response: err.response,
+        config: err.config,
+        data: err.response?.data
+      });
       setError(err.response?.data?.message || err.message);
       return [];
     } finally {
@@ -150,10 +155,15 @@ export const useViator = () => {
         currency: 'USD'
       });
 
+      console.log('✅ Respuesta de búsqueda de tours:', response.data);
       return response.data;
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || err.message;
-      console.error('💥 Error en búsqueda de tours:', errorMessage);
+      console.error('💥 Error detallado en búsqueda de tours:', {
+        message: errorMessage,
+        response: err.response,
+        config: err.config
+      });
       setError(errorMessage);
       return null;
     } finally {
