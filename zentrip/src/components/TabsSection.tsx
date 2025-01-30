@@ -1,22 +1,72 @@
 // src/components/TabsSection.tsx
-import { useState } from 'react';
-import { useViator, ViatorTour } from '../backend/apis/viator';
+import { useState, useEffect, useRef } from 'react';
+import { useViator, ViatorTour, ViatorDestination } from '../backend/apis/viator';
 
 const TabsSection = () => {
-  const { searchTours, loading, error } = useViator();
+  const { searchTours, searchDestinations, loading, error: apiError } = useViator();
   const [searchResults, setSearchResults] = useState<ViatorTour[]>([]);
+  const [destinations, setDestinations] = useState<ViatorDestination[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [localError, setLocalError] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useState({
     destination: '',
+    destinationId: '',
     startDate: '',
     endDate: ''
   });
 
+  // Referencia para el dropdown de destinos
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Cerrar dropdown al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Debounce para la búsqueda de destinos
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (searchParams.destination.length >= 3) {
+        handleDestinationSearch(searchParams.destination);
+      }
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchParams.destination]);
+
+  const handleDestinationSearch = async (query: string) => {
+    const results = await searchDestinations(query);
+    setDestinations(results);
+    setShowSuggestions(true);
+  };
+
+  const handleDestinationSelect = (destination: ViatorDestination) => {
+    setSearchParams(prev => ({
+      ...prev,
+      destination: destination.name,
+      destinationId: destination.destinationId
+    }));
+    setShowSuggestions(false);
+  };
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!searchParams.destination) return;
+    setLocalError(null);
+
+    if (!searchParams.destinationId) {
+      setLocalError('Por favor, selecciona un destino válido');
+      return;
+    }
 
     const results = await searchTours({
-      destination: searchParams.destination,
+      destination: searchParams.destinationId,
       startDate: searchParams.startDate,
       endDate: searchParams.endDate
     });
@@ -28,29 +78,58 @@ const TabsSection = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
-      {/* Buscador */}
       <form onSubmit={handleSearch} className="mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input
-            type="text"
-            placeholder="¿A dónde quieres ir?"
-            value={searchParams.destination}
-            onChange={(e) => setSearchParams(prev => ({ ...prev, destination: e.target.value }))}
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
-          />
+          {/* Input de destino con autocompletado */}
+          <div className="relative" ref={dropdownRef}>
+            <input
+              type="text"
+              placeholder="¿A dónde quieres ir?"
+              value={searchParams.destination}
+              onChange={(e) => setSearchParams(prev => ({
+                ...prev,
+                destination: e.target.value,
+                destinationId: '' // Limpiar ID cuando se modifica el texto
+              }))}
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
+            />
+            {showSuggestions && destinations.length > 0 && (
+              <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                {destinations.map((dest) => (
+                  <button
+                    key={dest.destinationId}
+                    type="button"
+                    onClick={() => handleDestinationSelect(dest)}
+                    className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:bg-gray-100"
+                  >
+                    <span className="font-medium">{dest.name}</span>
+                    <span className="text-sm text-gray-500 block">
+                      {dest.displayName}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Inputs de fecha */}
           <input
             type="date"
             value={searchParams.startDate}
             onChange={(e) => setSearchParams(prev => ({ ...prev, startDate: e.target.value }))}
             className="p-3 border rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
+            min={new Date().toISOString().split('T')[0]}
           />
           <input
             type="date"
             value={searchParams.endDate}
             onChange={(e) => setSearchParams(prev => ({ ...prev, endDate: e.target.value }))}
             className="p-3 border rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
+            min={searchParams.startDate || new Date().toISOString().split('T')[0]}
           />
         </div>
+
+        {/* Botón de búsqueda */}
         <button
           type="submit"
           disabled={loading}
@@ -61,9 +140,9 @@ const TabsSection = () => {
       </form>
 
       {/* Mensaje de error */}
-      {error && (
+      {(localError || apiError) && (
         <div className="p-4 mb-6 bg-red-50 text-red-600 rounded-lg">
-          {error}
+          {localError || apiError}
         </div>
       )}
 
