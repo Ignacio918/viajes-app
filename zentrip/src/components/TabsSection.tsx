@@ -15,7 +15,7 @@ const TabsSection = () => {
     endDate: ''
   });
 
-  // Referencia para el dropdown de destinos
+  // Referencia para el dropdown
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Cerrar dropdown al hacer click fuera
@@ -30,11 +30,14 @@ const TabsSection = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Debounce para la búsqueda de destinos
+  // Debounce para la búsqueda
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchParams.destination.length >= 3) {
         handleDestinationSearch(searchParams.destination);
+      } else {
+        setDestinations([]);
+        setShowSuggestions(false);
       }
     }, 300);
 
@@ -89,7 +92,7 @@ const TabsSection = () => {
               onChange={(e) => setSearchParams(prev => ({
                 ...prev,
                 destination: e.target.value,
-                destinationId: '' // Limpiar ID cuando se modifica el texto
+                destinationId: ''
               }))}
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
             />
@@ -100,12 +103,16 @@ const TabsSection = () => {
                     key={dest.destinationId}
                     type="button"
                     onClick={() => handleDestinationSelect(dest)}
-                    className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:bg-gray-100"
+                    className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:bg-gray-100 border-b last:border-b-0"
                   >
-                    <span className="font-medium">{dest.name}</span>
-                    <span className="text-sm text-gray-500 block">
-                      {dest.displayName}
-                    </span>
+                    <div className="flex flex-col">
+                      <span className="font-medium text-gray-900">
+                        {dest.name}
+                      </span>
+                      <span className="text-sm text-gray-500">
+                        {dest.parentDestinationName}
+                      </span>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -139,7 +146,7 @@ const TabsSection = () => {
         </button>
       </form>
 
-      {/* Mensaje de error */}
+      {/* Mensajes de error */}
       {(localError || apiError) && (
         <div className="p-4 mb-6 bg-red-50 text-red-600 rounded-lg">
           {localError || apiError}

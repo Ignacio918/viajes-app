@@ -35,21 +35,19 @@ export interface ViatorSearchParams {
 export interface ViatorDestination {
   destinationId: string;
   name: string;
-  latitude: number;
-  longitude: number;
-  parentId: string;
-  lookupId: string;
-  type: string;
   displayName: string;
+  parentId?: string;
+  parentDestinationName?: string;
+  type: string;
 }
 
 // Cliente API con interceptores
 const viatorApi = axios.create({
   baseURL: 'https://api.viator.com/partner',
   headers: {
-    'Accept-Language': 'en-US',
+    'Accept-Language': 'es-ES',
     'Content-Type': 'application/json',
-    'Accept': 'application/json;version=1.0',
+    'Accept': 'application/json;version=2.0',
     'exp-api-key': import.meta.env.VITE_VIATOR_API_KEY
   }
 });
@@ -100,15 +98,32 @@ export const useViator = () => {
     console.log('🔍 Buscando destinos con query:', query);
     
     try {
-      const response = await viatorApi.get(`/v1/taxonomy/destinations`, {
-        params: {
-          query: query,
-          size: 5
-        }
+      const response = await viatorApi.post('/search/freetext', {
+        searchTerm: query,
+        searchTypes: [
+          {
+            searchType: "DESTINATIONS",
+            pagination: {
+              start: 1,
+              count: 5
+            }
+          }
+        ],
+        currency: "USD"
       });
       
       console.log('📍 Destinos encontrados:', response.data);
-      return response.data.data || [];
+      
+      const destinations = response.data.destinations?.results?.map((dest: any) => ({
+        destinationId: dest.id,
+        name: dest.name,
+        displayName: `${dest.name}${dest.parentDestinationName ? `, ${dest.parentDestinationName}` : ''}`,
+        parentId: dest.parentDestinationId,
+        parentDestinationName: dest.parentDestinationName,
+        type: 'CITY'
+      })) || [];
+
+      return destinations;
     } catch (err: any) {
       console.error('🚫 Error buscando destinos:', {
         message: err.message,
@@ -125,10 +140,6 @@ export const useViator = () => {
     console.log('🎯 Iniciando búsqueda de tours con parámetros:', params);
 
     try {
-      if (!import.meta.env.VITE_VIATOR_API_KEY) {
-        throw new Error('API key de Viator no configurada');
-      }
-
       const response = await viatorApi.post('/products/search', {
         filtering: {
           destination: params.destination,
@@ -152,12 +163,12 @@ export const useViator = () => {
       return response.data;
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || err.message;
-      setError(errorMessage);
       console.error('💥 Error en búsqueda de tours:', {
         message: errorMessage,
         config: err.config,
         response: err.response
       });
+      setError(errorMessage);
       return null;
     } finally {
       setLoading(false);
