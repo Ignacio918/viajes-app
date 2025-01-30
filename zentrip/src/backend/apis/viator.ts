@@ -39,7 +39,7 @@ export interface ViatorDestination {
 }
 
 const viatorApi = axios.create({
-  baseURL: 'https://api.viator.com/partner',
+  baseURL: '/viator',
   headers: {
     'Accept-Language': 'es-ES',
     'Content-Type': 'application/json',
@@ -56,6 +56,9 @@ viatorApi.interceptors.request.use(request => {
     data: request.data
   });
   return request;
+}, error => {
+  console.error('❌ Error en la configuración de la petición:', error);
+  return Promise.reject(error);
 });
 
 viatorApi.interceptors.response.use(
@@ -71,7 +74,8 @@ viatorApi.interceptors.response.use(
       status: error.response?.status,
       statusText: error.response?.statusText,
       data: error.response?.data,
-      config: error.config
+      message: error.message,
+      code: error.code
     });
     return Promise.reject(error);
   }
@@ -84,6 +88,7 @@ export const useViator = () => {
   const searchDestinations = async (query: string) => {
     if (query.length < 3) return [];
     
+    setLoading(true);
     try {
       const response = await viatorApi.post('/search/freetext', {
         searchTerm: query,
@@ -100,6 +105,8 @@ export const useViator = () => {
         includeAutomaticTranslations: true
       });
       
+      console.log('📍 Respuesta de búsqueda de destinos:', response.data);
+      
       if (response.data?.destinations?.results) {
         return response.data.destinations.results.map((dest: any) => ({
           id: dest.id,
@@ -114,6 +121,8 @@ export const useViator = () => {
       console.error('🚫 Error buscando destinos:', err);
       setError(err.response?.data?.message || err.message);
       return [];
+    } finally {
+      setLoading(false);
     }
   };
 
