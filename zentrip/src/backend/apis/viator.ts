@@ -36,18 +36,16 @@ export interface ViatorDestination {
   destinationId: string;
   name: string;
   displayName: string;
-  parentId?: string;
-  parentDestinationName?: string;
   type: string;
+  parentId?: string;
+  destinationNameList?: string[];
 }
 
-// Cliente API con interceptores
 const viatorApi = axios.create({
   baseURL: 'https://api.viator.com/partner',
   headers: {
     'Accept-Language': 'es-ES',
     'Content-Type': 'application/json',
-    'Accept': 'application/json;version=2.0',
     'exp-api-key': import.meta.env.VITE_VIATOR_API_KEY
   }
 });
@@ -77,17 +75,12 @@ viatorApi.interceptors.response.use(
       status: error.response?.status,
       statusText: error.response?.statusText,
       data: error.response?.data,
-      config: {
-        url: error.config?.url,
-        method: error.config?.method,
-        headers: error.config?.headers
-      }
+      config: error.config
     });
     return Promise.reject(error);
   }
 );
 
-// Hook personalizado
 export const useViator = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -98,32 +91,30 @@ export const useViator = () => {
     console.log('🔍 Buscando destinos con query:', query);
     
     try {
-      const response = await viatorApi.post('/search/freetext', {
-        searchTerm: query,
-        searchTypes: [
-          {
-            searchType: "DESTINATIONS",
-            pagination: {
-              start: 1,
-              count: 5
-            }
-          }
-        ],
-        currency: "USD"
+      const response = await viatorApi.get(`/search/destinations`, {
+        params: {
+          q: query,
+          size: 5
+        },
+        headers: {
+          'Accept': 'application/json;version=2.0'
+        }
       });
       
       console.log('📍 Destinos encontrados:', response.data);
-      
-      const destinations = response.data.destinations?.results?.map((dest: any) => ({
-        destinationId: dest.id,
-        name: dest.name,
-        displayName: `${dest.name}${dest.parentDestinationName ? `, ${dest.parentDestinationName}` : ''}`,
-        parentId: dest.parentDestinationId,
-        parentDestinationName: dest.parentDestinationName,
-        type: 'CITY'
-      })) || [];
 
-      return destinations;
+      if (response.data && Array.isArray(response.data)) {
+        return response.data.map((dest: any) => ({
+          destinationId: dest.destinationId,
+          name: dest.name,
+          displayName: `${dest.name}, ${dest.destinationNameList?.join(', ')}`,
+          type: dest.type,
+          parentId: dest.parentId,
+          destinationNameList: dest.destinationNameList
+        }));
+      }
+      
+      return [];
     } catch (err: any) {
       console.error('🚫 Error buscando destinos:', {
         message: err.message,
@@ -136,8 +127,6 @@ export const useViator = () => {
   const searchTours = async (params: ViatorSearchParams) => {
     setLoading(true);
     setError(null);
-
-    console.log('🎯 Iniciando búsqueda de tours con parámetros:', params);
 
     try {
       const response = await viatorApi.post('/products/search', {
@@ -157,17 +146,15 @@ export const useViator = () => {
           count: 10
         },
         currency: 'USD'
+      }, {
+        headers: {
+          'Accept': 'application/json;version=2.0'
+        }
       });
 
-      console.log('🎉 Tours encontrados:', response.data);
       return response.data;
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || err.message;
-      console.error('💥 Error en búsqueda de tours:', {
-        message: errorMessage,
-        config: err.config,
-        response: err.response
-      });
       setError(errorMessage);
       return null;
     } finally {
