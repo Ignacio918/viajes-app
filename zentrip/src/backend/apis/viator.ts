@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-// Interfaces
 export interface ViatorTour {
   productCode: string;
   title: string;
@@ -11,13 +10,13 @@ export interface ViatorTour {
     amount: number;
     currency: string;
   };
-  images: {
+  duration?: string;
+  images: Array<{
     url: string;
-  }[];
+  }>;
+  bookingUrl?: string;
   rating?: number;
   reviewCount?: number;
-  duration?: string;
-  bookingUrl?: string;
 }
 
 export interface ViatorSearchParams {
@@ -33,12 +32,10 @@ export interface ViatorSearchParams {
 }
 
 export interface ViatorDestination {
-  destinationId: string;
+  id: string;
   name: string;
-  displayName: string;
-  type: string;
-  parentId?: string;
-  destinationNameList?: string[];
+  parentDestinationId?: string;
+  parentDestinationName?: string;
 }
 
 const viatorApi = axios.create({
@@ -46,17 +43,16 @@ const viatorApi = axios.create({
   headers: {
     'Accept-Language': 'es-ES',
     'Content-Type': 'application/json',
+    'Accept': 'application/json;version=2.0',
     'exp-api-key': import.meta.env.VITE_VIATOR_API_KEY
   }
 });
 
-// Interceptores para logging
 viatorApi.interceptors.request.use(request => {
   console.log('🚀 Enviando petición a Viator:', {
     url: request.url,
     method: request.method,
     headers: request.headers,
-    params: request.params,
     data: request.data
   });
   return request;
@@ -88,38 +84,35 @@ export const useViator = () => {
   const searchDestinations = async (query: string) => {
     if (query.length < 3) return [];
     
-    console.log('🔍 Buscando destinos con query:', query);
-    
     try {
-      const response = await viatorApi.get(`/search/destinations`, {
-        params: {
-          q: query,
-          size: 5
-        },
-        headers: {
-          'Accept': 'application/json;version=2.0'
-        }
+      const response = await viatorApi.post('/search/freetext', {
+        searchTerm: query,
+        searchTypes: [
+          {
+            searchType: "DESTINATIONS",
+            pagination: {
+              start: 1,
+              count: 5
+            }
+          }
+        ],
+        currency: "USD",
+        includeAutomaticTranslations: true
       });
       
-      console.log('📍 Destinos encontrados:', response.data);
-
-      if (response.data && Array.isArray(response.data)) {
-        return response.data.map((dest: any) => ({
-          destinationId: dest.destinationId,
+      if (response.data?.destinations?.results) {
+        return response.data.destinations.results.map((dest: any) => ({
+          id: dest.id,
           name: dest.name,
-          displayName: `${dest.name}, ${dest.destinationNameList?.join(', ')}`,
-          type: dest.type,
-          parentId: dest.parentId,
-          destinationNameList: dest.destinationNameList
+          parentDestinationId: dest.parentDestinationId,
+          parentDestinationName: dest.parentDestinationName
         }));
       }
       
       return [];
     } catch (err: any) {
-      console.error('🚫 Error buscando destinos:', {
-        message: err.message,
-        response: err.response?.data
-      });
+      console.error('🚫 Error buscando destinos:', err);
+      setError(err.response?.data?.message || err.message);
       return [];
     }
   };
@@ -146,15 +139,12 @@ export const useViator = () => {
           count: 10
         },
         currency: 'USD'
-      }, {
-        headers: {
-          'Accept': 'application/json;version=2.0'
-        }
       });
 
       return response.data;
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || err.message;
+      console.error('💥 Error en búsqueda de tours:', errorMessage);
       setError(errorMessage);
       return null;
     } finally {

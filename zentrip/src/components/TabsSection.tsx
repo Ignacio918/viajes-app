@@ -18,7 +18,6 @@ const TabsSection = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Manejar clicks fuera del dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -30,11 +29,11 @@ const TabsSection = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Debounce para búsqueda de destinos
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
       if (searchParams.destination.length >= 3) {
         const results = await searchDestinations(searchParams.destination);
+        console.log('Resultados de destinos:', results);
         setDestinations(results);
         setShowSuggestions(true);
       } else {
@@ -50,7 +49,7 @@ const TabsSection = () => {
     setSearchParams(prev => ({
       ...prev,
       destination: destination.name,
-      destinationId: destination.destinationId
+      destinationId: destination.id
     }));
     setShowSuggestions(false);
     inputRef.current?.blur();
@@ -80,7 +79,7 @@ const TabsSection = () => {
     <section className="max-w-7xl mx-auto px-4 py-8">
       <form onSubmit={handleSearch} className="mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Input de destino con autocompletado */}
+          {/* Buscador de destinos con autocompletado */}
           <div className="relative" ref={dropdownRef}>
             <input
               ref={inputRef}
@@ -100,40 +99,39 @@ const TabsSection = () => {
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-500"
             />
             
-            {/* Dropdown de autocompletado */}
-            {showSuggestions && destinations.length > 0 && (
+            {/* Dropdown de sugerencias */}
+            {showSuggestions && (
               <div className="absolute z-50 w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                {destinations.map((dest) => (
-                  <button
-                    key={dest.destinationId}
-                    type="button"
-                    onClick={() => handleDestinationSelect(dest)}
-                    className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 border-b last:border-b-0 transition-colors"
-                  >
-                    <div className="flex flex-col">
-                      <span className="font-medium text-gray-900">
-                        {dest.name}
-                      </span>
-                      {dest.destinationNameList && dest.destinationNameList.length > 0 && (
-                        <span className="text-sm text-gray-500">
-                          {dest.destinationNameList.join(', ')}
+                {destinations.length > 0 ? (
+                  destinations.map((dest) => (
+                    <button
+                      key={dest.id}
+                      type="button"
+                      onClick={() => handleDestinationSelect(dest)}
+                      className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 border-b last:border-b-0 transition-colors"
+                    >
+                      <div className="flex flex-col">
+                        <span className="font-medium text-gray-900">
+                          {dest.name}
                         </span>
-                      )}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Mensaje cuando no hay resultados */}
-            {showSuggestions && searchParams.destination.length >= 3 && destinations.length === 0 && (
-              <div className="absolute z-50 w-full mt-1 bg-white border rounded-lg shadow-lg p-3 text-center text-gray-500">
-                No se encontraron destinos
+                        {dest.parentDestinationName && (
+                          <span className="text-sm text-gray-500">
+                            {dest.parentDestinationName}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <div className="p-4 text-center text-gray-500">
+                    {loading ? 'Buscando...' : 'No se encontraron destinos'}
+                  </div>
+                )}
               </div>
             )}
           </div>
 
-          {/* Inputs de fecha */}
+          {/* Selectores de fecha */}
           <input
             type="date"
             value={searchParams.startDate}
@@ -167,7 +165,7 @@ const TabsSection = () => {
         </div>
       )}
 
-      {/* Resultados */}
+      {/* Resultados de la búsqueda */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {searchResults.map((tour) => (
           <div key={tour.productCode} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
